@@ -9,6 +9,7 @@ import { demoArticles } from './data';
 // Change the line below to:
 // export const DEMO_ENABLED = String(import.meta.env.VITE_DEMO_MODE || '').trim().toLowerCase() === 'true';
 // =========================================================================
+export const API_BASE = String(import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
 export const DEMO_ENABLED = String(import.meta.env.VITE_DEMO_MODE || 'true').trim().toLowerCase() !== 'false';
 
 const LIVE_UNAVAILABLE_MESSAGE = 'The live news service is temporarily unavailable. Please try again shortly.';
