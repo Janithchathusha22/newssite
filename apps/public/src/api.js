@@ -62,8 +62,22 @@ function slugify(text = '') {
   return text.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
+function sanitizeText(str = '') {
+  if (!str || typeof str !== 'string') return '';
+  return str
+    .replace(/©\s*\d{4}\s*[a-z0-9_.-]+\.[a-z]{2,}(?:\s*All Rights Reserved)?/gi, '')
+    .replace(/All Rights Reserved\s*Back To Top/gi, '')
+    .replace(/Back To Top/gi, '')
+    .replace(/\(?\b(?:Ada Derana|Daily FT|Daily Mirror|The Morning|The Island|Daily News|Sunday Observer|businesscafe\.lk|srilankabiz\.lk|srilankamirror\.com|news\.lk|Xinhua)\b\)?/gi, '')
+    .replace(/This report is based on material attributed to [^.]+\./gi, '')
+    .replace(/Follow the publisher for the original context\./gi, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+}
+
 export function normalizeArticle(article, index = 0) {
-  const title = article.title || article.headline || article.headline_en || 'Untitled report';
+  const rawTitle = article.title || article.headline || article.headline_en || 'Untitled report';
+  const title = sanitizeText(rawTitle) || rawTitle;
   const rawCategory = article.category?.name || article.category || 'business-news';
   const categorySlug = article.category_slug || article.categorySlug
     || (['business-news', 'interviews-appointments', 'money', 'technology', 'travel-tourism', 'luxury-living'].includes(rawCategory)
@@ -81,11 +95,11 @@ export function normalizeArticle(article, index = 0) {
   const content = article.content || article.full_text || article.body || '';
   let body;
   if (Array.isArray(content)) {
-    body = content;
+    body = content.map(sanitizeText).filter(Boolean);
   } else {
     const text = String(content);
     // Try splitting by double-newline first (standard paragraph separator)
-    const paragraphs = text.split(/\n{2,}/).map((line) => line.trim()).filter(Boolean);
+    const paragraphs = text.split(/\n{2,}/).map((line) => sanitizeText(line)).filter(Boolean);
     if (paragraphs.length > 1) {
       body = paragraphs;
     } else {
@@ -95,12 +109,13 @@ export function normalizeArticle(article, index = 0) {
       const SENTENCES_PER_PARA = 3;
       body = [];
       for (let i = 0; i < sentences.length; i += SENTENCES_PER_PARA) {
-        body.push(sentences.slice(i, i + SENTENCES_PER_PARA).join('').trim());
+        const p = sanitizeText(sentences.slice(i, i + SENTENCES_PER_PARA).join(''));
+        if (p) body.push(p);
       }
       body = body.filter(Boolean);
     }
   }
-  const sourceUrl = article.source_url || article.sourceUrl || article.original_url || article.url || article.link || '#';
+  const sourceUrl = '#';
   const image = [
     article.local_image_path,
     article.image_local,
@@ -109,6 +124,9 @@ export function normalizeArticle(article, index = 0) {
     article.image_url,
     article.image
   ].map(cleanImageCandidate).find(Boolean) || '';
+
+  const rawExcerpt = article.excerpt || article.summary || article.description || body[0] || '';
+  const excerpt = sanitizeText(rawExcerpt) || rawExcerpt;
 
   return {
     ...article,
@@ -119,12 +137,14 @@ export function normalizeArticle(article, index = 0) {
     category,
     categorySlug,
     source: 'Business Leaders',
+    sourceName: 'Business Leaders Sri Lanka',
+    author: 'Business Leaders Editorial Desk',
     sourceUrl,
     publishedAt: article.site_published_at || article.published_at || article.publishedAt || article.date || '',
-    excerpt: article.excerpt || article.summary || article.description || body[0] || '',
-    summary: article.summary || article.excerpt || body[0] || '',
+    excerpt,
+    summary: excerpt,
     image,
-    body: body.length ? body : [article.summary || article.excerpt].filter(Boolean),
+    body: body.length ? body : [excerpt].filter(Boolean),
     isTop: Boolean(article.is_top_news ?? article.isTop),
     topRank: Number(article.top_rank ?? article.topRank ?? 999)
   };

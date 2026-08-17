@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { categories, categoryBySlug } from './data';
 import { getArticle, getCategory, getHome, getPreview, resolveAssetUrl } from './api';
+import logoImage from './assets/logo.jpeg';
 
 const Arrow = ({ small = false }) => (
   <svg className={small ? 'icon icon--small' : 'icon'} viewBox="0 0 24 24" aria-hidden="true">
@@ -12,6 +13,30 @@ const Arrow = ({ small = false }) => (
 const MenuIcon = ({ open }) => (
   <svg className="menu-icon" viewBox="0 0 24 24" aria-hidden="true">
     {open ? <path d="m5 5 14 14M19 5 5 19" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
+  </svg>
+);
+
+const FacebookIcon = () => (
+  <svg className="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+  </svg>
+);
+
+const TwitterIcon = () => (
+  <svg className="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+);
+
+const WhatsAppIcon = () => (
+  <svg className="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+  </svg>
+);
+
+const LinkedInIcon = () => (
+  <svg className="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
   </svg>
 );
 
@@ -119,29 +144,31 @@ function Header() {
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
-      <div className="signal-bar">
-        <div className="shell signal-bar__inner">
-          <span className="signal-bar__date">{formatDate(new Date().toISOString(), true)}</span>
-          <span><i /> Weekly Business Newsletter · Estd. 2026 Colombo Sri Lanka</span>
-          <Link to="/about">About Business Leaders</Link>
-        </div>
-      </div>
       <header className="masthead">
         <div className="shell masthead__inner">
-          <button className="mobile-toggle" onClick={() => setMenuOpen((value) => !value)} aria-expanded={menuOpen} aria-label="Toggle navigation">
-            <MenuIcon open={menuOpen} />
-          </button>
-          <Link to="/" className="wordmark" aria-label="Business Leaders Sri Lanka home">
-            <span className="wordmark__mark">BL</span>
-            <span className="wordmark__type">Business <em>Leaders</em></span>
+          <div className="masthead__socials">
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><FacebookIcon /></a>
+            <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="X"><TwitterIcon /></a>
+            <a href="https://whatsapp.com" target="_blank" rel="noreferrer" aria-label="WhatsApp"><WhatsAppIcon /></a>
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedInIcon /></a>
+          </div>
+
+          <Link to="/" className="brand-logo-link" aria-label="Business Leaders Sri Lanka home">
+            <img src={logoImage} alt="Business Leaders Sri Lanka" className="brand-logo-img" />
           </Link>
-          <p className="masthead__promise">Weekly Business Newsletter<br />Colombo, Sri Lanka</p>
-          <button className="search-button" onClick={() => setSearchOpen(true)} aria-label="Search">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4 4" /></svg>
-            <span>Search</span>
-          </button>
+
+          <div className="masthead__right">
+            <button className="search-button" onClick={() => setSearchOpen(true)} aria-label="Search">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4 4" /></svg>
+              <span>Search</span>
+            </button>
+            <button className="mobile-toggle" onClick={() => setMenuOpen((value) => !value)} aria-expanded={menuOpen} aria-label="Toggle navigation">
+              <MenuIcon open={menuOpen} />
+            </button>
+          </div>
         </div>
       </header>
+
       <nav className={`main-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
         <div className="shell main-nav__inner">
           <NavLink to="/" end>Home</NavLink>
@@ -445,14 +472,6 @@ function ArticlePage({ preview = false }) {
             {(article.body || []).map((paragraph, index) => (
               <p className={index === 0 ? 'article-copy__opening' : ''} key={`${article.id}-${index}`}>{paragraph}</p>
             ))}
-            <div className="source-card">
-              <div className="source-card__icon">BL</div>
-              <div>
-                <span>Official Publication</span>
-                <strong>Business Leaders Sri Lanka</strong>
-                <p>Curated executive insights, market data, and business intelligence for corporate Sri Lanka.</p>
-              </div>
-            </div>
           </div>
           <aside className="article-aside">
             <span className="eyebrow">In this section</span>
@@ -528,8 +547,10 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="shell footer__top">
-        <Link to="/" className="wordmark wordmark--footer"><span className="wordmark__mark">BL</span><span className="wordmark__type">Business <em>Leaders</em></span></Link>
-        <p>Weekly Business Newsletter · Colombo, Sri Lanka</p>
+        <Link to="/" className="footer-logo-link" aria-label="Business Leaders Sri Lanka home">
+          <img src={logoImage} alt="Business Leaders Sri Lanka" className="footer-logo-img" />
+        </Link>
+        <p>Weekly Business Newsletter · Essential intelligence on Sri Lankan enterprise, markets and leadership.</p>
       </div>
       <div className="shell footer__grid">
         <div><span>Sections</span>{categories.slice(0, 3).map((category) => <Link key={category.slug} to={`/${category.slug}`}>{category.label}</Link>)}</div>
