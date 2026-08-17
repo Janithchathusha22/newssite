@@ -1,0 +1,15 @@
+requests
+beautifulsoup4
+cloudscraper
+lxml
+aiohttp
+aiofiles
+zendriver
+playwright
+groq
+pandas
+openpyxl
+python-dotenv
+gspread
+google-auth-oauthlib
+google-auth-httplib2

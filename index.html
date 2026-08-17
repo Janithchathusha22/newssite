@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FT-AI | Business & Governance News Portal</title>
+    <meta name="description" content="Live Sri Lankan business, economy and governance news from leading local publishers.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=20260812-1">
+</head>
+<body class="light-theme" id="pageTop">
+
+    <!-- Top Utility Bar -->
+    <div class="utility-bar">
+        <div class="container utility-content">
+            <div class="utility-left">
+                <span class="date-badge"><i class="fa-regular fa-calendar"></i> <span id="currentDate">Loading current date…</span></span>
+                <span class="location-badge"><i class="fa-solid fa-location-dot"></i> Colombo | LKR / USD: 302.50</span>
+            </div>
+            <div class="utility-right">
+                <div class="lang-switch">
+                    <button class="lang-btn active" data-lang="en">English</button>
+                    <button class="lang-btn" data-lang="si">සිංහල</button>
+                </div>
+                <button id="themeToggle" class="theme-toggle-btn" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button id="pipelineToggleBtn" class="pipeline-btn">
+                    <i class="fa-solid fa-microchip"></i> Newsroom Pipeline
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="brand-box">
+                <a href="#" class="logo">
+                    <span class="logo-accent">DAILY</span> <span class="logo-main">BIZ & GOV</span>
+                </a>
+                <span class="tagline">Sri Lanka's Live Business & Governance Journal</span>
+            </div>
+            <div class="header-banner">
+                <div class="market-ticker-card" id="cseMarketBanner">
+                    <div class="market-item">
+                        <span class="m-label">Loading Live CSE Data... <i class="fa-solid fa-spinner fa-spin"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" class="nav-link active" data-category="all"><i class="fa-solid fa-newspaper"></i> Top News</a></li>
+                <li><a href="#" class="nav-link" data-category="business">Business & Corporate</a></li>
+                <li><a href="#" class="nav-link" data-category="governance">Governance & Policy</a></li>
+                <li><a href="#" class="nav-link" data-category="economy">Economy & Finance</a></li>
+                <li><a href="#" class="nav-link" data-category="opinion">Opinion & Columns</a></li>
+                <li><a href="#" class="nav-link" data-category="esg">ESG & Leadership</a></li>
+            </ul>
+            <div class="nav-search">
+                <input type="text" id="searchInput" placeholder="Search business & gov news...">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breaking News Ticker -->
+    <div class="ticker-wrapper">
+        <div class="container ticker-container">
+            <span class="ticker-label"><i class="fa-solid fa-bolt"></i> BREAKING:</span>
+            <div class="ticker-content" id="tickerText">
+                Awaiting live news updates from Daily FT...
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="container main-layout">
+
+        <!-- AI Scraper Pipeline View (Hidden by default, toggled via header button) -->
+        <section id="pipelineSection" class="pipeline-section hidden">
+            <div class="card pipeline-card">
+                <div class="pipeline-header">
+                    <h2><i class="fa-solid fa-gears"></i> Automated Newsroom Publishing Pipeline</h2>
+                    <span id="pipelineStatusBadge" class="status-badge idle"><i class="fa-solid fa-circle-info"></i> Checking scheduler…</span>
+                </div>
+                <p class="pipeline-desc">This panel shows how publisher feeds are collected, validated, optionally enriched with summaries and translations, and published to the live newsroom wire.</p>
+                
+                <div class="pipeline-steps">
+                    <div class="p-step active">
+                        <div class="step-num">1</div>
+                        <div class="step-info">
+                            <h4>Target Web Scraper</h4>
+                            <p>Fetches articles & photos from <code>ft.lk</code> RSS & DOM</p>
+                        </div>
+                    </div>
+                    <div class="p-step active">
+                        <div class="step-num">2</div>
+                        <div class="step-info">
+                            <h4>Editorial Enrichment</h4>
+                            <p>Classifies business topics and prepares optional summaries and translations</p>
+                        </div>
+                    </div>
+                    <div class="p-step active">
+                        <div class="step-num">3</div>
+                        <div class="step-info">
+                            <h4>Headless CMS / DB</h4>
+                            <p>Stores structured news payload into Firestore/PostgreSQL</p>
+                        </div>
+                    </div>
+                    <div class="p-step active">
+                        <div class="step-num">4</div>
+                        <div class="step-info">
+                            <h4>Frontend Rendering</h4>
+                            <p>Pushes clean, interactive news feeds to readers instantly</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pipeline-actions">
+                    <button id="runScraperBtn" class="btn btn-primary"><i class="fa-solid fa-rotate"></i> Check Live Pipeline Status</button>
+                    <button id="viewCodeBtn" class="btn btn-secondary"><i class="fa-solid fa-code"></i> View Python Scraper Code</button>
+                </div>
+
+                <div id="scraperConsole" class="scraper-console">
+                    <div class="console-header">Scheduler status and recent server output</div>
+                    <pre id="logOutput">Checking the hosted scheduler…</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Content Grid -->
+        <div class="news-grid-container">
+            <!-- Left Primary Column (Hero & Top Headlines) -->
+            <div class="primary-news-column">
+                <div class="editorial-section-header">
+                    <div>
+                        <span class="section-eyebrow">Today's Executive Briefing</span>
+                        <h2>Top Business Stories</h2>
+                    </div>
+                    <span class="section-rule" aria-hidden="true"></span>
+                </div>
+                
+                <!-- Hero Featured Article -->
+                <article class="hero-card card" id="heroArticle">
+                    <!-- Dynamic Hero Content injected by JS -->
+                </article>
+
+                <!-- 2-Column Grid for Secondary Articles -->
+                <div class="secondary-grid" id="secondaryArticles">
+                    <!-- Dynamic Content -->
+                </div>
+
+            </div>
+
+            <!-- Right Sidebar Column (Governance Highlights & Market News) -->
+            <aside class="sidebar-column">
+                
+                <!-- Business & Gov Quick Takeaways -->
+                <div class="card sidebar-widget ai-insights-widget">
+                    <div class="widget-header">
+                        <h3><i class="fa-solid fa-chart-line"></i> Executive Briefing</h3>
+                        <span class="badge ai-badge">Live Sources</span>
+                    </div>
+                    <ul class="takeaways-list" id="aiTakeawaysList">
+                        <li>
+                            <i class="fa-solid fa-clock text-muted"></i>
+                            Waiting for live AI analysis...
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Trending Governance Columns -->
+                <div class="card sidebar-widget">
+                    <div class="widget-header">
+                        <h3><i class="fa-solid fa-landmark"></i> Governance & Policy Feed</h3>
+                    </div>
+                    <div class="gov-feed-list" id="govFeedList">
+                        <!-- Dynamic Gov Feed -->
+                    </div>
+                </div>
+
+                <!-- Source Coverage -->
+                <div class="card sidebar-widget source-coverage-widget">
+                    <div class="widget-header">
+                        <h3><i class="fa-solid fa-satellite-dish"></i> Source Coverage</h3>
+                        <span class="coverage-live"><span aria-hidden="true"></span> Live</span>
+                    </div>
+                    <p class="coverage-intro">Current newsroom coverage by original publisher.</p>
+                    <ul id="sourceCoverageList" class="source-coverage-list">
+                        <li>Reading live source totals…</li>
+                    </ul>
+                </div>
+
+            </aside>
+        </div>
+
+        <!-- Full-width newsroom wire. Items are distinct from the hero/top cards. -->
+        <section class="latest-updates-section" id="latestUpdatesSection" aria-labelledby="latestUpdatesTitle">
+            <div class="latest-section-header">
+                <div>
+                    <span class="section-eyebrow">Continuously Refreshed Newsroom Wire</span>
+                    <h2 id="latestUpdatesTitle">Latest Business Updates</h2>
+                    <p>Original reporting from Sri Lankan business publications, refreshed from the live feed.</p>
+                </div>
+                <span id="latestUpdatesCount" class="latest-updates-count">Loading updates…</span>
+            </div>
+            <div id="latestUpdates" class="latest-updates-grid">
+                <!-- Dynamic full-width update rows -->
+            </div>
+        </section>
+
+        <div class="article-pagination" id="articlePagination">
+            <div class="feed-status-copy" aria-live="polite">
+                <span id="articleCountStatus" class="article-count">Loading articles…</span>
+                <span id="feedStats" class="feed-stats">Reading feed details…</span>
+                <span id="feedRefreshStatus" class="feed-refresh-status">Starting auto-refresh…</span>
+            </div>
+            <button id="loadMoreBtn" class="btn btn-primary" type="button" hidden>Load more</button>
+        </div>
+
+    </main>
+
+    <!-- Article Detail Modal -->
+    <div id="articleModal" class="modal">
+        <div class="modal-content card">
+            <button class="modal-close" id="modalCloseBtn">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal article injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Viewer Modal -->
+    <div id="codeModal" class="modal">
+        <div class="modal-content card code-modal-content">
+            <button class="modal-close" id="codeModalCloseBtn">&times;</button>
+            <h3><i class="fa-brands fa-python"></i> Python Web Scraper Script for <code>ft.lk</code></h3>
+            <p>Here is the ready-to-run Python script using <code>BeautifulSoup</code> & <code>requests</code> to fetch articles from Daily FT:</p>
+            <pre class="code-block"><code>import requests
+from bs4 import BeautifulSoup
+import json
+import time
+
+BASE_URL = "https://www.ft.lk"
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+}
+
+def scrape_daily_ft_business():
+    print("[+] Scraping Daily FT Business & Governance articles...")
+    url = f"{BASE_URL}/financial-services/42"
+    response = requests.get(url, headers=HEADERS, timeout=10)
+    
+    if response.status_code != 200:
+        print(f"[-] Failed to fetch page: Status {response.status_code}")
+        return []
+
+    soup = BeautifulSoup(response.content, 'html.parser')
+    articles = []
+    
+    # Target Daily FT news card containers
+    news_items = soup.find_all('div', class_='news-card') or soup.find_all('div', class_='col-md-6')
+    
+    for item in news_items:
+        title_tag = item.find('h3') or item.find('h4') or item.find('a')
+        link_tag = item.find('a', href=True)
+        img_tag = item.find('img', src=True)
+        desc_tag = item.find('p')
+        
+        if title_tag and link_tag:
+            title = title_tag.get_text(strip=True)
+            link = link_tag['href'] if link_tag['href'].startswith('http') else BASE_URL + link_tag['href']
+            img = img_tag['src'] if img_tag else ""
+            desc = desc_tag.get_text(strip=True) if desc_tag else ""
+            
+            articles.append({
+                "title": title,
+                "link": link,
+                "image": img,
+                "summary": desc,
+                "source": "Daily FT (ft.lk)",
+                "category": "Business & Governance",
+                "scraped_at": time.strftime("%Y-%m-%d %H:%M:%S")
+            })
+            
+    print(f"[+] Scraped {len(articles)} articles successfully.")
+    return articles
+
+if __name__ == "__main__":
+    results = scrape_daily_ft_business()
+    print(json.dumps(results[:2], indent=2))
+</code></pre>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="logo"><span class="logo-accent">DAILY</span> <span class="logo-main">BIZ & GOV</span></div>
+                <p>An independent business-news dashboard bringing together corporate, economic and public-policy reporting from Sri Lankan publishers.</p>
+                <p id="footerFeedSummary" class="footer-feed-summary">Connecting to the live newsroom feed…</p>
+            </div>
+            <div class="footer-links">
+                <h4>Sections</h4>
+                <ul>
+                    <li><button type="button" data-footer-category="business">Business & Corporate</button></li>
+                    <li><button type="button" data-footer-category="economy">Economy & Finance</button></li>
+                    <li><button type="button" data-footer-category="governance">Governance & Policy</button></li>
+                    <li><button type="button" data-footer-category="opinion">Opinion & Analysis</button></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Editorial Standard</h4>
+                <p>Headlines, summaries and publisher-owned images are organised for discovery. Every story links back to its original source.</p>
+                <a class="footer-top-link" href="#pageTop"><i class="fa-solid fa-arrow-up"></i> Back to top</a>
+            </div>
+        </div>
+        <div class="container footer-source-strip">
+            <strong>Publishers in this feed</strong>
+            <div id="footerSources" class="footer-source-pills"></div>
+        </div>
+        <div class="container footer-bottom">
+            <span>&copy; <span id="currentYear">2026</span> Daily Biz &amp; Gov</span>
+            <span>Source publishers retain rights to their reporting and images.</span>
+        </div>
+    </footer>
+
+    <script src="news_feed.js?v=20260812-1"></script>
+    <script src="app.js?v=20260812-3"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "newssite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ai_processor.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev:public": "node apps/public/node_modules/vite/bin/vite.js apps/public --config apps/public/vite.config.js --port 5173",
+    "dev:admin": "node apps/admin/node_modules/vite/bin/vite.js apps/admin --config apps/admin/vite.config.ts --port 5174",
+    "build:public": "node apps/public/node_modules/vite/bin/vite.js build apps/public --config apps/public/vite.config.js",
+    "build:admin": "node apps/admin/node_modules/typescript/bin/tsc -b apps/admin && node apps/admin/node_modules/vite/bin/vite.js build apps/admin --config apps/admin/vite.config.ts",
+    "build:apps": "npm run build:public && npm run build:admin",
+    "check": "node --check app.js && node --check server.js && node --check editorial/api.js && node --check editorial/store.js && node --check editorial/workflow.js && node --check editorial/supabase_store.js",
+    "test:node": "npm run check && node --test test_editorial_store.js test_editorial_api.js test_supabase_store.js",
+    "test:python": "python -m unittest test_editorial_validator.py test_groq_editorial.py test_supabase_sync.py test_source_registry.py test_unified_scraper.py test_daily_runner.py test_excel_editorial_merge.py",
+    "test": "npm run test:node && npm run test:python"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.19.0",
+    "cheerio": "^1.2.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "rss-parser": "^3.13.0"
+  }
+}

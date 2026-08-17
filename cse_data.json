@@ -1,0 +1,121 @@
+{
+  "stocks": [
+    {
+      "symbol": "ACME.N0000",
+      "name": "ACME.N0000",
+      "lastTradedPrice": 4.6,
+      "change": 0,
+      "changePercentage": 0,
+      "high": 4.7,
+      "low": 4.5,
+      "open": 4.6,
+      "quantity": 10000
+    },
+    {
+      "symbol": "AHUN.N0000",
+      "name": "AHUN.N0000",
+      "lastTradedPrice": 87.5,
+      "change": 0,
+      "changePercentage": 0,
+      "high": 89,
+      "low": 87.5,
+      "open": 88,
+      "quantity": 6549
+    },
+    {
+      "symbol": "AGST.N0000",
+      "name": "AGST.N0000",
+      "lastTradedPrice": 12.4,
+      "change": 0.7,
+      "changePercentage": 5.982906,
+      "high": 12.6,
+      "low": 11.8,
+      "open": 11.8,
+      "quantity": 1000
+    },
+    {
+      "symbol": "AGAL.N0000",
+      "name": "AGAL.N0000",
+      "lastTradedPrice": 50.9,
+      "change": 1.1,
+      "changePercentage": 2.2088354,
+      "high": 52,
+      "low": 49.8,
+      "open": 49.8,
+      "quantity": 100
+    },
+    {
+      "symbol": "AFSL.N0000",
+      "name": "AFSL.N0000",
+      "lastTradedPrice": 95.2,
+      "change": 0.3,
+      "changePercentage": 0.31612223,
+      "high": 99.6,
+      "low": 94.9,
+      "open": 95,
+      "quantity": 55
+    },
+    {
+      "symbol": "AGST.X0000",
+      "name": "AGST.X0000",
+      "lastTradedPrice": 11.6,
+      "change": 0.2,
+      "changePercentage": 1.754386,
+      "high": 12.1,
+      "low": 11.4,
+      "open": 11.5,
+      "quantity": 55
+    },
+    {
+      "symbol": "AEL.N0000",
+      "name": "AEL.N0000",
+      "lastTradedPrice": 74.6,
+      "change": -1.6,
+      "changePercentage": -2.0997376,
+      "high": 77,
+      "low": 74.5,
+      "open": 77,
+      "quantity": 15
+    },
+    {
+      "symbol": "ABAN.N0000",
+      "name": "ABAN.N0000",
+      "lastTradedPrice": 1094.25,
+      "change": 0,
+      "changePercentage": 0,
+      "high": 1092,
+      "low": 1091,
+      "open": 1092,
+      "quantity": 7
+    },
+    {
+      "symbol": "APLA.N0000",
+      "name": "APLA.N0000",
+      "lastTradedPrice": 148,
+      "change": 0,
+      "changePercentage": 0,
+      "high": 150,
+      "low": 147,
+      "open": 148.75,
+      "quantity": 5
+    },
+    {
+      "symbol": "ACL.N0000",
+      "name": "ACL.N0000",
+      "lastTradedPrice": 95.8,
+      "change": 0,
+      "changePercentage": 0,
+      "high": 96.1,
+      "low": 95.8,
+      "open": 96,
+      "quantity": 3
+    }
+  ],
+  "marketSummary": {
+    "id": 36945148,
+    "tradeVolume": 3811232066.9,
+    "shareVolume": 123881083,
+    "tradeDate": 1786354020337,
+    "trades": 16591
+  }
+}
