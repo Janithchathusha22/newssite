@@ -7,17 +7,24 @@ export const categories = [
   { slug: 'luxury-living', label: 'Luxury Living', short: 'Living' }
 ];
 
+// =========================================================================
+// CLIENT DEMO IMAGES (FOR VERCEL STATIC HOSTING)
+// Reliable, high-resolution Unsplash image URLs for public demo website.
+// -------------------------------------------------------------------------
+// TO REVERT TO LOCAL ASSET PATHS:
+// Uncomment original array below and comment out Unsplash URLs.
+// =========================================================================
 const localImages = [
-  '/assets/news_images/050f95c34433f2e9998a0650.jpg',
-  '/assets/news_images/05054f0b1c9fcc405a417456.jpg',
-  '/assets/news_images/0429878228f9c1ca239deaa5.jpg',
-  '/assets/news_images/040a4a51d70d09a76f7227d8.jpg',
-  '/assets/news_images/0365efbad69772cf9c51086d.jpg',
-  '/assets/news_images/03314e7d100b62d857246b5b.jpg',
-  '/assets/news_images/02e57f2723b00067c569cb8b.jpg',
-  '/assets/news_images/029478e1482272021ea54de3.jpg',
-  '/assets/news_images/0212362d17bf68e40fd9d30e.jpg',
-  '/assets/news_images/0162320a10fb9939443b6dd2.jpg'
+  'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80'
 ];
 
 const seed = [

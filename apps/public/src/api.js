@@ -1,7 +1,15 @@
 import { demoArticles } from './data';
 
-export const API_BASE = String(import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
-export const DEMO_ENABLED = String(import.meta.env.VITE_DEMO_MODE || '').trim().toLowerCase() === 'true';
+// =========================================================================
+// CLIENT DEMO MODE OVERRIDE (FOR VERCEL DEMONSTRATION)
+// Enabled by default so the public site is populated with sample news
+// stories & images on Vercel when backend API is offline.
+// -------------------------------------------------------------------------
+// TO REVERT TO STRICT LIVE MODE IN PRODUCTION:
+// Change the line below to:
+// export const DEMO_ENABLED = String(import.meta.env.VITE_DEMO_MODE || '').trim().toLowerCase() === 'true';
+// =========================================================================
+export const DEMO_ENABLED = String(import.meta.env.VITE_DEMO_MODE || 'true').trim().toLowerCase() !== 'false';
 
 const LIVE_UNAVAILABLE_MESSAGE = 'The live news service is temporarily unavailable. Please try again shortly.';
 
@@ -19,9 +27,11 @@ export function resolveAssetUrl(value, sourceUrl = '') {
   const clean = cleanImageCandidate(value);
   if (!clean) return '';
   if (/^https?:\/\//i.test(clean)) {
-    if (!/^https?:\/\//i.test(sourceUrl)) return '';
-    const params = new URLSearchParams({ url: clean, source: sourceUrl });
-    return `${API_BASE}/api/image-proxy?${params.toString()}`;
+    if (API_BASE && /^https?:\/\//i.test(sourceUrl)) {
+      const params = new URLSearchParams({ url: clean, source: sourceUrl });
+      return `${API_BASE}/api/image-proxy?${params.toString()}`;
+    }
+    return clean;
   }
   return `${API_BASE}${clean}`;
 }
