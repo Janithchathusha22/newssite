@@ -68,9 +68,8 @@ function Image({ article, className = '', eager = false }) {
           onError={() => setFailed(true)}
         />
       ) : (
-        <div className="image-fallback" aria-label={`${label} image unavailable`}>
-          <span>BL</span>
-          <small>{label}</small>
+        <div className="image-fallback" aria-label={`${label} image`}>
+          <img src={logoImage} alt="Business Leaders Sri Lanka" className="image-fallback__logo" />
         </div>
       )}
     </div>
@@ -472,6 +471,14 @@ function ArticlePage({ preview = false }) {
             {(article.body || []).map((paragraph, index) => (
               <p className={index === 0 ? 'article-copy__opening' : ''} key={`${article.id}-${index}`}>{paragraph}</p>
             ))}
+            <div className="article-signature-card">
+              <img src={logoImage} alt="Business Leaders Sri Lanka" className="article-signature-logo" />
+              <div>
+                <span>Official Publication</span>
+                <strong>Business Leaders Sri Lanka</strong>
+                <p>Curated executive insights, market data, and business intelligence for corporate Sri Lanka.</p>
+              </div>
+            </div>
           </div>
           <aside className="article-aside">
             <span className="eyebrow">In this section</span>

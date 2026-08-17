@@ -68,7 +68,7 @@ export function AppShell() {
     <div className="app-frame">
       <aside className={`sidebar ${sidebarOpen ? 'sidebar-open' : ''}`}>
         <div className="brand-block">
-          <div className="brand-mark">BL</div>
+          <img src="/logo.jpeg" alt="Business Leaders" style={{ width: '40px', height: '40px', borderRadius: '4px', objectFit: 'contain', border: '1px solid #333' }} />
           <div className="brand-copy"><strong>Business Leaders</strong><span>Editorial Console</span></div>
           <button className="sidebar-close" type="button" onClick={() => setSidebarOpen(false)} aria-label="Close menu"><Icon name="x" /></button>
         </div>

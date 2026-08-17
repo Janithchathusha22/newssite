@@ -45,7 +45,7 @@ export function LoginPage() {
     <main className="login-page">
       <section className="login-visual">
         <div className="login-visual-overlay" />
-        <div className="login-brand"><span className="brand-mark brand-mark-light">BL</span><strong>Business Leaders Sri Lanka</strong></div>
+        <div className="login-brand"><img src="/logo.jpeg" alt="Business Leaders" style={{ width: '48px', height: '48px', borderRadius: '4px', objectFit: 'contain', border: '1px solid rgba(255,255,255,0.2)' }} /><strong>Business Leaders Sri Lanka</strong></div>
         <div className="login-quote">
           <span className="eyebrow light">One source of editorial truth</span>
           <h1>Publish with<br />confidence.</h1>

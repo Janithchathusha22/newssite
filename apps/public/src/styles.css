@@ -86,14 +86,8 @@ a:hover .story-image img { transform: scale(1.025); }
 .side-card:last-child { border-bottom: 0; }
 .side-card .story-image { height: 155px; }
 .side-card h3 { margin: 10px 0 17px; font: 600 23px/1.12 var(--display); letter-spacing: -.02em; }
-.image-fallback { position: absolute; inset: 0; display: grid; place-content: center; color: rgba(255,255,255,.9); text-align: center; background: linear-gradient(145deg, #1f44c7, #647de0); }
-.story-image--technology .image-fallback { background: linear-gradient(145deg, #173cc6, #4c87e8); }
-.story-image--travel-tourism .image-fallback { background: linear-gradient(145deg, #186a73, #75aaa0); }
-.story-image--luxury-living .image-fallback { background: linear-gradient(145deg, #6f3c35, #db725f); }
-.story-image--money .image-fallback { background: linear-gradient(145deg, #245741, #7aa47e); }
-.story-image--interviews-appointments .image-fallback { background: linear-gradient(145deg, #51406d, #9671ba); }
-.image-fallback span { font: 700 38px var(--display); }
-.image-fallback small { margin-top: 9px; font-size: 9px; letter-spacing: .15em; text-transform: uppercase; }
+.image-fallback { position: absolute; inset: 0; display: grid; place-content: center; background: #0a0a0c; }
+.image-fallback__logo { width: 75px; height: 75px; object-fit: contain; border-radius: 4px; border: 1px solid #222; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
 
 .section-block { padding-top: 100px; }
 .section-heading { display: flex; align-items: end; justify-content: space-between; padding-bottom: 20px; border-bottom: 2px solid var(--ink); }
@@ -183,12 +177,11 @@ a:hover .story-image img { transform: scale(1.025); }
 .article-aside h3 { margin: 8px 0; font: 600 25px var(--display); }
 .article-aside p { color: var(--muted); font-size: 12px; line-height: 1.6; }
 .article-aside a { display: flex; align-items: center; gap: 7px; margin-top: 20px; color: var(--cobalt); font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
-.source-card { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center; margin-top: 55px; padding: 24px; border: 1px solid var(--line); background: white; font-family: var(--sans); }
-.source-card__icon { display: grid; width: 46px; height: 46px; place-items: center; color: white; background: var(--coral); font-family: var(--display); }
-.source-card span { display: block; color: #98999f; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
-.source-card strong { font-size: 14px; }
-.source-card p { margin: 4px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
-.source-card > a { display: flex; align-items: center; gap: 6px; color: var(--cobalt); font-size: 10px; font-weight: 700; white-space: nowrap; text-transform: uppercase; }
+.article-signature-card { display: flex; align-items: center; gap: 22px; margin-top: 50px; padding: 22px 28px; border: 1px solid var(--line); background: white; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+.article-signature-logo { width: 62px; height: 62px; object-fit: contain; border-radius: 4px; border: 1px solid #222; box-shadow: 0 2px 8px rgba(0,0,0,0.15); flex-shrink: 0; }
+.article-signature-card span { display: block; color: var(--coral); font: 700 10px var(--wide); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 3px; }
+.article-signature-card strong { display: block; font: 600 17px var(--display); color: var(--ink); margin-bottom: 4px; }
+.article-signature-card p { margin: 0; color: var(--muted); font: 400 13px/1.5 var(--sans); }
 .related { padding-bottom: 100px; }
 .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding-top: 20px; }
 .related .side-card { display: block; }
