@@ -126,7 +126,8 @@ async function request(path) {
       signal: controller.signal,
       headers: { Accept: 'application/json' }
     });
-    if (!response.ok) {
+    const contentType = response.headers.get('content-type') || '';
+    if (!response.ok || !contentType.includes('application/json')) {
       const error = new Error(`Request failed (${response.status})`);
       error.status = response.status;
       throw error;
