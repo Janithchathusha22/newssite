@@ -16,7 +16,7 @@ import type {
 // available for split-domain deployments.
 const API_URL = (import.meta.env.VITE_ADMIN_API_URL ?? import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/$/, '');
 const DEMO_SETTING = import.meta.env.VITE_DEMO_MODE;
-const DEMO_ENABLED = DEMO_SETTING === 'true' || (DEMO_SETTING === undefined && import.meta.env.DEV);
+const DEMO_ENABLED = DEMO_SETTING !== 'false';
 const PUBLIC_SITE_URL = (import.meta.env.VITE_PUBLIC_SITE_URL ?? 'http://localhost:5173').replace(/\/$/, '');
 
 const ARTICLES_KEY = 'newsroom-demo-articles-v2';

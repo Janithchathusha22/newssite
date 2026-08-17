@@ -62,26 +62,18 @@ export function LoginPage() {
       <section className="login-panel">
         <div className="login-card">
           <span className="eyebrow">Editorial access</span>
-          <h2>Welcome back</h2>
-          <p className="login-intro">Sign in to review, approve and publish today’s stories.</p>
-          <form onSubmit={submit}>
-            <label>
-              <span>Email address</span>
-              <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="username" />
-            </label>
-            <label>
-              <span>Password</span>
-              <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete="current-password" />
-            </label>
-            <div className="login-meta"><label className="check-field"><input type="checkbox" checked={persistent} onChange={(event) => setPersistent(event.target.checked)} /><span>Keep me signed in</span></label><span className="access-help">Contact your administrator for access</span></div>
-            {error && <div className="form-error"><Icon name="warning" size={17} />{error}</div>}
-            <button className="button button-primary button-full" type="submit" disabled={busy}>{busy ? <><span className="button-spinner" />Signing in…</> : <>Sign in <Icon name="arrow-right" size={18} /></>}</button>
-          </form>
-          {demoEnabled && <>
-            <div className="login-divider"><span>or explore safely</span></div>
-            <button className="button button-demo button-full" type="button" onClick={() => void useDemo()} disabled={busy}><Icon name="sparkles" size={18} />Open demo newsroom</button>
-            <p className="demo-note">The demo uses local sample stories. No news will be published.</p>
-          </>}
+          <h2>Welcome to Newsroom</h2>
+          <p className="login-intro">Click below to enter the editorial dashboard and review today’s stories.</p>
+          
+          {error && <div className="form-error"><Icon name="warning" size={17} />{error}</div>}
+
+          <button className="button button-primary button-full" type="button" onClick={() => void useDemo()} disabled={busy}>
+            {busy ? <><span className="button-spinner" />Opening Newsroom…</> : <><Icon name="sparkles" size={18} /> Open Demo Newsroom <Icon name="arrow-right" size={18} /></>}
+          </button>
+          
+          <p className="demo-note" style={{ marginTop: '16px', textAlign: 'center' }}>
+            Instant demo access. Explore the editorial workflow, article queues, and published newsroom.
+          </p>
         </div>
       </section>
     </main>
