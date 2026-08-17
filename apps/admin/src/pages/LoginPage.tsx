@@ -45,7 +45,7 @@ export function LoginPage() {
     <main className="login-page">
       <section className="login-visual">
         <div className="login-visual-overlay" />
-        <div className="login-brand"><span className="brand-mark brand-mark-light">CL</span><strong>Ceylon Ledger</strong></div>
+        <div className="login-brand"><span className="brand-mark brand-mark-light">BL</span><strong>Business Leaders Sri Lanka</strong></div>
         <div className="login-quote">
           <span className="eyebrow light">One source of editorial truth</span>
           <h1>Publish with<br />confidence.</h1>

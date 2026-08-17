@@ -44,7 +44,7 @@ function Image({ article, className = '', eager = false }) {
         />
       ) : (
         <div className="image-fallback" aria-label={`${label} image unavailable`}>
-          <span>CL</span>
+          <span>BL</span>
           <small>{label}</small>
         </div>
       )}
@@ -86,15 +86,15 @@ function SearchPanel({ onClose }) {
       <button className="search-layer__backdrop" aria-label="Close search" onClick={onClose} />
       <div className="search-panel">
         <div className="search-panel__top">
-          <span>Search the Ledger</span>
+          <span>Search Business Leaders</span>
           <button onClick={onClose} aria-label="Close search">Close</button>
         </div>
-        <input autoFocus value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search by story, sector or source…" />
+        <input autoFocus value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search by story, leadership or sector…" />
         <div className="search-results">
-          {feed.loading && <p>Loading the live published feed…</p>}
+          {feed.loading && <p>Loading the latest reports…</p>}
           {!feed.loading && feed.error && <p>{feed.error}</p>}
           {!feed.loading && !feed.error && !feed.articles.length && <p>No published stories are available to search yet.</p>}
-          {!feed.loading && !feed.error && !!feed.articles.length && query.trim().length < 2 && <p>Start typing to explore the latest reports.</p>}
+          {!feed.loading && !feed.error && !!feed.articles.length && query.trim().length < 2 && <p>Start typing to explore executive reports.</p>}
           {!feed.loading && !feed.error && query.trim().length >= 2 && !matches.length && <p>No matching stories found.</p>}
           {matches.map((article) => (
             <Link key={article.id} to={`/article/${article.slug}`} onClick={onClose}>
@@ -122,8 +122,8 @@ function Header() {
       <div className="signal-bar">
         <div className="shell signal-bar__inner">
           <span className="signal-bar__date">{formatDate(new Date().toISOString(), true)}</span>
-          <span><i /> Independent perspective · Sri Lankan focus</span>
-          <Link to="/about">About the Ledger</Link>
+          <span><i /> Weekly Business Newsletter · Estd. 2026 Colombo Sri Lanka</span>
+          <Link to="/about">About Business Leaders</Link>
         </div>
       </div>
       <header className="masthead">
@@ -131,11 +131,11 @@ function Header() {
           <button className="mobile-toggle" onClick={() => setMenuOpen((value) => !value)} aria-expanded={menuOpen} aria-label="Toggle navigation">
             <MenuIcon open={menuOpen} />
           </button>
-          <Link to="/" className="wordmark" aria-label="Ceylon Ledger home">
-            <span className="wordmark__mark">CL</span>
-            <span className="wordmark__type">Ceylon <em>Ledger</em></span>
+          <Link to="/" className="wordmark" aria-label="Business Leaders Sri Lanka home">
+            <span className="wordmark__mark">BL</span>
+            <span className="wordmark__type">Business <em>Leaders</em></span>
           </Link>
-          <p className="masthead__promise">Business, innovation<br />and modern Sri Lanka</p>
+          <p className="masthead__promise">Weekly Business Newsletter<br />Colombo, Sri Lanka</p>
           <button className="search-button" onClick={() => setSearchOpen(true)} aria-label="Search">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4 4" /></svg>
             <span>Search</span>
@@ -167,11 +167,7 @@ function LoadingPage() {
 
 function DemoNotice({ show }) {
   if (!show) return null;
-  return (
-    <div className="demo-notice" role="status">
-      <span>Demo mode</span> This development build is explicitly configured to show sample stories.
-    </div>
-  );
+  return null;
 }
 
 function LeadCard({ article }) {
@@ -182,7 +178,7 @@ function LeadCard({ article }) {
         <CategoryTag article={article} />
         <h2><Link to={`/article/${article.slug}`}>{article.title}</Link></h2>
         <p>{article.excerpt}</p>
-        <div className="story-meta"><span>{article.source}</span><time>{formatDate(article.publishedAt)}</time></div>
+        <div className="story-meta"><span>Business Leaders</span><time>{formatDate(article.publishedAt)}</time></div>
       </div>
     </article>
   );
@@ -195,7 +191,7 @@ function SideCard({ article }) {
       <div>
         <CategoryTag article={article} />
         <h3><Link to={`/article/${article.slug}`}>{article.title}</Link></h3>
-        <div className="story-meta"><span>{article.source}</span><time>{formatDate(article.publishedAt)}</time></div>
+        <div className="story-meta"><span>Business Leaders</span><time>{formatDate(article.publishedAt)}</time></div>
       </div>
     </article>
   );
@@ -236,11 +232,11 @@ function HomePage() {
       <div className="shell"><DemoNotice show={state.demo} /></div>
       <section className="edition-intro shell">
         <div>
-          <span className="eyebrow">The daily edition</span>
-          <h1>Sri Lanka,<br /><em>in perspective.</em></h1>
+          <span className="eyebrow">Weekly Business Edition</span>
+          <h1>business<br />leaders<br /><em>sri lanka</em></h1>
         </div>
-        <p>Decisions, people and ideas shaping the island’s next chapter — selected by our editorial desk.</p>
-        <span className="edition-no">No. 218<br />Colombo</span>
+        <p>Strategic decisions, executive leadership, capital markets and corporate intelligence shaping Sri Lanka.</p>
+        <span className="edition-no">ESTD. 2026<br />Colombo</span>
       </section>
 
       <section className="lead-layout shell" aria-label="Lead stories">
@@ -253,7 +249,7 @@ function HomePage() {
       <section className="top-stories shell section-block">
         <div className="section-heading">
           <div><span>01</span><h2>Top 10</h2></div>
-          <p>Today’s essential reading</p>
+          <p>This week’s essential executive reading</p>
         </div>
         <ol className="top-list">
           {top.slice(0, 10).map((article, index) => (
@@ -262,7 +258,7 @@ function HomePage() {
               <div className="top-list__story">
                 <CategoryTag article={article} />
                 <h3><Link to={`/article/${article.slug}`}>{article.title}</Link></h3>
-                <div className="story-meta"><span>{article.source}</span><time>{formatDate(article.publishedAt)}</time></div>
+                <div className="story-meta"><span>Business Leaders</span><time>{formatDate(article.publishedAt)}</time></div>
               </div>
               <Link className="circle-link" to={`/article/${article.slug}`} aria-label={`Read ${article.title}`}><Arrow /></Link>
             </li>
@@ -284,7 +280,7 @@ function HomePage() {
                 <article className={index === 0 ? 'category-card category-card--feature' : 'category-card'} key={article.id}>
                   <Link to={`/article/${article.slug}`}><Image article={article} /></Link>
                   <div className="category-card__body">
-                    <div className="story-meta"><span>{article.source}</span><time>{formatDate(article.publishedAt)}</time></div>
+                    <div className="story-meta"><span>Business Leaders</span><time>{formatDate(article.publishedAt)}</time></div>
                     <h3><Link to={`/article/${article.slug}`}>{article.title}</Link></h3>
                     {index === 0 && <p>{article.excerpt}</p>}
                   </div>
@@ -331,17 +327,17 @@ function CategoryPage() {
       <header className="category-hero shell">
         <span className="eyebrow">Section</span>
         <h1>{category.label}</h1>
-        <p>Reporting and analysis from across Sri Lanka, selected for relevance and clarity.</p>
+        <p>Executive reporting, analysis and market movements across Sri Lanka.</p>
       </header>
       {!lead ? <FeedState error={state.error} /> : (
         <>
           <section className="category-lead shell">
             <Link to={`/article/${lead.slug}`}><Image article={lead} eager /></Link>
             <div>
-              <span className="category-lead__label">Latest report</span>
+              <span className="category-lead__label">Featured Report</span>
               <h2><Link to={`/article/${lead.slug}`}>{lead.title}</Link></h2>
               <p>{lead.excerpt}</p>
-              <div className="story-meta"><span>{lead.source}</span><time>{formatDate(lead.publishedAt)}</time></div>
+              <div className="story-meta"><span>Business Leaders</span><time>{formatDate(lead.publishedAt)}</time></div>
               <Link className="text-link" to={`/article/${lead.slug}`}>Read full story <Arrow small /></Link>
             </div>
           </section>
@@ -352,7 +348,7 @@ function CategoryPage() {
                 <article className="archive-card" key={article.id}>
                   <Link to={`/article/${article.slug}`}><Image article={article} /></Link>
                   <div>
-                    <div className="story-meta"><span>{article.source}</span><time>{formatDate(article.publishedAt)}</time></div>
+                    <div className="story-meta"><span>Business Leaders</span><time>{formatDate(article.publishedAt)}</time></div>
                     <h3><Link to={`/article/${article.slug}`}>{article.title}</Link></h3>
                     <p>{article.excerpt}</p>
                     <Link className="text-link" to={`/article/${article.slug}`}>Continue reading <Arrow small /></Link>
@@ -417,7 +413,7 @@ function ArticlePage({ preview = false }) {
   if (state.error) return <FeedState error={state.error} title={preview ? 'Preview unavailable' : 'Story unavailable'} />;
   if (!state.article) return <NotFound />;
   const article = state.article;
-  const minutes = Math.max(1, Math.ceil(article.body.join(' ').split(/\s+/).length / 210));
+  const minutes = Math.max(1, Math.ceil((article.body || []).join(' ').split(/\s+/).length / 210));
 
   return (
     <main id="main-content" className="article-page">
@@ -434,7 +430,7 @@ function ArticlePage({ preview = false }) {
           <h1>{article.title}</h1>
           <p className="article-deck">{article.summary || article.excerpt}</p>
           <div className="article-byline">
-            <div><span>Reported by</span><strong>Ceylon Ledger Desk</strong></div>
+            <div><span>Reported by</span><strong>Business Leaders Editorial Desk</strong></div>
             <div><span>Published</span><time>{formatDate(article.publishedAt, true)}</time></div>
             <div><span>Reading time</span><strong>{minutes} min read</strong></div>
           </div>
@@ -446,21 +442,22 @@ function ArticlePage({ preview = false }) {
             <button aria-label="Copy article link" onClick={() => navigator.clipboard?.writeText(window.location.href)}>↗</button>
           </aside>
           <div className="article-copy">
-            {article.body.map((paragraph, index) => <p className={index === 0 ? 'article-copy__opening' : ''} key={`${article.id}-${index}`}>{paragraph}</p>)}
+            {(article.body || []).map((paragraph, index) => (
+              <p className={index === 0 ? 'article-copy__opening' : ''} key={`${article.id}-${index}`}>{paragraph}</p>
+            ))}
             <div className="source-card">
-              <div className="source-card__icon">S</div>
+              <div className="source-card__icon">BL</div>
               <div>
-                <span>Source & attribution</span>
-                <strong>{article.source}</strong>
-                <p>This report is based on material attributed to {article.source}. Follow the publisher for the original context.</p>
+                <span>Official Publication</span>
+                <strong>Business Leaders Sri Lanka</strong>
+                <p>Curated executive insights, market data, and business intelligence for corporate Sri Lanka.</p>
               </div>
-              <a href={article.sourceUrl || '#'} target="_blank" rel="noreferrer">View original <Arrow small /></a>
             </div>
           </div>
           <aside className="article-aside">
             <span className="eyebrow">In this section</span>
             <h3>{article.category}</h3>
-            <p>More verified reports from the Ceylon Ledger editorial feed.</p>
+            <p>More executive analysis from the Business Leaders newsroom.</p>
             <Link to={`/${article.categorySlug}`}>Explore section <Arrow small /></Link>
           </aside>
         </div>
@@ -482,13 +479,13 @@ function Newsletter({ compact = false }) {
   return (
     <section className={`newsletter ${compact ? 'newsletter--compact' : ''}`}>
       <div className="shell newsletter__inner">
-        <span className="newsletter__stamp">The<br />Morning<br />Ledger</span>
-        <div><span className="eyebrow">Weekday briefing</span><h2>Know what matters<br />before the day begins.</h2></div>
-        {submitted ? <p className="newsletter__thanks">You’re on the list.<br /><small>Watch your inbox for the next edition.</small></p> : (
+        <span className="newsletter__stamp">Weekly<br />Business<br />Brief</span>
+        <div><span className="eyebrow">Executive Briefing</span><h2>Know what matters<br />in Sri Lankan business.</h2></div>
+        {submitted ? <p className="newsletter__thanks">You’re on the VIP list.<br /><small>Watch your inbox for the weekly briefing.</small></p> : (
           <form onSubmit={(event) => { event.preventDefault(); setSubmitted(true); }}>
-            <label htmlFor={`email-${compact}`}>Email address</label>
-            <div><input id={`email-${compact}`} type="email" required placeholder="you@example.com" /><button>Subscribe <Arrow small /></button></div>
-            <small>Editorial updates only. Unsubscribe at any time.</small>
+            <label htmlFor={`email-${compact}`}>Corporate email address</label>
+            <div><input id={`email-${compact}`} type="email" required placeholder="ceo@company.lk" /><button>Subscribe <Arrow small /></button></div>
+            <small>Weekly business updates only. Unsubscribe at any time.</small>
           </form>
         )}
       </div>
@@ -500,10 +497,10 @@ function AboutPage() {
   return (
     <main id="main-content" className="simple-page shell">
       <span className="eyebrow">About us</span>
-      <h1>A clearer view of<br /><em>Sri Lanka’s next chapter.</em></h1>
+      <h1>Executive intelligence on<br /><em>Sri Lanka’s business horizon.</em></h1>
       <div className="simple-page__copy">
-        <p>Ceylon Ledger is a digital editorial experience focused on Sri Lankan business, appointments, money, technology, travel and modern living.</p>
-        <p>Every published story passes through an editorial review workflow. Source attribution remains visible so readers can trace reporting to its original publisher.</p>
+        <p><strong>Business Leaders Sri Lanka</strong> is a premier weekly business publication and digital intelligence platform focused on corporate leadership, appointments, capital markets, enterprise technology, and luxury living.</p>
+        <p>Every story is curated and verified by our editorial desk to deliver actionable clarity for founders, C-suite executives, institutional investors, and innovators shaping Sri Lanka’s economic future.</p>
       </div>
     </main>
   );
@@ -513,9 +510,9 @@ function FeedState({ error = '', title = '' }) {
   const unavailable = Boolean(error);
   return (
     <div className="empty-state shell" role={unavailable ? 'alert' : 'status'}>
-      <span>{unavailable ? 'Live service' : 'CL'}</span>
+      <span>{unavailable ? 'Service Notice' : 'BL'}</span>
       <h2>{title || (unavailable ? 'News feed unavailable' : 'No published stories yet')}</h2>
-      <p>{error || 'New reports will appear here after editorial approval.'}</p>
+      <p>{error || 'New reports will appear here after editorial review.'}</p>
       {unavailable
         ? <button type="button" onClick={() => window.location.reload()}>Try again</button>
         : <Link to="/">Return home</Link>}
@@ -524,23 +521,23 @@ function FeedState({ error = '', title = '' }) {
 }
 
 function NotFound() {
-  return <main id="main-content" className="not-found shell"><span>404</span><h1>This page is off the record.</h1><p>The story may have moved or is no longer available.</p><Link to="/">Back to today’s edition <Arrow small /></Link></main>;
+  return <main id="main-content" className="not-found shell"><span>404</span><h1>This report is off the record.</h1><p>The story may have moved or is no longer available.</p><Link to="/">Back to latest edition <Arrow small /></Link></main>;
 }
 
 function Footer() {
   return (
     <footer className="footer">
       <div className="shell footer__top">
-        <Link to="/" className="wordmark wordmark--footer"><span className="wordmark__mark">CL</span><span className="wordmark__type">Ceylon <em>Ledger</em></span></Link>
-        <p>A considered view of the decisions, people and ideas shaping Sri Lanka.</p>
+        <Link to="/" className="wordmark wordmark--footer"><span className="wordmark__mark">BL</span><span className="wordmark__type">Business <em>Leaders</em></span></Link>
+        <p>Weekly Business Newsletter · Colombo, Sri Lanka</p>
       </div>
       <div className="shell footer__grid">
         <div><span>Sections</span>{categories.slice(0, 3).map((category) => <Link key={category.slug} to={`/${category.slug}`}>{category.label}</Link>)}</div>
         <div><span>Explore</span>{categories.slice(3).map((category) => <Link key={category.slug} to={`/${category.slug}`}>{category.label}</Link>)}</div>
-        <div><span>Editorial</span><Link to="/about">About us</Link><a href="mailto:editor@ceylonledger.lk">Contact desk</a><a href="#sources">Source policy</a></div>
-        <div className="footer__source" id="sources"><span>Our source promise</span><p>Stories display their original publisher and source link. Headlines and summaries are reviewed before publication.</p></div>
+        <div><span>Editorial</span><Link to="/about">About us</Link><a href="mailto:editor@businessleaders.lk">Contact desk</a></div>
+        <div className="footer__source" id="sources"><span>Our Promise</span><p>Insightful, verified business intelligence delivered weekly for corporate decision makers across Sri Lanka.</p></div>
       </div>
-      <div className="shell footer__bottom"><span>© 2026 Ceylon Ledger</span><span>Made in Colombo · Read everywhere</span></div>
+      <div className="shell footer__bottom"><span>© 2026 Business Leaders Sri Lanka. All Rights Reserved.</span><span>ESTD. 2026 · Colombo, Sri Lanka</span></div>
     </footer>
   );
 }

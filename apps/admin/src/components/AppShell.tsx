@@ -68,8 +68,8 @@ export function AppShell() {
     <div className="app-frame">
       <aside className={`sidebar ${sidebarOpen ? 'sidebar-open' : ''}`}>
         <div className="brand-block">
-          <div className="brand-mark">CL</div>
-          <div className="brand-copy"><strong>Ceylon Ledger</strong><span>Editorial Console</span></div>
+          <div className="brand-mark">BL</div>
+          <div className="brand-copy"><strong>Business Leaders</strong><span>Editorial Console</span></div>
           <button className="sidebar-close" type="button" onClick={() => setSidebarOpen(false)} aria-label="Close menu"><Icon name="x" /></button>
         </div>
         <div className="sidebar-scroll">
@@ -93,7 +93,7 @@ export function AppShell() {
           </div>
         </div>
         <div className="account-block">
-          <div className="avatar">{session?.user.avatar ?? 'NP'}</div>
+          <div className="avatar">{session?.user.avatar ?? 'BL'}</div>
           <div className="account-copy"><strong>{session?.user.name}</strong><span>{session?.user.role}</span></div>
           <button type="button" className="icon-button dark" onClick={logout} aria-label="Sign out"><Icon name="logout" size={18} /></button>
         </div>
@@ -103,7 +103,7 @@ export function AppShell() {
       <div className="app-content">
         <header className="topbar">
           <button type="button" className="icon-button mobile-menu" onClick={() => setSidebarOpen(true)} aria-label="Open menu"><Icon name="menu" /></button>
-          <div className="topbar-location"><span>Ceylon Ledger</span><Icon name="chevron-right" size={14} /><strong>Admin</strong></div>
+          <div className="topbar-location"><span>Business Leaders</span><Icon name="chevron-right" size={14} /><strong>Admin</strong></div>
           <div className="topbar-actions">
             {searchOpen ? (
               <form className="global-search" onSubmit={submitSearch}>
@@ -131,7 +131,7 @@ export function AppShell() {
           )}
           <Outlet />
         </main>
-        <footer className="app-footer"><span>Ceylon Ledger Editorial Console</span><span>{Object.values(CATEGORY_LABELS).length} desks · Approval workflow enabled</span></footer>
+        <footer className="app-footer"><span>Business Leaders Editorial Console</span><span>{Object.values(CATEGORY_LABELS).length} desks · Approval workflow enabled</span></footer>
       </div>
     </div>
   );

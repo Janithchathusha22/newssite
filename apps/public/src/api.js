@@ -79,9 +79,27 @@ export function normalizeArticle(article, index = 0) {
   };
   const category = categoryLabels[categorySlug] || rawCategory;
   const content = article.content || article.full_text || article.body || '';
-  const body = Array.isArray(content)
-    ? content
-    : String(content).split(/\n{2,}/).map((line) => line.trim()).filter(Boolean);
+  let body;
+  if (Array.isArray(content)) {
+    body = content;
+  } else {
+    const text = String(content);
+    // Try splitting by double-newline first (standard paragraph separator)
+    const paragraphs = text.split(/\n{2,}/).map((line) => line.trim()).filter(Boolean);
+    if (paragraphs.length > 1) {
+      body = paragraphs;
+    } else {
+      // Content is one continuous string — split into readable paragraphs
+      // every ~3 sentences so article pages display nicely
+      const sentences = text.match(/[^.!?]*[.!?]+(?:\s|$)/g) || [text];
+      const SENTENCES_PER_PARA = 3;
+      body = [];
+      for (let i = 0; i < sentences.length; i += SENTENCES_PER_PARA) {
+        body.push(sentences.slice(i, i + SENTENCES_PER_PARA).join('').trim());
+      }
+      body = body.filter(Boolean);
+    }
+  }
   const sourceUrl = article.source_url || article.sourceUrl || article.original_url || article.url || article.link || '#';
   const image = [
     article.local_image_path,
@@ -100,7 +118,7 @@ export function normalizeArticle(article, index = 0) {
     slug: article.slug || slugify(title),
     category,
     categorySlug,
-    source: article.source?.name || article.source_name || article.sourceName || article.source || 'Editorial Desk',
+    source: 'Business Leaders',
     sourceUrl,
     publishedAt: article.site_published_at || article.published_at || article.publishedAt || article.date || '',
     excerpt: article.excerpt || article.summary || article.description || body[0] || '',
