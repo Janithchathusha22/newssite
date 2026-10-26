@@ -2,8 +2,8 @@ name: Automated Daily News Scraper & AI Localization
 
 on:
   schedule:
-    # Runs every 3 hours automatically on GitHub Cloud
-    - cron: '0 */3 * * *'
+    # Runs every 8 hours automatically on GitHub Cloud (00:00, 08:00, 16:00 UTC)
+    - cron: '0 */8 * * *'
   workflow_dispatch: # Allows manual trigger from GitHub Actions tab
 
 jobs:
@@ -34,6 +34,9 @@ jobs:
           GROQ_MODEL: 'llama-3.3-70b-versatile'
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY || '' }}
           AI_PROVIDER: 'auto'
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          SUPABASE_SYNC_ENABLED: ${{ secrets.SUPABASE_SECRET_KEY != '' }}
           PYTHONUNBUFFERED: '1'
         run: |
           python daily_runner.py

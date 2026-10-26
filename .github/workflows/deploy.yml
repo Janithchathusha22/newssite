@@ -1,0 +1,184 @@
+name: Production CI/CD - Build, Test & Contabo VPS Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: production-deployment
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    name: 🧪 Test Backend & Build React Frontends
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20 LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python Scraper Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Monorepo Node Dependencies
+        run: |
+          npm install
+          cd apps/public && npm install && cd ../..
+          cd apps/admin && npm install && cd ../..
+
+      - name: Run Backend Syntax & Integrity Checks
+        run: npm run check
+
+      - name: Build React Frontends (Public Portal & Admin Console)
+        env:
+          VITE_DEMO_MODE: 'true'
+        run: npm run build:apps
+
+      - name: Validate Docker Compose Configuration
+        run: docker compose config
+
+  deploy-to-contabo:
+    name: 🚀 Auto-Deploy to Contabo VPS (Docker & Supabase)
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+
+    steps:
+      - name: Verify Contabo Host Secret
+        env:
+          CONTABO_HOST: ${{ secrets.CONTABO_HOST }}
+        run: |
+          if [ -z "$CONTABO_HOST" ]; then
+            echo "::warning title=Missing Secret::CONTABO_HOST is not configured in GitHub Secrets. Skipping automatic deployment to VPS."
+            exit 0
+          fi
+
+      - name: Deploy to Contabo VPS via SSH
+        if: ${{ secrets.CONTABO_HOST != '' }}
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          CONTABO_HOST: ${{ secrets.CONTABO_HOST }}
+          CONTABO_USERNAME: ${{ secrets.CONTABO_USERNAME || 'root' }}
+          CONTABO_PASSWORD: ${{ secrets.CONTABO_PASSWORD }}
+          CONTABO_SSH_KEY: ${{ secrets.CONTABO_SSH_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        with:
+          host: ${{ secrets.CONTABO_HOST }}
+          username: ${{ secrets.CONTABO_USERNAME || 'root' }}
+          password: ${{ secrets.CONTABO_PASSWORD }}
+          key: ${{ secrets.CONTABO_SSH_KEY }}
+          port: ${{ secrets.CONTABO_PORT || 22 }}
+          envs: SUPABASE_URL,SUPABASE_SECRET_KEY,GROQ_API_KEY
+          script: |
+            set -e
+            echo "=========================================================="
+            echo "[*] Connected to Contabo VPS. Locating newssite codebase..."
+            echo "=========================================================="
+
+            # Locate project directory or auto-clone if fresh server
+            TARGET_DIR=""
+            for dir in /var/www/newssite /root/newssite "$HOME/newssite"; do
+              if [ -d "$dir/.git" ]; then
+                TARGET_DIR="$dir"
+                break
+              fi
+            done
+
+            if [ -z "$TARGET_DIR" ]; then
+              echo "[*] Fresh Contabo server detected. Cloning repository..."
+              mkdir -p /var/www
+              cd /var/www
+              git clone https://github.com/Janithchathusha22/newssite.git newssite
+              TARGET_DIR="/var/www/newssite"
+            fi
+
+            cd "$TARGET_DIR"
+            echo "[+] Working directory: $TARGET_DIR"
+
+            # Check and install Docker if missing on VPS
+            if ! command -v docker >/dev/null 2>&1; then
+              echo "[*] Installing Docker Engine & Compose on Contabo VPS..."
+              curl -fsSL https://get.docker.com | sh
+              systemctl enable --now docker
+            fi
+
+            # Pull latest updates from main
+            echo "[*] Pulling latest updates from GitHub (branch: main)..."
+            git fetch origin main
+            git reset --hard origin/main
+
+            # Ensure .env exists
+            if [ ! -f ".env" ]; then
+              if [ -f ".env.example" ]; then
+                cp .env.example .env
+              else
+                touch .env
+              fi
+            fi
+
+            # Configure Supabase credentials
+            if [ -n "$SUPABASE_URL" ]; then
+              grep -q "^SUPABASE_URL=" .env && sed -i "s|^SUPABASE_URL=.*|SUPABASE_URL=$SUPABASE_URL|g" .env || echo "SUPABASE_URL=$SUPABASE_URL" >> .env
+            fi
+            if [ -n "$SUPABASE_SECRET_KEY" ]; then
+              grep -q "^SUPABASE_SECRET_KEY=" .env && sed -i "s|^SUPABASE_SECRET_KEY=.*|SUPABASE_SECRET_KEY=$SUPABASE_SECRET_KEY|g" .env || echo "SUPABASE_SECRET_KEY=$SUPABASE_SECRET_KEY" >> .env
+            fi
+            grep -q "^SUPABASE_SYNC_ENABLED=" .env && sed -i "s|^SUPABASE_SYNC_ENABLED=.*|SUPABASE_SYNC_ENABLED=true|g" .env || echo "SUPABASE_SYNC_ENABLED=true" >> .env
+            grep -q "^EDITORIAL_BACKEND=" .env && sed -i "s|^EDITORIAL_BACKEND=.*|EDITORIAL_BACKEND=supabase|g" .env || echo "EDITORIAL_BACKEND=supabase" >> .env
+
+            # Configure AI & Auto-sync interval (8 hours = 480 minutes)
+            if [ -n "$GROQ_API_KEY" ]; then
+              grep -q "^GROQ_API_KEY=" .env && sed -i "s|^GROQ_API_KEY=.*|GROQ_API_KEY=$GROQ_API_KEY|g" .env || echo "GROQ_API_KEY=$GROQ_API_KEY" >> .env
+            fi
+            grep -q "^AUTO_SYNC_INTERVAL_MINUTES=" .env && sed -i "s|^AUTO_SYNC_INTERVAL_MINUTES=.*|AUTO_SYNC_INTERVAL_MINUTES=480|g" .env || echo "AUTO_SYNC_INTERVAL_MINUTES=480" >> .env
+            grep -q "^AUTO_SYNC_ENABLED=" .env && sed -i "s|^AUTO_SYNC_ENABLED=.*|AUTO_SYNC_ENABLED=true|g" .env || echo "AUTO_SYNC_ENABLED=true" >> .env
+
+            # Create persistent volume directories and files
+            mkdir -p downloaded_images news_images ft_images images editorial logs
+            touch news.db daily_news_export.xlsx news_feed.csv news_feed.json
+
+            # Configure UFW firewall if active
+            if command -v ufw >/dev/null 2>&1; then
+              ufw allow OpenSSH >/dev/null 2>&1 || true
+              ufw allow 80/tcp >/dev/null 2>&1 || true
+              ufw allow 8080/tcp >/dev/null 2>&1 || true
+              ufw allow 443/tcp >/dev/null 2>&1 || true
+            fi
+
+            # Build and deploy Docker containers
+            echo "[*] Building and restarting Docker Compose containers..."
+            docker compose down --remove-orphans 2>/dev/null || true
+            docker compose up -d --build
+
+            echo "[*] Verifying running containers..."
+            docker compose ps
+
+            SERVER_IP=$(curl -s -4 ifconfig.me || hostname -I | awk '{print $1}')
+            echo "=========================================================="
+            echo " [OK] Contabo Server Successfully Updated & Running!"
+            echo "   🌐 Public Website   : http://${SERVER_IP}"
+            echo "   🔐 Admin Dashboard  : http://${SERVER_IP}:8080"
+            echo "   🔄 Auto-Sync Every  : 8 Hours (480 mins)"
+            echo "   🗄️ Database Backend : Supabase"
+            echo "=========================================================="
