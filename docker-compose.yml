@@ -11,6 +11,7 @@ services:
     environment:
       - PORT=5000
       - NODE_ENV=production
+      - EDITORIAL_BACKEND=${EDITORIAL_BACKEND:-local}
       - PYTHONUNBUFFERED=1
       - AUTO_SYNC_ENABLED=true
       - AUTO_SYNC_RUN_ON_START=true
@@ -20,7 +21,9 @@ services:
       - ./daily_news_export.xlsx:/app/daily_news_export.xlsx
       - ./news_feed.csv:/app/news_feed.csv
       - ./news_feed.json:/app/news_feed.json
+      - ./news_data.json:/app/news_data.json
       - ./editorial:/app/editorial
+      - ./assets:/app/assets
       - ./downloaded_images:/app/downloaded_images
       - ./ft_images:/app/ft_images
       - ./news_images:/app/news_images
