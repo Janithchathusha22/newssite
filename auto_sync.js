@@ -38,8 +38,8 @@ const axiosClient = axios.create({ httpAgent, httpsAgent, timeout: 15000 });
 let supabase = null;
 try {
     const { createClient } = require('@supabase/supabase-js');
-    const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const sbKey = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_ANON_KEY;
+    const sbUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const sbKey = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
     if (sbUrl && sbKey) {
         supabase = createClient(sbUrl, sbKey);
         console.log('[+] Supabase connected');

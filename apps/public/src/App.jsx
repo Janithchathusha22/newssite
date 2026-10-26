@@ -536,12 +536,12 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Latest News Stream (අලුත්ම පුවත් - Continuous Wire with Category Tabs) */}
+      {/* Latest News Stream (Continuous Wire with Category Tabs) */}
       <section className="latest-stream-section shell section-block">
         <div className="section-heading">
           <div className="section-heading__title">
             <span className="section-badge">02</span>
-            <h2>Latest News Stream (අලුත්ම පුවත්)</h2>
+            <h2>Latest News Stream</h2>
           </div>
           <div className="stream-search-box">
             <input
