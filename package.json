@@ -4,6 +4,7 @@
   "description": "",
   "main": "ai_processor.js",
   "scripts": {
+    "build": "npm install --prefix apps/public && npm --prefix apps/public run build",
     "start": "node server.js",
     "dev:public": "node apps/public/node_modules/vite/bin/vite.js apps/public --config apps/public/vite.config.js --port 5173",
     "dev:admin": "node apps/admin/node_modules/vite/bin/vite.js apps/admin --config apps/admin/vite.config.ts --port 5174",

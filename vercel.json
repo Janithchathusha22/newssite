@@ -1,0 +1,8 @@
+{
+  "buildCommand": "npm install --prefix apps/public && npm --prefix apps/public run build",
+  "outputDirectory": "apps/public/dist",
+  "rewrites": [
+    { "source": "/assets/(.*)", "destination": "/assets/$1" },
+    { "source": "/((?!assets/).*)", "destination": "/index.html" }
+  ]
+}
