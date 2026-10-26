@@ -1,5 +1,933 @@
 [
   {
+    "id": "d1b34fcd36c3317b588d",
+    "url": "https://hirunews.lk/en/496383/100-houses-damaged-by-strong-winds-in-the-iranawila-area-of-mahawewa",
+    "image": "assets/news_images/69876cc6390e15e2b5b19849.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T09:10:18.181128Z",
+    "scraped_at": "2026-10-26T09:10:18.181128Z",
+    "headline_en": "Strong Winds Damage 100 Homes in Mahawewa and Iranawila",
+    "headline_si": "මහවැව සහ ඉරණවිල ප්‍රදේශවල දැඩි සුළඟින් නිවාස 100කට හානි",
+    "summary_en": "Damage was caused to 100 houses in Mahawewa and Iranawila by strong winds. No estimate of the financial losses or details of relief measures were provided.",
+    "summary_si": "දැඩි සුළං හේතුවෙන් මහවැව සහ ඉරණවිල ප්‍රදේශවල නිවාස 100කට හානි සිදුව ඇත. මූල්‍යමය අලාභ පිළිබඳ ඇස්තමේන්තුවක් හෝ සහන ක්‍රියාමාර්ග පිළිබඳ තොරතුරු හෝ සපයා නොමැත.",
+    "content": "Damage was caused to 100 houses in Mahawewa and Iranawila by strong winds. The report was carried by Hiru News, which was described as the most visited website in Sri Lanka and the No. 1 online news site for Sri Lankans. Latest news updates from Sri Lanka, together with Sri Lanka news updates and discussions, were stated to be provided by the platform, which was identified as a Rayynor Silva Holdings Company.",
+    "passive_voice_content": "Damage was caused to 100 houses in Mahawewa and Iranawila by strong winds. The report was carried by Hiru News, which was described as the most visited website in Sri Lanka and the No. 1 online news site for Sri Lankans. Latest news updates from Sri Lanka, together with Sri Lanka news updates and discussions, were stated to be provided by the platform, which was identified as a Rayynor Silva Holdings Company.",
+    "key_takeaways": [
+      "A total of 100 houses were damaged by strong winds.",
+      "Housing recovery and local disaster-response needs have been brought into focus.",
+      "No financial-loss estimate or relief measures were disclosed."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Strong Winds",
+      "Housing Damage",
+      "Disaster Management",
+      "Mahawewa"
+    ],
+    "status": "published",
+    "topRank": 1,
+    "editorial_approved": true
+  },
+  {
+    "id": "bc1cbe211e4397738ecb",
+    "url": "https://hirunews.lk/en/496374/provincial-education-authorities-decide-to-close-schools-due-to-heavy-rains",
+    "image": "assets/news_images/c82fa72d66a72ca2e49a5108.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T09:10:18.181128Z",
+    "scraped_at": "2026-10-26T09:10:18.181128Z",
+    "headline_en": "Provincial Education Authorities Empowered to Close Schools Amid Heavy Rain",
+    "headline_si": "අධික වර්ෂාව හේතුවෙන් පාසල් වසා දැමීමේ තීරණය පළාත් අධ්‍යාපන බලධාරීන්ට පැවරේ",
+    "summary_en": "The decision on whether schools should be closed due to heavy rain has been entrusted to provincial education authorities. Regional conditions are therefore expected to be assessed by the relevant authorities before closures are determined.",
+    "summary_si": "අධික වර්ෂාව හේතුවෙන් පාසල් වසා දැමිය යුතුද යන්න තීරණය කිරීමේ බලය පළාත් අධ්‍යාපන බලධාරීන්ට පවරා ඇත. ඒ අනුව, පාසල් වසා දැමීම පිළිබඳ තීරණ ගැනීමට පෙර අදාළ බලධාරීන් විසින් ප්‍රාදේශීය තත්ත්වයන් ඇගයීමට ලක් කිරීමට නියමිතය.",
+    "content": "The decision on the closure of schools due to heavy rain has been handed to provincial education authorities. The information was carried by Hiru News, which is operated by Rayynor Silva Holdings Company.",
+    "passive_voice_content": "The decision on the closure of schools due to heavy rain has been handed to provincial education authorities. The information was carried by Hiru News, which is operated by Rayynor Silva Holdings Company.",
+    "key_takeaways": [
+      "School-closure decisions have been decentralised to provincial authorities.",
+      "Local weather conditions can be considered in closure decisions.",
+      "Provincial education administrators have been assigned decision-making responsibility."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Education",
+      "Provincial Authorities",
+      "Heavy Rain",
+      "School Closures"
+    ],
+    "status": "published",
+    "topRank": 2,
+    "editorial_approved": true
+  },
+  {
+    "id": "750961d957d0e2925055",
+    "url": "https://hirunews.lk/en/496373/a-decisive-decision-from-the-supreme-court-on-the-power-of-the-commercial-high-court",
+    "image": "assets/news_images/2c64e745cd605196f960c6f9.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T09:10:18.181128Z",
+    "scraped_at": "2026-10-26T09:10:18.181128Z",
+    "headline_en": "Supreme Court Delivers Key Ruling on Commercial High Court Jurisdiction",
+    "headline_si": "වාණිජ මහාධිකරණයේ අධිකරණ බලය පිළිබඳ ශ්‍රේෂ්ඨාධිකරණයෙන් තීරණාත්මක තීන්දුවක්",
+    "summary_en": "A decisive ruling on the jurisdiction of the Commercial High Court was delivered by the Supreme Court. No details of the ruling or its implications were provided in the supplied content.",
+    "summary_si": "වාණිජ මහාධිකරණයේ අධිකරණ බලය සම්බන්ධයෙන් තීරණාත්මක තීන්දුවක් ශ්‍රේෂ්ඨාධිකරණය විසින් ලබා දී ඇත. එම තීන්දුවේ විස්තර හෝ එහි බලපෑම් පිළිබඳ තොරතුරු සපයා ඇති අන්තර්ගතයේ සඳහන් කර නොමැත.",
+    "content": "A decisive ruling on the jurisdiction of the Commercial High Court was delivered by the Supreme Court. Hiru News was described in the supplied content as the most visited website in Sri Lanka, providing the latest Sri Lankan news updates and discussions. It was also presented as the No. 1 online news site for Sri Lankans and as a Rayynor Silva Holdings Company.",
+    "passive_voice_content": "A decisive ruling on the jurisdiction of the Commercial High Court was delivered by the Supreme Court. Hiru News was described in the supplied content as the most visited website in Sri Lanka, providing the latest Sri Lankan news updates and discussions. It was also presented as the No. 1 online news site for Sri Lankans and as a Rayynor Silva Holdings Company.",
+    "key_takeaways": [
+      "Commercial High Court jurisdiction was addressed by the Supreme Court.",
+      "The ruling could carry governance and commercial-law implications.",
+      "No substantive details of the decision were provided."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Supreme Court",
+      "Commercial High Court",
+      "Judiciary",
+      "Commercial Law"
+    ],
+    "status": "published",
+    "topRank": 3,
+    "editorial_approved": true
+  },
+  {
+    "id": "6b303387fbc3d52c3ffe",
+    "url": "https://hirunews.lk/en/496383/strong-winds-damage-100-houses-in-mahawewa-iranawila",
+    "image": "assets/news_images/69876cc6390e15e2b5b19849.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T09:10:18.181128Z",
+    "scraped_at": "2026-10-26T09:10:18.181128Z",
+    "headline_en": "Strong Winds Damage 100 Homes in Mahawewa and Iranawila",
+    "headline_si": "දැඩි සුළඟින් මහවැව සහ ඉරණවිල නිවාස 100කට හානි",
+    "summary_en": "Damage was caused to 100 houses in Mahawewa and Iranawila by strong winds. The two areas were affected by the adverse weather conditions.",
+    "summary_si": "දැඩි සුළං හේතුවෙන් මහවැව සහ ඉරණවිල ප්‍රදේශවල නිවාස 100කට හානි සිදුව තිබේ. අයහපත් කාලගුණ තත්ත්වයෙන් ප්‍රදේශ දෙකම බලපෑමට ලක්ව ඇත.",
+    "content": "Damage was caused to 100 houses in Mahawewa and Iranawila by strong winds. The report was attributed to Hiru News, which was described as Sri Lanka’s most visited website and the country’s No. 1 online news site, providing the latest Sri Lankan news updates and discussions. Hiru News was identified as a Rayynor Silva Holdings company.",
+    "passive_voice_content": "Damage was caused to 100 houses in Mahawewa and Iranawila by strong winds. The report was attributed to Hiru News, which was described as Sri Lanka’s most visited website and the country’s No. 1 online news site, providing the latest Sri Lankan news updates and discussions. Hiru News was identified as a Rayynor Silva Holdings company.",
+    "key_takeaways": [
+      "Damage was reported to 100 residential properties.",
+      "Mahawewa and Iranawila were affected by strong winds.",
+      "Local disaster preparedness and housing resilience were brought into focus."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Strong Winds",
+      "Housing Damage",
+      "Disaster Management",
+      "Mahawewa"
+    ],
+    "status": "published",
+    "topRank": 4,
+    "editorial_approved": true
+  },
+  {
+    "id": "9fd6cb049f9719b5b2ae",
+    "url": "https://hirunews.lk/en/496374/decision-to-close-schools-due-to-heavy-rain-handed-to-provincial-education-authorities",
+    "image": "assets/news_images/c82fa72d66a72ca2e49a5108.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T09:10:18.181128Z",
+    "scraped_at": "2026-10-26T09:10:18.181128Z",
+    "headline_en": "School Closure Decisions Amid Heavy Rain Delegated to Provincial Authorities",
+    "headline_si": "අධික වර්ෂාව හේතුවෙන් පාසල් වසා දැමීමේ තීරණ පළාත් අධ්‍යාපන බලධාරීන්ට පවරයි",
+    "summary_en": "The authority to decide on school closures due to heavy rain has been delegated to provincial education authorities.",
+    "summary_si": "අධික වර්ෂාව හේතුවෙන් පාසල් වසා දැමීම පිළිබඳ තීරණ ගැනීමේ බලය පළාත් අධ්‍යාපන බලධාරීන්ට පවරා ඇත.",
+    "content": "The decision on whether schools should be closed due to heavy rain has been entrusted to provincial education authorities. The information was carried under Hiru News, which is described as Sri Lanka’s most visited website and the country’s No. 1 online news site for Sri Lankans, providing the latest Sri Lankan news updates and discussions. The platform is identified as a Rayynor Silva Holdings company.",
+    "passive_voice_content": "The decision on whether schools should be closed due to heavy rain has been entrusted to provincial education authorities. The information was carried under Hiru News, which is described as Sri Lanka’s most visited website and the country’s No. 1 online news site for Sri Lankans, providing the latest Sri Lankan news updates and discussions. The platform is identified as a Rayynor Silva Holdings company.",
+    "key_takeaways": [
+      "School closure authority has been decentralised to provincial education officials.",
+      "Weather-related education decisions can be made at the provincial level.",
+      "Heavy rainfall has prompted governance measures affecting school operations."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Education",
+      "Provincial Authorities",
+      "School Closures",
+      "Heavy Rain"
+    ],
+    "status": "published",
+    "topRank": 5,
+    "editorial_approved": true
+  },
+  {
+    "id": "83f453018fbbcc92f6ab",
+    "url": "https://hirunews.lk/en/496373/supreme-court-delivers-decisive-ruling-on-commercial-high-courts-jurisdiction",
+    "image": "assets/news_images/2c64e745cd605196f960c6f9.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T09:10:18.181128Z",
+    "scraped_at": "2026-10-26T09:10:18.181128Z",
+    "headline_en": "Supreme Court Issues Decisive Ruling on Commercial High Court Jurisdiction",
+    "headline_si": "වාණිජ මහාධිකරණයේ අධිකරණ බලය පිළිබඳ ශ්‍රේෂ්ඨාධිකරණයෙන් තීරණාත්මක තීන්දුවක්",
+    "summary_en": "A decisive ruling concerning the jurisdiction of the Commercial High Court was delivered by the Supreme Court. Further details of the judgment were not provided in the supplied content.",
+    "summary_si": "වාණිජ මහාධිකරණයේ අධිකරණ බලය සම්බන්ධයෙන් තීරණාත්මක තීන්දුවක් ශ්‍රේෂ්ඨාධිකරණය විසින් ලබා දෙන ලදී. එම තීන්දුව පිළිබඳ වැඩිදුර තොරතුරු සපයා ඇති අන්තර්ගතයේ ඇතුළත් කර නොතිබුණි.",
+    "content": "A decisive ruling on the Commercial High Court's jurisdiction was delivered by the Supreme Court. Hiru News was described in the supplied text as the most visited website in Sri Lanka, as a provider of Sri Lanka's latest news updates and discussions, and as the No. 1 online news site for Sri Lankans. It was also identified as a Rayynor Silva Holdings Company. No further details of the Supreme Court ruling were provided in the supplied content.",
+    "passive_voice_content": "A decisive ruling on the Commercial High Court's jurisdiction was delivered by the Supreme Court. Hiru News was described in the supplied text as the most visited website in Sri Lanka, as a provider of Sri Lanka's latest news updates and discussions, and as the No. 1 online news site for Sri Lankans. It was also identified as a Rayynor Silva Holdings Company. No further details of the Supreme Court ruling were provided in the supplied content.",
+    "key_takeaways": [
+      "Commercial High Court jurisdiction was addressed by the Supreme Court.",
+      "The ruling could have implications for commercial dispute governance.",
+      "No details of the judgment were included in the supplied content."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Supreme Court",
+      "Commercial High Court",
+      "Judicial Policy",
+      "Commercial Law"
+    ],
+    "status": "published",
+    "topRank": 6,
+    "editorial_approved": true
+  },
+  {
+    "id": "3ade7e284b29e20dd07e",
+    "url": "https://hirunews.lk/en/496366/cyclone-arnab-set-to-intensify-into-severe-storm-by-midnight",
+    "image": "assets/news_images/0d8c92a4ae98788cdeac3e3f.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T09:10:18.181128Z",
+    "scraped_at": "2026-10-26T09:10:18.181128Z",
+    "headline_en": "Cyclone ‘Arnab’ Expected to Become Severe Storm by Midnight",
+    "headline_si": "‘ආර්නාබ්’ සුළි කුණාටුව මධ්‍යම රාත්‍රිය වන විට දරුණු තත්ත්වයට තීව්‍ර වීමට අපේක්ෂිතයි",
+    "summary_en": "The intensification of Cyclone ‘Arnab’ into a severe storm is expected by midnight. The report was attributed to Hiru News.",
+    "summary_si": "‘ආර්නාබ්’ සුළි කුණාටුව මධ්‍යම රාත්‍රිය වන විට දරුණු සුළි කුණාටුවක් දක්වා තීව්‍ර වනු ඇතැයි අපේක්ෂා කෙරේ. වාර්තාව Hiru News වෙත ආරෝපණය කර ඇත.",
+    "content": "The intensification of Cyclone ‘Arnab’ into a severe storm is expected by midnight. The item was attributed to Hiru News. The website was described as the most visited website in Sri Lanka and as a source of the latest news updates from Sri Lanka, together with Sri Lanka news updates and discussions. It was also presented as the No. 1 online news site for Sri Lankans and was identified as a Rayynor Silva Holdings Company.",
+    "passive_voice_content": "The intensification of Cyclone ‘Arnab’ into a severe storm is expected by midnight. The item was attributed to Hiru News. The website was described as the most visited website in Sri Lanka and as a source of the latest news updates from Sri Lanka, together with Sri Lanka news updates and discussions. It was also presented as the No. 1 online news site for Sri Lankans and was identified as a Rayynor Silva Holdings Company.",
+    "key_takeaways": [
+      "Severe-storm intensification is expected by midnight.",
+      "Business continuity and emergency preparedness may require attention.",
+      "The report was attributed to Hiru News."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Cyclone Arnab",
+      "Severe Weather",
+      "Disaster Preparedness",
+      "Hiru News"
+    ],
+    "status": "published",
+    "topRank": 7,
+    "editorial_approved": true
+  },
+  {
+    "id": "475de2840d168768d796",
+    "url": "https://hirunews.lk/en/496379/instagram-comes-to-apple-tv-with-reels-longer-videos-and-live-shows",
+    "image": "assets/news_images/953a33c9d5508dfc6489048c.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T09:10:18.181128Z",
+    "scraped_at": "2026-10-26T09:10:18.181128Z",
+    "headline_en": "Instagram Arrives on Apple TV with Reels, Long-Form Videos and Live Shows",
+    "headline_si": "රීල්ස්, දිගු වීඩියෝ සහ සජීවී වැඩසටහන් සමඟ Instagram සේවාව Apple TV වෙත",
+    "summary_en": "Instagram has been made available on Apple TV with Reels, longer videos and live shows. The supplied content also identifies Hiru News as a Sri Lankan news website operated by Rayynor Silva Holdings.",
+    "summary_si": "රීල්ස්, දිගු වීඩියෝ සහ සජීවී වැඩසටහන් සමඟ Instagram සේවාව Apple TV වෙත හඳුන්වා දී ඇත. සපයා ඇති අන්තර්ගතය තුළ Hiru News, Rayynor Silva Holdings සමාගමට අයත් ශ්‍රී ලාංකික ප්‍රවෘත්ති වෙබ් අඩවියක් ලෙස ද හඳුන්වා දී ඇත.",
+    "content": "Instagram has been brought to Apple TV with Reels, longer videos and live shows. Hiru News is described in the supplied content as the most visited website in Sri Lanka, through which the latest Sri Lankan news updates and discussions are provided. Visitors are welcomed to what is described as the No. 1 online news site for Sri Lankans, and the platform is identified as a Rayynor Silva Holdings company.",
+    "passive_voice_content": "Instagram has been brought to Apple TV with Reels, longer videos and live shows. Hiru News is described in the supplied content as the most visited website in Sri Lanka, through which the latest Sri Lankan news updates and discussions are provided. Visitors are welcomed to what is described as the No. 1 online news site for Sri Lankans, and the platform is identified as a Rayynor Silva Holdings company.",
+    "key_takeaways": [
+      "Instagram content has been extended to Apple TV.",
+      "Reels, longer videos and live shows are included.",
+      "The supplied content identifies Hiru News as a Rayynor Silva Holdings company."
+    ],
+    "category": "Business & Corporate",
+    "tags": [
+      "Instagram",
+      "Apple TV",
+      "Digital Media",
+      "Hiru News"
+    ],
+    "status": "published",
+    "topRank": 8,
+    "editorial_approved": true
+  },
+  {
+    "id": "db0ed66b3e3c67daaea1",
+    "url": "https://hirunews.lk/en/496371/shashi-weerawansas-appeal-against-his-prison-sentence-in-the-fake-passport-case-to-be-considered-on-the-18th-of-next-month",
+    "image": "https://cdn.hirunews.lk/Data/News_Images/202610/1793000473_5605828_hirunews.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T08:07:45.165544Z",
+    "scraped_at": "2026-10-26T08:07:45.165544Z",
+    "headline_en": "Shashi Weerawansa’s Fake Passport Appeal Scheduled for Next Month",
+    "headline_si": "ශෂී වීරවංශගේ ව්‍යාජ ගමන් බලපත්‍ර අභියාචනය ලබන මාසයට නියම කෙරේ",
+    "summary_en": "Shashi Weerawansa’s appeal concerning a fake passport has been scheduled for next month. No further details or hearing date were provided in the scraped content.",
+    "summary_si": "ව්‍යාජ ගමන් බලපත්‍රයක් සම්බන්ධයෙන් ශෂී වීරවංශ ඉදිරිපත් කළ අභියාචනය ලබන මාසයේ සලකා බැලීමට නියම කර ඇත. නිශ්චිත විභාග දිනයක් හෝ වැඩිදුර තොරතුරු හෝ ලබා දී නොමැත.",
+    "content": "Shashi Weerawansa’s appeal concerning a fake passport has been scheduled for next month. The item was attributed to Hiru News, which was described as the most visited website in Sri Lanka and as providing the latest Sri Lankan news updates and discussions. It was also described as the number one online news site for Sri Lankans and as a Rayynor Silva Holdings company.",
+    "passive_voice_content": "Shashi Weerawansa’s appeal concerning a fake passport has been scheduled for next month. The item was attributed to Hiru News, which was described as the most visited website in Sri Lanka and as providing the latest Sri Lankan news updates and discussions. It was also described as the number one online news site for Sri Lankans and as a Rayynor Silva Holdings company.",
+    "key_takeaways": [
+      "The appeal has been scheduled for next month.",
+      "The matter concerns an alleged fake passport.",
+      "No specific hearing date or additional case details were provided."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Shashi Weerawansa",
+      "Judiciary",
+      "Passport",
+      "Governance"
+    ],
+    "status": "published",
+    "topRank": 9,
+    "editorial_approved": true
+  },
+  {
+    "id": "f4ab0df93c18cf373f37",
+    "url": "https://hirunews.lk/en/496368/error-error-code400messagerequired-texterrors-messagerequired-textdomainglobalreasonrequired-details-typetype-googleapis-com-google-rpc-badrequestfieldviolations-fieldqdescriptionno-text-queries-provided",
+    "image": "assets/news_images/bcdd9f668ef96d6a99ded63e.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T08:07:45.165544Z",
+    "scraped_at": "2026-10-26T08:07:45.165544Z",
+    "headline_en": "Sajith Sets Out Five Proposals for Security Legislation",
+    "headline_si": "යෝජිත ආරක්ෂක නීති සම්පාදනය සඳහා සජිත් ප්‍රේමදාසගෙන් යෝජනා පහක්",
+    "summary_en": "Five proposals concerning the proposed security legislation were outlined by Sajith Premadasa. Details of the proposals were not provided in the available content.",
+    "summary_si": "යෝජිත ආරක්ෂක නීති සම්පාදනය සම්බන්ධයෙන් යෝජනා පහක් සජිත් ප්‍රේමදාස විසින් ඉදිරිපත් කරන ලදී. එම යෝජනාවල විස්තර ලබා දී ඇති අන්තර්ගතයෙහි සඳහන් කර නොමැත.",
+    "content": "Five proposals concerning the proposed security legislation were outlined by Sajith Premadasa. Further details of the proposals were not included in the available scraped content. Hiru News was described in the source text as the most visited website in Sri Lanka and as a provider of the latest Sri Lankan news updates and discussions. It was also presented as the No. 1 online news site for Sri Lankans and identified as a Rayynor Silva Holdings Company.",
+    "passive_voice_content": "Five proposals concerning the proposed security legislation were outlined by Sajith Premadasa. Further details of the proposals were not included in the available scraped content. Hiru News was described in the source text as the most visited website in Sri Lanka and as a provider of the latest Sri Lankan news updates and discussions. It was also presented as the No. 1 online news site for Sri Lankans and identified as a Rayynor Silva Holdings Company.",
+    "key_takeaways": [
+      "Five proposals were presented on the proposed security legislation.",
+      "The initiative was attributed to Sajith Premadasa.",
+      "Details of the five proposals were not included in the available content."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Sajith Premadasa",
+      "Security Legislation",
+      "Governance",
+      "Policy Reform"
+    ],
+    "status": "published",
+    "topRank": 10,
+    "editorial_approved": true
+  },
+  {
+    "id": "02c5246547fd2f21957a",
+    "url": "https://hirunews.lk/en/496363/error-error-code400messagerequired-texterrors-messagerequired-textdomainglobalreasonrequired-details-typetype-googleapis-com-google-rpc-badrequestfieldviolations-fieldqdescriptionno-text-queries-provided",
+    "image": "assets/news_images/664376987cc96cb26ba56849.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T08:07:45.165544Z",
+    "scraped_at": "2026-10-26T08:07:45.165544Z",
+    "headline_en": "BASL President Warns of Severe Prison Overcrowding",
+    "headline_si": "බන්ධනාගාරවල දැඩි තදබදය පිළිබඳ BASL සභාපතිගෙන් අනතුරු ඇඟවීමක්",
+    "summary_en": "A warning over severe overcrowding in Sri Lanka’s prisons was issued by the BASL President. No further details, figures or policy responses were provided in the scraped content.",
+    "summary_si": "ශ්‍රී ලංකාවේ බන්ධනාගාරවල පවතින දැඩි තදබදය සම්බන්ධයෙන් BASL සභාපතිවරයා විසින් අනතුරු ඇඟවීමක් නිකුත් කර ඇත. ලබා දී ඇති උපුටාගත් අන්තර්ගතයේ වැඩිදුර තොරතුරු, සංඛ්‍යාලේඛන හෝ ප්‍රතිපත්තිමය ප්‍රතිචාර සඳහන් කර නොමැත.",
+    "content": "A warning regarding severe prison overcrowding was issued by the BASL President. The scraped material also included promotional wording in which Hiru News was described as the most visited website in Sri Lanka, a provider of Sri Lanka’s latest news updates and discussions, and the No. 1 online news site for Sri Lankans. Hiru News was identified as a Rayynor Silva Holdings company. No publication date or further information concerning the overcrowding warning was provided.",
+    "passive_voice_content": "A warning regarding severe prison overcrowding was issued by the BASL President. The scraped material also included promotional wording in which Hiru News was described as the most visited website in Sri Lanka, a provider of Sri Lanka’s latest news updates and discussions, and the No. 1 online news site for Sri Lankans. Hiru News was identified as a Rayynor Silva Holdings company. No publication date or further information concerning the overcrowding warning was provided.",
+    "key_takeaways": [
+      "Severe prison overcrowding was flagged by the BASL President.",
+      "Potential governance and justice-system capacity concerns were highlighted.",
+      "No supporting figures or proposed policy measures were provided."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "BASL",
+      "Prison Overcrowding",
+      "Justice System",
+      "Governance"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "6690a2ad9f40ff1a4565",
+    "url": "https://hirunews.lk/en/496358/minor-flood-risk-in-areas-around-the-mahaweli-river-in-the-pasbage-koralaya-divisional-secretariat-division",
+    "image": "assets/news_images/7ac6d1e8da2f26db052ff3ca.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T08:07:45.165544Z",
+    "scraped_at": "2026-10-26T08:07:45.165544Z",
+    "headline_en": "Minor Flood Risk Emerges Along Mahaweli River in Pasbage Korale",
+    "headline_si": "පස්බාගේ කෝරළයේ මහවැලි ගඟ ආශ්‍රිතව සුළු ගංවතුර අවදානමක්",
+    "summary_en": "A minor flood risk has been reported near the Mahaweli River in Pasbage Korale. No further information on affected areas, water levels or official response measures was provided in the scraped content.",
+    "summary_si": "පස්බාගේ කෝරළයේ මහවැලි ගඟ ආශ්‍රිතව සුළු ගංවතුර අවදානමක් වාර්තා කර ඇත. බලපෑමට ලක්විය හැකි ප්‍රදේශ, ජල මට්ටම් හෝ නිල ප්‍රතිචාර ක්‍රියාමාර්ග පිළිබඳ වැඩිදුර තොරතුරු සපයා නොමැත.",
+    "content": "A minor flood risk near the Mahaweli River in Pasbage Korale has been reported by Hiru News. Hiru News is described in the scraped content as the most visited website in Sri Lanka and as the No. 1 online news site for Sri Lankans, providing the latest news updates and discussions from Sri Lanka. The platform is identified as a Rayynor Silva Holdings Company. No additional details regarding the flood risk were included in the available content.",
+    "passive_voice_content": "A minor flood risk near the Mahaweli River in Pasbage Korale has been reported by Hiru News. Hiru News is described in the scraped content as the most visited website in Sri Lanka and as the No. 1 online news site for Sri Lankans, providing the latest news updates and discussions from Sri Lanka. The platform is identified as a Rayynor Silva Holdings Company. No additional details regarding the flood risk were included in the available content.",
+    "key_takeaways": [
+      "Local flood preparedness may be required in Pasbage Korale.",
+      "Nearby communities and businesses could face minor disruption.",
+      "Further official information is needed to assess the risk."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Mahaweli River",
+      "Pasbage Korale",
+      "Flood Risk",
+      "Disaster Management"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "0a0e79eadd4ef6785346",
+    "url": "https://hirunews.lk/en/496348/minor-flood-warning-for-kalu-ganga-basin-ratnapura-and-kalutara-districts-on-high-alert",
+    "image": "assets/news_images/c8a2acae8272ad7f1591770e.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T08:07:45.165544Z",
+    "scraped_at": "2026-10-26T08:07:45.165544Z",
+    "headline_en": "Kalu Ganga Basin Faces Minor Flood Risk; Ratnapura and Kalutara on High Alert",
+    "headline_si": "කළු ගඟ ද්‍රෝණියට සුළු ගංවතුර අවදානමක්; රත්නපුර සහ කළුතර දිස්ත්‍රික්ක දැඩි අවධානයෙන්",
+    "summary_en": "A minor flood warning has been issued by the Department of Irrigation for several low-lying areas of the Kalu Ganga basin. Flooding may be experienced within the next 24 hours due to significant rainfall currently being received, with Ratnapura and Kalutara districts placed on high alert.",
+    "summary_si": "කළු ගඟ ද්‍රෝණියේ පහත් බිම් ප්‍රදේශ කිහිපයක් සඳහා සුළු ගංවතුර අනතුරු ඇඟවීමක් වාරිමාර්ග දෙපාර්තමේන්තුව විසින් නිකුත් කර ඇත. දැනට ලැබෙමින් පවතින සැලකිය යුතු වර්ෂාපතනය හේතුවෙන් ඉදිරි පැය 24 තුළ ගංවතුර තත්ත්වයක් ඇති විය හැකි අතර, රත්නපුර සහ කළුතර දිස්ත්‍රික්ක දැඩි අවධානයෙන් තබා ඇත.",
+    "content": "කළු ගඟ ද්‍රෝණියේ පහත් බිම් ප්‍රදේශ කිහිපයක ඉදිරි පැය 24 තුළ සුළු ගංවතුර තත්ත්වයක් ඇති විය හැකි බවට වාරිමාර්ග දෙපාර්තමේන්තුව විසින් අනතුරු ඇඟවීමක් නිකුත් කර ඇත. මෙම අවදානම දැනට ලැබෙමින් පවතින සැලකිය යුතු වර්ෂාපතනය හේතුවෙන් මතුව ඇති අතර, රත්නපුර සහ කළුතර දිස්ත්‍රික්ක දැඩි අවධානයෙන් තබා ඇත.",
+    "passive_voice_content": "කළු ගඟ ද්‍රෝණියේ පහත් බිම් ප්‍රදේශ කිහිපයක ඉදිරි පැය 24 තුළ සුළු ගංවතුර තත්ත්වයක් ඇති විය හැකි බවට වාරිමාර්ග දෙපාර්තමේන්තුව විසින් අනතුරු ඇඟවීමක් නිකුත් කර ඇත. මෙම අවදානම දැනට ලැබෙමින් පවතින සැලකිය යුතු වර්ෂාපතනය හේතුවෙන් මතුව ඇති අතර, රත්නපුර සහ කළුතර දිස්ත්‍රික්ක දැඩි අවධානයෙන් තබා ඇත.",
+    "key_takeaways": [
+      "Minor flooding may affect low-lying areas of the Kalu Ganga basin.",
+      "Ratnapura and Kalutara districts have been placed on high alert.",
+      "The warning covers the next 24 hours amid significant rainfall."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Flood Warning",
+      "Kalu Ganga",
+      "Department of Irrigation",
+      "Disaster Management"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "22f31543808420e3d164",
+    "url": "https://hirunews.lk/en/496371/shashi-weerawansas-fake-passport-appeal-set-for-next-month",
+    "image": "assets/news_images/4d03e98eb48c792f600de930.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T08:07:45.165544Z",
+    "scraped_at": "2026-10-26T08:07:45.165544Z",
+    "headline_en": "Shashi Weerawansa Fake Passport Appeal Scheduled for Next Month",
+    "headline_si": "ශෂී වීරවංශගේ ව්‍යාජ විදේශ ගමන් බලපත්‍ර අභියාචනය ලබන මාසයට නියම කෙරේ",
+    "summary_en": "The appeal concerning Shashi Weerawansa’s fake passport case has been scheduled for next month. No specific hearing date was provided in the scraped report.",
+    "summary_si": "ශෂී වීරවංශගේ ව්‍යාජ විදේශ ගමන් බලපත්‍ර නඩුවට අදාළ අභියාචනය ලබන මාසයට නියම කර ඇත. නිශ්චිත විභාග දිනයක් උපුටාගත් වාර්තාවේ සඳහන් කර නොමැත.",
+    "content": "The appeal concerning Shashi Weerawansa’s fake passport case has been scheduled for next month. The item was attributed to Hiru News, which was described as the most visited website in Sri Lanka and as the country’s No. 1 online news site for Sri Lankans, providing the latest news updates and discussions. Hiru News was identified as a Rayynor Silva Holdings company.",
+    "passive_voice_content": "The appeal concerning Shashi Weerawansa’s fake passport case has been scheduled for next month. The item was attributed to Hiru News, which was described as the most visited website in Sri Lanka and as the country’s No. 1 online news site for Sri Lankans, providing the latest news updates and discussions. Hiru News was identified as a Rayynor Silva Holdings company.",
+    "key_takeaways": [
+      "The fake passport appeal has been scheduled for next month.",
+      "The matter remains subject to the judicial appeals process.",
+      "No specific hearing date was provided."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Shashi Weerawansa",
+      "Fake Passport",
+      "Judiciary",
+      "Governance"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "8ac637317f0b3434c955",
+    "url": "https://hirunews.lk/en/496368/sajith-premadasa-outlines-five-proposals-for-proposed-security-legislation",
+    "image": "assets/news_images/bcdd9f668ef96d6a99ded63e.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T08:07:45.165544Z",
+    "scraped_at": "2026-10-26T08:07:45.165544Z",
+    "headline_en": "Sajith Premadasa Sets Out Five Proposals for Security Legislation",
+    "headline_si": "යෝජිත ආරක්ෂක නීති සම්පාදනය සඳහා සජිත් ප්‍රේමදාසගෙන් යෝජනා පහක්",
+    "summary_en": "Five proposals concerning the proposed security legislation were outlined by Sajith Premadasa. No details of the proposals were provided in the available source content.",
+    "summary_si": "යෝජිත ආරක්ෂක නීති සම්පාදනය සම්බන්ධයෙන් යෝජනා පහක් සජිත් ප්‍රේමදාස විසින් ඉදිරිපත් කරන ලදී. එම යෝජනාවල විස්තර ලබා දී ඇති මූලාශ්‍ර අන්තර්ගතයේ සඳහන් කර නොතිබුණි.",
+    "content": "Five proposals for the proposed security legislation were outlined by Sajith Premadasa. Further information on the substance of the proposals, relevant figures, dates or quotations was not included in the available scraped content. The accompanying text identified Hiru News as a Sri Lankan news website and as a Rayynor Silva Holdings Company.",
+    "passive_voice_content": "Five proposals for the proposed security legislation were outlined by Sajith Premadasa. Further information on the substance of the proposals, relevant figures, dates or quotations was not included in the available scraped content. The accompanying text identified Hiru News as a Sri Lankan news website and as a Rayynor Silva Holdings Company.",
+    "key_takeaways": [
+      "Five proposals were presented on the proposed security legislation.",
+      "The proposals were attributed to Sajith Premadasa.",
+      "Policy details were not included in the available content."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Sajith Premadasa",
+      "Security Legislation",
+      "Governance",
+      "Policy Reform"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "c891961db82a84073eef",
+    "url": "https://hirunews.lk/en/496363/basl-president-warns-of-severe-prison-overcrowding",
+    "image": "assets/news_images/664376987cc96cb26ba56849.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T08:07:45.165544Z",
+    "scraped_at": "2026-10-26T08:07:45.165544Z",
+    "headline_en": "BASL President Sounds Alarm Over Severe Prison Overcrowding",
+    "headline_si": "බන්ධනාගාරවල දැඩි අධික තදබදය පිළිබඳ BASL සභාපතිගෙන් අනතුරු ඇඟවීමක්",
+    "summary_en": "A warning over severe prison overcrowding was issued by the BASL President. No further substantive details, figures, quotations, or publication date were provided in the scraped content.",
+    "summary_si": "බන්ධනාගාරවල පවතින දැඩි අධික තදබදය සම්බන්ධයෙන් BASL සභාපතිවරයා විසින් අනතුරු ඇඟවීමක් නිකුත් කර ඇත. ලබා දී ඇති අන්තර්ගතය තුළ වැඩිදුර කරුණු, සංඛ්‍යා දත්ත, උපුටා දැක්වීම් හෝ ප්‍රකාශන දිනයක් සඳහන් කර නොමැත.",
+    "content": "A warning regarding severe prison overcrowding was issued by the BASL President. No further substantive information concerning the warning was included in the scraped content. Hiru News was described in the text as the most visited website in Sri Lanka and as the No. 1 online news site for Sri Lankans, providing Sri Lanka’s latest news updates and discussions. The platform was identified as a Rayynor Silva Holdings company.",
+    "passive_voice_content": "A warning regarding severe prison overcrowding was issued by the BASL President. No further substantive information concerning the warning was included in the scraped content. Hiru News was described in the text as the most visited website in Sri Lanka and as the No. 1 online news site for Sri Lankans, providing Sri Lanka’s latest news updates and discussions. The platform was identified as a Rayynor Silva Holdings company.",
+    "key_takeaways": [
+      "Severe overcrowding in prisons was raised as a governance concern.",
+      "No supporting figures, policy responses, or remedial measures were provided.",
+      "The scraped text attributed its promotional website description to Hiru News."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "BASL",
+      "Prison Overcrowding",
+      "Justice System",
+      "Governance"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "4cb7e10202e5ed065085",
+    "url": "https://www.dailymirror.lk/opinion/What-Panamure-Ath-Raja-Teaches-Us-About-Kawantissa/172-353391",
+    "image": "assets/news_images/393f80eefc416a2a1d3503f4.jpg",
+    "source": "Daily Mirror (dailymirror.lk)",
+    "published_at": "2026-10-26T09:40:26Z",
+    "scraped_at": "2026-10-26T07:05:15.840871Z",
+    "headline_en": "Lessons on Kawantissa from Panamure Ath Raja",
+    "headline_si": "පනාමුරේ ඇත් රජාගෙන් කාවන්තිස්ස පිළිබඳ උගත හැකි පාඩම්",
+    "summary_en": "Leadership lessons concerning Kawantissa are presented through the story of Panamure Ath Raja. The subject is approached as an opinion issue, although no supporting details were included in the scraped content.",
+    "summary_si": "පනාමුරේ ඇත් රජාගේ කතාව ඔස්සේ කාවන්තිස්ස පිළිබඳ නායකත්ව පාඩම් ඉදිරිපත් කර ඇත. මෙම විෂය මතවාදාත්මක කරුණක් ලෙස සාකච්ඡාවට ගෙන ඇති නමුත්, ලබාදුන් අන්තර්ගතයෙහි වැඩිදුර තොරතුරු ඇතුළත් නොවීය.",
+    "content": "Leadership lessons concerning Kawantissa are presented through the subject of Panamure Ath Raja. The item was categorised under “Opinion & Issues” and was published on 26 October 2026 at 09:40:26 UTC. No further facts, figures, dates, quotations, arguments, or organisational details were provided in the scraped article content.",
+    "passive_voice_content": "Leadership lessons concerning Kawantissa are presented through the subject of Panamure Ath Raja. The item was categorised under “Opinion & Issues” and was published on 26 October 2026 at 09:40:26 UTC. No further facts, figures, dates, quotations, arguments, or organisational details were provided in the scraped article content.",
+    "key_takeaways": [
+      "Leadership lessons are framed through a historical comparison.",
+      "Governance relevance is implied through the reference to Kawantissa.",
+      "No detailed policy or business evidence was provided in the scraped content."
+    ],
+    "category": "ESG & Leadership",
+    "tags": [
+      "Leadership",
+      "Governance",
+      "Kawantissa",
+      "Panamure Ath Raja"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "6ebe16ce9f477595ad5b",
+    "url": "https://www.dailymirror.lk/opinion/Searching-for-Leadership-Can-We-Bring-Back-the-Qualities-of-Our-Golden-Years/172-353390",
+    "image": "assets/news_images/99a2af25fa19c0ecc42eb7a2.jpg",
+    "source": "Daily Mirror (dailymirror.lk)",
+    "published_at": "2026-10-26T09:26:29Z",
+    "scraped_at": "2026-10-26T07:05:15.840987Z",
+    "headline_en": "Searching for Leadership: Can the Qualities of Our Golden Years Be Revived?",
+    "headline_si": "නායකත්වය සොයා: අපගේ ස්වර්ණමය වසරවල ගුණාංග යළි පණගැන්විය හැකිද?",
+    "summary_en": "The need for effective leadership is examined, while the possibility of reviving the qualities associated with the country’s golden years is considered. No specific policy measures or supporting details are provided.",
+    "summary_si": "ඵලදායී නායකත්වයක අවශ්‍යතාව විමසා බැලෙන අතර, රටේ ස්වර්ණමය වසර සමඟ සම්බන්ධ ගුණාංග යළි පණගැන්වීමේ හැකියාව සලකා බැලේ. නිශ්චිත ප්‍රතිපත්ති ක්‍රියාමාර්ග හෝ වැඩිදුර තොරතුරු ඉදිරිපත් කර නොමැත.",
+    "content": "A search for leadership is called for, while the question of whether the qualities of “our golden years” can be brought back is raised.",
+    "passive_voice_content": "A search for leadership is called for, while the question of whether the qualities of “our golden years” can be brought back is raised.",
+    "key_takeaways": [
+      "Leadership renewal is presented as the central governance issue.",
+      "Qualities associated with the golden years are considered a potential benchmark.",
+      "No specific reforms or policy measures are detailed."
+    ],
+    "category": "ESG & Leadership",
+    "tags": [
+      "Leadership",
+      "Governance",
+      "Policy Reform",
+      "Opinion"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "b0985e9dde05dec1e92b",
+    "url": "https://www.dailymirror.lk/opinion/When-would-railway-accidents-come-to-an-end/172-353389",
+    "image": "assets/news_images/6506eacce68fc8417c361f5b.jpg",
+    "source": "Daily Mirror (dailymirror.lk)",
+    "published_at": "2026-10-26T09:15:27Z",
+    "scraped_at": "2026-10-26T07:05:15.841153Z",
+    "headline_en": "When Will Railway Accidents End?",
+    "headline_si": "දුම්රිය අනතුරු අවසන් වන්නේ කවදාද?",
+    "summary_en": "Concern was raised over when railway accidents would be brought to an end.",
+    "summary_si": "දුම්රිය අනතුරු අවසන් කරනු ලබන්නේ කවදාද යන්න පිළිබඳ අවධානය යොමු කර ඇත.",
+    "content": "A question was raised over when railway accidents would be brought to an end.",
+    "passive_voice_content": "A question was raised over when railway accidents would be brought to an end.",
+    "key_takeaways": [
+      "Railway accident prevention was placed under scrutiny.",
+      "Transport safety governance was brought into focus.",
+      "The need to end railway accidents was highlighted."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Railways",
+      "Transport Safety",
+      "Public Governance",
+      "Accident Prevention"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "8b2bd5827302e969d094",
+    "url": "https://www.dailymirror.lk/opinion/Social-Harmony-as-a-subject-in-school/172-353388",
+    "image": "assets/news_images/a1dc3597f09fe2031a0e98a5.jpg",
+    "source": "Daily Mirror (dailymirror.lk)",
+    "published_at": "2026-10-26T09:11:17Z",
+    "scraped_at": "2026-10-26T07:05:15.841099Z",
+    "headline_en": "Social Harmony as a School Subject",
+    "headline_si": "පාසල් විෂයයක් ලෙස සමාජ සමගිය",
+    "summary_en": "The inclusion of social harmony as a subject in school education was advocated. No implementation or curriculum details were provided in the scraped content.",
+    "summary_si": "සමාජ සමගිය පාසල් අධ්‍යාපනයේ විෂයයක් ලෙස ඇතුළත් කළ යුතු බවට යෝජනා කර ඇත. සපයා ඇති අන්තර්ගතය තුළ එය ක්‍රියාත්මක කිරීම හෝ විෂයමාලා සැකසීම පිළිබඳ විස්තර සඳහන් කර නොමැත.",
+    "content": "The inclusion of Social Harmony as a subject in school education was advocated in an opinion item categorised under “Opinion & Issues”. The item, referenced in the scraped headline as a Daily Mirror opinion, was published on 26 October 2026 at 09:11:17 UTC. No further facts, figures, quotations, organisational details, or implementation proposals were provided in the scraped content.",
+    "passive_voice_content": "The inclusion of Social Harmony as a subject in school education was advocated in an opinion item categorised under “Opinion & Issues”. The item, referenced in the scraped headline as a Daily Mirror opinion, was published on 26 October 2026 at 09:11:17 UTC. No further facts, figures, quotations, organisational details, or implementation proposals were provided in the scraped content.",
+    "key_takeaways": [
+      "The inclusion of social harmony in the school curriculum was advocated.",
+      "School education was identified as the proposed policy channel.",
+      "No implementation or curriculum framework was specified."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Education Policy",
+      "Social Harmony",
+      "School Curriculum",
+      "Governance"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "850fdd9f157be70c682e",
+    "url": "https://hirunews.lk/en/496359/error-error-code400messagerequired-texterrors-messagerequired-textdomainglobalreasonrequired-details-typetype-googleapis-com-google-rpc-badrequestfieldviolations-fieldqdescriptionno-text-queries-provided",
+    "image": "assets/news_images/bdffb74360875dc619552972.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T07:05:15.667338Z",
+    "scraped_at": "2026-10-26T07:05:15.667338Z",
+    "headline_en": "Sri Lanka Urged to Tighten Battery Waste Rules as Pollution Concerns Grow",
+    "headline_si": "වර්ධනය වන දූෂණ අවදානම් හමුවේ බැටරි අපද්‍රව්‍ය නියාමන දැඩි කිරීමට ශ්‍රී ලංකාවට ඉල්ලීමක්",
+    "summary_en": "Sri Lanka has been urged to strengthen regulations governing battery waste amid growing concerns over pollution. No specific regulatory measures, figures or implementation timelines were provided in the scraped content.",
+    "summary_si": "වර්ධනය වන දූෂණ අවදානම් හමුවේ බැටරි අපද්‍රව්‍ය කළමනාකරණයට අදාළ නියාමන ශක්තිමත් කරන ලෙස ශ්‍රී ලංකාවෙන් ඉල්ලා ඇත. නිශ්චිත නියාමන ක්‍රියාමාර්ග, සංඛ්‍යාලේඛන හෝ ක්‍රියාත්මක කිරීමේ කාලසීමා සපයා නොතිබුණි.",
+    "content": "Sri Lanka has been urged to strengthen battery waste regulations amid growing pollution concerns. Hiru News was identified in the scraped content and was described as the most visited website in Sri Lanka, providing the latest Sri Lankan news updates and discussions. A welcome was extended to Sri Lankans to what was presented as the No. 1 online news site, and the platform was identified as a Rayynor Silva Holdings Company.",
+    "passive_voice_content": "Sri Lanka has been urged to strengthen battery waste regulations amid growing pollution concerns. Hiru News was identified in the scraped content and was described as the most visited website in Sri Lanka, providing the latest Sri Lankan news updates and discussions. A welcome was extended to Sri Lankans to what was presented as the No. 1 online news site, and the platform was identified as a Rayynor Silva Holdings Company.",
+    "key_takeaways": [
+      "Stronger regulation of battery waste has been urged.",
+      "Growing pollution concerns have been highlighted.",
+      "No policy details or implementation timeline were provided."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Battery Waste",
+      "Environmental Regulation",
+      "Pollution",
+      "Waste Management"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "2debc13295b035ba2bb6",
+    "url": "https://hirunews.lk/en/496355/error-error-code400messagerequired-texterrors-messagerequired-textdomainglobalreasonrequired-details-typetype-googleapis-com-google-rpc-badrequestfieldviolations-fieldqdescriptionno-text-queries-provided",
+    "image": "assets/news_images/3ba55c41b3b67449ed1a7e3b.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T07:05:15.667338Z",
+    "scraped_at": "2026-10-26T07:05:15.667338Z",
+    "headline_en": "India-Backed Palm-Leaf Manuscript Digitisation Project Launched at Gangaramaya",
+    "headline_si": "ඉන්දීය සහාය ලත් තල්පත් අත්පිටපත් ඩිජිටල්කරණ ව්‍යාපෘතිය ගංගාරාමයේදී දියත් කෙරේ",
+    "summary_en": "An India-backed project to digitise palm-leaf manuscripts was launched at Gangaramaya Temple. No further details on the project’s scope, funding or implementation timeline were provided in the source content.",
+    "summary_si": "තල්පත් අත්පිටපත් ඩිජිටල්කරණය කිරීම සඳහා ඉන්දීය සහාය ලත් ව්‍යාපෘතියක් ගංගාරාම විහාරස්ථානයේදී දියත් කෙරිණි. ව්‍යාපෘතියේ විෂය පථය, අරමුදල් හෝ ක්‍රියාත්මක කිරීමේ කාලසටහන පිළිබඳ වැඩිදුර තොරතුරු මූලාශ්‍ර අන්තර්ගතයේ සඳහන් කර නොතිබිණි.",
+    "content": "An India-backed project for the digitisation of palm-leaf manuscripts was launched at Gangaramaya Temple. No publication date or additional information regarding the project was included in the supplied source content. References to Hiru News as a Sri Lankan news website and a Rayynor Silva Holdings Company were also contained in the scraped text.",
+    "passive_voice_content": "An India-backed project for the digitisation of palm-leaf manuscripts was launched at Gangaramaya Temple. No publication date or additional information regarding the project was included in the supplied source content. References to Hiru News as a Sri Lankan news website and a Rayynor Silva Holdings Company were also contained in the scraped text.",
+    "key_takeaways": [
+      "Palm-leaf manuscript preservation is to be supported through digitisation.",
+      "Indian backing has been secured for the initiative.",
+      "The project was launched at Gangaramaya Temple."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "India",
+      "Digitisation",
+      "Cultural Heritage",
+      "Gangaramaya Temple"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "f1120e65c608e594a5bf",
+    "url": "https://hirunews.lk/en/496339/cyclone-arnab-expected-to-intensify-into-severe-storm-by-tonight",
+    "image": "assets/news_images/3df0504ff3aa2951a7c8981a.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T07:05:15.667338Z",
+    "scraped_at": "2026-10-26T07:05:15.667338Z",
+    "headline_en": "Cyclone Arnab Set to Become Severe Storm by Tonight",
+    "headline_si": "ආර්නාබ් සුළි කුණාටුව අද රාත්‍රිය වන විට දරුණු තත්ත්වයට තීව්‍ර වීමට නියමිතයි",
+    "summary_en": "Cyclone Arnab has been formed from a deep depression over the east-central and adjoining southeastern Bay of Bengal, according to the Department of Meteorology. Further intensification into a severe cyclonic storm has been forecast by tonight.",
+    "summary_si": "බෙංගාල බොක්කේ නැගෙනහිර-මධ්‍යම සහ ඊට යාබද ගිනිකොනදිග මුහුදු ප්‍රදේශයේ පැවති ගැඹුරු අවපාතය ආර්නාබ් සුළි කුණාටුව දක්වා වර්ධනය වී ඇති බව කාලගුණ විද්‍යා දෙපාර්තමේන්තුව විසින් නිවේදනය කර ඇත. එය අද රාත්‍රිය වන විට දරුණු සුළි කුණාටුවක් දක්වා තවදුරටත් තීව්‍ර වනු ඇතැයි පුරෝකථනය කර තිබේ.",
+    "content": "It has been forecast by the Department of Meteorology that the deep depression over the east-central and adjoining southeastern sea area of the Bay of Bengal has developed into the cyclonic storm ‘ARNAB’. Further intensification into a severe cyclonic storm has been expected by tonight.",
+    "passive_voice_content": "It has been forecast by the Department of Meteorology that the deep depression over the east-central and adjoining southeastern sea area of the Bay of Bengal has developed into the cyclonic storm ‘ARNAB’. Further intensification into a severe cyclonic storm has been expected by tonight.",
+    "key_takeaways": [
+      "Severe weather preparedness may be required as the cyclone intensifies.",
+      "Maritime activity in the Bay of Bengal could be exposed to heightened risks.",
+      "Official forecasts issued by the Department of Meteorology should be closely monitored."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Cyclone Arnab",
+      "Department of Meteorology",
+      "Bay of Bengal",
+      "Disaster Preparedness"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "e0bfd40776edaac3471d",
+    "url": "https://hirunews.lk/en/496359/sri-lanka-urged-to-strengthen-battery-waste-regulations-amid-growing-pollution-concerns",
+    "image": "assets/news_images/bdffb74360875dc619552972.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T07:05:15.667338Z",
+    "scraped_at": "2026-10-26T07:05:15.667338Z",
+    "headline_en": "Sri Lanka Urged to Tighten Battery Waste Rules as Pollution Concerns Rise",
+    "headline_si": "වර්ධනය වන දූෂණ ගැටලු හමුවේ බැටරි අපද්‍රව්‍ය නියාමන දැඩි කිරීමට ශ්‍රී ලංකාවට ඉල්ලීමක්",
+    "summary_en": "Sri Lanka has been urged to strengthen battery waste regulations amid growing pollution concerns. No details on the proposed regulatory measures or responsible authorities were provided in the scraped content.",
+    "summary_si": "වර්ධනය වන දූෂණ ගැටලු හමුවේ බැටරි අපද්‍රව්‍ය සම්බන්ධ නියාමන ශක්තිමත් කරන ලෙස ශ්‍රී ලංකාවෙන් ඉල්ලා ඇත. යෝජිත නියාමන ක්‍රියාමාර්ග හෝ ඒවාට වගකිව යුතු ආයතන පිළිබඳ විස්තර සපයා නොමැත.",
+    "content": "Sri Lanka has been urged to strengthen battery waste regulations amid growing pollution concerns. Hiru News was identified in the scraped content as the most visited website in Sri Lanka and as a provider of the latest Sri Lankan news updates and discussions. The website was presented as the No. 1 online news site for Sri Lankans and as a Rayynor Silva Holdings Company.",
+    "passive_voice_content": "Sri Lanka has been urged to strengthen battery waste regulations amid growing pollution concerns. Hiru News was identified in the scraped content as the most visited website in Sri Lanka and as a provider of the latest Sri Lankan news updates and discussions. The website was presented as the No. 1 online news site for Sri Lankans and as a Rayynor Silva Holdings Company.",
+    "key_takeaways": [
+      "Stronger battery waste regulation has been urged.",
+      "Growing pollution concerns have been highlighted.",
+      "Specific policy measures and responsible authorities were not identified."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Battery Waste",
+      "Environmental Regulation",
+      "Pollution",
+      "Waste Management"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "e2c86cbb194c6bffcd8e",
+    "url": "https://hirunews.lk/en/496341/bankrupt-political-dynasties-can-no-longer-deceive-the-people-president-anuras-note-on-lulas-victory",
+    "image": "assets/news_images/9523d5307031cad8fbb4cfcc.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T06:02:32.089844Z",
+    "scraped_at": "2026-10-26T06:02:32.089844Z",
+    "headline_en": "President Dissanayake Congratulates Lula on Brazil Election Victory",
+    "headline_si": "බ්‍රසීල මැතිවරණ ජයග්‍රහණය වෙනුවෙන් ලූලාට ජනපති දිසානායකගෙන් සුබ පැතුම්",
+    "summary_en": "Congratulations were extended by President Dissanayake to Lula on his victory in the Brazilian election. No further diplomatic, economic, or policy details were provided in the available content.",
+    "summary_si": "බ්‍රසීල මැතිවරණයෙන් ලූලා ලැබූ ජයග්‍රහණය වෙනුවෙන් ජනාධිපති දිසානායක විසින් සුබ පැතුම් පිරිනමන ලදී. ලබා දී ඇති අන්තර්ගතයේ වැඩිදුර රාජ්‍යතාන්ත්‍රික, ආර්ථික හෝ ප්‍රතිපත්තිමය තොරතුරු සඳහන් කර නොමැත.",
+    "content": "Congratulations were extended by President Dissanayake to Lula following his victory in the Brazilian election. The scraped content was presented under the Hiru News name, which was described as the most visited website in Sri Lanka and the No. 1 online news site for Sri Lankans, providing Sri Lanka’s latest news updates and discussions. Hiru News was identified as a Rayynor Silva Holdings Company.",
+    "passive_voice_content": "Congratulations were extended by President Dissanayake to Lula following his victory in the Brazilian election. The scraped content was presented under the Hiru News name, which was described as the most visited website in Sri Lanka and the No. 1 online news site for Sri Lankans, providing Sri Lanka’s latest news updates and discussions. Hiru News was identified as a Rayynor Silva Holdings Company.",
+    "key_takeaways": [
+      "Diplomatic goodwill towards Brazil was signalled.",
+      "Lula’s Brazilian election victory was acknowledged.",
+      "No specific bilateral, economic, or policy measures were announced."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "President Dissanayake",
+      "Lula",
+      "Brazil",
+      "Diplomatic Relations"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "2bbb419a5166e9a12dd5",
+    "url": "https://hirunews.lk/en/496339/arnab-intensifies-into-a-severe-cyclonic-storm-in-the-bay-of-bengal-red-alert-issued-for-several-sea-areas-due-to-the-storm-waves-may-rise-up-to-3-4-meters-advice-to-avoid-going-to-sea",
+    "image": "https://cdn.hirunews.lk/Data/News_Images/202610/1792992484_8120891_hirunews.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T06:02:32.089844Z",
+    "scraped_at": "2026-10-26T06:02:32.089844Z",
+    "headline_en": "Cyclone Arnab Expected to Become Severe Storm by Tonight",
+    "headline_si": "ආර්නාබ් සුළි කුණාටුව අද රාත්‍රිය වන විට දැඩි සුළි කුණාටුවක් දක්වා තීව්‍ර වීමට අපේක්ෂිතයි",
+    "summary_en": "Cyclone Arnab is expected to intensify into a severe storm by tonight. The update was attributed to Hiru News, which was identified as a Rayynor Silva Holdings company.",
+    "summary_si": "ආර්නාබ් සුළි කුණාටුව අද රාත්‍රිය වන විට දැඩි සුළි කුණාටුවක් දක්වා තීව්‍ර වනු ඇතැයි අපේක්ෂා කෙරේ. මෙම යාවත්කාලීනය රේනර් සිල්වා හෝල්ඩිංග්ස් සමාගමකට අයත් හිරු නිවුස් වෙත ආරෝපණය කර ඇත.",
+    "content": "Cyclone Arnab is expected to intensify into a severe storm by tonight. The update was attributed to Hiru News. Hiru News was described as the most visited website in Sri Lanka, providing the latest news updates and discussions from Sri Lanka, and was presented as the No. 1 online news site for Sri Lankans. It was identified as a Rayynor Silva Holdings company.",
+    "passive_voice_content": "Cyclone Arnab is expected to intensify into a severe storm by tonight. The update was attributed to Hiru News. Hiru News was described as the most visited website in Sri Lanka, providing the latest news updates and discussions from Sri Lanka, and was presented as the No. 1 online news site for Sri Lankans. It was identified as a Rayynor Silva Holdings company.",
+    "key_takeaways": [
+      "Severe weather conditions are expected by tonight.",
+      "Operational and public-safety preparedness may be required.",
+      "The weather update was attributed to Hiru News."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Cyclone Arnab",
+      "Severe Weather",
+      "Disaster Preparedness",
+      "Sri Lanka"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "1ba859e8e87a6666957f",
+    "url": "https://hirunews.lk/en/496338/error-error-code400messagerequired-texterrors-messagerequired-textdomainglobalreasonrequired-details-typetype-googleapis-com-google-rpc-badrequestfieldviolations-fieldqdescriptionno-text-queries-provided",
+    "image": "assets/news_images/3c9cfda386c8c54af75c4226.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T06:02:32.089844Z",
+    "scraped_at": "2026-10-26T06:02:32.089844Z",
+    "headline_en": "USS Canberra Returns to Colombo for Second 2026 Visit",
+    "headline_si": "USS Canberra නෞකාව 2026 වසරේ දෙවැනි වරට කොළඹට පැමිණෙයි",
+    "summary_en": "USS Canberra (LCS 30) was welcomed to the Port of Colombo on October 26 for its second routine port call to Sri Lanka in 2026, following a visit in June. The longstanding partnership between the U.S. and Sri Lankan navies and their shared commitment to Indo-Pacific maritime security were underscored by the visit. Appreciation for the Sri Lanka Navy’s professionalism and support was expressed by U.S. Ambassador to Sri Lanka Eric Meyer.",
+    "summary_si": "USS Canberra (LCS 30) නෞකාව 2026 වසරේ ශ්‍රී ලංකාවට සිදු කළ දෙවැනි සාමාන්‍ය වරාය සංචාරය සඳහා ඔක්තෝබර් 26 දින කොළඹ වරායට පිළිගනු ලැබීය. ජුනි මාසයේ සිදු කළ පළමු සංචාරයෙන් අනතුරුව පැවති මෙම සංචාරය මගින් එක්සත් ජනපද සහ ශ්‍රී ලංකා නාවික හමුදා අතර දිගුකාලීන හවුල්කාරිත්වය සහ ඉන්දු-පැසිෆික් කලාපයේ සමුද්‍රීය ආරක්ෂාව සඳහා වූ පොදු කැපවීම අවධාරණය කෙරිණි. ශ්‍රී ලංකා නාවික හමුදාවේ වෘත්තීයභාවය සහ සහාය පිළිබඳ ඇගයීම එක්සත් ජනපදයේ ශ්‍රී ලංකා තානාපති Eric Meyer විසින් පළ කරන ලදී.",
+    "content": "USS Canberra (LCS 30) නෞකාව සාමාන්‍ය වරාය සංචාරයක් සඳහා ඔක්තෝබර් 26 දින කොළඹ වරායට යළි පැමිණීමේදී ලබා දුන් උණුසුම් පිළිගැනීම පිළිබඳ ඇගයීම ශ්‍රී ලංකාවේ U.S. Embassy විසින් පළ කරන ලදී. Independence-variant Littoral Combat Ship වර්ගයට අයත් මෙම නෞකාවේ පැමිණීම, ජුනි මාසයේ සිදු කරන ලද වරාය සංචාරයෙන් පසුව 2026 වසර තුළ ශ්‍රී ලංකාවට සිදු කළ දෙවැනි සංචාරය ලෙස සටහන් විය. U.S. සහ Sri Lankan navies අතර දිගුකාලීන හවුල්කාරිත්වය සහ ඉන්දු-පැසිෆික් කලාපය පුරා සමුද්‍රීය ආරක්ෂාව වෙනුවෙන් පවතින පොදු කැපවීම මෙම සංචාරය මගින් අවධාරණය කෙරිණි.\n\n“We appreciate the Sri Lanka Navy’s professionalism and support in making these visits smooth and efficient. Each visit reinforces the strength of our naval partnership, built on trust, and our shared commitment to maintaining security and stability across the Indian Ocean,” යනුවෙන් U.S. Ambassador to Sri Lanka Eric Meyer විසින් ප්‍රකාශ කරන ලදී.\n\nUSS Canberra (LCS 30) නෞකාව Alabama ප්‍රාන්තයේ Mobile නගරයේ ඉදිකරන ලද අතර, වේගය, නම්‍යශීලීභාවය සහ වෙරළබඩ ජලයේ මෙන්ම විවෘත සාගරයේද මෙහෙයුම් සිදු කිරීම සඳහා සැලසුම් කරන ලදී. උසස් තාක්ෂණයෙන් සහ විවිධ මෙහෙයුම් සඳහා අනුවර්තනය කළ හැකි පද්ධතිවලින් නෞකාව සන්නද්ධ කර ඇත. සමුද්‍රීය ආරක්ෂක මෙහෙයුම් සිදු කිරීම, මුහුදු බෝම්බවලට ප්‍රතිචාර දැක්වීම සහ U.S. naval presence and deterrence සඳහා සහාය දැක්වීම මෙම නෞකාව මගින් සිදු කළ හැකිය.\n\nWorld War II සමයේ 1942 Battle of Savo Island සටනේදී U.S. forces සමඟ එක්ව සටන් කරමින් සිටියදී අහිමි වූ Australian warship HMAS Canberra නෞකාවට ගෞරවයක් වශයෙන් USS Canberra (LCS 30) ලෙස නම් කිරීම 2018 පෙබරවාරි මාසයේදී President Donald Trump විසින් නිවේදනය කරන ලදී.",
+    "passive_voice_content": "USS Canberra (LCS 30) නෞකාව සාමාන්‍ය වරාය සංචාරයක් සඳහා ඔක්තෝබර් 26 දින කොළඹ වරායට යළි පැමිණීමේදී ලබා දුන් උණුසුම් පිළිගැනීම පිළිබඳ ඇගයීම ශ්‍රී ලංකාවේ U.S. Embassy විසින් පළ කරන ලදී. Independence-variant Littoral Combat Ship වර්ගයට අයත් මෙම නෞකාවේ පැමිණීම, ජුනි මාසයේ සිදු කරන ලද වරාය සංචාරයෙන් පසුව 2026 වසර තුළ ශ්‍රී ලංකාවට සිදු කළ දෙවැනි සංචාරය ලෙස සටහන් විය. U.S. සහ Sri Lankan navies අතර දිගුකාලීන හවුල්කාරිත්වය සහ ඉන්දු-පැසිෆික් කලාපය පුරා සමුද්‍රීය ආරක්ෂාව වෙනුවෙන් පවතින පොදු කැපවීම මෙම සංචාරය මගින් අවධාරණය කෙරිණි.\n\n“We appreciate the Sri Lanka Navy’s professionalism and support in making these visits smooth and efficient. Each visit reinforces the strength of our naval partnership, built on trust, and our shared commitment to maintaining security and stability across the Indian Ocean,” යනුවෙන් U.S. Ambassador to Sri Lanka Eric Meyer විසින් ප්‍රකාශ කරන ලදී.\n\nUSS Canberra (LCS 30) නෞකාව Alabama ප්‍රාන්තයේ Mobile නගරයේ ඉදිකරන ලද අතර, වේගය, නම්‍යශීලීභාවය සහ වෙරළබඩ ජලයේ මෙන්ම විවෘත සාගරයේද මෙහෙයුම් සිදු කිරීම සඳහා සැලසුම් කරන ලදී. උසස් තාක්ෂණයෙන් සහ විවිධ මෙහෙයුම් සඳහා අනුවර්තනය කළ හැකි පද්ධතිවලින් නෞකාව සන්නද්ධ කර ඇත. සමුද්‍රීය ආරක්ෂක මෙහෙයුම් සිදු කිරීම, මුහුදු බෝම්බවලට ප්‍රතිචාර දැක්වීම සහ U.S. naval presence and deterrence සඳහා සහාය දැක්වීම මෙම නෞකාව මගින් සිදු කළ හැකිය.\n\nWorld War II සමයේ 1942 Battle of Savo Island සටනේදී U.S. forces සමඟ එක්ව සටන් කරමින් සිටියදී අහිමි වූ Australian warship HMAS Canberra නෞකාවට ගෞරවයක් වශයෙන් USS Canberra (LCS 30) ලෙස නම් කිරීම 2018 පෙබරවාරි මාසයේදී President Donald Trump විසින් නිවේදනය කරන ලදී.",
+    "key_takeaways": [
+      "U.S.–Sri Lanka naval cooperation was reinforced through the second 2026 port call.",
+      "A shared commitment to Indian Ocean and Indo-Pacific maritime security was underscored.",
+      "The Sri Lanka Navy’s professionalism and operational support were recognised by the U.S."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "USS Canberra",
+      "Sri Lanka Navy",
+      "U.S.–Sri Lanka Relations",
+      "Maritime Security"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "6c31f095957679d37397",
+    "url": "https://hirunews.lk/en/496326/a-tree-has-fallen-disrupting-traffic-on-the-panadura-ratnapura-road",
+    "image": "assets/news_images/7404c34d7e720e8f25d2b6a7.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T06:02:32.089844Z",
+    "scraped_at": "2026-10-26T06:02:32.089844Z",
+    "headline_en": "Fallen Tree Blocks Panadura–Ratnapura Road",
+    "headline_si": "කඩා වැටුණු විශාල ගසකින් පානදුර–රත්නපුර මාර්ගය අවහිර වෙයි",
+    "summary_en": "The Panadura–Ratnapura road was blocked by a fallen large tree. The incident was reported by Hiru News.",
+    "summary_si": "කඩා වැටුණු විශාල ගසක් හේතුවෙන් පානදුර–රත්නපුර මාර්ගය අවහිර වී ඇත. සිද්ධිය හිරු නිවුස් විසින් වාර්තා කර ඇත.",
+    "content": "The Panadura–Ratnapura road was blocked by a fallen large tree. The incident was reported by Hiru News, which was described as the most visited website and the No. 1 online news site in Sri Lanka, providing the latest Sri Lankan news updates and discussions. Hiru News was identified as a Rayynor Silva Holdings Company.",
+    "passive_voice_content": "The Panadura–Ratnapura road was blocked by a fallen large tree. The incident was reported by Hiru News, which was described as the most visited website and the No. 1 online news site in Sri Lanka, providing the latest Sri Lankan news updates and discussions. Hiru News was identified as a Rayynor Silva Holdings Company.",
+    "key_takeaways": [
+      "Road access on the Panadura–Ratnapura route was obstructed.",
+      "Transport and commercial traffic could be affected by the blockage.",
+      "Prompt clearance may be required to restore normal road access."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Panadura",
+      "Ratnapura",
+      "Road Transport",
+      "Public Infrastructure"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "f093e50aa864fa36158a",
+    "url": "https://hirunews.lk/en/496272/deep-depression-in-bay-of-bengal-to-bring-heavy-rain-to-sri-lanka",
+    "image": "assets/news_images/8806bcb6af673b1e4c2e9729.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T06:02:32.089844Z",
+    "scraped_at": "2026-10-26T06:02:32.089844Z",
+    "headline_en": "Bay of Bengal Deep Depression to Bring Heavy Rain to Sri Lanka",
+    "headline_si": "බෙංගාල බොක්කේ ගැඹුරු පීඩන අවපාතයෙන් ශ්‍රී ලංකාවට අධික වැසි",
+    "summary_en": "Increased rainfall across southwestern Sri Lanka has been forecast by the Department of Meteorology over the coming days. The expected rainfall has been attributed to a developing depression over the east-central Bay of Bengal.",
+    "summary_si": "ඉදිරි දින කිහිපයේදී ශ්‍රී ලංකාවේ නිරිතදිග ප්‍රදේශවල වර්ෂාපතනය ඉහළ යනු ඇතැයි කාලගුණ විද්‍යා දෙපාර්තමේන්තුව පුරෝකථනය කර ඇත. මෙම තත්ත්වය බෙංගාල බොක්කේ නැගෙනහිර-මධ්‍යම ප්‍රදේශයේ වර්ධනය වන පීඩන අවපාතයක් හේතුවෙන් ඇති වන බව සඳහන් කර ඇත.",
+    "content": "Increased rainfall across the southwestern parts of Sri Lanka over the coming days has been forecast by the Department of Meteorology. The expected weather conditions have been attributed to a developing depression in the Bay of Bengal. The depression was reported to be located over the east-central Bay of Bengal.",
+    "passive_voice_content": "Increased rainfall across the southwestern parts of Sri Lanka over the coming days has been forecast by the Department of Meteorology. The expected weather conditions have been attributed to a developing depression in the Bay of Bengal. The depression was reported to be located over the east-central Bay of Bengal.",
+    "key_takeaways": [
+      "Increased rainfall has been forecast for southwestern Sri Lanka.",
+      "The weather change has been linked to a Bay of Bengal depression.",
+      "Weather-related operational and public-sector planning may require closer attention."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Department of Meteorology",
+      "Bay of Bengal",
+      "Heavy Rain",
+      "Weather Policy"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "faeebd17b70a3339998a",
+    "url": "https://hirunews.lk/en/496304/sinopec-rm-parks-follow-lanka-ioc-with-rs-20-petrol-price-hike",
+    "image": "assets/news_images/38f068647dd6cb557ac416a8.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T06:02:32.089844Z",
+    "scraped_at": "2026-10-26T06:02:32.089844Z",
+    "headline_en": "Sinopec, RM Parks Match Lanka IOC’s Rs. 20 Petrol Hike",
+    "headline_si": "ලංකා IOC අනුගමනය කරමින් සිනොපෙක් සහ RM Parks පෙට්‍රල් මිල රු. 20කින් ඉහළ දමයි",
+    "summary_en": "The price of a litre of Octane 95 petrol was raised by Rs. 20 by Sinopec and RM Parks, following Lanka IOC. Accordingly, the price was increased from Rs. 475 to Rs. 495 per litre.",
+    "summary_si": "ලංකා IOC අනුගමනය කරමින් සිනොපෙක් සහ RM Parks විසින් ඔක්ටේන් 95 පෙට්‍රල් ලීටරයක මිල රු. 20කින් ඉහළ නංවන ලදී. ඒ අනුව, ලීටරයක මිල රු. 475 සිට රු. 495 දක්වා වැඩි කර ඇත.",
+    "content": "A Rs. 20 increase in the price of a litre of Octane 95 petrol was implemented by Sinopec and RM Parks. Accordingly, the price of a litre of Octane 95 petrol, which had been Rs. 475, will be increased to Rs. 495. Meanwhile, steps were also taken by Lanka IOC.",
+    "passive_voice_content": "A Rs. 20 increase in the price of a litre of Octane 95 petrol was implemented by Sinopec and RM Parks. Accordingly, the price of a litre of Octane 95 petrol, which had been Rs. 475, will be increased to Rs. 495. Meanwhile, steps were also taken by Lanka IOC.",
+    "key_takeaways": [
+      "Octane 95 petrol was increased by Rs. 20 per litre.",
+      "The retail price was raised from Rs. 475 to Rs. 495.",
+      "Sinopec and RM Parks followed the pricing move by Lanka IOC."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Fuel Prices",
+      "Sinopec",
+      "RM Parks",
+      "Lanka IOC"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "c3f38deb33bc86abf21e",
+    "url": "https://hirunews.lk/en/496285/police-open-fire-at-three-wheeler-after-driver-defies-orders-in-kalutara",
+    "image": "assets/news_images/4887d7f1905ac2de2b70538c.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T06:02:32.089844Z",
+    "scraped_at": "2026-10-26T06:02:32.089844Z",
+    "headline_en": "Police Fire on Three-Wheeler After Driver Defies Orders in Kalutara",
+    "headline_si": "කළුතරදී පොලිස් අණ නොතැකූ ත්‍රිරෝද රථයකට වෙඩි තැබේ",
+    "summary_en": "A three-wheeler was fired upon by police after orders were allegedly disobeyed in the Nagoda area of Kalutara. The injured driver was admitted to Nagoda Teaching Hospital for treatment, according to police.",
+    "summary_si": "කළුතර නාගොඩ ප්‍රදේශයේදී පොලිස් අණ නොතකා ධාවනය කළ බව කියන ත්‍රිරෝද රථයකට පොලිසිය විසින් වෙඩි තබා ඇත. වෙඩි තැබීමෙන් තුවාල ලැබූ රියදුරු ප්‍රතිකාර සඳහා නාගොඩ ශික්ෂණ රෝහලට ඇතුළත් කර ඇති බව පොලිසිය සඳහන් කළේය.",
+    "content": "A three-wheeler was fired upon by police after it was driven without obeying orders in the Nagoda area of Kalutara. The driver, who was injured in the shooting, was admitted to Nagoda Teaching Hospital for treatment, according to police.",
+    "passive_voice_content": "A three-wheeler was fired upon by police after it was driven without obeying orders in the Nagoda area of Kalutara. The driver, who was injured in the shooting, was admitted to Nagoda Teaching Hospital for treatment, according to police.",
+    "key_takeaways": [
+      "Police use of force in Kalutara has drawn governance attention.",
+      "The driver was hospitalised following the shooting.",
+      "Compliance with police orders remains a public-safety concern."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Sri Lanka Police",
+      "Kalutara",
+      "Public Safety",
+      "Law Enforcement"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
+    "id": "1d39f6d68b016f99c345",
+    "url": "https://hirunews.lk/en/496278/nbri-issues-landslide-warnings-across-five-districts",
+    "image": "assets/news_images/9635319714bdaf5b40c718ea.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T06:02:32.089844Z",
+    "scraped_at": "2026-10-26T06:02:32.089844Z",
+    "headline_en": "NBRI Issues Landslide Alerts for Five Districts",
+    "headline_si": "දිස්ත්‍රික්ක පහකට NBRI නායයෑම් අනතුරු ඇඟවීම් නිකුත් කරයි",
+    "summary_en": "Early landslide warnings were issued by the National Building Research Institute for several areas across five districts. A Level 1 (yellow) warning was issued for the Thawalama Divisional Secretariat Division in Galle District and for Millaniya and Bulathsinhala, while the supplied source text was truncated after the partial place name “Ber”.",
+    "summary_si": "දිස්ත්‍රික්ක පහක ප්‍රදේශ කිහිපයක් සඳහා ජාතික ගොඩනැගිලි පර්යේෂණ ආයතනය විසින් පූර්ව නායයෑම් අනතුරු ඇඟවීම් නිකුත් කර ඇත. ගාල්ල දිස්ත්‍රික්කයේ තවලම ප්‍රාදේශීය ලේකම් කොට්ඨාසයට සහ මිල්ලනිය හා බුලත්සිංහල ප්‍රදේශවලට පළමු මට්ටමේ (කහ) අනතුරු ඇඟවීමක් නිකුත් කර ඇති අතර, සපයා ඇති මූලාශ්‍ර පාඨය “Ber” යන අසම්පූර්ණ ස්ථාන නාමයෙන් පසුව කපා හැරී ඇත.",
+    "content": "Early warnings for landslides were issued by the National Building Research Institute for several areas across five districts. A Level 1 (yellow) warning was issued for the Thawalama Divisional Secretariat Division in Galle District, as well as for Millaniya and Bulathsinhala. The supplied source content was truncated after the partial place name “Ber”; therefore, no further location details were available for verification.",
+    "passive_voice_content": "Early warnings for landslides were issued by the National Building Research Institute for several areas across five districts. A Level 1 (yellow) warning was issued for the Thawalama Divisional Secretariat Division in Galle District, as well as for Millaniya and Bulathsinhala. The supplied source content was truncated after the partial place name “Ber”; therefore, no further location details were available for verification.",
+    "key_takeaways": [
+      "Level 1 landslide alerts were issued for identified high-risk areas.",
+      "Local authorities and communities are expected to strengthen disaster preparedness.",
+      "Potential disruption to transport, businesses and public services should be monitored."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "NBRI",
+      "Landslide Warning",
+      "Disaster Management",
+      "Local Governance"
+    ],
+    "status": "published",
+    "topRank": null,
+    "editorial_approved": true
+  },
+  {
     "id": "bfec720727677cac8a6d",
     "url": "https://www.ft.lk/financial-services/Secondary-Bond-market-yields-see-saw--recover-to-close-steady-to-higher/42-799167",
     "image": "assets/news_images/9286a384d7b98883d8b0c1fa.jpg",
@@ -26,7 +954,7 @@
     "workflow_status": "scraped",
     "rewrite_status": "needs_review",
     "status": "published",
-    "topRank": 1,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -55,7 +983,7 @@
       "Digital Payments"
     ],
     "status": "published",
-    "topRank": 2,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -84,7 +1012,7 @@
       "Grandpass"
     ],
     "status": "published",
-    "topRank": 3,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -113,7 +1041,7 @@
       "Wattala"
     ],
     "status": "published",
-    "topRank": 4,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -142,7 +1070,7 @@
       "Digital Transformation"
     ],
     "status": "published",
-    "topRank": 5,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -171,7 +1099,7 @@
       "International Affairs"
     ],
     "status": "published",
-    "topRank": 6,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -200,7 +1128,7 @@
       "Social Dialogue"
     ],
     "status": "published",
-    "topRank": 7,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -230,7 +1158,7 @@
     "workflow_status": "scraped",
     "rewrite_status": "needs_review",
     "status": "published",
-    "topRank": 8,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -259,7 +1187,7 @@
       "Maha Sangha"
     ],
     "status": "published",
-    "topRank": 9,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -289,7 +1217,7 @@
     "workflow_status": "scraped",
     "rewrite_status": "needs_review",
     "status": "published",
-    "topRank": 10,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -525,934 +1453,6 @@
       "Brand Protection",
       "Enjoining Order",
       "Intellectual Property"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "-7246464017623116203",
-    "url": "https://www.ft.lk/front-page/CID-seizes-counterfeit-Oregon-branded-products/44-799112",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_b05222466e.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Saturday, 24 October 2026 00:00",
-    "scraped_at": "2026-10-24 16:34:00",
-    "headline_en": "CID Seizes Counterfeit Oregon-Branded Goods",
-    "headline_si": "ව්‍යාජ Oregon සන්නාමය සහිත නිෂ්පාදන CID භාරයට",
-    "summary_en": "Counterfeit products bearing the Oregon brand were seized by the CID.",
-    "summary_si": "Oregon සන්නාමය සහිත ව්‍යාජ නිෂ්පාදන CID විසින් භාරයට ගනු ලැබීය.",
-    "content": "Counterfeit Oregon-branded products were seized by the CID.",
-    "passive_voice_content": "Counterfeit Oregon-branded products were seized by the CID.",
-    "key_takeaways": [
-      "Counterfeit Oregon-branded goods were seized.",
-      "Enforcement action was undertaken by the CID.",
-      "Brand-protection concerns were brought into focus."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "CID",
-      "Counterfeit Products",
-      "Oregon",
-      "Brand Protection"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "7992959545058055539",
-    "url": "https://www.ft.lk/front-page/CSE-falls-2-48-during-week/44-799113",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_b05222466e.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Saturday, 24 October 2026 00:00",
-    "scraped_at": "2026-10-24 16:34:00",
-    "headline_en": "CSE Ends Week 2.48% Lower",
-    "headline_si": "CSE සතිය තුළ 2.48%කින් පහළට",
-    "summary_en": "A decline of 2.48% was recorded by the CSE during the week.",
-    "summary_si": "සතිය තුළ CSE හි 2.48%ක පහළ යාමක් වාර්තා විය.",
-    "content": "A decline of 2.48% was recorded by the CSE during the week.",
-    "passive_voice_content": "A decline of 2.48% was recorded by the CSE during the week.",
-    "key_takeaways": [
-      "A weekly decline of 2.48% was recorded.",
-      "Downward movement was reflected in CSE performance.",
-      "Weekly equity-market performance remains in focus."
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "CSE",
-      "Stock Market",
-      "Equities",
-      "Market Performance"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "4778111709399350111",
-    "url": "https://www.ft.lk/front-page/Tourist-arrivals-rise-5-in-first-22-days-of-October/44-799114",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_b05222466e.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Saturday, 24 October 2026 00:00",
-    "scraped_at": "2026-10-24 16:34:00",
-    "headline_en": "Tourist Arrivals Gain 5% in First 22 Days of October",
-    "headline_si": "ඔක්තෝබර් පළමු දින 22 තුළ සංචාරක පැමිණීම් 5%කින් ඉහළට",
-    "summary_en": "A 5% increase in tourist arrivals was recorded during the first 22 days of October.",
-    "summary_si": "ඔක්තෝබර් මාසයේ පළමු දින 22 තුළ සංචාරක පැමිණීම් 5%කින් ඉහළ ගොස් ඇති බව වාර්තා විය.",
-    "content": "A 5% increase in tourist arrivals was recorded during the first 22 days of October.",
-    "passive_voice_content": "A 5% increase in tourist arrivals was recorded during the first 22 days of October.",
-    "key_takeaways": [
-      "A 5% rise in tourist arrivals was recorded.",
-      "The increase covered the first 22 days of October.",
-      "Positive momentum was indicated in tourism inflows."
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "Tourism",
-      "Tourist Arrivals",
-      "Sri Lankan Economy"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "4028482097891386336",
-    "url": "https://www.ft.lk/front-page/Welfare-net-fails-to-track-household-shocks-IPS/44-799115",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_058a05de6a.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Saturday, 24 October 2026 00:00",
-    "scraped_at": "2026-10-24 16:34:00",
-    "headline_en": "Welfare Safety Net Fails to Track Household Shocks: IPS",
-    "headline_si": "ගෘහස්ථ කම්පන නිරීක්ෂණයට සුබසාධන ආරක්ෂණ ජාලය අසමත්: IPS",
-    "summary_en": "The welfare safety net was found by IPS to be failing to track shocks affecting households. A gap in welfare monitoring was thereby highlighted.",
-    "summary_si": "ගෘහස්ථයන්ට බලපාන කම්පන නිරීක්ෂණය කිරීමට සුබසාධන ආරක්ෂණ ජාලය අසමත් වී ඇති බව IPS විසින් පෙන්වා දී ඇත. එමඟින් සුබසාධන අධීක්ෂණයේ පවතින හිඩැසක් අවධාරණය කර ඇත.",
-    "content": "A failure by the welfare safety net to track household shocks was identified by IPS. The report was published under the economy category on Saturday, 24 October 2026.",
-    "passive_voice_content": "A failure by the welfare safety net to track household shocks was identified by IPS. The report was published under the economy category on Saturday, 24 October 2026.",
-    "key_takeaways": [
-      "Household shocks are not being adequately tracked by the welfare safety net.",
-      "A welfare-monitoring gap has been flagged by IPS.",
-      "A review of welfare responsiveness and targeting may be required."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "IPS",
-      "Social Welfare",
-      "Household Shocks",
-      "Policy Reform"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "-3444625066900066404",
-    "url": "https://www.ft.lk/front-page/Treasury-hails-Sri-Lanka-Customs-contributions-to-recovery-development/44-799116",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_6c57e9d24a.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Saturday, 24 October 2026 00:00",
-    "scraped_at": "2026-10-24 16:34:00",
-    "headline_en": "Treasury Commends Customs’ Role in Sri Lanka’s Recovery and Development",
-    "headline_si": "ශ්‍රී ලංකාවේ ප්‍රකෘතිමත් වීම සහ සංවර්ධනය සඳහා රේගුවේ දායකත්වය භාණ්ඩාගාරයේ පැසසුමට",
-    "summary_en": "Sri Lanka Customs’ contributions to the country’s recovery and development were commended by the Treasury.",
-    "summary_si": "රටේ ප්‍රකෘතිමත් වීම සහ සංවර්ධනය සඳහා ශ්‍රී ලංකා රේගුව ලබාදුන් දායකත්වය භාණ්ඩාගාරය විසින් අගය කරන ලදී.",
-    "content": "Sri Lanka Customs’ contributions to Sri Lanka’s recovery and development were hailed by the Treasury.",
-    "passive_voice_content": "Sri Lanka Customs’ contributions to Sri Lanka’s recovery and development were hailed by the Treasury.",
-    "key_takeaways": [
-      "Customs’ contribution to the national recovery was recognised by the Treasury.",
-      "The institution’s role in supporting development was highlighted.",
-      "Treasury recognition underscored the governance importance of Sri Lanka Customs."
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "Sri Lanka Customs",
-      "Treasury",
-      "Economic Recovery",
-      "Development"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "3239117494924559544",
-    "url": "https://www.ft.lk/front-page/In-emerging-new-world-order-what-are-Sri-Lanka-s-Options-Daily-FTICCSL-s-50th-webinar-takes-place-today/44-799117",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_05f079e9c5.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Saturday, 24 October 2026 00:00",
-    "scraped_at": "2026-10-24 16:34:00",
-    "headline_en": "Sri Lanka’s Options in Emerging World Order to Be Examined at 50th Daily FT–ICCSL Webinar",
-    "headline_si": "නැගී එන නව ලෝක පර්යාය තුළ ශ්‍රී ලංකාවේ විකල්ප Daily FT–ICCSL 50 වැනි වෙබ් සම්මන්ත්‍රණයේදී විමසුමට",
-    "summary_en": "Sri Lanka’s options in an emerging new world order will be examined at the 50th webinar organised by Daily FT and ICCSL. The webinar is scheduled to be held today.",
-    "summary_si": "නැගී එන නව ලෝක පර්යාය තුළ ශ්‍රී ලංකාවට පවතින විකල්ප Daily FT සහ ICCSL විසින් සංවිධානය කරනු ලබන 50 වැනි වෙබ් සම්මන්ත්‍රණයේදී විමසා බැලීමට නියමිතය. වෙබ් සම්මන්ත්‍රණය අද පැවැත්වීමට සැලසුම් කර ඇත.",
-    "content": "Sri Lanka’s options in an emerging new world order will be examined at the 50th webinar organised by Daily FT and ICCSL. The webinar is scheduled to be held today, Saturday, 24 October 2026.",
-    "passive_voice_content": "Sri Lanka’s options in an emerging new world order will be examined at the 50th webinar organised by Daily FT and ICCSL. The webinar is scheduled to be held today, Saturday, 24 October 2026.",
-    "key_takeaways": [
-      "Sri Lanka’s strategic options will be examined.",
-      "Emerging changes in the world order will be considered.",
-      "The 50th Daily FT–ICCSL webinar will be held today."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "Sri Lanka",
-      "Daily FT",
-      "ICCSL",
-      "Global Policy"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "-2629314824635165974",
-    "url": "https://www.ft.lk/front-page/Net-closing-in-on-tax-evaders-as-IRD-Excise-join-forces/44-798980",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_98a52262f9.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Thursday, 22 October 2026 00:24",
-    "scraped_at": "2026-10-23 22:04:20",
-    "headline_en": "IRD, Excise Tighten Net on Tax Evaders",
-    "headline_si": "බදු පැහැරහරින්නන් වටා දැල තද කිරීමට දේශීය ආදායම් හා සුරාබදු දෙපාර්තමේන්තු එක්වෙයි",
-    "summary_en": "A joint enforcement effort by the IRD and Excise has been signalled, with tax evaders being targeted. Further details were not provided in the scraped content.",
-    "summary_si": "බදු පැහැරහරින්නන් ඉලක්ක කරමින් දේශීය ආදායම් දෙපාර්තමේන්තුව සහ සුරාබදු දෙපාර්තමේන්තුව විසින් ඒකාබද්ධ බලාත්මක කිරීමේ ක්‍රියාමාර්ගයක් දියත් කර ඇති බව සඳහන් කර ඇත. ලබාදුන් අන්තර්ගතයෙහි වැඩිදුර තොරතුරු ඇතුළත් කර නොතිබුණි.",
-    "content": "Tax evaders are being targeted through a joint effort by the IRD and Excise, with the enforcement net being tightened. The report was published by Daily FT under the economy category on Thursday, 22 October 2026 at 00:24. No additional facts, figures, quotations, dates, or operational details were provided in the scraped article content.",
-    "passive_voice_content": "Tax evaders are being targeted through a joint effort by the IRD and Excise, with the enforcement net being tightened. The report was published by Daily FT under the economy category on Thursday, 22 October 2026 at 00:24. No additional facts, figures, quotations, dates, or operational details were provided in the scraped article content.",
-    "key_takeaways": [
-      "Joint tax-enforcement action has been signalled.",
-      "Greater compliance scrutiny is being directed at tax evaders.",
-      "Coordination between the IRD and Excise is being strengthened."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "IRD",
-      "Excise",
-      "Tax Enforcement",
-      "Tax Compliance"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "-5131230756413865917",
-    "url": "https://www.ft.lk/front-page/Govt-says-dispute-over-10-acre-land-led-to-Colombo-Port-logistics-hub-JV-termination/44-798979",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_43d09b79af.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Thursday, 22 October 2026 00:23",
-    "scraped_at": "2026-10-23 22:04:20",
-    "headline_en": "Colombo Port Logistics Hub JV Terminated Over 10-Acre Land Dispute: Govt.",
-    "headline_si": "අක්කර 10ක ඉඩම් ආරවුලක් හේතුවෙන් කොළඹ වරාය සැපයුම් මධ්‍යස්ථාන හවුල් ව්‍යාපාරය අවසන් කළ බව රජය කියයි",
-    "summary_en": "The termination of the Colombo Port logistics hub joint venture was attributed by the Government to a dispute over a 10-acre land parcel. The Government’s explanation was reported by Daily FT on 22 October 2026.",
-    "summary_si": "කොළඹ වරාය සැපයුම් මධ්‍යස්ථාන හවුල් ව්‍යාපාරය අවසන් කිරීමට හේතුව ලෙස අක්කර 10ක ඉඩම් කොටසක් සම්බන්ධ ආරවුලක් රජය විසින් දක්වන ලදී. රජයේ මෙම පැහැදිලි කිරීම 2026 ඔක්තෝබර් 22 දින Daily FT විසින් වාර්තා කරන ලදී.",
-    "content": "The termination of the Colombo Port logistics hub joint venture was attributed by the Government to a dispute concerning a 10-acre land parcel. The matter was reported by Daily FT on Thursday, 22 October 2026, at 00:23.",
-    "passive_voice_content": "The termination of the Colombo Port logistics hub joint venture was attributed by the Government to a dispute concerning a 10-acre land parcel. The matter was reported by Daily FT on Thursday, 22 October 2026, at 00:23.",
-    "key_takeaways": [
-      "JV termination was linked to a 10-acre land dispute.",
-      "Land-related risks were highlighted for port logistics projects.",
-      "The Government’s rationale for the termination was disclosed."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "Colombo Port",
-      "Logistics Hub",
-      "Joint Venture",
-      "Land Dispute"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "4637804052062826798",
-    "url": "https://www.ft.lk/front-page/Presidential-probe-into-coal-imports-extended-to-16-Dec/44-798917",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_cffb195111.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Wednesday, 21 October 2026 00:28",
-    "scraped_at": "2026-10-23 22:04:20",
-    "headline_en": "Presidential Coal Import Probe Extended to 16 December",
-    "headline_si": "ගල් අඟුරු ආනයන පිළිබඳ ජනාධිපති විමර්ශනය දෙසැම්බර් 16 දක්වා දීර්ඝ කෙරේ",
-    "summary_en": "The presidential probe into coal imports has been extended until 16 December.",
-    "summary_si": "ගල් අඟුරු ආනයන පිළිබඳ ජනාධිපති විමර්ශනය දෙසැම්බර් 16 දක්වා දීර්ඝ කර ඇත.",
-    "content": "The presidential probe into coal imports has been extended until 16 December.",
-    "passive_voice_content": "The presidential probe into coal imports has been extended until 16 December.",
-    "key_takeaways": [
-      "The presidential inquiry concerns coal imports.",
-      "The probe has been formally extended.",
-      "The new deadline has been set for 16 December."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "Coal Imports",
-      "Presidential Probe",
-      "Governance",
-      "Energy Policy"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "7889883278220979923",
-    "url": "https://www.ft.lk/front-page/Tea-export-earnings-cross-1-b-mark-by-September/44-798913",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_89f9bbcf2a.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Wednesday, 21 October 2026 00:25",
-    "scraped_at": "2026-10-23 22:04:20",
-    "headline_en": "Tea Export Earnings Top $1 Billion by September",
-    "headline_si": "සැප්තැම්බර් වන විට තේ අපනයන ආදායම ඩොලර් බිලියන 1 ඉක්මවයි",
-    "summary_en": "Tea export earnings exceeding $1 billion were recorded by September.",
-    "summary_si": "සැප්තැම්බර් වන විට තේ අපනයන ආදායම ඩොලර් බිලියන 1 ඉක්මවා ඇති බව වාර්තා විය.",
-    "content": "Tea export earnings of more than $1 billion were recorded by September.",
-    "passive_voice_content": "Tea export earnings of more than $1 billion were recorded by September.",
-    "key_takeaways": [
-      "Tea export earnings surpassed $1 billion.",
-      "The earnings milestone was reached by September.",
-      "A significant export revenue threshold was exceeded."
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "Tea Exports",
-      "Export Earnings",
-      "Sri Lanka",
-      "Foreign Exchange"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "-2732592692664332692",
-    "url": "https://www.ft.lk/front-page/Cabinet-nod-for-revised-Rs-15-08-b-plan-to-complete-Kolonnawa-Stormwater-Drainage-project/44-798912",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_cffb195111.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Wednesday, 21 October 2026 00:24",
-    "scraped_at": "2026-10-23 22:04:20",
-    "headline_en": "Cabinet Approves Revised Rs. 15.08 Billion Kolonnawa Drainage Plan",
-    "headline_si": "කොළොන්නාව වැසි ජල අපවහන ව්‍යාපෘතියේ සංශෝධිත රු. බිලියන 15.08ක සැලැස්මට කැබිනට් අනුමැතිය",
-    "summary_en": "Cabinet approval was granted for a revised Rs. 15.08 billion plan to complete the Kolonnawa Stormwater Drainage Project.",
-    "summary_si": "කොළොන්නාව වැසි ජල අපවහන ව්‍යාපෘතිය සම්පූර්ණ කිරීම සඳහා වූ සංශෝධිත රු. බිලියන 15.08ක සැලැස්මට කැබිනට් අනුමැතිය ලබා දී ඇත.",
-    "content": "Cabinet approval was granted for a revised Rs. 15.08 billion plan to complete the Kolonnawa Stormwater Drainage Project. The approval was reported on Wednesday, 21 October 2026.",
-    "passive_voice_content": "Cabinet approval was granted for a revised Rs. 15.08 billion plan to complete the Kolonnawa Stormwater Drainage Project. The approval was reported on Wednesday, 21 October 2026.",
-    "key_takeaways": [
-      "A revised Rs. 15.08 billion plan received Cabinet approval.",
-      "Completion of the Kolonnawa drainage project was authorised.",
-      "The decision advances public stormwater infrastructure development."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "Cabinet",
-      "Kolonnawa",
-      "Stormwater Drainage",
-      "Infrastructure"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "-279997447168038507",
-    "url": "https://www.ft.lk/front-page/Access-Engineering-weighs-fallout-of-terminated-logistics-hub-JV/44-798911",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_cffb195111.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Wednesday, 21 October 2026 00:23",
-    "scraped_at": "2026-10-23 22:04:20",
-    "headline_en": "Access Engineering Assesses Fallout from Terminated Logistics Hub JV",
-    "headline_si": "අවසන් කළ ලොජිස්ටික් මධ්‍යස්ථාන හවුල් ව්‍යාපෘතියේ බලපෑම Access Engineering තක්සේරු කරයි",
-    "summary_en": "The potential fallout from a terminated logistics hub joint venture is being assessed by Access Engineering. No further details on the termination or its implications were provided.",
-    "summary_si": "අවසන් කරන ලද ලොජිස්ටික් මධ්‍යස්ථාන හවුල් ව්‍යාපෘතියෙන් ඇති විය හැකි බලපෑම් Access Engineering විසින් තක්සේරු කරමින් පවතී. ව්‍යාපෘතිය අවසන් කිරීම හෝ එහි ප්‍රතිවිපාක පිළිබඳ වැඩිදුර තොරතුරු සපයා නොමැත.",
-    "content": "The potential fallout from a terminated logistics hub joint venture is being assessed by Access Engineering. The report was published by Daily FT on Wednesday, 21 October 2026 at 00:23. No additional facts, figures, dates, quotations, or details concerning the joint venture or its termination were provided in the available article content.",
-    "passive_voice_content": "The potential fallout from a terminated logistics hub joint venture is being assessed by Access Engineering. The report was published by Daily FT on Wednesday, 21 October 2026 at 00:23. No additional facts, figures, dates, quotations, or details concerning the joint venture or its termination were provided in the available article content.",
-    "key_takeaways": [
-      "Fallout from the terminated joint venture is being assessed by Access Engineering.",
-      "The affected venture involved a logistics hub.",
-      "No financial figures or further details on the termination were disclosed."
-    ],
-    "category": "Business & Corporate",
-    "tags": [
-      "Access Engineering",
-      "Logistics Hub",
-      "Joint Venture",
-      "Corporate Strategy"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "-2159999988102440710",
-    "url": "https://www.ft.lk/front-page/Resecurity-USA-named-Strategic-Partner-for-12th-Annual-Cyber-Security-Summit-2026-in-Sri-Lanka/44-798910",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_140061f5b4.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Wednesday, 21 October 2026 00:22",
-    "scraped_at": "2026-10-23 22:04:20",
-    "headline_en": "Resecurity (USA) named Strategic Partner for 12th Annual Cyber Security Summit 2026 in Sri Lanka",
-    "headline_si": "ශ්‍රී ලංකා පුවත්: Resecurity (USA) named Strategic Partner for 12th Annual Cyber Security Summit 2026 in Sri Lanka",
-    "summary_en": "Resecurity (USA) named Strategic Partner for 12th Annual Cyber Security Summit 2026 in Sri Lanka",
-    "summary_si": "මෙම පුවත Daily FT වෙබ් අඩවියෙන් ලබා ගන්නා ලදී. Resecurity (USA) named Strategic Partner for 12th Annual Cyber Security Summit 2026 in Sri Lanka",
-    "content": "Resecurity (USA) named Strategic Partner for 12th Annual Cyber Security Summit 2026 in Sri Lanka",
-    "passive_voice_content": "Resecurity (USA) named Strategic Partner for 12th Annual Cyber Security Summit 2026 in Sri Lanka",
-    "key_takeaways": [
-      "Extracted directly from Daily FT feed.",
-      "Categorized under Business & Governance.",
-      "Prepared for Executive Briefing."
-    ],
-    "category": "technology",
-    "tags": [
-      "Daily FT",
-      "Sri Lanka",
-      "Business"
-    ],
-    "workflow_status": "scraped",
-    "rewrite_status": "needs_review",
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "-1437073505902137236",
-    "url": "https://www.ft.lk/front-page/Resus-Energy-Green-Bond-dual-listed-in-Luxembourg/44-798909",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_cffb195111.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Wednesday, 21 October 2026 00:20",
-    "scraped_at": "2026-10-23 22:04:20",
-    "headline_en": "Resus Energy Green Bond dual-listed in Luxembourg",
-    "headline_si": "ශ්‍රී ලංකා පුවත්: Resus Energy Green Bond dual-listed in Luxembourg",
-    "summary_en": "Resus Energy Green Bond dual-listed in Luxembourg",
-    "summary_si": "මෙම පුවත Daily FT වෙබ් අඩවියෙන් ලබා ගන්නා ලදී. Resus Energy Green Bond dual-listed in Luxembourg",
-    "content": "Resus Energy Green Bond dual-listed in Luxembourg",
-    "passive_voice_content": "Resus Energy Green Bond dual-listed in Luxembourg",
-    "key_takeaways": [
-      "Extracted directly from Daily FT feed.",
-      "Categorized under Business & Governance.",
-      "Prepared for Executive Briefing."
-    ],
-    "category": "business-news",
-    "tags": [
-      "Daily FT",
-      "Sri Lanka",
-      "Business"
-    ],
-    "workflow_status": "scraped",
-    "rewrite_status": "needs_review",
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "-6535665019695875653",
-    "url": "https://www.ft.lk/top-story/Fitch-upgrades-Sri-Lanka/26-797647",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_1717e3e53b.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Wednesday, 23 September 2026 05:30",
-    "scraped_at": "2026-10-23 21:01:51",
-    "headline_en": "Fitch Upgrades Sri Lanka",
-    "headline_si": "ෆිච් විසින් ශ්‍රී ලංකාවේ ශ්‍රේණිගත කිරීම ඉහළ නංවයි",
-    "summary_en": "Sri Lanka was upgraded by Fitch. Further details were not provided in the source content.",
-    "summary_si": "ෆිච් විසින් ශ්‍රී ලංකාවේ ශ්‍රේණිගත කිරීම ඉහළ නංවන ලදී. මූලාශ්‍ර අන්තර්ගතයේ වැඩිදුර තොරතුරු සපයා නොතිබුණි.",
-    "content": "Sri Lanka was upgraded by Fitch.",
-    "passive_voice_content": "Sri Lanka was upgraded by Fitch.",
-    "key_takeaways": [
-      "Sri Lanka was upgraded by Fitch.",
-      "A positive ratings action was announced.",
-      "Further details were not provided in the source content."
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "Fitch Ratings",
-      "Sri Lanka",
-      "Credit Rating",
-      "Economy"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "7570429268479236250",
-    "url": "https://www.ft.lk/top-story/Vehicle-registrations-fall-13-8-in-Aug-to-nine-month-low/26-797598",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_7986e125e9.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Tuesday, 22 September 2026 06:24",
-    "scraped_at": "2026-10-23 21:01:51",
-    "headline_en": "Vehicle Registrations Drop 13.8% in August to Nine-Month Low",
-    "headline_si": "අගෝස්තුවේ වාහන ලියාපදිංචි කිරීම් 13.8%කින් පහළට; මාස නවයක අවමයට",
-    "summary_en": "A 13.8% decline in vehicle registrations was recorded in August. Registrations were brought to their lowest level in nine months.",
-    "summary_si": "අගෝස්තු මාසයේදී වාහන ලියාපදිංචි කිරීම් 13.8%කින් පහළ ගොස් ඇති බව වාර්තා විය. ඒ අනුව, ලියාපදිංචි කිරීම් මාස නවයක අවම මට්ටමට පත්විය.",
-    "content": "Vehicle registrations were reported to have fallen by 13.8% in August, with a nine-month low being recorded.",
-    "passive_voice_content": "Vehicle registrations were reported to have fallen by 13.8% in August, with a nine-month low being recorded.",
-    "key_takeaways": [
-      "A 13.8% fall in vehicle registrations was recorded in August.",
-      "A nine-month low was reached.",
-      "A weakening in vehicle-market activity was indicated."
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "Vehicle Registrations",
-      "Automotive Market",
-      "Transport",
-      "Sri Lanka Economy"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "2432576456496344114",
-    "url": "https://www.ft.lk/front-page/Luminex-suspends-Oman-subsidiary-operations/44-798981",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_cffb195111.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Thursday, 22 October 2026 00:25",
-    "scraped_at": "2026-10-23 21:01:55",
-    "headline_en": "Luminex Suspends Operations at Oman Subsidiary",
-    "headline_si": "ලුමිනෙක්ස් ඕමාන අනුබද්ධ සමාගමේ මෙහෙයුම් අත්හිටුවයි",
-    "summary_en": "Operations at Luminex’s subsidiary in Oman have been suspended by the company. No additional details regarding the suspension were provided.",
-    "summary_si": "ලුමිනෙක්ස් සමාගම විසින් ඕමානයේ පිහිටි සිය අනුබද්ධ සමාගමේ මෙහෙයුම් අත්හිටුවා ඇත. අත්හිටුවීමට අදාළ වැඩිදුර තොරතුරු සපයා නොමැත.",
-    "content": "Operations at Luminex’s subsidiary in Oman have been suspended by the company. The development was reported on Thursday, 22 October 2026 at 00:25. No further information was provided.",
-    "passive_voice_content": "Operations at Luminex’s subsidiary in Oman have been suspended by the company. The development was reported on Thursday, 22 October 2026 at 00:25. No further information was provided.",
-    "key_takeaways": [
-      "Oman subsidiary operations have been suspended by Luminex.",
-      "The suspension directly affects the company’s Oman operations.",
-      "No further details on the suspension were disclosed."
-    ],
-    "category": "Business & Corporate",
-    "tags": [
-      "Luminex",
-      "Oman",
-      "Subsidiary Operations",
-      "Corporate Affairs"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "6964529703007516862",
-    "url": "https://www.ft.lk/front-page/Standard-Chartered-Platinum-Sponsor-of-Daily-FTUoC-MBA-Alumni-Association-Post-Budget-Forum/44-798978",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_58cbd7b4d4.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Thursday, 22 October 2026 00:22",
-    "scraped_at": "2026-10-23 21:01:55",
-    "headline_en": "Standard Chartered Backs Daily FT–UoC MBA Alumni Post-Budget Forum as Platinum Sponsor",
-    "headline_si": "ස්ටෑන්ඩර්ඩ් චාර්ටඩ්, Daily FT–කොළඹ විශ්වවිද්‍යාල MBA ආදි විද්‍යාර්ථී සංගමයේ පශ්චාත් අයවැය සංසදයේ ප්ලැටිනම් අනුග්‍රාහකයා වෙයි",
-    "summary_en": "Platinum sponsorship for the Daily FT–UoC MBA Alumni Association Post-Budget Forum is being provided by Standard Chartered.",
-    "summary_si": "Daily FT–කොළඹ විශ්වවිද්‍යාල MBA ආදි විද්‍යාර්ථී සංගමයේ පශ්චාත් අයවැය සංසදය සඳහා ප්ලැටිනම් අනුග්‍රාහකත්වය ස්ටෑන්ඩර්ඩ් චාර්ටඩ් විසින් සපයනු ලැබේ.",
-    "content": "Platinum sponsorship for the Daily FT–UoC MBA Alumni Association Post-Budget Forum is being provided by Standard Chartered. The announcement was published on Thursday, 22 October 2026 at 00:22.",
-    "passive_voice_content": "Platinum sponsorship for the Daily FT–UoC MBA Alumni Association Post-Budget Forum is being provided by Standard Chartered. The announcement was published on Thursday, 22 October 2026 at 00:22.",
-    "key_takeaways": [
-      "Standard Chartered confirmed as Platinum Sponsor",
-      "Sponsorship supports a post-budget business forum",
-      "Forum organised by Daily FT and the UoC MBA Alumni Association"
-    ],
-    "category": "Business & Corporate",
-    "tags": [
-      "Standard Chartered",
-      "Corporate Sponsorship",
-      "Post-Budget Forum",
-      "UoC MBA Alumni Association"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "5259431707782441258",
-    "url": "https://www.ft.lk/front-page/NCPI-unchanged-at-8-1-in-Sept/44-798977",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_cffb195111.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Thursday, 22 October 2026 00:21",
-    "scraped_at": "2026-10-23 21:01:55",
-    "headline_en": "NCPI Holds Steady at 8.1% in September",
-    "headline_si": "සැප්තැම්බර් මාසයේ NCPI අගය 8.1% මට්ටමේ නොවෙනස්ව පවතී",
-    "summary_en": "The NCPI was recorded unchanged at 8.1% in September.",
-    "summary_si": "සැප්තැම්බර් මාසයේදී NCPI අගය 8.1% මට්ටමේ නොවෙනස්ව වාර්තා විය.",
-    "content": "The NCPI was recorded unchanged at 8.1% in September.",
-    "passive_voice_content": "The NCPI was recorded unchanged at 8.1% in September.",
-    "key_takeaways": [
-      "September NCPI was maintained at 8.1%.",
-      "No change in the index was recorded.",
-      "The latest reading provides an indicator for economic and policy assessment."
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "NCPI",
-      "Inflation",
-      "Economy",
-      "Sri Lanka"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "3649157404580766061",
-    "url": "https://www.ft.lk/front-page/SriLankan-Airlines-denies-cyberattack-claims/44-798976",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_cffb195111.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Thursday, 22 October 2026 00:20",
-    "scraped_at": "2026-10-23 21:01:55",
-    "headline_en": "SriLankan Airlines Rejects Cyberattack Claims",
-    "headline_si": "සයිබර් ප්‍රහාරයක් පිළිබඳ ප්‍රකාශ ශ්‍රීලන්කන් ගුවන් සේවය ප්‍රතික්ෂේප කරයි",
-    "summary_en": "Claims of a cyberattack were denied by SriLankan Airlines. No further details about the alleged incident were provided.",
-    "summary_si": "සයිබර් ප්‍රහාරයක් එල්ල වූ බවට පළ වූ ප්‍රකාශ ශ්‍රීලන්කන් ගුවන් සේවය විසින් ප්‍රතික්ෂේප කරන ලදී. චෝදනා කරන ලද සිද්ධිය පිළිබඳ වැඩිදුර තොරතුරු සපයා නොතිබුණි.",
-    "content": "Claims of a cyberattack were denied by SriLankan Airlines. No further information regarding the alleged incident was provided in the report, which was published on Thursday, 22 October 2026 at 00:20.",
-    "passive_voice_content": "Claims of a cyberattack were denied by SriLankan Airlines. No further information regarding the alleged incident was provided in the report, which was published on Thursday, 22 October 2026 at 00:20.",
-    "key_takeaways": [
-      "Cyberattack claims were rejected by SriLankan Airlines.",
-      "Corporate cybersecurity and operational trust were placed in focus.",
-      "No technical or incident-related details were provided."
-    ],
-    "category": "Business & Corporate",
-    "tags": [
-      "SriLankan Airlines",
-      "Cybersecurity",
-      "Aviation",
-      "Corporate Governance"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "-5410743144979320161",
-    "url": "https://www.ft.lk/front-page/Govt-denies-substandard-coal-behind-Lakvijaya-failure/44-798918",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_cffb195111.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Wednesday, 21 October 2026 00:30",
-    "scraped_at": "2026-10-23 21:01:55",
-    "headline_en": "Government Rejects Substandard Coal Link to Lakvijaya Failure",
-    "headline_si": "ලක්විජය අක්‍රියතාවට බාල තත්ත්වයේ ගල් අඟුරු හේතු වූ බව රජය ප්‍රතික්ෂේප කරයි",
-    "summary_en": "The claim that substandard coal caused the Lakvijaya failure was denied by the Government. No additional details were provided in the source content.",
-    "summary_si": "ලක්විජය අක්‍රියතාවට බාල තත්ත්වයේ ගල් අඟුරු හේතු වූ බවට පළ වූ ප්‍රකාශය රජය විසින් ප්‍රතික්ෂේප කරන ලදී. මූලාශ්‍ර අන්තර්ගතයේ වැඩිදුර තොරතුරු සපයා නොතිබිණි.",
-    "content": "The claim that the Lakvijaya failure was caused by substandard coal was denied by the Government.",
-    "passive_voice_content": "The claim that the Lakvijaya failure was caused by substandard coal was denied by the Government.",
-    "key_takeaways": [
-      "A link between substandard coal and the Lakvijaya failure was rejected.",
-      "The Government’s position on the failure was formally stated.",
-      "Further details on the cause were not provided in the source content."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "Lakvijaya",
-      "Coal",
-      "Energy Policy",
-      "Government"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "6278076433395657966",
-    "url": "https://www.ft.lk/front-page/92-of-taxpayers-yet-to-file-returns-ahead-of-Nov-deadline/44-798916",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_cffb195111.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Wednesday, 21 October 2026 00:28",
-    "scraped_at": "2026-10-23 21:01:55",
-    "headline_en": "92% of Taxpayers Yet to File Returns as November Deadline Nears",
-    "headline_si": "නොවැම්බර් අවසන් දිනය ළඟා වෙද්දී බදු ගෙවන්නන්ගෙන් 92%ක් තවමත් වාර්තා ගොනු කර නැහැ",
-    "summary_en": "Tax returns have yet to be filed by 92% of taxpayers ahead of the November deadline. A substantial tax-compliance gap has therefore been recorded as the filing deadline approaches.",
-    "summary_si": "නොවැම්බර් අවසන් දිනයට පෙර බදු ගෙවන්නන්ගෙන් 92%ක් විසින් තවමත් බදු වාර්තා ගොනු කර නොමැත. වාර්තා ගොනු කිරීමේ අවසන් දිනය ළඟා වෙමින් පවතින අතර සැලකිය යුතු බදු අනුකූලතා හිඟයක් වාර්තා වී ඇත.",
-    "content": "Tax returns have yet to be filed by 92% of taxpayers ahead of the November deadline.",
-    "passive_voice_content": "Tax returns have yet to be filed by 92% of taxpayers ahead of the November deadline.",
-    "key_takeaways": [
-      "Returns remain unfiled by 92% of taxpayers.",
-      "The filing deadline falls in November.",
-      "A significant tax-compliance gap remains ahead of the deadline."
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "Taxpayers",
-      "Tax Returns",
-      "Tax Compliance",
-      "Fiscal Policy"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "236719935083060518",
-    "url": "https://www.ft.lk/top-story/Economy-fundamentally-changing-not-everyone-will-make-it-Frontier/26-797940",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_11cc7dccbf.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Wednesday, 30 September 2026 00:00",
-    "scraped_at": "2026-10-23 19:59:04",
-    "headline_en": "Economy in Fundamental Shift; Not Everyone Will Make It: Frontier",
-    "headline_si": "ආර්ථිකයේ මූලික පරිවර්තනයක්; සැමටම සාර්ථක විය නොහැක: ෆ්‍රන්ටියර්",
-    "summary_en": "A fundamental change in the economy was identified by Frontier. It was cautioned that not everyone would successfully navigate the transformation.",
-    "summary_si": "ආර්ථිකයේ මූලික වෙනසක් සිදුවෙමින් පවතින බව ෆ්‍රන්ටියර් විසින් පෙන්වා දී ඇත. එම පරිවර්තනය හමුවේ සැමටම සාර්ථකව ඉදිරියට යාමට නොහැකි වනු ඇති බවට අනතුරු අඟවා ඇත.",
-    "content": "On Wednesday, 30 September 2026, the economy was described by Frontier as fundamentally changing. It was stated that not everyone would make it through this transformation.",
-    "passive_voice_content": "On Wednesday, 30 September 2026, the economy was described by Frontier as fundamentally changing. It was stated that not everyone would make it through this transformation.",
-    "key_takeaways": [
-      "A fundamental economic transformation was identified.",
-      "Uneven outcomes were anticipated during the transition.",
-      "Not all participants were expected to navigate the change successfully."
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "Economy",
-      "Economic Transformation",
-      "Frontier",
-      "Business Outlook"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "7673244820393808544",
-    "url": "https://www.ft.lk/top-story/Gold-backed-bank-lending-tops-Rs-200-b-in-1H/26-797903",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_94e8d79039.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Tuesday, 29 September 2026 03:33",
-    "scraped_at": "2026-10-23 19:59:04",
-    "headline_en": "Gold-Backed Bank Lending Surpasses Rs. 200 Billion in 1H",
-    "headline_si": "පළමු අර්ධයේ රන් ඇපිත බැංකු ණය රු. බිලියන 200 ඉක්මවයි",
-    "summary_en": "Gold-backed lending by banks was recorded at more than Rs. 200 billion during the first half.",
-    "summary_si": "පළමු අර්ධය තුළ බැංකු විසින් ලබා දුන් රන් ඇපිත ණය ප්‍රමාණය රු. බිලියන 200 ඉක්මවා ඇති බව වාර්තා විය.",
-    "content": "Gold-backed lending by banks was recorded at more than Rs. 200 billion in the first half.",
-    "passive_voice_content": "Gold-backed lending by banks was recorded at more than Rs. 200 billion in the first half.",
-    "key_takeaways": [
-      "Rs. 200 billion lending threshold surpassed",
-      "Growth reflected in the gold-backed lending segment",
-      "Milestone recorded during the first half"
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "Banking",
-      "Gold-Backed Lending",
-      "Credit",
-      "Sri Lanka"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "-5257603044093713195",
-    "url": "https://www.ft.lk/top-story/2Q26-real-GDP-still-below-pre-pandemic-level-despite-4-2-growth/26-797539",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_6f296ed13d.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Monday, 21 September 2026 04:02",
-    "scraped_at": "2026-10-23 19:59:04",
-    "headline_en": "2Q26 Real GDP Grows 4.2%, Yet Remains Below Pre-Pandemic Level",
-    "headline_si": "2026 දෙවන කාර්තුවේ සැබෑ දළ දේශීය නිෂ්පාදිතය 4.2%කින් වර්ධනය වුවද වසංගතයට පෙර මට්ටමට පහළින්",
-    "summary_en": "A 4.2% expansion in real GDP was recorded in 2Q26. Despite this growth, the pre-pandemic level was not regained.",
-    "summary_si": "2026 දෙවන කාර්තුවේදී සැබෑ දළ දේශීය නිෂ්පාදිතයේ 4.2%ක වර්ධනයක් වාර්තා විය. එම වර්ධනය තිබියදීත්, වසංගතයට පෙර පැවති මට්ටම යළි ළඟා කරගෙන නොතිබිණි.",
-    "content": "A 4.2% growth in real GDP was recorded in 2Q26. However, the pre-pandemic level had still not been regained.",
-    "passive_voice_content": "A 4.2% growth in real GDP was recorded in 2Q26. However, the pre-pandemic level had still not been regained.",
-    "key_takeaways": [
-      "Real GDP growth of 4.2% was recorded in 2Q26.",
-      "Output remained below its pre-pandemic level.",
-      "A full recovery to the previous output level was not achieved."
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "Real GDP",
-      "Economic Growth",
-      "Post-Pandemic Recovery",
-      "2Q26"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "1965064808020162161",
-    "url": "https://www.ft.lk/top-story/2027-Budget-to-build-thriving-economy/26-797483",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_306b16b822.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Saturday, 19 September 2026 00:05",
-    "scraped_at": "2026-10-23 19:59:04",
-    "headline_en": "2027 Budget Aims to Build a Thriving Economy",
-    "headline_si": "2027 අයවැයෙන් සමෘද්ධිමත් ආර්ථිකයක් ගොඩනැගීමට ඉලක්ක කෙරේ",
-    "summary_en": "The building of a thriving economy is set to be pursued through the 2027 Budget.",
-    "summary_si": "සමෘද්ධිමත් ආර්ථිකයක් ගොඩනැගීම 2027 අයවැය මගින් ඉලක්ක කර ඇත.",
-    "content": "The building of a thriving economy is targeted through the 2027 Budget.",
-    "passive_voice_content": "The building of a thriving economy is targeted through the 2027 Budget.",
-    "key_takeaways": [
-      "A thriving economy is targeted through the 2027 Budget.",
-      "Economic development is positioned as the Budget’s central focus.",
-      "The policy direction is centred on the 2027 fiscal framework."
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "2027 Budget",
-      "Fiscal Policy",
-      "Economic Growth"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "-8196282054703062102",
-    "url": "https://www.ft.lk/front-page/Magistrate-seeks-contempt-charges-against-IGP/44-798985",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_a86861926e.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Thursday, 22 October 2026 00:30",
-    "scraped_at": "2026-10-23 19:59:05",
-    "headline_en": "Magistrate Seeks Contempt Charges Against IGP",
-    "headline_si": "පොලිස්පතිට එරෙහිව අධිකරණයට අපහාස කිරීමේ චෝදනා ඉල්ලයි",
-    "summary_en": "Contempt charges against the IGP have been sought by a magistrate.",
-    "summary_si": "පොලිස්පතිවරයාට එරෙහිව අධිකරණයට අපහාස කිරීමේ චෝදනා ගොනු කරන ලෙස මහේස්ත්‍රාත්වරයෙකු විසින් ඉල්ලා ඇත.",
-    "content": "A request for contempt charges to be brought against the IGP was made by a magistrate. The report was published by Daily FT on Thursday, 22 October 2026 at 00:30.",
-    "passive_voice_content": "A request for contempt charges to be brought against the IGP was made by a magistrate. The report was published by Daily FT on Thursday, 22 October 2026 at 00:30.",
-    "key_takeaways": [
-      "Judicial scrutiny has been directed at police leadership.",
-      "Accountability within law enforcement has been brought into focus.",
-      "Governance implications could arise from potential contempt proceedings."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "IGP",
-      "Judiciary",
-      "Contempt of Court",
-      "Governance"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "-7782726852071798601",
-    "url": "https://www.ft.lk/front-page/Industry-and-construction-lag-personal-credit/44-798984",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_cffb195111.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Thursday, 22 October 2026 00:28",
-    "scraped_at": "2026-10-23 19:59:05",
-    "headline_en": "Personal Credit Outpaces Industry and Construction",
-    "headline_si": "පුද්ගල ණය හමුවේ කර්මාන්ත හා ඉදිකිරීම් ණය පසුබසී",
-    "summary_en": "Credit to industry and construction was reported to be lagging behind personal credit.",
-    "summary_si": "කර්මාන්ත හා ඉදිකිරීම් අංශ වෙත ලබා දෙන ණය, පුද්ගල ණයවලට සාපේක්ෂව පසුබැස ඇති බව වාර්තා කර ඇත.",
-    "content": "Credit to industry and construction was reported to be lagging behind personal credit. The report was published by Daily FT on Thursday, 22 October 2026 at 00:28.",
-    "passive_voice_content": "Credit to industry and construction was reported to be lagging behind personal credit. The report was published by Daily FT on Thursday, 22 October 2026 at 00:28.",
-    "key_takeaways": [
-      "Personal credit was reported to be ahead of industry credit.",
-      "Construction credit was reported to be trailing personal credit.",
-      "The credit allocation trend may warrant policy attention."
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "Credit Growth",
-      "Personal Credit",
-      "Industry",
-      "Construction"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "-5872244076921079534",
-    "url": "https://www.ft.lk/front-page/NDB-posts-3Q-PAT-of-Rs-2-9-b/44-798983",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_cffb195111.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Thursday, 22 October 2026 00:27",
-    "scraped_at": "2026-10-23 19:59:05",
-    "headline_en": "NDB Reports Rs. 2.9 Billion PAT in 3Q",
-    "headline_si": "NDB තෙවැනි කාර්තුවේ රු. බිලියන 2.9ක බදු පසු ලාභයක් වාර්තා කරයි",
-    "summary_en": "A profit after tax of Rs. 2.9 billion was reported by NDB for the third quarter.",
-    "summary_si": "තෙවැනි කාර්තුව සඳහා රු. බිලියන 2.9ක බදු පසු ලාභයක් NDB විසින් වාර්තා කර ඇත.",
-    "content": "A profit after tax (PAT) of Rs. 2.9 billion was reported by NDB for the third quarter.",
-    "passive_voice_content": "A profit after tax (PAT) of Rs. 2.9 billion was reported by NDB for the third quarter.",
-    "key_takeaways": [
-      "Third-quarter PAT was reported at Rs. 2.9 billion.",
-      "Quarterly profitability was recorded by NDB.",
-      "NDB’s financial performance remained in focus."
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "NDB",
-      "Banking",
-      "Profit After Tax",
-      "Quarterly Results"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "3100478011321325519",
-    "url": "https://www.ft.lk/front-page/ADB-approves-100-m-to-strengthen-social-protection-and-expand-economic-opportunities/44-798982",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_cffb195111.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Thursday, 22 October 2026 00:26",
-    "scraped_at": "2026-10-23 19:59:05",
-    "headline_en": "ADB Approves $100 Million to Bolster Social Protection and Economic Opportunities",
-    "headline_si": "සමාජ ආරක්ෂණය ශක්තිමත් කිරීමට සහ ආර්ථික අවස්ථා පුළුල් කිරීමට ADB වෙතින් ඩොලර් මිලියන 100ක්",
-    "summary_en": "A $100 million allocation has been approved by ADB to strengthen social protection and expand economic opportunities.",
-    "summary_si": "සමාජ ආරක්ෂණය ශක්තිමත් කිරීම සහ ආර්ථික අවස්ථා පුළුල් කිරීම සඳහා ADB විසින් ඩොලර් මිලියන 100ක මුදලක් අනුමත කර ඇත.",
-    "content": "A $100 million allocation has been approved by ADB for the strengthening of social protection and the expansion of economic opportunities.",
-    "passive_voice_content": "A $100 million allocation has been approved by ADB for the strengthening of social protection and the expansion of economic opportunities.",
-    "key_takeaways": [
-      "$100 million in financing approved by ADB",
-      "Social protection targeted for strengthening",
-      "Economic opportunities expected to be expanded"
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "ADB",
-      "Social Protection",
-      "Economic Opportunities",
-      "Development Finance"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "204508308462857295",
-    "url": "https://www.ft.lk/top-story/Sri-Lanka-and-IMF-discussing-options-for-post-EFF-program-Govt/26-798504",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_eb9364c89a.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Saturday, 10 October 2026 00:00",
-    "scraped_at": "2026-10-23 18:56:50",
-    "headline_en": "Sri Lanka, IMF Weigh Post-EFF Options: Government",
-    "headline_si": "ශ්‍රී ලංකාව සහ IMF පශ්චාත්-EFF වැඩසටහන් විකල්ප සලකා බලයි: රජය",
-    "summary_en": "Options for a post-EFF program are being discussed by Sri Lanka and the International Monetary Fund, according to the Government.",
-    "summary_si": "පශ්චාත්-EFF වැඩසටහනක් සඳහා වන විකල්ප ශ්‍රී ලංකාව සහ ජාත්‍යන්තර මූල්‍ය අරමුදල විසින් සාකච්ඡා කරමින් පවතින බව රජය විසින් ප්‍රකාශ කර ඇත.",
-    "content": "Options for a post-EFF program are being discussed by Sri Lanka and the International Monetary Fund, according to the Government. The report was published on Saturday, 10 October 2026.",
-    "passive_voice_content": "Options for a post-EFF program are being discussed by Sri Lanka and the International Monetary Fund, according to the Government. The report was published on Saturday, 10 October 2026.",
-    "key_takeaways": [
-      "Post-EFF program options are under Sri Lanka-IMF discussion.",
-      "The ongoing discussions have been confirmed by the Government.",
-      "Future arrangements following the EFF program are being considered."
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "IMF",
-      "Sri Lanka",
-      "EFF",
-      "Economic Policy"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "8346732892591403716",
-    "url": "https://www.ft.lk/top-story/Colombo-West-Terminal-commissions-Phase-2-celebrates-2-m-TEU-achievement-in-record-time/26-798058",
-    "image": "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_cd4ab0a138.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "Friday, 2 October 2026 00:00",
-    "scraped_at": "2026-10-23 18:56:50",
-    "headline_en": "Colombo West Terminal Opens Phase 2, Marks Record-Time 2 Million TEU Milestone",
-    "headline_si": "කොළඹ බටහිර පර්යන්තයේ දෙවන අදියර විවෘත කෙරේ; වාර්තාගත කාලයකදී TEU මිලියන 2ක සන්ධිස්ථානය සැමරේ",
-    "summary_en": "Phase 2 of the Colombo West Terminal was commissioned. The achievement of 2 million TEUs in record time was celebrated.",
-    "summary_si": "කොළඹ බටහිර පර්යන්තයේ දෙවන අදියර ක්‍රියාත්මක කරන ලදී. වාර්තාගත කාලයකදී TEU මිලියන 2ක සන්ධිස්ථානයක් අත්කර ගැනීම සමරන ලදී.",
-    "content": "Phase 2 of the Colombo West Terminal was commissioned, while the achievement of 2 million TEUs in record time was celebrated. The development was reported on Friday, 2 October 2026.",
-    "passive_voice_content": "Phase 2 of the Colombo West Terminal was commissioned, while the achievement of 2 million TEUs in record time was celebrated. The development was reported on Friday, 2 October 2026.",
-    "key_takeaways": [
-      "Phase 2 was commissioned at Colombo West Terminal.",
-      "A 2 million TEU milestone was achieved in record time.",
-      "The milestone highlights the terminal’s rapid operational progress."
-    ],
-    "category": "Business & Corporate",
-    "tags": [
-      "Colombo West Terminal",
-      "Ports",
-      "Logistics",
-      "TEU"
     ],
     "status": "published",
     "topRank": null,
