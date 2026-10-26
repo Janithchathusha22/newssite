@@ -1,5 +1,237 @@
 [
   {
+    "id": "454507f0fda3bbfb99c3",
+    "url": "https://www.dailymirror.lk/breaking-news/Sri-Lanka-walks-diplomatic-tight-rope-as-21-Iranian-oil-tankers-remain-stranded/108-353408",
+    "image": "assets/news_images/812616cc6be46d401e74cb8a.jpg",
+    "source": "Daily Mirror (dailymirror.lk)",
+    "published_at": "2026-10-26T12:23:53Z",
+    "scraped_at": "2026-10-26T11:16:12.145954Z",
+    "headline_en": "Sri Lanka Faces Diplomatic Balancing Act as 21 Iranian Oil Tankers Remain Stranded",
+    "headline_si": "ඉරාන තෙල් ටැංකි නෞකා 21ක් අතරමංව තිබියදී ශ්‍රී ලංකාව අසීරු රාජ්‍යතාන්ත්‍රික සමතුලිතතාවක",
+    "summary_en": "A delicate diplomatic balancing act is being navigated by Sri Lanka as 21 Iranian oil tankers remain stranded. The situation was reported on 26 October 2026.",
+    "summary_si": "ඉරාන තෙල් ටැංකි නෞකා 21ක් අතරමංව පවතින තත්ත්වය හමුවේ ශ්‍රී ලංකාව විසින් සියුම් රාජ්‍යතාන්ත්‍රික සමතුලිතතාවක් පවත්වාගෙන යනු ලැබේ. මෙම තත්ත්වය 2026 ඔක්තෝබර් 26 දින වාර්තා කරන ලදී.",
+    "content": "A delicate diplomatic balancing act is being navigated by Sri Lanka as 21 Iranian oil tankers remain stranded.",
+    "passive_voice_content": "A delicate diplomatic balancing act is being navigated by Sri Lanka as 21 Iranian oil tankers remain stranded.",
+    "key_takeaways": [
+      "Twenty-one Iranian oil tankers remain stranded.",
+      "A delicate diplomatic challenge is being navigated by Sri Lanka.",
+      "Foreign-policy and governance considerations have been brought into focus."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Sri Lanka",
+      "Iran",
+      "Oil Tankers",
+      "Diplomacy"
+    ],
+    "status": "published",
+    "topRank": 1,
+    "editorial_approved": true
+  },
+  {
+    "id": "972c76184d8fb69ebf94",
+    "url": "https://hirunews.lk/en/496405/all-schools-in-the-island-will-be-closed-tomorrow-due-to-the-prevailing-bad-weather",
+    "image": "assets/news_images/b395cfd2d238c908bb1e1192.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T11:16:11.944543Z",
+    "scraped_at": "2026-10-26T11:16:11.944543Z",
+    "headline_en": "All Schools Closed on 27 Due to Adverse Weather",
+    "headline_si": "අයහපත් කාලගුණය හේතුවෙන් 27 දින සියලු පාසල් වසා දැමේ",
+    "summary_en": "All schools across the island will be closed on 27 as a safety measure due to the prevailing adverse weather conditions, it was announced by the Ministry of Education. However, the G.C.E. Ordinary Level aesthetic subject practical examinations will be conducted as scheduled.",
+    "summary_si": "පවතින අයහපත් කාලගුණ තත්ත්වය හේතුවෙන් ආරක්ෂිත පියවරක් ලෙස දිවයින පුරා සියලු පාසල් 27 දින වසා තැබෙන බව අධ්‍යාපන අමාත්‍යාංශය විසින් නිවේදනය කරන ලදී. කෙසේ වෙතත්, අ.පො.ස. සාමාන්‍ය පෙළ විභාගයේ සෞන්දර්ය විෂයන්ට අදාළ ප්‍රායෝගික පරීක්ෂණ නියමිත පරිදි පවත්වනු ලැබේ.",
+    "content": "The closure of all schools across the island tomorrow (27) has been announced by the Ministry of Education as a safety measure due to the prevailing adverse weather conditions.\n\nHowever, the practical examinations for aesthetic subjects under the G.C.E. Ordinary Level (O/L) Examination will be held as scheduled, according to a statement issued by the Ministry.",
+    "passive_voice_content": "The closure of all schools across the island tomorrow (27) has been announced by the Ministry of Education as a safety measure due to the prevailing adverse weather conditions.\n\nHowever, the practical examinations for aesthetic subjects under the G.C.E. Ordinary Level (O/L) Examination will be held as scheduled, according to a statement issued by the Ministry.",
+    "key_takeaways": [
+      "All schools across the island will be closed on 27.",
+      "The closure has been ordered as a weather-related safety measure.",
+      "O/L aesthetic subject practical examinations will proceed as scheduled."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Ministry of Education",
+      "School Closure",
+      "Adverse Weather",
+      "O/L Examination"
+    ],
+    "status": "published",
+    "topRank": 2,
+    "editorial_approved": true
+  },
+  {
+    "id": "2412aa884688270c9cd8",
+    "url": "https://hirunews.lk/en/496399/landslide-warnings-at-level-3-for-ratnapura-ayagama-pelmadulla-kuruwita-elapatha-and-opanayake-areas-and-level-2-for-kalutara-kandy-kegalle-kurunegala-and-nuwara-eliya-districts",
+    "image": "assets/news_images/104bc688523762e5125c9167.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T11:16:11.944543Z",
+    "scraped_at": "2026-10-26T11:16:11.944543Z",
+    "headline_en": "Landslide Alerts Issued for Ratnapura and Five Other Districts",
+    "headline_si": "රත්නපුර සහ තවත් දිස්ත්‍රික්ක පහකට නායයෑම් අනතුරු ඇඟවීම් නිකුත් කෙරේ",
+    "summary_en": "Landslide alerts were issued for Ratnapura and five other districts. The information was carried by Hiru News, a Sri Lankan news website operated by Rayynor Silva Holdings.",
+    "summary_si": "රත්නපුර සහ තවත් දිස්ත්‍රික්ක පහක් සඳහා නායයෑම් අනතුරු ඇඟවීම් නිකුත් කර ඇත. මෙම තොරතුරු Rayynor Silva Holdings සමාගමට අයත් ශ්‍රී ලාංකික පුවත් වෙබ් අඩවියක් වන Hiru News විසින් වාර්තා කර ඇත.",
+    "content": "Landslide alerts were issued for Ratnapura and five other districts. The information was published by Hiru News, which was described as the most visited website in Sri Lanka and the No. 1 online news site for Sri Lankans. Sri Lankan news updates and discussions are provided by the website, which is operated by Rayynor Silva Holdings.",
+    "passive_voice_content": "Landslide alerts were issued for Ratnapura and five other districts. The information was published by Hiru News, which was described as the most visited website in Sri Lanka and the No. 1 online news site for Sri Lankans. Sri Lankan news updates and discussions are provided by the website, which is operated by Rayynor Silva Holdings.",
+    "key_takeaways": [
+      "Landslide alerts were issued across six districts.",
+      "Ratnapura was specifically included in the alert.",
+      "Heightened attention to public safety and local governance is required."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Landslide Alerts",
+      "Ratnapura",
+      "Disaster Management",
+      "Public Safety"
+    ],
+    "status": "published",
+    "topRank": 3,
+    "editorial_approved": true
+  },
+  {
+    "id": "67463d5c9401ffe350e4",
+    "url": "https://hirunews.lk/en/496394/cyclone-ornab-may-have-indirect-effects-no-need-to-create-unnecessary-fear-deputy-minister-aruna-jayasekara",
+    "image": "assets/news_images/dc25c51c7abd6d80640f49fb.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T11:16:11.944543Z",
+    "scraped_at": "2026-10-26T11:16:11.944543Z",
+    "headline_en": "Deputy Minister Jayasekara Urges Calm Over Cyclone Arnab",
+    "headline_si": "ආර්නබ් සුළි කුණාටුව සම්බන්ධයෙන් අනවශ්‍ය බියක් අවශ්‍ය නැතැයි නියෝජ්‍ය අමාත්‍ය අරුණ ජයසේකර පවසයි",
+    "summary_en": "Unnecessary fear over Cyclone Arnab was said to be unwarranted by Deputy Minister Aruna Jayasekara. The message was carried in content attributed to Hiru News.",
+    "summary_si": "ආර්නබ් සුළි කුණාටුව සම්බන්ධයෙන් අනවශ්‍ය බියක් ඇති කරගැනීම අවශ්‍ය නොවන බව නියෝජ්‍ය අමාත්‍ය අරුණ ජයසේකර විසින් ප්‍රකාශ කර ඇත. එම පණිවිඩය හිරු නිවුස් වෙත ආරෝපිත අන්තර්ගතයක පළ කර තිබේ.",
+    "content": "Unnecessary fear over Cyclone Arnab was said to be unwarranted by Deputy Minister Aruna Jayasekara. The message was carried in content attributed to Hiru News. In the accompanying promotional text, Hiru News was described as the most visited website in Sri Lanka and the No. 1 online news site for Sri Lankans, through which the latest Sri Lankan news updates and discussions are provided. Hiru News was also identified as a Rayynor Silva Holdings Company.",
+    "passive_voice_content": "Unnecessary fear over Cyclone Arnab was said to be unwarranted by Deputy Minister Aruna Jayasekara. The message was carried in content attributed to Hiru News. In the accompanying promotional text, Hiru News was described as the most visited website in Sri Lanka and the No. 1 online news site for Sri Lankans, through which the latest Sri Lankan news updates and discussions are provided. Hiru News was also identified as a Rayynor Silva Holdings Company.",
+    "key_takeaways": [
+      "Public calm over Cyclone Arnab was encouraged.",
+      "The reassurance was issued by Deputy Minister Aruna Jayasekara.",
+      "No specific policy measures or operational details were provided."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Cyclone Arnab",
+      "Aruna Jayasekara",
+      "Disaster Communication",
+      "Governance"
+    ],
+    "status": "published",
+    "topRank": 4,
+    "editorial_approved": true
+  },
+  {
+    "id": "3b6007d887abca1adf41",
+    "url": "https://hirunews.lk/en/496393/further-evidence-hearing-in-the-bribery-case-against-s-m-chandrasena-on-december-9th",
+    "image": "assets/news_images/bebf2715e7b25cc1f789d694.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T11:16:11.944543Z",
+    "scraped_at": "2026-10-26T11:16:11.944543Z",
+    "headline_en": "Further Evidence Hearing in S. M. Chandrasena Bribery Case Set for 9 December",
+    "headline_si": "එස්. එම්. චන්ද්‍රසේනට එරෙහි අල්ලස් නඩුවේ වැඩිදුර සාක්ෂි විභාගය දෙසැම්බර් 9ට",
+    "summary_en": "Further examination of evidence in the bribery case against S. M. Chandrasena has been scheduled for 9 December.",
+    "summary_si": "එස්. එම්. චන්ද්‍රසේනට එරෙහි අල්ලස් නඩුවේ වැඩිදුර සාක්ෂි විභාගය දෙසැම්බර් 9 දිනට නියම කර ඇත.",
+    "content": "Further examination of evidence in the bribery case against S. M. Chandrasena has been scheduled for 9 December. In the scraped material, Hiru News was described as the “Most visited website in Sri Lanka” and the “No1 online news Site for Sri Lankans,” through which Sri Lankan news updates and discussions are provided. Readers were welcomed to the site, which was identified as a Rayynor Silva Holdings Company.",
+    "passive_voice_content": "Further examination of evidence in the bribery case against S. M. Chandrasena has been scheduled for 9 December. In the scraped material, Hiru News was described as the “Most visited website in Sri Lanka” and the “No1 online news Site for Sri Lankans,” through which Sri Lankan news updates and discussions are provided. Readers were welcomed to the site, which was identified as a Rayynor Silva Holdings Company.",
+    "key_takeaways": [
+      "Further evidence examination has been fixed for 9 December.",
+      "The proceedings concern a bribery case against S. M. Chandrasena.",
+      "Continued judicial scrutiny underscores public-sector accountability."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "S. M. Chandrasena",
+      "Bribery",
+      "Judiciary",
+      "Governance"
+    ],
+    "status": "published",
+    "topRank": 5,
+    "editorial_approved": true
+  },
+  {
+    "id": "b02df18bd2714aa0b677",
+    "url": "https://hirunews.lk/en/496390/heavy-rains-cause-garandiella-to-overflow-disrupting-traffic-on-the-nuwara-eliya-gampola-road",
+    "image": "assets/news_images/9c115c5415ccc58ec61f1f1f.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T11:16:11.944543Z",
+    "scraped_at": "2026-10-26T11:16:11.944543Z",
+    "headline_en": "Gerandi Ella Overflow Blocks Nuwara Eliya–Gampola Road",
+    "headline_si": "අධික වර්ෂාවෙන් ගැරඬි ඇල්ල පිටාර ගලා නුවරඑළිය–ගම්පොළ මාර්ගය අවහිර වෙයි",
+    "summary_en": "An overflow of Gerandi Ella was caused by heavy rainfall, resulting in the Nuwara Eliya–Gampola road being blocked. Road access and transport connectivity in the affected area were disrupted.",
+    "summary_si": "අධික වර්ෂාව හේතුවෙන් ගැරඬි ඇල්ල පිටාර ගැලීමෙන් නුවරඑළිය–ගම්පොළ මාර්ගය අවහිර වී ඇත. එම ප්‍රදේශයේ මාර්ග ප්‍රවේශයට සහ ප්‍රවාහන සම්බන්ධතාවට බාධා එල්ල වී තිබේ.",
+    "content": "The Nuwara Eliya–Gampola road was blocked after an overflow of Gerandi Ella was caused by heavy rainfall. The report was carried by Hiru News, which describes itself as the most visited website in Sri Lanka and the country’s No. 1 online news site, providing the latest Sri Lankan news updates and discussions. Hiru News is operated as a Rayynor Silva Holdings company.",
+    "passive_voice_content": "The Nuwara Eliya–Gampola road was blocked after an overflow of Gerandi Ella was caused by heavy rainfall. The report was carried by Hiru News, which describes itself as the most visited website in Sri Lanka and the country’s No. 1 online news site, providing the latest Sri Lankan news updates and discussions. Hiru News is operated as a Rayynor Silva Holdings company.",
+    "key_takeaways": [
+      "Transport connectivity on the Nuwara Eliya–Gampola route was disrupted.",
+      "Weather-related risks to critical road infrastructure were highlighted.",
+      "Travel and commercial movement through the affected area may face delays."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Heavy Rain",
+      "Road Closure",
+      "Nuwara Eliya",
+      "Transport Infrastructure"
+    ],
+    "status": "published",
+    "topRank": 6,
+    "editorial_approved": true
+  },
+  {
+    "id": "ea4ced47bcbcf73b518e",
+    "url": "https://hirunews.lk/en/496405/all-schools-to-close-tomorrow-due-to-bad-weather",
+    "image": "assets/news_images/b395cfd2d238c908bb1e1192.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T11:16:11.944543Z",
+    "scraped_at": "2026-10-26T11:16:11.944543Z",
+    "headline_en": "Islandwide Schools Closed Tomorrow Amid Adverse Weather",
+    "headline_si": "අයහපත් කාලගුණය හේතුවෙන් හෙට දිවයින පුරා පාසල් වසා දැමේ",
+    "summary_en": "All schools across the island will be closed tomorrow (27) as a safety measure due to the prevailing adverse weather conditions, the Ministry of Education announced. However, the practical examinations for aesthetic subjects under the G.C.E. Ordinary Level Examination will be conducted as scheduled.",
+    "summary_si": "පවතින අයහපත් කාලගුණ තත්ත්වය හේතුවෙන් ආරක්ෂිත පියවරක් ලෙස හෙට (27) දිවයින පුරා සියලු පාසල් වසා තැබෙන බව අධ්‍යාපන අමාත්‍යාංශය නිවේදනය කළේය. කෙසේ වෙතත්, අ.පො.ස. සාමාන්‍ය පෙළ විභාගයේ සෞන්දර්ය විෂයන්ට අදාළ ප්‍රායෝගික පරීක්ෂණ නියමිත පරිදි පැවැත්වේ.",
+    "content": "The closure of all schools across the island tomorrow (27) has been announced by the Ministry of Education as a safety measure due to the prevailing adverse weather conditions.\n\nHowever, it was stated by the Ministry that the practical examinations for aesthetic subjects under the G.C.E. Ordinary Level (O/L) Examination will be held as scheduled.",
+    "passive_voice_content": "The closure of all schools across the island tomorrow (27) has been announced by the Ministry of Education as a safety measure due to the prevailing adverse weather conditions.\n\nHowever, it was stated by the Ministry that the practical examinations for aesthetic subjects under the G.C.E. Ordinary Level (O/L) Examination will be held as scheduled.",
+    "key_takeaways": [
+      "Islandwide school closures were ordered as a weather-related safety measure.",
+      "Education activities will be disrupted tomorrow (27).",
+      "O/L aesthetic subject practical examinations will proceed as scheduled."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Ministry of Education",
+      "School Closures",
+      "Adverse Weather",
+      "G.C.E. O/L Examination"
+    ],
+    "status": "published",
+    "topRank": 7,
+    "editorial_approved": true
+  },
+  {
+    "id": "b9fec2293316400fe875",
+    "url": "https://hirunews.lk/en/496399/landslide-alerts-issued-for-ratnapura-and-five-other-districts",
+    "image": "assets/news_images/104bc688523762e5125c9167.jpg",
+    "source": "Hiru News (hirunews.lk)",
+    "published_at": "2026-10-26T11:16:11.944543Z",
+    "scraped_at": "2026-10-26T11:16:11.944543Z",
+    "headline_en": "Landslide Alerts Issued for Ratnapura and Five Other Districts",
+    "headline_si": "රත්නපුර ඇතුළු දිස්ත්‍රික්ක හයකට නායයෑම් අනතුරු ඇඟවීම් නිකුත් කෙරේ",
+    "summary_en": "Landslide alerts have been issued for Ratnapura and five other districts. No further details regarding the affected areas or duration of the alerts were provided in the source content.",
+    "summary_si": "රත්නපුර සහ තවත් දිස්ත්‍රික්ක පහක් සඳහා නායයෑම් අනතුරු ඇඟවීම් නිකුත් කර ඇත. බලපෑමට ලක්වන ප්‍රදේශ හෝ අනතුරු ඇඟවීම් බලපැවැත්වෙන කාලසීමාව පිළිබඳ වැඩිදුර තොරතුරු මූලාශ්‍ර අන්තර්ගතයේ සපයා නොමැත.",
+    "content": "Landslide alerts have been issued for Ratnapura and five other districts. No additional information on the specific locations, alert levels, applicable dates, or issuing authority was provided in the source content.",
+    "passive_voice_content": "Landslide alerts have been issued for Ratnapura and five other districts. No additional information on the specific locations, alert levels, applicable dates, or issuing authority was provided in the source content.",
+    "key_takeaways": [
+      "Landslide alerts cover six districts, including Ratnapura.",
+      "Heightened disaster preparedness may be required in affected areas.",
+      "Operational and transport disruptions should be monitored."
+    ],
+    "category": "Governance & Policy",
+    "tags": [
+      "Landslides",
+      "Ratnapura",
+      "Disaster Management",
+      "Public Safety"
+    ],
+    "status": "published",
+    "topRank": 8,
+    "editorial_approved": true
+  },
+  {
     "id": "3a60359944be78d67bf5",
     "url": "https://hirunews.lk/en/496388/the-case-regarding-the-sentencing-of-shashi-weerawansa-has-been-postponed-until-the-11th",
     "image": "assets/news_images/cb815373a2dc07f07673ac78.jpg",
@@ -25,7 +257,7 @@
       "Governance"
     ],
     "status": "published",
-    "topRank": 1,
+    "topRank": 9,
     "editorial_approved": true
   },
   {
@@ -54,7 +286,7 @@
       "National Security"
     ],
     "status": "published",
-    "topRank": 2,
+    "topRank": 10,
     "editorial_approved": true
   },
   {
@@ -83,7 +315,7 @@
       "Governance"
     ],
     "status": "published",
-    "topRank": 3,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -112,7 +344,7 @@
       "Law Enforcement"
     ],
     "status": "published",
-    "topRank": 4,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -141,7 +373,7 @@
       "Elections"
     ],
     "status": "published",
-    "topRank": 5,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -171,7 +403,7 @@
     "workflow_status": "scraped",
     "rewrite_status": "needs_review",
     "status": "published",
-    "topRank": 6,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -200,7 +432,7 @@
       "Maritime Security"
     ],
     "status": "published",
-    "topRank": 7,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -229,7 +461,7 @@
       "Geopolitics"
     ],
     "status": "published",
-    "topRank": 8,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -258,7 +490,7 @@
       "Mahawewa"
     ],
     "status": "published",
-    "topRank": 9,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -287,7 +519,7 @@
       "School Closures"
     ],
     "status": "published",
-    "topRank": 10,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -1215,240 +1447,6 @@
       "GovTech",
       "Digital Payments"
     ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "5d5c18910cfcad96f65d",
-    "url": "https://www.ft.lk/financial-services/Amana-Bank-opens-50th-Self-Banking-Centre-in-Grandpass/42-799164",
-    "image": "assets/news_images/9a282c000d20da4d7b626108.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "2026-10-26T06:20:00Z",
-    "scraped_at": "2026-10-26T04:58:34.442035Z",
-    "headline_en": "Amana Bank Opens 50th Self-Banking Centre in Grandpass",
-    "headline_si": "අමානා බැංකුව ග්‍රෑන්ඩ්පාස්හි 50 වැනි ස්වයං බැංකුකරණ මධ්‍යස්ථානය විවෘත කරයි",
-    "summary_en": "Amana Bank’s 50th Self Banking Centre has been opened in Grandpass, Colombo, as the Bank celebrates its 15th Anniversary. Its customer footprint has thereby been expanded to 83 locations, including 33 fully fledged branches. Around-the-clock access to cash withdrawals, cash and cheque deposits, and bill payments will be provided to businesses and residents in the area.",
-    "summary_si": "අමානා බැංකුව සිය 15 වැනි සංවත්සරය සමරන අතරතුර එහි 50 වැනි ස්වයං බැංකුකරණ මධ්‍යස්ථානය කොළඹ ග්‍රෑන්ඩ්පාස්හි විවෘත කර ඇත. ඒ අනුව, පූර්ණ පහසුකම් සහිත ශාඛා 33ක් ඇතුළුව බැංකුවේ පාරිභෝගික සේවා ස්ථාන සංඛ්‍යාව 83 දක්වා පුළුල් කර තිබේ. මුදල් ආපසු ගැනීම්, මුදල් හා චෙක්පත් තැන්පතු සහ බිල්පත් ගෙවීම් ඇතුළු අත්‍යවශ්‍ය බැංකු සේවා සඳහා පැය 24 පුරා ප්‍රවේශය ප්‍රදේශයේ ව්‍යාපාරිකයන්ට සහ පදිංචිකරුවන්ට සලසා දෙනු ඇත.",
-    "content": "Amana Bank’s customer location network has been further expanded through the opening of its 50th Self Banking Centre in Grandpass, Colombo, with another significant milestone being marked as the Bank celebrates its 15th Anniversary. The new Self Banking Centre was officially unveiled by Amana Bank Managing Director/CEO Mohamed Azmeer together with Senior Vice President - Chief Compliance Officer Ajmal Naleer, Senior Vice President - Business Banking Irshad Iqbal, Vice President – Retail Banking and Marketing Siddeeque Akbar and other senior officials of the Bank.\n\nWith this opening, Amana Bank’s footprint has been increased to 83 customer locations, including 33 fully fledged branches. The new Self Banking Centre has been located within the vibrant and commercially active Grandpass area and has been positioned to serve the diverse banking needs of the locality’s growing business and residential communities.\n\nAs Grandpass is home to a wide range of commercial establishments, entrepreneurs, traders and residents, greater convenience and 24x7 accessibility to essential banking services will be provided to customers in the area through Amana Bank’s presence. These services include cash withdrawals, cash deposits, cheque deposits and bill payments.\n\nThe significance of the milestone was highlighted by Amana Bank Managing Director/CEO Mohamed Azmeer, who said: “The Opening of our 50th Self Banking Centre during our 15th Anniversary year is a significant milestone for the Bank. Over the last five years, we have increasingly invested in our Self Banking Centre model as an effective way of extending our reach which has enabled us to bring essential banking services closer to more communities, while responding to the growing preference for convenient, self-service banking. The success of our Self Banking Centre initiative has become an important part of our commitment to making our Development Focused, People Friendly Banking model more accessible to customers and communities across the country. Grandpass is a vibrant commercial and residential hub with a strong community of businesses, entrepreneurs and residences. We are honoured to establish our 50th Self Banking Centre in Grandpass.”",
-    "passive_voice_content": "Amana Bank’s customer location network has been further expanded through the opening of its 50th Self Banking Centre in Grandpass, Colombo, with another significant milestone being marked as the Bank celebrates its 15th Anniversary. The new Self Banking Centre was officially unveiled by Amana Bank Managing Director/CEO Mohamed Azmeer together with Senior Vice President - Chief Compliance Officer Ajmal Naleer, Senior Vice President - Business Banking Irshad Iqbal, Vice President – Retail Banking and Marketing Siddeeque Akbar and other senior officials of the Bank.\n\nWith this opening, Amana Bank’s footprint has been increased to 83 customer locations, including 33 fully fledged branches. The new Self Banking Centre has been located within the vibrant and commercially active Grandpass area and has been positioned to serve the diverse banking needs of the locality’s growing business and residential communities.\n\nAs Grandpass is home to a wide range of commercial establishments, entrepreneurs, traders and residents, greater convenience and 24x7 accessibility to essential banking services will be provided to customers in the area through Amana Bank’s presence. These services include cash withdrawals, cash deposits, cheque deposits and bill payments.\n\nThe significance of the milestone was highlighted by Amana Bank Managing Director/CEO Mohamed Azmeer, who said: “The Opening of our 50th Self Banking Centre during our 15th Anniversary year is a significant milestone for the Bank. Over the last five years, we have increasingly invested in our Self Banking Centre model as an effective way of extending our reach which has enabled us to bring essential banking services closer to more communities, while responding to the growing preference for convenient, self-service banking. The success of our Self Banking Centre initiative has become an important part of our commitment to making our Development Focused, People Friendly Banking model more accessible to customers and communities across the country. Grandpass is a vibrant commercial and residential hub with a strong community of businesses, entrepreneurs and residences. We are honoured to establish our 50th Self Banking Centre in Grandpass.”",
-    "key_takeaways": [
-      "Amana Bank’s network has been expanded to 83 customer locations.",
-      "The network now includes 50 Self Banking Centres and 33 fully fledged branches.",
-      "24x7 self-service banking access has been extended to Grandpass businesses and residents."
-    ],
-    "category": "Economy & Finance",
-    "tags": [
-      "Amana Bank",
-      "Banking",
-      "Self-Service Banking",
-      "Grandpass"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "c28503c3a420f7f830e8",
-    "url": "https://www.ft.lk/financial-services/Assetline-Finance-deepens-footprint-with-64th-Branch-in-Wattala/42-799165",
-    "image": "assets/news_images/1c0d1f30f233700ef0ffca33.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "2026-10-26T06:19:00Z",
-    "scraped_at": "2026-10-26T04:58:34.442227Z",
-    "headline_en": "Assetline Finance Expands Network with 64th Branch in Wattala",
-    "headline_si": "ඇසට්ලයින් ෆිනෑන්ස් සිය 64 වැනි ශාඛාව වත්තලදී විවෘත කරයි",
-    "summary_en": "Assetline Finance PLC’s 64th branch has been opened at No. 58/1/1, Old Negombo Road, Wattala, to provide local communities and businesses with convenient access to financial services. Vehicle financing, auto loans, asset drafts, solar financing and personalised financial advice will be offered through the new facility. A nationwide network of 64 dedicated branches is now operated by AFIN, supported by more than 2,500 touchpoints maintained through the David Pieris Group.",
-    "summary_si": "ඇසට්ලයින් ෆිනෑන්ස් පීඑල්සී සමාගමේ 64 වැනි ශාඛාව වත්තල, පැරණි මීගමුව පාරේ අංක 58/1/1 දරන ස්ථානයේ විවෘත කර ඇත. වාහන මූල්‍යකරණය, මෝටර් රථ ණය, වත්කම් ඩ්‍රාෆ්ට්, සූර්ය බලශක්ති මූල්‍යකරණය සහ පුද්ගලීකරණය කළ මූල්‍ය උපදේශන සේවා එම ශාඛාව හරහා සපයනු ලැබේ. ඩේවිඩ් පීරිස් සමූහය හරහා දිවයින පුරා ස්ථාන 2,500කට අධික සේවා ස්පර්ශක ජාලයක සහායද සමඟ AFIN හි කැපවූ ශාඛා ජාලය ශාඛා 64ක් දක්වා පුළුල් කර තිබේ.",
-    "content": "Assetline Finance PLC’s (AFIN) 64th branch was recently opened at No. 58/1/1, Old Negombo Road, Wattala. The opening was officiated by Assetline Finance PLC Director and CEO Ashan Nissanka, who was pictured at right, while Chief Operating Officer Mahesh De Silva, General Manager – Channel Management Sanka Jayampathi, Head of Wattala Branch Ridma Kalansooriya, and Head of Region – Western Gampaha Region 02 Gayan Wanigasekara looked on.\n\nAnother key milestone in the company’s mission to deliver seamless, localised financial solutions to expanding urban communities was marked by the launch. The new facility has been designed as a high-convenience hub for Wattala’s residents and vibrant business community. By locating its full range of services closer to the heart of the town, customer inconvenience is expected to be minimised, while rapid access to credit and personalised financial advice is intended to be enabled.\n\nWith the latest opening, AFIN’s physical footprint has been expanded to 64 dedicated branches across Sri Lanka. This network is supported by a wide-reaching touchpoint ecosystem of over 2,500 locations through the David Pieris Group.\n\nAn extensive suite of financial solutions is offered under one roof at the Wattala branch, including vehicle financing, auto loans, asset drafts, and solar financing. Through its position on the easily accessible Old Negombo Road, priority has been given to speed, operational agility, and customer comfort, with every interaction intended to be made effortless and tailored to individual needs.\n\nThe rationale for the expansion was outlined by Director and CEO Ashan Nissanka, who said: “Our expansion into Wattala is driven by a clear priority: delivering ultimate financial convenience. As Wattala continues to grow as a major commercial center, we want to ensure that individuals and local enterprises have fast, direct access to trustworthy financial solutions. This new branch strengthens our ability to serve our customers right at their doorstep with speed and efficiency.”\n\nThe ceremonial opening was graced by senior leadership, including Chief Operating Officer Mahesh De Silva and Chief Marketing Officer Ajantha Premasiri, Chief Recovery Officer Shiran Weerasinghe, and General Manager: Channel Management Sanka Jayampathi, alongside members of the management team, loyal patrons, and local well-wishers.",
-    "passive_voice_content": "Assetline Finance PLC’s (AFIN) 64th branch was recently opened at No. 58/1/1, Old Negombo Road, Wattala. The opening was officiated by Assetline Finance PLC Director and CEO Ashan Nissanka, who was pictured at right, while Chief Operating Officer Mahesh De Silva, General Manager – Channel Management Sanka Jayampathi, Head of Wattala Branch Ridma Kalansooriya, and Head of Region – Western Gampaha Region 02 Gayan Wanigasekara looked on.\n\nAnother key milestone in the company’s mission to deliver seamless, localised financial solutions to expanding urban communities was marked by the launch. The new facility has been designed as a high-convenience hub for Wattala’s residents and vibrant business community. By locating its full range of services closer to the heart of the town, customer inconvenience is expected to be minimised, while rapid access to credit and personalised financial advice is intended to be enabled.\n\nWith the latest opening, AFIN’s physical footprint has been expanded to 64 dedicated branches across Sri Lanka. This network is supported by a wide-reaching touchpoint ecosystem of over 2,500 locations through the David Pieris Group.\n\nAn extensive suite of financial solutions is offered under one roof at the Wattala branch, including vehicle financing, auto loans, asset drafts, and solar financing. Through its position on the easily accessible Old Negombo Road, priority has been given to speed, operational agility, and customer comfort, with every interaction intended to be made effortless and tailored to individual needs.\n\nThe rationale for the expansion was outlined by Director and CEO Ashan Nissanka, who said: “Our expansion into Wattala is driven by a clear priority: delivering ultimate financial convenience. As Wattala continues to grow as a major commercial center, we want to ensure that individuals and local enterprises have fast, direct access to trustworthy financial solutions. This new branch strengthens our ability to serve our customers right at their doorstep with speed and efficiency.”\n\nThe ceremonial opening was graced by senior leadership, including Chief Operating Officer Mahesh De Silva and Chief Marketing Officer Ajantha Premasiri, Chief Recovery Officer Shiran Weerasinghe, and General Manager: Channel Management Sanka Jayampathi, alongside members of the management team, loyal patrons, and local well-wishers.",
-    "key_takeaways": [
-      "AFIN’s nationwide physical network has been expanded to 64 dedicated branches.",
-      "Wattala residents and businesses have been provided with closer access to credit and financial advice.",
-      "The branch network is supported by over 2,500 David Pieris Group touchpoints."
-    ],
-    "category": "Business & Corporate",
-    "tags": [
-      "Assetline Finance",
-      "Branch Expansion",
-      "Financial Services",
-      "Wattala"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "c471fedd53b17ff8ea50",
-    "url": "https://www.ft.lk/financial-services/AIA-Sri-Lanka-advances-Project-NOVA-journey-with-launch-of-iAcademy/42-799163",
-    "image": "assets/news_images/294df5b92240f3fd0b83c918.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "2026-10-26T06:18:00Z",
-    "scraped_at": "2026-10-26T04:58:34.442416Z",
-    "headline_en": "AIA Sri Lanka Advances Project NOVA with iAcademy Launch",
-    "headline_si": "iAcademy දියත් කරමින් AIA ශ්‍රී ලංකා Project NOVA පරිවර්තන ගමන ඉදිරියට ගෙන යයි",
-    "summary_en": "iAcademy, a next-generation digital learning platform, has been launched by AIA Sri Lanka to modernise the onboarding and training of new Wealth Planners under Project NOVA. Location-based training has been transformed into a structured, self-paced online experience featuring trilingual support, licensing guidance and real-time progress monitoring. The wider onboarding process is automatically advanced once all required modules have been successfully completed.",
-    "summary_si": "Project NOVA යටතේ නව Wealth Planners සඳහා වන බඳවාගැනීමේ හා පුහුණු ක්‍රියාවලිය නවීකරණය කිරීම සඳහා AIA ශ්‍රී ලංකා විසින් ඊළඟ පරම්පරාවේ ඩිජිටල් ඉගෙනුම් වේදිකාවක් වන iAcademy දියත් කර ඇත. ස්ථානගත පුහුණුව, ත්‍රෛභාෂා සහාය, බලපත්‍ර විභාග මාර්ගෝපදේශනය සහ තත්‍ය කාලීන ප්‍රගති අධීක්ෂණය සහිත ව්‍යුහගත, ස්වයං වේගී මාර්ගගත අත්දැකීමක් බවට පරිවර්තනය කර ඇත. අවශ්‍ය සියලුම මොඩියුල සාර්ථකව සම්පූර්ණ කළ පසු බඳවාගැනීමේ ක්‍රියාවලිය ස්වයංක්‍රීයව ඉදිරියට ගෙන යනු ලැබේ.",
-    "content": "iAcademy, a next-generation digital learning platform designed to simplify and modernise the onboarding and training experience for new Wealth Planners, has been launched by AIA Sri Lanka. Another significant milestone in the company’s transformation journey through Project NOVA has thereby been marked.\n\nThrough iAcademy, traditionally location-based training programs have been transformed into a digital experience that can be accessed online, anytime and anywhere. Training can now be completed by AIA Wealth Planners at their own pace, while a consistent and structured onboarding experience is provided.\n\nThe essential knowledge and capabilities required by new Wealth Planners to begin their careers with AIA are provided through the platform. An introduction to values and culture is included in the learning journey, together with comprehensive product knowledge, insurance fundamentals, an understanding of the Wealth Planner profession and its benefits, sales processes and best practices, and compliance and regulatory requirements.\n\nAn interactive orientation learning experience and licensing examination guidance are also included in iAcademy, with trilingual language support being provided. The platform has also been designed to extend beyond digital learning by helping to streamline the wider onboarding journey.\n\nReal-time visibility of training progress and completion status is provided through iAcademy. Upon the successful completion of all required modules, the onboarding process is automatically advanced.\n\nThe following statement was made by AIA Sri Lanka Deputy CEO /Chief Distribution Officer Upul Wijesinghe: “By harnessing technology, we are creating a faster, simpler and more accessible onboarding experience that gives our Wealth Planners greater flexibility in how they learn, while equipping them with the knowledge and confidence they need to succeed from day one.”\n\nThe following statement was made by Chief Agency Officer Dimuthu Piyasena: “Our Wealth Planners are central to the way we connect with and serve our customers. iAcademy allows us to deliver a structured and engaging learning experience while giving new Wealth Planners the flexibility to learn at their own pace.”\n\nAs AIA Sri Lanka’s transformation through Project NOVA is continued, another step towards the creation of a more digitally enabled agency force is represented by iAcademy. At the same time, new Wealth Planners are being provided with the knowledge, tools and confidence required to succeed from the outset.",
-    "passive_voice_content": "iAcademy, a next-generation digital learning platform designed to simplify and modernise the onboarding and training experience for new Wealth Planners, has been launched by AIA Sri Lanka. Another significant milestone in the company’s transformation journey through Project NOVA has thereby been marked.\n\nThrough iAcademy, traditionally location-based training programs have been transformed into a digital experience that can be accessed online, anytime and anywhere. Training can now be completed by AIA Wealth Planners at their own pace, while a consistent and structured onboarding experience is provided.\n\nThe essential knowledge and capabilities required by new Wealth Planners to begin their careers with AIA are provided through the platform. An introduction to values and culture is included in the learning journey, together with comprehensive product knowledge, insurance fundamentals, an understanding of the Wealth Planner profession and its benefits, sales processes and best practices, and compliance and regulatory requirements.\n\nAn interactive orientation learning experience and licensing examination guidance are also included in iAcademy, with trilingual language support being provided. The platform has also been designed to extend beyond digital learning by helping to streamline the wider onboarding journey.\n\nReal-time visibility of training progress and completion status is provided through iAcademy. Upon the successful completion of all required modules, the onboarding process is automatically advanced.\n\nThe following statement was made by AIA Sri Lanka Deputy CEO /Chief Distribution Officer Upul Wijesinghe: “By harnessing technology, we are creating a faster, simpler and more accessible onboarding experience that gives our Wealth Planners greater flexibility in how they learn, while equipping them with the knowledge and confidence they need to succeed from day one.”\n\nThe following statement was made by Chief Agency Officer Dimuthu Piyasena: “Our Wealth Planners are central to the way we connect with and serve our customers. iAcademy allows us to deliver a structured and engaging learning experience while giving new Wealth Planners the flexibility to learn at their own pace.”\n\nAs AIA Sri Lanka’s transformation through Project NOVA is continued, another step towards the creation of a more digitally enabled agency force is represented by iAcademy. At the same time, new Wealth Planners are being provided with the knowledge, tools and confidence required to succeed from the outset.",
-    "key_takeaways": [
-      "Wealth Planner onboarding and training have been digitised under Project NOVA.",
-      "Real-time progress tracking and automated onboarding advancement have been introduced.",
-      "Trilingual, self-paced training is expected to support a more digitally enabled agency force."
-    ],
-    "category": "Business & Corporate",
-    "tags": [
-      "AIA Sri Lanka",
-      "Project NOVA",
-      "iAcademy",
-      "Digital Transformation"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "8288afb76c9ae7c0d74a",
-    "url": "https://www.ft.lk/news/Gamani-Corea-Foundation-Memorial-Lecture-on-Sri-Lanka-s-foreign-policy-on-4-Nov-/56-799177",
-    "image": "",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "2026-10-26T05:47:00Z",
-    "scraped_at": "2026-10-26T04:58:36.103498Z",
-    "headline_en": "Gamani Corea Memorial Lecture to Explore Sri Lanka’s Foreign Policy Paradoxes",
-    "headline_si": "ශ්‍රී ලංකාවේ විදේශ ප්‍රතිපත්ති පරස්පරතා විමසන ගාමණී කොරියා අනුස්මරණ දේශනය නොවැම්බර් 4දා",
-    "summary_en": "The annual Dr. Gamani Corea Memorial Lecture 2026 will be hosted by the Gamani Corea Foundation at the Bandaranaike Centre for International Studies in Colombo 07 on 4 November 2026. Sri Lanka’s foreign policy complexities and contradictions will be examined by former Foreign Secretary Ambassador (Retd.) Ravinatha Aryasinha. Registrations are being accepted until 29 October 2026.",
-    "summary_si": "වාර්ෂික ආචාර්ය ගාමණී කොරියා අනුස්මරණ දේශනය 2026, ගාමණී කොරියා පදනම විසින් 2026 නොවැම්බර් 4දා කොළඹ 07 පිහිටි බණ්ඩාරනායක ජාත්‍යන්තර අධ්‍යයන මධ්‍යස්ථානයේදී පවත්වනු ලැබේ. ශ්‍රී ලංකාවේ විදේශ ප්‍රතිපත්තිය හැඩගස්වන සංකීර්ණතා සහ පරස්පරතා, හිටපු විදේශ ලේකම් විශ්‍රාමික තානාපති රවිනාථ ආර්යසිංහ විසින් විමසා බැලීමට නියමිතය. සහභාගිවීමට කැමති අයගෙන් 2026 ඔක්තෝබර් 29දා හෝ ඊට පෙර ලියාපදිංචි වන ලෙස ඉල්ලා ඇත.",
-    "content": "The annual Dr. Gamani Corea Memorial Lecture 2026 will be hosted by the Gamani Corea Foundation on 4 November 2026 at the Bandaranaike Centre for International Studies (BCIS), Colombo 07. The lecture, titled “The Paradoxes of Sri Lanka’s Foreign Policy in the 21st Century,” will be delivered by Ambassador (Retd.) Ravinatha Aryasinha, former Foreign Secretary of Sri Lanka and Executive Director of the Regional Centre for Strategic Studies. Board membership of the Gamani Corea Foundation, BCIS and MARGA is also held by him. The complexities and contradictions shaping Sri Lanka’s foreign policy in the 21st century will be examined during the lecture, while an opportunity will be provided for reflection on the country’s evolving role in international affairs. The program will be commenced at 4:30 p.m. Those interested in attending are being encouraged to register on or before 29 October 2026 through https://forms.gle/riTuHqKuDtojZ9TJ6.",
-    "passive_voice_content": "The annual Dr. Gamani Corea Memorial Lecture 2026 will be hosted by the Gamani Corea Foundation on 4 November 2026 at the Bandaranaike Centre for International Studies (BCIS), Colombo 07. The lecture, titled “The Paradoxes of Sri Lanka’s Foreign Policy in the 21st Century,” will be delivered by Ambassador (Retd.) Ravinatha Aryasinha, former Foreign Secretary of Sri Lanka and Executive Director of the Regional Centre for Strategic Studies. Board membership of the Gamani Corea Foundation, BCIS and MARGA is also held by him. The complexities and contradictions shaping Sri Lanka’s foreign policy in the 21st century will be examined during the lecture, while an opportunity will be provided for reflection on the country’s evolving role in international affairs. The program will be commenced at 4:30 p.m. Those interested in attending are being encouraged to register on or before 29 October 2026 through https://forms.gle/riTuHqKuDtojZ9TJ6.",
-    "key_takeaways": [
-      "Sri Lanka’s 21st-century foreign policy contradictions will be examined.",
-      "The lecture will be led by former Foreign Secretary Ravinatha Aryasinha.",
-      "Registrations will close on 29 October 2026."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "Foreign Policy",
-      "Gamani Corea Foundation",
-      "Ravinatha Aryasinha",
-      "International Affairs"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "d121ae4fb9168e73786f",
-    "url": "https://www.ft.lk/news/National-forum-to-strengthen-dialogue-in-public-service/56-799178",
-    "image": "assets/news_images/7774d5700de2729a30aa8bbb.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "2026-10-26T05:47:00Z",
-    "scraped_at": "2026-10-26T04:58:36.103646Z",
-    "headline_en": "National Forum Launched to Strengthen Public Service Dialogue",
-    "headline_si": "රාජ්‍ය සේවා සංවාදය ශක්තිමත් කිරීමට ජාතික සංසදයක් දියත් කෙරේ",
-    "summary_en": "The National Public Service Dialogue Forum was launched last week by the Public Administration, Provincial Councils and Local Government Ministry in partnership with the International Labour Organisation. A three-tier framework was established for workplace concerns and grievances to be addressed at workplace, sectoral and national levels. Improved accountability, institutional resilience, social cohesion and uninterrupted public service delivery are expected to be supported through the initiative.",
-    "summary_si": "රාජ්‍ය පරිපාලන, පළාත් සභා සහ පළාත් පාලන අමාත්‍යාංශය හා ජාත්‍යන්තර කම්කරු සංවිධානය එක්ව ජාතික රාජ්‍ය සේවා සංවාද සංසදය පසුගිය සතියේ දියත් කරන ලදී. සේවා ස්ථාන ගැටලු සහ දුක්ගැනවිලි සේවා ස්ථාන, ආංශික සහ ජාතික මට්ටම්වලදී විසඳීම සඳහා ත්‍රි-මට්ටම් රාමුවක් ස්ථාපිත කර ඇත. මෙම වැඩපිළිවෙළ මඟින් වගවීම, ආයතනික ප්‍රත්‍යස්ථතාව, සමාජ ඒකාබද්ධතාව සහ බාධාවකින් තොර රාජ්‍ය සේවා සැපයීම ශක්තිමත් කිරීමට අපේක්ෂා කෙරේ.",
-    "content": "The Declaration on Social Dialogue in the Public Service was handed over to Secretary to the President Dr. Nandika Sanath Kumanayake by Public Administration, Provincial Councils and Local Government Ministry Secretary S. Alokabandara, pictured on the left, at the launch of the National Public Service Forum.\n\nThe National Public Service Dialogue Forum was launched last week by the Public Administration, Provincial Councils and Local Government Ministry in partnership with the International Labour Organisation (ILO). Through the Forum, a formal and structured space is provided for government administrators and public service employees across the country to discuss workplace issues and concerns.\n\nWorkplace challenges and grievances are intended to be addressed through dialogue and joint problem-solving. Through improved workplace relations and strengthened accountability, a contribution is expected to be made towards a more responsive and resilient public service.\n\nThe framework is structured across three levels—workplace, sectoral and national—so that issues can be addressed at the appropriate level. Issues within individual institutions are dealt with by workplace forums, while matters that cannot be resolved at that level can be referred to sectoral forums. Issues affecting more than one sector or requiring action by central government authorities are addressed by the National forum.\n\nThe following statement was made by Public Administration, Provincial Councils and Local Government Ministry Secretary S. Alokabandara: “The National Public Service Dialogue Forum gives administrators and employees a permanent space to raise concerns early and resolve them together, so that services to citizens continue without interruption. It can also help ensure that reforms, including digitalization and training, take account of the experience of the people responsible for delivering public services.”\n\nIt has already been demonstrated through established workplace forums how dialogue was used to address challenges ranging from promotion processes to workplace safety, while ways to strengthen organizational performance and improve service delivery were identified. Building on this experience, contributions to peacebuilding, strengthened institutional resilience and social cohesion, and improved overall public service delivery are being sought through the national forum.\n\nThe following statement was made by United Nations Resident Coordinator in Sri Lanka Marc-André Franche: “Public services are where people experience government in their everyday lives. Strengthening those services also means strengthening trust between people and institutions.”",
-    "passive_voice_content": "The Declaration on Social Dialogue in the Public Service was handed over to Secretary to the President Dr. Nandika Sanath Kumanayake by Public Administration, Provincial Councils and Local Government Ministry Secretary S. Alokabandara, pictured on the left, at the launch of the National Public Service Forum.\n\nThe National Public Service Dialogue Forum was launched last week by the Public Administration, Provincial Councils and Local Government Ministry in partnership with the International Labour Organisation (ILO). Through the Forum, a formal and structured space is provided for government administrators and public service employees across the country to discuss workplace issues and concerns.\n\nWorkplace challenges and grievances are intended to be addressed through dialogue and joint problem-solving. Through improved workplace relations and strengthened accountability, a contribution is expected to be made towards a more responsive and resilient public service.\n\nThe framework is structured across three levels—workplace, sectoral and national—so that issues can be addressed at the appropriate level. Issues within individual institutions are dealt with by workplace forums, while matters that cannot be resolved at that level can be referred to sectoral forums. Issues affecting more than one sector or requiring action by central government authorities are addressed by the National forum.\n\nThe following statement was made by Public Administration, Provincial Councils and Local Government Ministry Secretary S. Alokabandara: “The National Public Service Dialogue Forum gives administrators and employees a permanent space to raise concerns early and resolve them together, so that services to citizens continue without interruption. It can also help ensure that reforms, including digitalization and training, take account of the experience of the people responsible for delivering public services.”\n\nIt has already been demonstrated through established workplace forums how dialogue was used to address challenges ranging from promotion processes to workplace safety, while ways to strengthen organizational performance and improve service delivery were identified. Building on this experience, contributions to peacebuilding, strengthened institutional resilience and social cohesion, and improved overall public service delivery are being sought through the national forum.\n\nThe following statement was made by United Nations Resident Coordinator in Sri Lanka Marc-André Franche: “Public services are where people experience government in their everyday lives. Strengthening those services also means strengthening trust between people and institutions.”",
-    "key_takeaways": [
-      "A permanent mechanism was created for public service workplace dialogue.",
-      "Issues will be escalated through workplace, sectoral and national forums.",
-      "Accountability, institutional resilience and service continuity are expected to improve."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "Public Service",
-      "Public Administration",
-      "ILO",
-      "Social Dialogue"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "2ad63ebe3a00cfaeb968",
-    "url": "https://hirunews.lk/en/496334/error-error-code400messagerequired-texterrors-messagerequired-textdomainglobalreasonrequired-details-typetype-googleapis-com-google-rpc-badrequestfieldviolations-fieldqdescriptionno-text-queries-provided",
-    "image": "assets/news_images/1da0af4291480f4e323a48ad.jpg",
-    "source": "Hiru News (hirunews.lk)",
-    "published_at": "2026-10-26T04:58:46.861994Z",
-    "scraped_at": "2026-10-26T04:58:46.861994Z",
-    "headline_en": "Rainy weather drives vegetable prices higher as festive season approaches",
-    "headline_si": "ශ්‍රී ලංකා පුවත්: Rainy weather drives vegetable prices higher as festive season approaches",
-    "summary_en": "Rainy weather drives vegetable prices higher as festive season approaches Hiru News Most visited website in Sri Lanka,Sri Lanka Latest news updates from Sri Lanka. Sri Lanka News updates and discussions. Welcome to the No1 online news Site for Sri Lankans. A Rayynor Silva Holdings Company",
-    "summary_si": "මෙම පුවත Daily FT වෙබ් අඩවියෙන් ලබා ගන්නා ලදී. Rainy weather drives vegetable prices higher as festive season approaches Hiru News Most visited website in Sri Lanka,Sri Lanka Latest news updates from Sri Lanka. Sri Lanka News updates and discussions. Welcome to the No1 online news Site for Sri Lankans. A Rayynor Silva Holdings Company",
-    "content": "Prices of several upcountry and low-country vegetables have increased amid prevailing rainy weather, with traders warning that prices could rise further as the festive season approaches.\n\nThe wholesale price of tomatoes, which ranged between Rs. 350 and Rs. 400 per kilogram last week, has climbed to between Rs. 600 and Rs. 650.\n\nThe price of capsicum has also increased from Rs. 250 to between Rs. 400 and Rs. 450 per kilogram, while the wholesale price of cabbage has risen from Rs. 150 to Rs. 350.\n\nFormer Chief Organiser of the Manning Market Traders Union Anil Indrajith said adverse weather conditions were the main reason for the recent price increases and warned that prices could continue to rise in the coming weeks.\n\n“Vegetable prices have increased these days. The main reason for this is the prevailing weather conditions in the country. Tomatoes are currently the most expensive, with wholesale prices reaching around Rs. 600 per kilogram,” he said.\n\nIndrajith said beans were selling at between Rs. 400 and Rs. 500 per kilogram, while carrots were priced between Rs. 200 and Rs. 250. Leeks were selling at Rs. 200 per kilogram, and green chillies ranged between Rs. 350 and Rs. 400.\n\nPrices of low-country vegetables have also increased, with snake gourd selling at around Rs. 400 per kilogram and ridge gourd priced between Rs. 200 and Rs. 250. A kilogram of pumpkin was selling for more than Rs. 200.\n\nOnly vegetables such as ash gourd and cucumber remained available at prices below Rs. 100 per kilogram, he said.\n\n“Overall, vegetable prices have increased compared to last month. Generally, vegetable prices tend to rise every year as December approaches. Therefore, a price reduction cannot be expected in the coming period, and prices could increase further,” Indrajith added.\n\nMeanwhile, All-Island Poultry Association Chairman Ajith Gunasekara said market purchases of eggs and chicken had declined by around 20%, reflecting reduced consumer purchasing power amid prevailing economic conditions.\n\nHe noted that the production cost of an egg ranged between Rs. 30 and Rs. 32, while farms were currently selling eggs at similar prices, leaving producers with little opportunity to make a profit.\n\nGunasekara also said chicken consumption had declined, with prices falling amid weaker demand.\n\n“Consumers’ purchasing power has declined at present. When we conduct market surveys, we can see that purchases of eggs and chicken have decreased. We observe that consumption in the market has declined by around 20%,” he said.\n\n“The production cost of an egg is generally between Rs. 30 and Rs. 32. However, farms are currently releasing eggs at prices ranging between Rs. 30 and Rs. 32 as well. Therefore, producers are not in a profitable position,” he added.\n\nDespite the decline in demand, Gunasekara said poultry production was continuing without interruption and that steps were being taken to maintain adequate supplies of eggs and chicken throughout the festive season without shortages.\n\nThe association expressed hope that market conditions would return to normal with the start of the festive season after November 15.",
-    "passive_voice_content": "Prices of several upcountry and low-country vegetables have increased amid prevailing rainy weather, with traders warning that prices could rise further as the festive season approaches.\n\nThe wholesale price of tomatoes, which ranged between Rs. 350 and Rs. 400 per kilogram last week, has climbed to between Rs. 600 and Rs. 650.\n\nThe price of capsicum has also increased from Rs. 250 to between Rs. 400 and Rs. 450 per kilogram, while the wholesale price of cabbage has risen from Rs. 150 to Rs. 350.\n\nFormer Chief Organiser of the Manning Market Traders Union Anil Indrajith said adverse weather conditions were the main reason for the recent price increases and warned that prices could continue to rise in the coming weeks.\n\n“Vegetable prices have increased these days. The main reason for this is the prevailing weather conditions in the country. Tomatoes are currently the most expensive, with wholesale prices reaching around Rs. 600 per kilogram,” he said.\n\nIndrajith said beans were selling at between Rs. 400 and Rs. 500 per kilogram, while carrots were priced between Rs. 200 and Rs. 250. Leeks were selling at Rs. 200 per kilogram, and green chillies ranged between Rs. 350 and Rs. 400.\n\nPrices of low-country vegetables have also increased, with snake gourd selling at around Rs. 400 per kilogram and ridge gourd priced between Rs. 200 and Rs. 250. A kilogram of pumpkin was selling for more than Rs. 200.\n\nOnly vegetables such as ash gourd and cucumber remained available at prices below Rs. 100 per kilogram, he said.\n\n“Overall, vegetable prices have increased compared to last month. Generally, vegetable prices tend to rise every year as December approaches. Therefore, a price reduction cannot be expected in the coming period, and prices could increase further,” Indrajith added.\n\nMeanwhile, All-Island Poultry Association Chairman Ajith Gunasekara said market purchases of eggs and chicken had declined by around 20%, reflecting reduced consumer purchasing power amid prevailing economic conditions.\n\nHe noted that the production cost of an egg ranged between Rs. 30 and Rs. 32, while farms were currently selling eggs at similar prices, leaving producers with little opportunity to make a profit.\n\nGunasekara also said chicken consumption had declined, with prices falling amid weaker demand.\n\n“Consumers’ purchasing power has declined at present. When we conduct market surveys, we can see that purchases of eggs and chicken have decreased. We observe that consumption in the market has declined by around 20%,” he said.\n\n“The production cost of an egg is generally between Rs. 30 and Rs. 32. However, farms are currently releasing eggs at prices ranging between Rs. 30 and Rs. 32 as well. Therefore, producers are not in a profitable position,” he added.\n\nDespite the decline in demand, Gunasekara said poultry production was continuing without interruption and that steps were being taken to maintain adequate supplies of eggs and chicken throughout the festive season without shortages.\n\nThe association expressed hope that market conditions would return to normal with the start of the festive season after November 15.",
-    "key_takeaways": [
-      "Extracted directly from Daily FT feed.",
-      "Categorized under Business & Governance.",
-      "Prepared for Executive Briefing."
-    ],
-    "category": "business-news",
-    "tags": [
-      "Daily FT",
-      "Sri Lanka",
-      "Business"
-    ],
-    "workflow_status": "scraped",
-    "rewrite_status": "needs_review",
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "39420a1931f80c3be41c",
-    "url": "https://www.ft.lk/news/Monks-pause-protest-seeking-Gnanasara-release/56-799175",
-    "image": "assets/news_images/daad04df30f47121d746c132.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "2026-10-26T06:44:00Z",
-    "scraped_at": "2026-10-26T03:53:20.125355Z",
-    "headline_en": "Monks Pause Protest Seeking Gnanasara Thero’s Release",
-    "headline_si": "ඥානසාර හිමි නිදහස් කරන ලෙස ඉල්ලා පැවති භික්ෂු විරෝධතාව තාවකාලිකව නවතී",
-    "summary_en": "The satyagraha at Viharamahadevi Park demanding the release of Bodu Bala Sena General Secretary Ven. Galagodaatte Gnanasara Thero was temporarily suspended yesterday. The decision was taken after information was received that the Mahanayake Theros of the Three Nikayas were intervening to secure his release through legal means and dialogue with the Government. Monastic discipline, unity and harmony were urged to be upheld amid warnings that the protests were being exploited to damage the reputation of the Buddhist clergy.",
-    "summary_si": "බොදු බල සේනා මහලේකම් පූජ්‍ය ගලගොඩඅත්තේ ඥානසාර හිමි නිදහස් කරන ලෙස ඉල්ලා විහාරමහාදේවි උද්‍යානයේ පැවති සත්‍යග්‍රහය ඊයේ තාවකාලිකව අත්හිටුවන ලදී. ත්‍රෛනිකායික මහානායක හිමිවරුන් නීතිමය ක්‍රමවේද සහ රජය සමඟ සංවාදය ඔස්සේ මෙම ගැටලුව විසඳීමට මැදිහත් වන බවට තොරතුරු ලැබීමෙන් පසු මෙම තීරණය ගෙන තිබේ. විරෝධතා භාවිත කරමින් බෞද්ධ භික්ෂු ප්‍රතිරූපයට හානි කිරීමට ඇතැම් කණ්ඩායම් උත්සාහ කරන බවට අනතුරු අඟවමින් විනය, සමගිය සහ සාමූහිකත්වය ආරක්ෂා කරන ලෙස මහා සංඝරත්නයෙන් ඉල්ලා ඇත.",
-    "content": "On 15 October, the Presidential Secretariat was surrounded by protesting monks, after which the protest was moved to Viharamahadevi Park, where it was temporarily paused yesterday.\n\nThe satyagraha at Viharamahadevi Park in Colombo, through which the release of Bodu Bala Sena General Secretary Ven. Galagodaatte Gnanasara Thero was demanded, was temporarily suspended yesterday, according to Ven. Ulapane Sumangala Thero.\n\nThe media was addressed yesterday afternoon by Ven. Sumangala Thero alongside the Buddhist monks participating in the satyagraha. It was stated that the decision had been taken following information that intervention was being made by the Mahanayake Theros of the Three Nikayas to secure the release of Ven. Gnanasara Thero.\n\nA call was issued yesterday by the Mahanayake Theros of the Three Nikayas for Buddhist monks to uphold monastic discipline and harmony. A warning was also issued that ongoing protests demanding a presidential pardon for Ven. Galagodaatte Gnanasara Thero were being exploited by certain groups to damage the reputation of the Buddhist clergy locally and internationally.\n\nIn a special statement, it was said by the senior prelates that intervention had already been made and discussions had been initiated with the Government for the matter to be resolved through legal means and dialogue.\n\nIt was further stated that the respect accorded to Buddhist monks within Sri Lanka’s religious and social context was dependent on the preservation of monastic discipline, or Vinaya, and spiritual restraint.\n\nMembers of the Maha Sangha, the order of Buddhist monks, across all Nikayas were called upon by the prelates to maintain unity and harmony within the clergy. They were also urged to ensure that disputes were resolved in accordance with the Dhamma and Vinaya and that conduct strengthening public confidence and faith was maintained.\n\nThe statement was issued by Siam Nikaya Malwathu Chapter Mahanayake Most Ven. Tibbatuwawe Sri Siddhartha Sumangala Thero, Siam Nikaya Asgiri Chapter Mahanayake Most Ven. Warakagoda Sri Pannananda Dhammasiddhi Thero, Sri Lanka Amarapura Nikaya Supreme Mahanayake Most Ven. Karagoda Uyangoda Maithree Moorthi Thero and Sri Lanka Ramanna Nikaya Mahanayake Most Ven. Makulawewa Sri Wimala Thero.",
-    "passive_voice_content": "On 15 October, the Presidential Secretariat was surrounded by protesting monks, after which the protest was moved to Viharamahadevi Park, where it was temporarily paused yesterday.\n\nThe satyagraha at Viharamahadevi Park in Colombo, through which the release of Bodu Bala Sena General Secretary Ven. Galagodaatte Gnanasara Thero was demanded, was temporarily suspended yesterday, according to Ven. Ulapane Sumangala Thero.\n\nThe media was addressed yesterday afternoon by Ven. Sumangala Thero alongside the Buddhist monks participating in the satyagraha. It was stated that the decision had been taken following information that intervention was being made by the Mahanayake Theros of the Three Nikayas to secure the release of Ven. Gnanasara Thero.\n\nA call was issued yesterday by the Mahanayake Theros of the Three Nikayas for Buddhist monks to uphold monastic discipline and harmony. A warning was also issued that ongoing protests demanding a presidential pardon for Ven. Galagodaatte Gnanasara Thero were being exploited by certain groups to damage the reputation of the Buddhist clergy locally and internationally.\n\nIn a special statement, it was said by the senior prelates that intervention had already been made and discussions had been initiated with the Government for the matter to be resolved through legal means and dialogue.\n\nIt was further stated that the respect accorded to Buddhist monks within Sri Lanka’s religious and social context was dependent on the preservation of monastic discipline, or Vinaya, and spiritual restraint.\n\nMembers of the Maha Sangha, the order of Buddhist monks, across all Nikayas were called upon by the prelates to maintain unity and harmony within the clergy. They were also urged to ensure that disputes were resolved in accordance with the Dhamma and Vinaya and that conduct strengthening public confidence and faith was maintained.\n\nThe statement was issued by Siam Nikaya Malwathu Chapter Mahanayake Most Ven. Tibbatuwawe Sri Siddhartha Sumangala Thero, Siam Nikaya Asgiri Chapter Mahanayake Most Ven. Warakagoda Sri Pannananda Dhammasiddhi Thero, Sri Lanka Amarapura Nikaya Supreme Mahanayake Most Ven. Karagoda Uyangoda Maithree Moorthi Thero and Sri Lanka Ramanna Nikaya Mahanayake Most Ven. Makulawewa Sri Wimala Thero.",
-    "key_takeaways": [
-      "The Colombo satyagraha was temporarily suspended following intervention by senior Buddhist prelates.",
-      "Discussions with the Government were initiated to pursue a resolution through legal means and dialogue.",
-      "Monastic discipline and unity were urged to protect public confidence and the clergy’s reputation."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "Bodu Bala Sena",
-      "Gnanasara Thero",
-      "Presidential Pardon",
-      "Maha Sangha"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "e772375ee828f713bc94",
-    "url": "https://www.ft.lk/front-page/British-Airways-celebrates-return-to-Sri-Lanka-with-special-fares/44-799174",
-    "image": "assets/news_images/055afc71e937c072f97789c6.jpg",
-    "source": "Daily FT (ft.lk)",
-    "published_at": "2026-10-26T06:39:00Z",
-    "scraped_at": "2026-10-26T03:53:15.953888Z",
-    "headline_en": "British Airways celebrates return to Sri Lanka with special fares | Daily FT",
-    "headline_si": "ශ්‍රී ලංකා පුවත්: British Airways celebrates return to Sri Lanka with special fares | Daily FT",
-    "summary_en": "British Airways on Saturday marked a significant milestone with the arrival of its first flight into Colombo, reconnecting Sri Lanka with the UK for the first time in over 11 years.",
-    "summary_si": "මෙම පුවත Daily FT වෙබ් අඩවියෙන් ලබා ගන්නා ලදී. British Airways on Saturday marked a significant milestone with the arrival of its first flight into Colombo, reconnecting Sri Lanka with the UK for the first time in over 11 years.",
-    "content": "British Airways Captain Terry Smith and Hayleys Chairman and Chief Executive Mohan Pandithage cut a cake to celebrate the resumption of direct services on Saturday. British High Commissioner Andrew Patrick, British Airways General Manager – South Asia David Wright, Civil Aviation Authority Director General and CEO Capt. Daminda Rambukwella, British Airways Senior First Officer Pradeeb Vimalraj, IAG Cargo Regional Commercial Manager – Asia Pacific, India and Middle East Ankush Chawla and Hayleys Advantis Managing Director Ruwan Waidyaratne are among those who look on\n\nBritish Airways General Manager – South Asia David Wright\n\nBritish Airways Captain Terry Smith (third from left), Senior First Officer Preveen Moorthy (left), and IAG Cargo Regional Commercial Manager – Asia Pacific, India and Middle East Ankush Chawla (right)\n\nThe crew of the first British Airways flight\n\nBritish Airways on Saturday marked a significant milestone with the arrival of its first flight into Colombo, reconnecting Sri Lanka with the UK for the first time in over 11 years. The inaugural flight, operated by Sri Lankan crew, was welcomed by traditional dancers and drummers on arrival to commemorate the occasion. The new route strengthens links between the two countries, supporting tourism, trade, and business travel. The thrice-weekly service will be operated by British Airways’ Boeing 777 fleet, featuring Club World (business class), World Traveller Plus (premium economy), and World Traveller (economy) cabins. To celebrate the launch, British Airways is offering special return fares with savings of up to 10% in World Traveller, starting from Rs. 255,000 for travel from Colombo to London Gatwick. British Airways Chief Planning and Strategy Officer Neil Chernoff in a statement said the resumption marks a special moment for British Airways, as it meant bringing Sri Lanka back to its global network and giving customers greater choice when planning their next getaway. “Sri Lanka is renowned for its warmth, rich culture, and hospitality, and we’re delighted to be flying there once again. To celebrate, we’re offering special fares and look forward to welcoming customers on board,” he added. Noting that Sri Lanka is one of the first re-entries in recent months, British Airways General Manager – South Asia David Wright during a media interaction post-first flight on Saturday stressed that Sri Lanka has always been a really important market for British Airways. “Between the UK and Sri Lanka, we have deep cultural and historic links, and so it is a market that we continue to keep an eye on. And obviously, over the last few years, we have seen that economic growth and tourism rebound post-COVID, and we continue to review our network, and we felt that the time was right to reintroduce our services from this winter,” he told journalists in Colombo. Wright said that a heart of a business case like this is very much tourism from the UK coming into the incredible island of Sri Lanka and everything it has to offer. “But we have also seen really positive demand across sectors: tourism going into the UK, but also across business sectors and also people visiting communities and friends and family as well.” He described the all-inclusive offers starting from Rs. 255,000 as “compelling.” The Boeing 777 has a capacity of over 300 seats and Wright noted that British Airways has been really pleased with the response. The special fares in World Traveller (economy) on return flights from Colombo to Gatwick, available for booking until 15 November 2026, for outbound travel between 20 October and 30 November 2026 and inbound travel between 26 October and 10 December 2026. British Airways General Sales Agents (GSA) Hayleys Advantis Ltd., Managing Director Ruwan Waidyaratne said: “The commencement of British Airways’ flight operations to Colombo marks a significant milestone in enhancing air connectivity between Sri Lanka and the UK. The service will offer customers greater travel options while supporting tourism and business travel between the two markets, and we look forward to continuing our partnership with British Airways.” He said Hayleys’ relationship with British Airways dates back to 1995, and it is delighted to welcome the airline back to Sri Lanka as this longstanding partnership enters a new chapter. Waidyaratne stressed that improved connectivity between Sri Lanka and the UK creates opportunities that extends beyond travel, supporting tourism, stimulating economic activities, and strengthening ties between the two countries. “We look forward to seeing this connection grow and deliver lasting value for travellers, the tourism industry, and Sri Lanka as a whole,” he added. Senior First Officer Pradeeb Vimalraj, who operated the airline’s inaugural flight in a statement said: “As a Sri Lankan, born and raised in Jaffna in my early years, bringing our first flight back home after more than a decade was particularly special. The warm welcome we received made it even more memorable, and I am so proud to be part of this new chapter connecting Sri Lanka and the UK.” British Airways also revealed that searches on ba.com for flights from London to Colombo have increased by more than 10% in the past week, reflecting continued interest in the destination. British Airways operates one of the largest and the most modern fleets of any airline in the world and is transforming the operations with a £ 7 billion investment plan. Departure from Gatwick is at 1640 hours on Mondays, Wednesdays, and Fridays and arrival in Colombo at 0935 hours the next day. Departure from Colombo is 1035 hours Tuesdays, Thursdays, and Saturdays with arrival at Gatwick at 1700 hours. British Airways said the new service gives customers travelling from the UK direct access to one of South Asia’s most captivating destinations. From golden beaches and ancient cultural sites to wildlife reserves, tea country and a thriving food scene, Sri Lanka offers a diverse range of experiences for travellers to discover.",
-    "passive_voice_content": "British Airways Captain Terry Smith and Hayleys Chairman and Chief Executive Mohan Pandithage cut a cake to celebrate the resumption of direct services on Saturday. British High Commissioner Andrew Patrick, British Airways General Manager – South Asia David Wright, Civil Aviation Authority Director General and CEO Capt. Daminda Rambukwella, British Airways Senior First Officer Pradeeb Vimalraj, IAG Cargo Regional Commercial Manager – Asia Pacific, India and Middle East Ankush Chawla and Hayleys Advantis Managing Director Ruwan Waidyaratne are among those who look on\n\nBritish Airways General Manager – South Asia David Wright\n\nBritish Airways Captain Terry Smith (third from left), Senior First Officer Preveen Moorthy (left), and IAG Cargo Regional Commercial Manager – Asia Pacific, India and Middle East Ankush Chawla (right)\n\nThe crew of the first British Airways flight\n\nBritish Airways on Saturday marked a significant milestone with the arrival of its first flight into Colombo, reconnecting Sri Lanka with the UK for the first time in over 11 years. The inaugural flight, operated by Sri Lankan crew, was welcomed by traditional dancers and drummers on arrival to commemorate the occasion. The new route strengthens links between the two countries, supporting tourism, trade, and business travel. The thrice-weekly service will be operated by British Airways’ Boeing 777 fleet, featuring Club World (business class), World Traveller Plus (premium economy), and World Traveller (economy) cabins. To celebrate the launch, British Airways is offering special return fares with savings of up to 10% in World Traveller, starting from Rs. 255,000 for travel from Colombo to London Gatwick. British Airways Chief Planning and Strategy Officer Neil Chernoff in a statement said the resumption marks a special moment for British Airways, as it meant bringing Sri Lanka back to its global network and giving customers greater choice when planning their next getaway. “Sri Lanka is renowned for its warmth, rich culture, and hospitality, and we’re delighted to be flying there once again. To celebrate, we’re offering special fares and look forward to welcoming customers on board,” he added. Noting that Sri Lanka is one of the first re-entries in recent months, British Airways General Manager – South Asia David Wright during a media interaction post-first flight on Saturday stressed that Sri Lanka has always been a really important market for British Airways. “Between the UK and Sri Lanka, we have deep cultural and historic links, and so it is a market that we continue to keep an eye on. And obviously, over the last few years, we have seen that economic growth and tourism rebound post-COVID, and we continue to review our network, and we felt that the time was right to reintroduce our services from this winter,” he told journalists in Colombo. Wright said that a heart of a business case like this is very much tourism from the UK coming into the incredible island of Sri Lanka and everything it has to offer. “But we have also seen really positive demand across sectors: tourism going into the UK, but also across business sectors and also people visiting communities and friends and family as well.” He described the all-inclusive offers starting from Rs. 255,000 as “compelling.” The Boeing 777 has a capacity of over 300 seats and Wright noted that British Airways has been really pleased with the response. The special fares in World Traveller (economy) on return flights from Colombo to Gatwick, available for booking until 15 November 2026, for outbound travel between 20 October and 30 November 2026 and inbound travel between 26 October and 10 December 2026. British Airways General Sales Agents (GSA) Hayleys Advantis Ltd., Managing Director Ruwan Waidyaratne said: “The commencement of British Airways’ flight operations to Colombo marks a significant milestone in enhancing air connectivity between Sri Lanka and the UK. The service will offer customers greater travel options while supporting tourism and business travel between the two markets, and we look forward to continuing our partnership with British Airways.” He said Hayleys’ relationship with British Airways dates back to 1995, and it is delighted to welcome the airline back to Sri Lanka as this longstanding partnership enters a new chapter. Waidyaratne stressed that improved connectivity between Sri Lanka and the UK creates opportunities that extends beyond travel, supporting tourism, stimulating economic activities, and strengthening ties between the two countries. “We look forward to seeing this connection grow and deliver lasting value for travellers, the tourism industry, and Sri Lanka as a whole,” he added. Senior First Officer Pradeeb Vimalraj, who operated the airline’s inaugural flight in a statement said: “As a Sri Lankan, born and raised in Jaffna in my early years, bringing our first flight back home after more than a decade was particularly special. The warm welcome we received made it even more memorable, and I am so proud to be part of this new chapter connecting Sri Lanka and the UK.” British Airways also revealed that searches on ba.com for flights from London to Colombo have increased by more than 10% in the past week, reflecting continued interest in the destination. British Airways operates one of the largest and the most modern fleets of any airline in the world and is transforming the operations with a £ 7 billion investment plan. Departure from Gatwick is at 1640 hours on Mondays, Wednesdays, and Fridays and arrival in Colombo at 0935 hours the next day. Departure from Colombo is 1035 hours Tuesdays, Thursdays, and Saturdays with arrival at Gatwick at 1700 hours. British Airways said the new service gives customers travelling from the UK direct access to one of South Asia’s most captivating destinations. From golden beaches and ancient cultural sites to wildlife reserves, tea country and a thriving food scene, Sri Lanka offers a diverse range of experiences for travellers to discover.",
-    "key_takeaways": [
-      "Extracted directly from Daily FT feed.",
-      "Categorized under Business & Governance.",
-      "Prepared for Executive Briefing."
-    ],
-    "category": "travel-tourism",
-    "tags": [
-      "Daily FT",
-      "Sri Lanka",
-      "Business"
-    ],
-    "workflow_status": "scraped",
-    "rewrite_status": "needs_review",
     "status": "published",
     "topRank": null,
     "editorial_approved": true
