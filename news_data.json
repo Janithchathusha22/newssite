@@ -1,5 +1,245 @@
 [
   {
+    "id": "30d4673a5ccf350d918c",
+    "url": "https://adaderana.lk/news/250596",
+    "image": "assets/news_images/0d51c71bbca9cdbc43ee1854.jpg",
+    "source": "Ada Derana (adaderana.lk)",
+    "published_at": "2026-10-26T16:45:22.175000Z",
+    "scraped_at": "2026-10-26T16:53:07.619103Z",
+    "headline_en": "Anthropic warns of 'catastrophic risk' to humankind ahead of blockbuster share listing",
+    "headline_si": "ශ්‍රී ලංකා පුවත්: Anthropic warns of 'catastrophic risk' to humankind ahead of blockbuster share listing",
+    "summary_en": "Anthropic warns of 'catastrophic risk' to humankind ahead of blockbuster share listing",
+    "summary_si": "මෙම පුවත Daily FT වෙබ් අඩවියෙන් ලබා ගන්නා ලදී. Anthropic warns of 'catastrophic risk' to humankind ahead of blockbuster share listing",
+    "content": "Anthropic has warned artificial intelligence (AI) could pose \"catastrophic or existential risks to humanity\" as it unveiled details of its planned blockbuster stock market listing in the US.\n\nThe firm's valuation is expected to exceed that of SpaceX, which was the biggest-ever listing at an initial valuation of about $1.8 trillion in the summer.\n\nAnthropic has not yet disclosed the number of shares to be released, their price range, or a date for the listing.\n\nThe Claude chatbot developer reported $16.3bn (£12.2bn) of revenue in the first half of the year, with losses of more than $80.7bn.\n\nAnthropic, which said it will list on the Nasdaq under the symbol ANT, will be the first fully AI-focused company to go public, making it a test case for the future of the technology.\n\nIn a filing ahead of its listing, Anthropic said concerns had been raised by policymakers, regulators and researchers as well as by people within its organisation that AI systems posed a significant risk to humanity.\n\nIt said advanced AI systems \"could, if not developed, deployed, and operated with appropriate safeguards, oversight, and security measures, pose catastrophic or existential risks to humanity, particularly if such systems were misused, replicated, weaponised, or allowed to operate with a high degree of autonomy\".\n\nAnthropic was founded five years ago by chief executive Dario Amodei, his sister Daniela Amodei and five others, and announced its intention to go public in June.\n\nIts main rival, OpenAI, quickly followed suit. That listing is now expected to occur early next year, according to a person familiar with OpenAI's plans.\n\nThose announcements were followed by a wave of cyber-security and other technological breaches involving their AI agents - bots designed to operate somewhat autonomously.\n\nCurrent and former staff of both companies also warned AI technology was being developed without the ability to protect humanity from possible future harms enacted by AI tools.\n\nAs Anthropic revealed its stock debut plans on Monday, the owners of the rights to Elvis Presley's music sued the AI firm accusing it of using hundreds of the rock-and-roll star's songs to train its chatbot Claude.\n\nIn Anthropic's new documents, it reiterated promises it has made in the past to develop AI in a way that is beneficial to people, while at the same time warning investors of its dangers.\n\nAnthropic detailed losses in its financial filings that exceeded its revenue for the first half of the year, but said it would often make forward investments \"that may seem irresponsibly large at first glance\".\n\n\"In general, we will aim to be bold but sane, and to win trust with a track record of successful bets,\" the tech giant said.\n\nIts success depends largely on its ability to develop the most advanced AI models, Anthropic said, adding, \"any failure to do so could adversely affect our business\".\n\nAcross about 90 pages detailing possible risk factors, Anthropic set out the potential threats to its ability to safely and competitively develop AI.\n\nAnthropic warned it relies on a cluster of cloud computing providers, Taiwanese chipmakers already facing huge demand and data centres concentrated in the US.\n\nIt also warned of \"regulatory action arising from harms associated with our AI models\" - citing concerns over AI being used by children or individuals at risk of suicide - and uncertainty about where and how it might be held liable for actions taken by its systems.\n\nHowever, Anthropic also used the filing to laud the potential benefits of the tech itself, envisioning it unlocking \"millions of virtual agents with the ability to revolutionise every area of human endeavour\" across a range of fields.\n\nAnthropic said AI would also \"profoundly accelerate the rate of progress in biology and medicine\", potentially finding cures to diseases including cancer and Alzheimer's.\n\nThe firm added it could also establish \"sustained acceleration in economic growth\" by boosting productivity.\n\nMatt Orton, chief market strategist at investment management firm Raymond James Investment, said investors expected to see rapid growth as well as rapid financial losses in Anthropic's finances, so Monday's filing would not come as a surprise.\n\n\"Getting the details from this filing, I think will help provide the market with more visibility, because we need to know where its revenue growth is coming from,\" he told the BBC.\n\nPeter Andersen, founder of Andersen Capital Management, told Reuters that Anthropic's plans to list was \"a significant milestone in the development of artificial intelligence\".\n\nHe added that the outcome of its stock market debut would be \"fairly indicative of the sentiment\" among investors to continue ploughing cash into AI development.",
+    "passive_voice_content": "Anthropic has warned artificial intelligence (AI) could pose \"catastrophic or existential risks to humanity\" as it unveiled details of its planned blockbuster stock market listing in the US.\n\nThe firm's valuation is expected to exceed that of SpaceX, which was the biggest-ever listing at an initial valuation of about $1.8 trillion in the summer.\n\nAnthropic has not yet disclosed the number of shares to be released, their price range, or a date for the listing.\n\nThe Claude chatbot developer reported $16.3bn (£12.2bn) of revenue in the first half of the year, with losses of more than $80.7bn.\n\nAnthropic, which said it will list on the Nasdaq under the symbol ANT, will be the first fully AI-focused company to go public, making it a test case for the future of the technology.\n\nIn a filing ahead of its listing, Anthropic said concerns had been raised by policymakers, regulators and researchers as well as by people within its organisation that AI systems posed a significant risk to humanity.\n\nIt said advanced AI systems \"could, if not developed, deployed, and operated with appropriate safeguards, oversight, and security measures, pose catastrophic or existential risks to humanity, particularly if such systems were misused, replicated, weaponised, or allowed to operate with a high degree of autonomy\".\n\nAnthropic was founded five years ago by chief executive Dario Amodei, his sister Daniela Amodei and five others, and announced its intention to go public in June.\n\nIts main rival, OpenAI, quickly followed suit. That listing is now expected to occur early next year, according to a person familiar with OpenAI's plans.\n\nThose announcements were followed by a wave of cyber-security and other technological breaches involving their AI agents - bots designed to operate somewhat autonomously.\n\nCurrent and former staff of both companies also warned AI technology was being developed without the ability to protect humanity from possible future harms enacted by AI tools.\n\nAs Anthropic revealed its stock debut plans on Monday, the owners of the rights to Elvis Presley's music sued the AI firm accusing it of using hundreds of the rock-and-roll star's songs to train its chatbot Claude.\n\nIn Anthropic's new documents, it reiterated promises it has made in the past to develop AI in a way that is beneficial to people, while at the same time warning investors of its dangers.\n\nAnthropic detailed losses in its financial filings that exceeded its revenue for the first half of the year, but said it would often make forward investments \"that may seem irresponsibly large at first glance\".\n\n\"In general, we will aim to be bold but sane, and to win trust with a track record of successful bets,\" the tech giant said.\n\nIts success depends largely on its ability to develop the most advanced AI models, Anthropic said, adding, \"any failure to do so could adversely affect our business\".\n\nAcross about 90 pages detailing possible risk factors, Anthropic set out the potential threats to its ability to safely and competitively develop AI.\n\nAnthropic warned it relies on a cluster of cloud computing providers, Taiwanese chipmakers already facing huge demand and data centres concentrated in the US.\n\nIt also warned of \"regulatory action arising from harms associated with our AI models\" - citing concerns over AI being used by children or individuals at risk of suicide - and uncertainty about where and how it might be held liable for actions taken by its systems.\n\nHowever, Anthropic also used the filing to laud the potential benefits of the tech itself, envisioning it unlocking \"millions of virtual agents with the ability to revolutionise every area of human endeavour\" across a range of fields.\n\nAnthropic said AI would also \"profoundly accelerate the rate of progress in biology and medicine\", potentially finding cures to diseases including cancer and Alzheimer's.\n\nThe firm added it could also establish \"sustained acceleration in economic growth\" by boosting productivity.\n\nMatt Orton, chief market strategist at investment management firm Raymond James Investment, said investors expected to see rapid growth as well as rapid financial losses in Anthropic's finances, so Monday's filing would not come as a surprise.\n\n\"Getting the details from this filing, I think will help provide the market with more visibility, because we need to know where its revenue growth is coming from,\" he told the BBC.\n\nPeter Andersen, founder of Andersen Capital Management, told Reuters that Anthropic's plans to list was \"a significant milestone in the development of artificial intelligence\".\n\nHe added that the outcome of its stock market debut would be \"fairly indicative of the sentiment\" among investors to continue ploughing cash into AI development.",
+    "key_takeaways": [
+      "Extracted directly from Daily FT feed.",
+      "Categorized under Business & Governance.",
+      "Prepared for Executive Briefing."
+    ],
+    "category": "business-news",
+    "tags": [
+      "Daily FT",
+      "Sri Lanka",
+      "Business"
+    ],
+    "workflow_status": "scraped",
+    "rewrite_status": "needs_review",
+    "status": "published",
+    "topRank": 1,
+    "editorial_approved": true
+  },
+  {
+    "id": "32f61f973a2ef2a9c2b2",
+    "url": "http://biz.adaderana.lk/first-capital-%e0%b6%85%e0%b6%9b%e0%b6%ab%e0%b7%8a%e0%b6%a9%e0%b7%80-%e0%b7%83%e0%b7%92%e0%b7%80%e0%b7%8a%e0%b7%80%e0%b6%b1-%e0%b7%80%e0%b6%bb%e0%b6%a7%e0%b6%ad%e0%b7%8a-magnate-%e0%b7%84%e0%b7%92",
+    "image": "assets/news_images/c82686b98697331adf8f9989.jpg",
+    "source": "Ada Derana Biz (biz.adaderana.lk)",
+    "published_at": "2026-10-26T11:18:48Z",
+    "scraped_at": "2026-10-26T16:53:07.129616Z",
+    "headline_en": "First Capital අඛණ්ඩව සිව්වන වරටත් MAGNATE හි නිල ප්‍රධාන අනුග්‍රාහකයා ලෙස කටයුතු කරයි",
+    "headline_si": "ශ්‍රී ලංකා පුවත්: First Capital අඛණ්ඩව සිව්වන වරටත් MAGNATE හි නිල ප්‍රධාන අනුග්‍රාහකයා ලෙස කටයුතු කරයි",
+    "summary_en": "JXG (ජනශක්ති සමූහ ව්‍යාපාරය) හි අනුබද්ධ සමාගමක් මෙන්ම ශ්‍රී ලංකාවේ ප්‍රාග්ධන වෙළෙඳපොළ ක්ෂේත්‍රයේ පුරෝගාමී බලවේගයක් වන First Capital Holdings PLC, කොළඹ විශ්වවිද්‍යාලයේ කළමනාකරණ හා මූල්‍ය පීඨයේ මූල්‍ය ශිෂ්‍ය සංගමය විසින් සංවිධානය කරන ලද MAGNATE 2026 හි නිල ප්‍රධාන හවුල්කරු ලෙස අඛණ්ඩව සිව්වන වසරටත් එක් විය. අධ්‍යාපන ආයතන සහ මූල්‍ය සේවා ක්ෂේත්‍රය අතර සම්බන්ධතා ශක්තිමත් කරන අතරම දක්ෂ තරුණ තරුණියන් හඳුනා ගනිමින් ඔවුන්ගේ අනාගත වෘත්තීය ජීවිතයට අත්වැලක් වීමේ අරමුණින් First Capital සමාගම මෙම වැඩසටහනට අනුග්‍රාහකත්වය ලබා දෙයි. MAGNATE යනු මූල්‍ය ක්ෂේත්‍රයේ නවෝත්පාදනය , නායකත්වය සහ දැනුම් හුවමාරුව ප්‍රවර්ධනය කිරීමේ අරමුණින්, මූල්‍ය ක්ෂේත්‍රයේ ශිෂ්‍ය ශිෂ්‍යාවන්, විද්වතුන්, වෘත්තිකයන් සහ ආයතන ප්‍රධානීන් එකිනෙකා සමඟ සම්බන්ධ කරන වේදිකාවකි. එහි මෙවර අදියරට ක්ෂේත්‍රයේ විශේෂඥයකු විසින් පවත්වන ලද ප්‍රධාන දේශනයක්, සංවාදමය වැඩසටහන් මාලාවක් සහ අන්තර් විශ්වවිද්‍යාල විවාද තරගයක් ඇතුළත් විය. මේ තුළින් සිසුන්ට අදහස් හා දැනුම හුවමාරු කර ගැනීමටත්, මූල්‍ය ක්ෂේත්‍රය පිළිබඳව වඩාත් පැහැදිලි අවබෝධයක් ලබා ගැනීමටත්, ක්ෂේත්‍රයේ සිදුවෙමින් පවතින වෙනස්කම් සමීපව ගවේෂණය කිරීමටත් අවස්ථාව සැලසිණි. මෙම අවස්ථාවට First Capital Holdings නියෝජනය කරමින් සහභාගී වූ එහි වත්කම් කළමනාකරණ අංශයේ උප සභාපති කුමාරවරන් කනගසූරියර් මහතා “Barte",
+    "summary_si": "මෙම පුවත Daily FT වෙබ් අඩවියෙන් ලබා ගන්නා ලදී. JXG (ජනශක්ති සමූහ ව්‍යාපාරය) හි අනුබද්ධ සමාගමක් මෙන්ම ශ්‍රී ලංකාවේ ප්‍රාග්ධන වෙළෙඳපොළ ක්ෂේත්‍රයේ පුරෝගාමී බලවේගයක් වන First Capital Holdings PLC, කොළඹ විශ්වවිද්‍යාලයේ කළමනාකරණ හා මූල්‍ය පීඨයේ මූල්‍ය ශිෂ්‍ය සංගමය විසින් සංවිධානය කරන ලද MAGNATE 2026 හි නිල ප්‍රධාන හවුල්කරු ලෙස අඛණ්ඩව සිව්වන වසරටත් එක් විය. අධ්‍යාපන ආයතන සහ මූල්‍ය සේවා ක්ෂේත්‍රය අතර සම්බන්ධතා ශක්තිමත් කරන අතරම දක්ෂ තරුණ තරුණියන් හඳුනා ගනිමින් ඔවුන්ගේ අනාගත වෘත්තීය ජීවිතයට අත්වැලක් වීමේ අරමුණින් First Capital සමාගම මෙම වැඩසටහනට අනුග්‍රාහකත්වය ලබා දෙයි. MAGNATE යනු මූල්‍ය ක්ෂේත්‍රයේ නවෝත්පාදනය , නායකත්වය සහ දැනුම් හුවමාරුව ප්‍රවර්ධනය කිරීමේ අරමුණින්, මූල්‍ය ක්ෂේත්‍රයේ ශිෂ්‍ය ශිෂ්‍යාවන්, විද්වතුන්, වෘත්තිකයන් සහ ආයතන ප්‍රධානීන් එකිනෙකා සමඟ සම්බන්ධ කරන වේදිකාවකි. එහි මෙවර අදියරට ක්ෂේත්‍රයේ විශේෂඥයකු විසින් පවත්වන ලද ප්‍රධාන දේශනයක්, සංවාදමය වැඩසටහන් මාලාවක් සහ අන්තර් විශ්වවිද්‍යාල විවාද තරගයක් ඇතුළත් විය. මේ තුළින් සිසුන්ට අදහස් හා දැනුම හුවමාරු කර ගැනීමටත්, මූල්‍ය ක්ෂේත්‍රය පිළිබඳව වඩාත් පැහැදිලි අවබෝධයක් ලබා ගැනීමටත්, ක්ෂේත්‍රයේ සිදුවෙමින් පවතින වෙනස්කම් සමීපව ගවේෂණය කිරීමටත් අවස්ථාව සැලසිණි. මෙම අවස්ථාවට First Capital Holdings නියෝජනය කරමින් සහභාගී වූ එහි වත්කම් කළමනාකරණ අංශයේ උප සභාපති කුමාරවරන් කනගසූරියර් මහතා “Barte",
+    "content": "JXG (ජනශක්ති සමූහ ව්‍යාපාරය) හි අනුබද්ධ සමාගමක් මෙන්ම ශ්‍රී ලංකාවේ ප්‍රාග්ධන වෙළෙඳපොළ ක්ෂේත්‍රයේ පුරෝගාමී බලවේගයක් වන First Capital Holdings PLC, කොළඹ විශ්වවිද්‍යාලයේ කළමනාකරණ හා මූල්‍ය පීඨයේ මූල්‍ය ශිෂ්‍ය සංගමය විසින් සංවිධානය කරන ලද MAGNATE 2026 හි නිල ප්‍රධාන හවුල්කරු ලෙස අඛණ්ඩව සිව්වන වසරටත් එක් විය. අධ්‍යාපන ආයතන සහ මූල්‍ය සේවා ක්ෂේත්‍රය අතර සම්බන්ධතා ශක්තිමත් කරන අතරම දක්ෂ තරුණ තරුණියන් හඳුනා ගනිමින් ඔවුන්ගේ අනාගත වෘත්තීය ජීවිතයට අත්වැලක් වීමේ අරමුණින් First Capital සමාගම මෙම වැඩසටහනට අනුග්‍රාහකත්වය ලබා දෙයි. MAGNATE යනු මූල්‍ය ක්ෂේත්‍රයේ නවෝත්පාදනය , නායකත්වය සහ දැනුම් හුවමාරුව ප්‍රවර්ධනය කිරීමේ අරමුණින්, මූල්‍ය ක්ෂේත්‍රයේ ශිෂ්‍ය ශිෂ්‍යාවන්, විද්වතුන්, වෘත්තිකයන් සහ ආයතන ප්‍රධානීන් එකිනෙකා සමඟ සම්බන්ධ කරන වේදිකාවකි. එහි මෙවර අදියරට ක්ෂේත්‍රයේ විශේෂඥයකු විසින් පවත්වන ලද ප්‍රධාන දේශනයක්, සංවාදමය වැඩසටහන් මාලාවක් සහ අන්තර් විශ්වවිද්‍යාල විවාද තරගයක් ඇතුළත් විය. මේ තුළින් සිසුන්ට අදහස් හා දැනුම හුවමාරු කර ගැනීමටත්, මූල්‍ය ක්ෂේත්‍රය පිළිබඳව වඩාත් පැහැදිලි අවබෝධයක් ලබා ගැනීමටත්, ක්ෂේත්‍රයේ සිදුවෙමින් පවතින වෙනස්කම් සමීපව ගවේෂණය කිරීමටත් අවස්ථාව සැලසිණි. මෙම අවස්ථාවට First Capital Holdings නියෝජනය කරමින් සහභාගී වූ එහි වත්කම් කළමනාකරණ අංශයේ උප සභාපති කුමාරවරන් කනගසූරියර් මහතා “Barter to Bitcoin: Global Shift in Finance Beyond Borders” යන තේමාව යටතේ වැඩසටහනේ ප්‍රධාන දේශනය පැවැත්වූ අතර , එහිදී ඔහු මූල්‍ය පද්ධතිවල විකාශනය සහ වඩාත් අන්තර්සම්බන්ධිත වෙමින් පවතින ගෝලීය මූල්‍ය ක්ෂේත්‍රය හැඩගස්වන බලවේග පිළිබඳව අදහස් දැක්වීය. මෙම වැඩසටහන සඳහා First Capital දිගින් දිගටම අනුග්‍රාහකත්වය ලබා දීම පිළිබඳව එහි මානව සම්පත් ප්‍රධානී චාමර පුස්සැල්ල මහතා මෙසේ අදහස් පළ කළේය: “අනාගතයේ දක්ෂ වෘත්තිකයන් බවට පත්වීමට නියමිත තරුණ තරුණියන් සමඟ අර්ථවත් සබඳතා ගොඩනංවා ගැනීමේ උත්සාහය තුළ දී, විශ්වවිද්‍යාල ක්ෂේත්‍රය සමඟ එක්ව කටයුතු කිරීම අතිශයින් වැදගත්. MAGNATE වැනි වැඩසටහන් තුළින් මූල්‍ය ක්ෂේත්‍රයේ අනාගත වෘත්තිකයන් සමඟ සම්බන්ධ වීමටත්, අදහස් හුවමාරු කරගැනීමටත්, ක්ෂේත්‍රය පිළිබඳ වඩාත් හොඳ අවබෝධයක් ඔවුන් වෙත ලබා දීමටත් අපට හැකි වෙනවා. සේවායෝජකයෙකු ලෙස, අධ්‍යාපන ක්ෂේත්‍රය සමඟ සබඳතා අඛණ්ඩව ශක්තිමත් කරගනිමින්, තරුණ දක්ෂයන්ට ඉගෙනීමටත්, වර්ධනය වීමටත්, තමන් සතු හැකියාවන් ගවේෂණය කිරීමටත් අවස්ථා සලසා දීම අපගේ අරමුණයි.” මෙම වැඩසටහනට සම්බන්ධ වීම තුළින් අනාගත සීමාවාසික පුහුණු අවස්ථා පිරිනැමීම සඳහා සුදුසු දක්ෂ තරුණ තරුණියන් හඳුනාගැනීමටද First Capital සමාගමට අවස්ථාව සැලසේ. MAGNATE වැඩසටහනට අඛණ්ඩව සහභාගී වීම තුළින්, සේවායෝජකයෙකු ලෙස කොළඹ විශ්වවිද්‍යාලයේ කළමනාකරණ හා මූල්‍ය පීඨය සමඟ පවතින සබඳතා ශක්තිමත් කිරීමට මෙන්ම, දැනුම හුවමාරු කරගැනීම, මූල්‍ය නවෝත්පාදනය ප්‍රවර්ධනය කිරීම සහ අධ්‍යාපන ක්ෂේත්‍රය හා මූල්‍ය සේවා ක්ෂේත්‍රය අතර වඩාත් සමීප සබඳතා ඇති කිරීම සඳහා දායක වීමට First Capital සමාගම අපේක්ෂා කරයි. ඡායාරූපය: අඛණ්ඩව සිව්වන වසරටත් MAGNATE හි නිල ප්‍රධාන අනුග්‍රාහකයා ලෙස කටයුතු කළ First Capital Holdings PLC සමාගමේ වත්කම් කළමනාකරණ අංශයේ උප සභාපති කුමාරවරන් කනගසූරියර් මහතා එහි ප්‍රධාන දේශනය සිදු කරමින් The post First Capital අඛණ්ඩව සිව්වන වරටත් MAGNATE හි නිල ප්‍රධාන අනුග්‍රාහකයා ලෙස කටයුතු කරයි appeared first on Adaderana Biz Sinhala | Sri Lanka Business News .",
+    "passive_voice_content": "JXG (ජනශක්ති සමූහ ව්‍යාපාරය) හි අනුබද්ධ සමාගමක් මෙන්ම ශ්‍රී ලංකාවේ ප්‍රාග්ධන වෙළෙඳපොළ ක්ෂේත්‍රයේ පුරෝගාමී බලවේගයක් වන First Capital Holdings PLC, කොළඹ විශ්වවිද්‍යාලයේ කළමනාකරණ හා මූල්‍ය පීඨයේ මූල්‍ය ශිෂ්‍ය සංගමය විසින් සංවිධානය කරන ලද MAGNATE 2026 හි නිල ප්‍රධාන හවුල්කරු ලෙස අඛණ්ඩව සිව්වන වසරටත් එක් විය. අධ්‍යාපන ආයතන සහ මූල්‍ය සේවා ක්ෂේත්‍රය අතර සම්බන්ධතා ශක්තිමත් කරන අතරම දක්ෂ තරුණ තරුණියන් හඳුනා ගනිමින් ඔවුන්ගේ අනාගත වෘත්තීය ජීවිතයට අත්වැලක් වීමේ අරමුණින් First Capital සමාගම මෙම වැඩසටහනට අනුග්‍රාහකත්වය ලබා දෙයි. MAGNATE යනු මූල්‍ය ක්ෂේත්‍රයේ නවෝත්පාදනය , නායකත්වය සහ දැනුම් හුවමාරුව ප්‍රවර්ධනය කිරීමේ අරමුණින්, මූල්‍ය ක්ෂේත්‍රයේ ශිෂ්‍ය ශිෂ්‍යාවන්, විද්වතුන්, වෘත්තිකයන් සහ ආයතන ප්‍රධානීන් එකිනෙකා සමඟ සම්බන්ධ කරන වේදිකාවකි. එහි මෙවර අදියරට ක්ෂේත්‍රයේ විශේෂඥයකු විසින් පවත්වන ලද ප්‍රධාන දේශනයක්, සංවාදමය වැඩසටහන් මාලාවක් සහ අන්තර් විශ්වවිද්‍යාල විවාද තරගයක් ඇතුළත් විය. මේ තුළින් සිසුන්ට අදහස් හා දැනුම හුවමාරු කර ගැනීමටත්, මූල්‍ය ක්ෂේත්‍රය පිළිබඳව වඩාත් පැහැදිලි අවබෝධයක් ලබා ගැනීමටත්, ක්ෂේත්‍රයේ සිදුවෙමින් පවතින වෙනස්කම් සමීපව ගවේෂණය කිරීමටත් අවස්ථාව සැලසිණි. මෙම අවස්ථාවට First Capital Holdings නියෝජනය කරමින් සහභාගී වූ එහි වත්කම් කළමනාකරණ අංශයේ උප සභාපති කුමාරවරන් කනගසූරියර් මහතා “Barter to Bitcoin: Global Shift in Finance Beyond Borders” යන තේමාව යටතේ වැඩසටහනේ ප්‍රධාන දේශනය පැවැත්වූ අතර , එහිදී ඔහු මූල්‍ය පද්ධතිවල විකාශනය සහ වඩාත් අන්තර්සම්බන්ධිත වෙමින් පවතින ගෝලීය මූල්‍ය ක්ෂේත්‍රය හැඩගස්වන බලවේග පිළිබඳව අදහස් දැක්වීය. මෙම වැඩසටහන සඳහා First Capital දිගින් දිගටම අනුග්‍රාහකත්වය ලබා දීම පිළිබඳව එහි මානව සම්පත් ප්‍රධානී චාමර පුස්සැල්ල මහතා මෙසේ අදහස් පළ කළේය: “අනාගතයේ දක්ෂ වෘත්තිකයන් බවට පත්වීමට නියමිත තරුණ තරුණියන් සමඟ අර්ථවත් සබඳතා ගොඩනංවා ගැනීමේ උත්සාහය තුළ දී, විශ්වවිද්‍යාල ක්ෂේත්‍රය සමඟ එක්ව කටයුතු කිරීම අතිශයින් වැදගත්. MAGNATE වැනි වැඩසටහන් තුළින් මූල්‍ය ක්ෂේත්‍රයේ අනාගත වෘත්තිකයන් සමඟ සම්බන්ධ වීමටත්, අදහස් හුවමාරු කරගැනීමටත්, ක්ෂේත්‍රය පිළිබඳ වඩාත් හොඳ අවබෝධයක් ඔවුන් වෙත ලබා දීමටත් අපට හැකි වෙනවා. සේවායෝජකයෙකු ලෙස, අධ්‍යාපන ක්ෂේත්‍රය සමඟ සබඳතා අඛණ්ඩව ශක්තිමත් කරගනිමින්, තරුණ දක්ෂයන්ට ඉගෙනීමටත්, වර්ධනය වීමටත්, තමන් සතු හැකියාවන් ගවේෂණය කිරීමටත් අවස්ථා සලසා දීම අපගේ අරමුණයි.” මෙම වැඩසටහනට සම්බන්ධ වීම තුළින් අනාගත සීමාවාසික පුහුණු අවස්ථා පිරිනැමීම සඳහා සුදුසු දක්ෂ තරුණ තරුණියන් හඳුනාගැනීමටද First Capital සමාගමට අවස්ථාව සැලසේ. MAGNATE වැඩසටහනට අඛණ්ඩව සහභාගී වීම තුළින්, සේවායෝජකයෙකු ලෙස කොළඹ විශ්වවිද්‍යාලයේ කළමනාකරණ හා මූල්‍ය පීඨය සමඟ පවතින සබඳතා ශක්තිමත් කිරීමට මෙන්ම, දැනුම හුවමාරු කරගැනීම, මූල්‍ය නවෝත්පාදනය ප්‍රවර්ධනය කිරීම සහ අධ්‍යාපන ක්ෂේත්‍රය හා මූල්‍ය සේවා ක්ෂේත්‍රය අතර වඩාත් සමීප සබඳතා ඇති කිරීම සඳහා දායක වීමට First Capital සමාගම අපේක්ෂා කරයි. ඡායාරූපය: අඛණ්ඩව සිව්වන වසරටත් MAGNATE හි නිල ප්‍රධාන අනුග්‍රාහකයා ලෙස කටයුතු කළ First Capital Holdings PLC සමාගමේ වත්කම් කළමනාකරණ අංශයේ උප සභාපති කුමාරවරන් කනගසූරියර් මහතා එහි ප්‍රධාන දේශනය සිදු කරමින් The post First Capital අඛණ්ඩව සිව්වන වරටත් MAGNATE හි නිල ප්‍රධාන අනුග්‍රාහකයා ලෙස කටයුතු කරයි appeared first on Adaderana Biz Sinhala | Sri Lanka Business News .",
+    "key_takeaways": [
+      "Extracted directly from Daily FT feed.",
+      "Categorized under Business & Governance.",
+      "Prepared for Executive Briefing."
+    ],
+    "category": "business-news",
+    "tags": [
+      "Daily FT",
+      "Sri Lanka",
+      "Business"
+    ],
+    "workflow_status": "scraped",
+    "rewrite_status": "needs_review",
+    "status": "published",
+    "topRank": 2,
+    "editorial_approved": true
+  },
+  {
+    "id": "ef1a448dc54489875148",
+    "url": "https://bizenglish.adaderana.lk/ceylinco-life-sales-team-sharpens-leadership-skills-in-malaysia",
+    "image": "assets/news_images/f0cede1a235c076a02481bfd.jpg",
+    "source": "Ada Derana Biz English (bizenglish.adaderana.lk)",
+    "published_at": "2026-10-26T11:17:16Z",
+    "scraped_at": "2026-10-26T16:53:05.880677Z",
+    "headline_en": "Ceylinco Life sales team sharpens leadership skills in Malaysia",
+    "headline_si": "ශ්‍රී ලංකා පුවත්: Ceylinco Life sales team sharpens leadership skills in Malaysia",
+    "summary_en": "An eight-member team from Ceylinco Life recently participated in a four-day leadership training programme in Kuala Lumpur, Malaysia, designed to strengthen agency management capabilities and equip the company’s sales leaders with practical strategies to enhance branch performance. Conducted under the theme ‘Lead Forward, Build.’ the programme covered key areas including digital engagement for insurance professionals,…",
+    "summary_si": "මෙම පුවත Daily FT වෙබ් අඩවියෙන් ලබා ගන්නා ලදී. An eight-member team from Ceylinco Life recently participated in a four-day leadership training programme in Kuala Lumpur, Malaysia, designed to strengthen agency management capabilities and equip the company’s sales leaders with practical strategies to enhance branch performance. Conducted under the theme ‘Lead Forward, Build.’ the programme covered key areas including digital engagement for insurance professionals,…",
+    "content": "An eight-member team from Ceylinco Life recently participated in a four-day leadership training programme in Kuala Lumpur, Malaysia, designed to strengthen agency management capabilities and equip the company’s sales leaders with practical strategies to enhance branch performance. Conducted under the theme ‘Lead Forward, Build.’ the programme covered key areas including digital engagement for insurance professionals, performance management, leadership enhancement and development, and the creation of office environments that support and drive sales. The training was facilitated by five accomplished Group Sales Managers from Great Eastern Life Insurance in Malaysia and Singapore, led by industry veteran Mr. K. Haridas. Combining knowledge-sharing with practical application, the programme challenged participants to address real-life branch management issues through a group exercise in which two teams assessed existing situations, identified root causes and implications, and developed action plans to tackle the challenges more effectively. Participants also gained hands-on experience in creating videos and digital content for social media platforms and developing Agency Management Blueprints to address specific branch-level challenges. The programme provided valuable insights and actionable strategies to strengthen agency leadership, improve branch management and enhance overall performance. Representing Ceylinco Life were one Zonal Manager, four Regional Sales Managers, two Agency Heads and a representative from the company’s Head Office. Pictured here are members of the Ceylinco Life team with Mr. Haridas and representatives of Great Eastern Life Insurance.",
+    "passive_voice_content": "An eight-member team from Ceylinco Life recently participated in a four-day leadership training programme in Kuala Lumpur, Malaysia, designed to strengthen agency management capabilities and equip the company’s sales leaders with practical strategies to enhance branch performance. Conducted under the theme ‘Lead Forward, Build.’ the programme covered key areas including digital engagement for insurance professionals, performance management, leadership enhancement and development, and the creation of office environments that support and drive sales. The training was facilitated by five accomplished Group Sales Managers from Great Eastern Life Insurance in Malaysia and Singapore, led by industry veteran Mr. K. Haridas. Combining knowledge-sharing with practical application, the programme challenged participants to address real-life branch management issues through a group exercise in which two teams assessed existing situations, identified root causes and implications, and developed action plans to tackle the challenges more effectively. Participants also gained hands-on experience in creating videos and digital content for social media platforms and developing Agency Management Blueprints to address specific branch-level challenges. The programme provided valuable insights and actionable strategies to strengthen agency leadership, improve branch management and enhance overall performance. Representing Ceylinco Life were one Zonal Manager, four Regional Sales Managers, two Agency Heads and a representative from the company’s Head Office. Pictured here are members of the Ceylinco Life team with Mr. Haridas and representatives of Great Eastern Life Insurance.",
+    "key_takeaways": [
+      "Extracted directly from Daily FT feed.",
+      "Categorized under Business & Governance.",
+      "Prepared for Executive Briefing."
+    ],
+    "category": "technology",
+    "tags": [
+      "Daily FT",
+      "Sri Lanka",
+      "Business"
+    ],
+    "workflow_status": "scraped",
+    "rewrite_status": "needs_review",
+    "status": "published",
+    "topRank": 3,
+    "editorial_approved": true
+  },
+  {
+    "id": "f83a52fce9bad4a71930",
+    "url": "https://adaderana.lk/news/250568",
+    "image": "assets/news_images/1802bfe68ab6253dd7546d10.jpg",
+    "source": "Ada Derana (adaderana.lk)",
+    "published_at": "2026-10-26T11:16:21.454000Z",
+    "scraped_at": "2026-10-26T16:53:07.624008Z",
+    "headline_en": "Rapper Nicki Minaj joins Trump onstage at Michigan rally",
+    "headline_si": "ශ්‍රී ලංකා පුවත්: Rapper Nicki Minaj joins Trump onstage at Michigan rally",
+    "summary_en": "Rapper Nicki Minaj joins Trump onstage at Michigan rally",
+    "summary_si": "මෙම පුවත Daily FT වෙබ් අඩවියෙන් ලබා ගන්නා ලදී. Rapper Nicki Minaj joins Trump onstage at Michigan rally",
+    "content": "Rapper Nicki Minaj said US President Donald Trump has \"changed the energy of the country\" as she joined him at a Michigan rally to stump for Republicans ahead of the nationwide midterm elections.\n\n\"He's given us a future to look forward to,\" she said, after Trump praised her figure and called her on stage to speak.\n\nMinaj has called herself Trump's \"number one fan\" despite criticising some of his policies in his first term.\n\nIn Michigan, Democratic Senate candidate Abdul El-Sayed is locked in a tight race with Republican Mike Rogers with just over a week to go before the midterms. Former President Barack Obama held a rally - one of the first in this cycle - with the Democrat on Saturday.\n\nDemocrats are also aggressively hitting the campaign trail, with close elections taking place on 3 November which will decide which party controls Congress for the rest of Trump's presidency.\n\nIn his remarks on Sunday, Trump focused on El-Sayed's Muslim faith and background, alleging that he will \"invite jihadists\" into America if he wins.\n\nEl-Sayed has criticised similar remarks by Trump as Islamophobic, saying in an ad to voters last week that the US president \"thinks he can use my name and my faith to distract us from the suffering his policies are inflicting on us at the pump, at the grocery store, and at the doctor's office\".\n\nIn Port Huron on Sunday, Minaj, wearing a gold-coloured Gucci-branded suit, led the crowd in chanting Trump's name, and the names of Republican candidates in Michigan.\n\n\"We really need all these great people to be elected, because this is a major turning point for our country,\" she said.\n\n\"She never looked more beautiful,\" Trump said as she left the stage. \"She gets it. She's smart,\" he added.\n\nEarlier in his speech, Trump praised the rear end of one male Republican candidate before turning the crowd's attention to Minaj.\n\n\"By the way, I looked at a beautiful ass before,\" he segued. “Nicki Minaj. That's hard to miss.”\n\nHe then asked her to \"stand up\" as the crowd cheered, and added that he hoped she was not \"insulted\" by his remark.\n\nThe Super Bass singer had accompanied Trump to the state aboard Air Force One. She filmed a video with an aide - which was posted to X -on the president's plane, pretending to be interviewing for the White House press secretary role.\n\nThe position is currently open after Katie Zacharia left five days after a shaky public debut.\n\nThe Trinidad and Tobago-born rapper has thrown her star power behind Trump a few times before, including on his allegations that Christians face persecution in Nigeria and his \"gold card\" visa, which offers applicants residency and a path to US citizenship.",
+    "passive_voice_content": "Rapper Nicki Minaj said US President Donald Trump has \"changed the energy of the country\" as she joined him at a Michigan rally to stump for Republicans ahead of the nationwide midterm elections.\n\n\"He's given us a future to look forward to,\" she said, after Trump praised her figure and called her on stage to speak.\n\nMinaj has called herself Trump's \"number one fan\" despite criticising some of his policies in his first term.\n\nIn Michigan, Democratic Senate candidate Abdul El-Sayed is locked in a tight race with Republican Mike Rogers with just over a week to go before the midterms. Former President Barack Obama held a rally - one of the first in this cycle - with the Democrat on Saturday.\n\nDemocrats are also aggressively hitting the campaign trail, with close elections taking place on 3 November which will decide which party controls Congress for the rest of Trump's presidency.\n\nIn his remarks on Sunday, Trump focused on El-Sayed's Muslim faith and background, alleging that he will \"invite jihadists\" into America if he wins.\n\nEl-Sayed has criticised similar remarks by Trump as Islamophobic, saying in an ad to voters last week that the US president \"thinks he can use my name and my faith to distract us from the suffering his policies are inflicting on us at the pump, at the grocery store, and at the doctor's office\".\n\nIn Port Huron on Sunday, Minaj, wearing a gold-coloured Gucci-branded suit, led the crowd in chanting Trump's name, and the names of Republican candidates in Michigan.\n\n\"We really need all these great people to be elected, because this is a major turning point for our country,\" she said.\n\n\"She never looked more beautiful,\" Trump said as she left the stage. \"She gets it. She's smart,\" he added.\n\nEarlier in his speech, Trump praised the rear end of one male Republican candidate before turning the crowd's attention to Minaj.\n\n\"By the way, I looked at a beautiful ass before,\" he segued. “Nicki Minaj. That's hard to miss.”\n\nHe then asked her to \"stand up\" as the crowd cheered, and added that he hoped she was not \"insulted\" by his remark.\n\nThe Super Bass singer had accompanied Trump to the state aboard Air Force One. She filmed a video with an aide - which was posted to X -on the president's plane, pretending to be interviewing for the White House press secretary role.\n\nThe position is currently open after Katie Zacharia left five days after a shaky public debut.\n\nThe Trinidad and Tobago-born rapper has thrown her star power behind Trump a few times before, including on his allegations that Christians face persecution in Nigeria and his \"gold card\" visa, which offers applicants residency and a path to US citizenship.",
+    "key_takeaways": [
+      "Extracted directly from Daily FT feed.",
+      "Categorized under Business & Governance.",
+      "Prepared for Executive Briefing."
+    ],
+    "category": "business-news",
+    "tags": [
+      "Daily FT",
+      "Sri Lanka",
+      "Business"
+    ],
+    "workflow_status": "scraped",
+    "rewrite_status": "needs_review",
+    "status": "published",
+    "topRank": 4,
+    "editorial_approved": true
+  },
+  {
+    "id": "c70f97ac20431751484c",
+    "url": "https://bizenglish.adaderana.lk/samsung-expands-lesi-pay-by-dialog-finance-easy-payment-facility-to-authorised-outlets-islandwide",
+    "image": "assets/news_images/8cde071f6ce8275cda696485.jpg",
+    "source": "Ada Derana Biz English (bizenglish.adaderana.lk)",
+    "published_at": "2026-10-26T11:16:02Z",
+    "scraped_at": "2026-10-26T16:53:05.880677Z",
+    "headline_en": "Samsung expands Lesi Pay by Dialog Finance easy payment facility to authorised outlets islandwide",
+    "headline_si": "ශ්‍රී ලංකා පුවත්: Samsung expands Lesi Pay by Dialog Finance easy payment facility to authorised outlets islandwide",
+    "summary_en": "Samsung Sri Lanka has expanded its easy payment facility through Lesi Pay by Dialog Finance, making convenient monthly instalment options available at approximately 400 authorised Samsung outlets across the country, in addition to Dialog showrooms. The expanded facility aims to reach 1,000 outlets by the end of 2026, improving access to genuine Samsung smartphones and…",
+    "summary_si": "මෙම පුවත Daily FT වෙබ් අඩවියෙන් ලබා ගන්නා ලදී. Samsung Sri Lanka has expanded its easy payment facility through Lesi Pay by Dialog Finance, making convenient monthly instalment options available at approximately 400 authorised Samsung outlets across the country, in addition to Dialog showrooms. The expanded facility aims to reach 1,000 outlets by the end of 2026, improving access to genuine Samsung smartphones and…",
+    "content": "Samsung Sri Lanka has expanded its easy payment facility through Lesi Pay by Dialog Finance, making convenient monthly instalment options available at approximately 400 authorised Samsung outlets across the country, in addition to Dialog showrooms. The expanded facility aims to reach 1,000 outlets by the end of 2026, improving access to genuine Samsung smartphones and tablets across Sri Lanka. Through Lesi Pay by Dialog Finance, eligible customers can purchase genuine Samsung devices with monthly instalments starting from Rs. 3,657, without requiring a credit card or guarantor, with repayment periods of up to 18 months. Customers purchasing through authorised channels also benefit from Samsung’s official warranty and the Samsung Break-Free offer, available for up to 24 months, subject to applicable terms and conditions. The facility covers selected Samsung smartphones and tablets, including the Galaxy A07, Galaxy F07, Galaxy F06 5G, Galaxy A17 5G, Galaxy M17 5G and Galaxy Tab A11. Offered by Dialog Finance, Lesi Pay is a loan facility designed to help eligible customers spread the cost of selected devices through structured monthly repayments. The facility removes the need for a credit card or guarantor, while allowing customers to check their eligibility through the Dialog Pay app before selecting a device. Loan approval, repayment terms and applicable interest rates are determined by Dialog Finance, subject to eligibility and the relevant terms and conditions. To purchase a device, customers can download the Dialog Pay app, check their eligibility, select an eligible Samsung device and collect it from a participating outlet. The facility is available through participating Dialog showrooms and authorised Samsung retailers, making it more convenient for customers across Sri Lanka to access the service. Commenting on the expansion, Mr. Dongkyun Lee, Managing Director, Samsung Sri Lanka & Maldives, said, “Expanding Dialog Lesi Pay to our authorised retail network is an important step towards making genuine Samsung devices more accessible to customers across Sri Lanka. By offering convenient instalment options through more retail locations, we are giving customers greater flexibility when purchasing their preferred devices, supported by the assurance of Samsung’s official warranty and after-sales services.” Nazeem Mohammed, CEO and Director of Dialog Finance PLC, said, “At Dialog Finance, our focus is on making financing simpler, more accessible, and relevant to the everyday needs of Sri Lankans. Lesi Pay reflects this commitment by enabling customers to own the devices they need through convenient and flexible monthly instalments, without the requirement for a credit card or guarantor. Expanding this facility across Samsung’s authorised retail network is an important step in bringing accessible financing closer to more customers islandwide. Through partnerships such as this, we aim to bridge the gap between financial accessibility and digital connectivity, empowering more Sri Lankans to benefit from technology that supports their daily lives.” For further information, customers can download the Dialog Pay app or visit a participating Dialog showroom or authorised Samsung retailer.",
+    "passive_voice_content": "Samsung Sri Lanka has expanded its easy payment facility through Lesi Pay by Dialog Finance, making convenient monthly instalment options available at approximately 400 authorised Samsung outlets across the country, in addition to Dialog showrooms. The expanded facility aims to reach 1,000 outlets by the end of 2026, improving access to genuine Samsung smartphones and tablets across Sri Lanka. Through Lesi Pay by Dialog Finance, eligible customers can purchase genuine Samsung devices with monthly instalments starting from Rs. 3,657, without requiring a credit card or guarantor, with repayment periods of up to 18 months. Customers purchasing through authorised channels also benefit from Samsung’s official warranty and the Samsung Break-Free offer, available for up to 24 months, subject to applicable terms and conditions. The facility covers selected Samsung smartphones and tablets, including the Galaxy A07, Galaxy F07, Galaxy F06 5G, Galaxy A17 5G, Galaxy M17 5G and Galaxy Tab A11. Offered by Dialog Finance, Lesi Pay is a loan facility designed to help eligible customers spread the cost of selected devices through structured monthly repayments. The facility removes the need for a credit card or guarantor, while allowing customers to check their eligibility through the Dialog Pay app before selecting a device. Loan approval, repayment terms and applicable interest rates are determined by Dialog Finance, subject to eligibility and the relevant terms and conditions. To purchase a device, customers can download the Dialog Pay app, check their eligibility, select an eligible Samsung device and collect it from a participating outlet. The facility is available through participating Dialog showrooms and authorised Samsung retailers, making it more convenient for customers across Sri Lanka to access the service. Commenting on the expansion, Mr. Dongkyun Lee, Managing Director, Samsung Sri Lanka & Maldives, said, “Expanding Dialog Lesi Pay to our authorised retail network is an important step towards making genuine Samsung devices more accessible to customers across Sri Lanka. By offering convenient instalment options through more retail locations, we are giving customers greater flexibility when purchasing their preferred devices, supported by the assurance of Samsung’s official warranty and after-sales services.” Nazeem Mohammed, CEO and Director of Dialog Finance PLC, said, “At Dialog Finance, our focus is on making financing simpler, more accessible, and relevant to the everyday needs of Sri Lankans. Lesi Pay reflects this commitment by enabling customers to own the devices they need through convenient and flexible monthly instalments, without the requirement for a credit card or guarantor. Expanding this facility across Samsung’s authorised retail network is an important step in bringing accessible financing closer to more customers islandwide. Through partnerships such as this, we aim to bridge the gap between financial accessibility and digital connectivity, empowering more Sri Lankans to benefit from technology that supports their daily lives.” For further information, customers can download the Dialog Pay app or visit a participating Dialog showroom or authorised Samsung retailer.",
+    "key_takeaways": [
+      "Extracted directly from Daily FT feed.",
+      "Categorized under Business & Governance.",
+      "Prepared for Executive Briefing."
+    ],
+    "category": "business-news",
+    "tags": [
+      "Daily FT",
+      "Sri Lanka",
+      "Business"
+    ],
+    "workflow_status": "scraped",
+    "rewrite_status": "needs_review",
+    "status": "published",
+    "topRank": 5,
+    "editorial_approved": true
+  },
+  {
+    "id": "27395ee5d939ae41cddd",
+    "url": "http://island.lk/294648-2",
+    "image": "assets/news_images/33c321a06d647419b8c5c97f.jpg",
+    "source": "The Island (island.lk)",
+    "published_at": "2026-10-26T11:10:22Z",
+    "scraped_at": "2026-10-26T16:54:32.852151Z",
+    "headline_en": "Schools closed tomorrow (27)",
+    "headline_si": "ශ්‍රී ලංකා පුවත්: Schools closed tomorrow (27)",
+    "summary_en": "Due to the prevailing inclement weather, all government schools will be closed tomorrow (27th October 2026).",
+    "summary_si": "මෙම පුවත Daily FT වෙබ් අඩවියෙන් ලබා ගන්නා ලදී. Due to the prevailing inclement weather, all government schools will be closed tomorrow (27th October 2026).",
+    "content": "Due to the prevailing inclement weather, all government schools will be closed tomorrow (27th October 2026).",
+    "passive_voice_content": "Due to the prevailing inclement weather, all government schools will be closed tomorrow (27th October 2026).",
+    "key_takeaways": [
+      "Extracted directly from Daily FT feed.",
+      "Categorized under Business & Governance.",
+      "Prepared for Executive Briefing."
+    ],
+    "category": "business-news",
+    "tags": [
+      "Daily FT",
+      "Sri Lanka",
+      "Business"
+    ],
+    "workflow_status": "scraped",
+    "rewrite_status": "needs_review",
+    "status": "published",
+    "topRank": 6,
+    "editorial_approved": true
+  },
+  {
+    "id": "c3b0ddfe3bcc2f0e7ee8",
+    "url": "https://bizenglish.adaderana.lk/slt-mobitel-unveils-apples-revolutionary-next-gen-iphone-18-pro-series",
+    "image": "assets/news_images/d85aa798d1aa4e5a8236f825.jpg",
+    "source": "Ada Derana Biz English (bizenglish.adaderana.lk)",
+    "published_at": "2026-10-26T11:05:58Z",
+    "scraped_at": "2026-10-26T16:53:05.880677Z",
+    "headline_en": "SLT-MOBITEL unveils Apple’s revolutionary next-gen iPhone 18 Pro series",
+    "headline_si": "ශ්‍රී ලංකා පුවත්: SLT-MOBITEL unveils Apple’s revolutionary next-gen iPhone 18 Pro series",
+    "summary_en": "SLT-MOBITEL Mobile has ushered in the next era of mobile technology, unveiling the highly anticipated Apple iPhone 18 Pro Series in Sri Lanka, through Sri Lanka’s most reliable 5G network. Poised to redefine premium smartphone experiences in the island, the revolutionary next-gen lineup blends Apple’s peak innovation with SLT-MOBITEL’s ultra-fast connectivity. At an event, held…",
+    "summary_si": "මෙම පුවත Daily FT වෙබ් අඩවියෙන් ලබා ගන්නා ලදී. SLT-MOBITEL Mobile has ushered in the next era of mobile technology, unveiling the highly anticipated Apple iPhone 18 Pro Series in Sri Lanka, through Sri Lanka’s most reliable 5G network. Poised to redefine premium smartphone experiences in the island, the revolutionary next-gen lineup blends Apple’s peak innovation with SLT-MOBITEL’s ultra-fast connectivity. At an event, held…",
+    "content": "SLT-MOBITEL Mobile has ushered in the next era of mobile technology, unveiling the highly anticipated Apple iPhone 18 Pro Series in Sri Lanka, through Sri Lanka’s most reliable 5G network. Poised to redefine premium smartphone experiences in the island, the revolutionary next-gen lineup blends Apple’s peak innovation with SLT-MOBITEL’s ultra-fast connectivity. At an event, held recently, SLT-MOBITEL handed over the first iPhone 18 Pro Series devices to customers, providing the opportunity to experience 5G on Apple’s latest smartphones. The launch showcases SLT-MOBITEL’s drive to equip Sri Lankans with premium global technology, and maximizing its potential through advanced network capabilities. The iPhone 18 Pro and iPhone 18 Pro Max are now available through SLT-MOBITEL, together with the iPhone Duo, widening the range of Apple devices on offer. With Mobitel’s reliable connectivity and trusted service, SLT-MOBITEL continues to strengthen its position as the trusted choice for customers seeking the best and latest Apple devices. Mobitel’s 5G coverage supports everyday digital needs such as high-quality streaming, faster downloads, video calls and improved connectivity on compatible devices within 5G coverage areas. To mark the launch, customers who move to the iPhone 18 Pro or iPhone 18 Pro Max 5G with SLT-MOBITEL stand a chance to win 2TB of Mobitel Data, an Apple Watch Series 12 or a MacBook Neo. Selected customers will also receive Apple AirPods 5 and an original 20W power adapter. SLT-MOBITEL is dedicated to connecting Sri Lankans with the latest technology through its premium smartphone portfolio and mobile network services. The availability of the iPhone 18 Pro, iPhone 18 Pro Max and iPhone Duo highlight the company’s focus on offering customers greater choice, convenience and a superior 5G experience. Customers can visit SLT-MOBITEL outlets for more information. Terms and conditions apply. Caption for the image – Asanka Jayawardena, Deputy General Manager, Enterprise Business handing over the latest Apple iPhone 18 Pro to a customer, accompanied by Randy Janze, Senior Manager, Enterprise Business (Left), Rukshani Wickrama Seneviratne, Account Manager Enterprise Business .",
+    "passive_voice_content": "SLT-MOBITEL Mobile has ushered in the next era of mobile technology, unveiling the highly anticipated Apple iPhone 18 Pro Series in Sri Lanka, through Sri Lanka’s most reliable 5G network. Poised to redefine premium smartphone experiences in the island, the revolutionary next-gen lineup blends Apple’s peak innovation with SLT-MOBITEL’s ultra-fast connectivity. At an event, held recently, SLT-MOBITEL handed over the first iPhone 18 Pro Series devices to customers, providing the opportunity to experience 5G on Apple’s latest smartphones. The launch showcases SLT-MOBITEL’s drive to equip Sri Lankans with premium global technology, and maximizing its potential through advanced network capabilities. The iPhone 18 Pro and iPhone 18 Pro Max are now available through SLT-MOBITEL, together with the iPhone Duo, widening the range of Apple devices on offer. With Mobitel’s reliable connectivity and trusted service, SLT-MOBITEL continues to strengthen its position as the trusted choice for customers seeking the best and latest Apple devices. Mobitel’s 5G coverage supports everyday digital needs such as high-quality streaming, faster downloads, video calls and improved connectivity on compatible devices within 5G coverage areas. To mark the launch, customers who move to the iPhone 18 Pro or iPhone 18 Pro Max 5G with SLT-MOBITEL stand a chance to win 2TB of Mobitel Data, an Apple Watch Series 12 or a MacBook Neo. Selected customers will also receive Apple AirPods 5 and an original 20W power adapter. SLT-MOBITEL is dedicated to connecting Sri Lankans with the latest technology through its premium smartphone portfolio and mobile network services. The availability of the iPhone 18 Pro, iPhone 18 Pro Max and iPhone Duo highlight the company’s focus on offering customers greater choice, convenience and a superior 5G experience. Customers can visit SLT-MOBITEL outlets for more information. Terms and conditions apply. Caption for the image – Asanka Jayawardena, Deputy General Manager, Enterprise Business handing over the latest Apple iPhone 18 Pro to a customer, accompanied by Randy Janze, Senior Manager, Enterprise Business (Left), Rukshani Wickrama Seneviratne, Account Manager Enterprise Business .",
+    "key_takeaways": [
+      "Extracted directly from Daily FT feed.",
+      "Categorized under Business & Governance.",
+      "Prepared for Executive Briefing."
+    ],
+    "category": "technology",
+    "tags": [
+      "Daily FT",
+      "Sri Lanka",
+      "Business"
+    ],
+    "workflow_status": "scraped",
+    "rewrite_status": "needs_review",
+    "status": "published",
+    "topRank": 7,
+    "editorial_approved": true
+  },
+  {
+    "id": "1983e29bf223f682d738",
+    "url": "https://bizenglish.adaderana.lk/tbwasri-lanka-earns-international-recognition-at-the-dragons-of-asia-awards-in-kuala-lumpur",
+    "image": "assets/news_images/b90b26047cbea6ff6e59f2cc.jpg",
+    "source": "Ada Derana Biz English (bizenglish.adaderana.lk)",
+    "published_at": "2026-10-26T11:03:57Z",
+    "scraped_at": "2026-10-26T16:53:05.880677Z",
+    "headline_en": "TBWA\\Sri Lanka Earns International Recognition at the Dragons of Asia Awards in Kuala Lumpur",
+    "headline_si": "ශ්‍රී ලංකා පුවත්: TBWA\\Sri Lanka Earns International Recognition at the Dragons of Asia Awards in Kuala Lumpur",
+    "summary_en": "TBWA\\Sri Lanka has earned multiple international accolades at the 2026 Dragons of Asia Awards in Kuala Lumpur, Malaysia, demonstrating how disruptive thinking can translate into work that earns recognition beyond its home market. The agency secured the prestigious Blue Dragon for Best Campaign in Sri Lanka and a Gold Dragon in Artificial Intelligence for Hutch…",
+    "summary_si": "මෙම පුවත Daily FT වෙබ් අඩවියෙන් ලබා ගන්නා ලදී. TBWA\\Sri Lanka has earned multiple international accolades at the 2026 Dragons of Asia Awards in Kuala Lumpur, Malaysia, demonstrating how disruptive thinking can translate into work that earns recognition beyond its home market. The agency secured the prestigious Blue Dragon for Best Campaign in Sri Lanka and a Gold Dragon in Artificial Intelligence for Hutch…",
+    "content": "TBWA\\Sri Lanka has earned multiple international accolades at the 2026 Dragons of Asia Awards in Kuala Lumpur, Malaysia, demonstrating how disruptive thinking can translate into work that earns recognition beyond its home market. The agency secured the prestigious Blue Dragon for Best Campaign in Sri Lanka and a Gold Dragon in Artificial Intelligence for Hutch Roaming – The Roaming Hack while Maliban HumaniTill won a Bronze Dragon in Event or Experiential Marketing. Adding to the achievement, TBWA\\Sri Lanka was ranked among Asia’s Top 10 agencies in The Dragon Elite: Asia. The Blue Dragon recognises the impact of Hutch Roaming – The Roaming Hack in Sri Lanka, while the Gold Dragon acknowledges its innovative application of artificial intelligence. The campaign was also shortlisted for Best Campaign in Asia, placing it among the contenders for regional recognition. The wins reflect the agency’s philosophy of Disruption® in Action: questioning the obvious, challenging the expected and turning real consumer problems into ideas that create value for brands and the audiences. “Disruption® in Action is more than a philosophy; it is how the agency approach the work. It means challenging the expected and finding different ways to solve real problems. To see our work recognised at the Dragons of Asia and to have TBWA\\Sri Lanka ranked among Asia’s Top 10 agencies, is a powerful affirmation of what we stand for,” said Renuka Marshall, Managing Director, TBWA\\Sri Lanka. Maliban HumaniTill, created for Maliban Biscuit Manufactories, earned a Bronze Dragon in Event or Experiential Marketing, recognising the campaign’s creative execution and its ability to bring the brand closer to its audience through an engaging experience-led approach. This recognition adds to the campaign’s growing list of accolades and reflects another expression of TBWA\\Sri Lanka’s commitment to finding unconventional ways for brands to connect with people. Nathasoruban Sivapatham, Chief Creative Officer, TBWA\\Sri Lanka, said “Creativity is at its most powerful when it changes how people think. Our role is to look beyond the obvious and find ideas that have a reason to exist in their lives. That means being curious, questioning our first answers and pushing ourselves to create work that is both distinctive and relevant.” The agency’s international success follows a strong performance at the 2026 Dragons of Sri Lanka, where TBWA\\Sri Lanka was named No. 1 Industry Leader, winning seven awards across four campaigns. “Disruptive work takes more than bold thinking. It takes clients who are willing to challenge convention, trust new ideas and back a different path. These recognitions celebrate that shared courage, collaboration and the work they make possible,” said Ahmed T. Hassan, Chief Operating Officer, TBWA\\Sri Lanka. From applying artificial intelligence in unexpected ways to creating engaging brand experiences, TBWA\\Sri Lanka continues to challenge conventional approaches to communications. Its latest wins at the Dragons of Asia demonstrate how bold thinking, strong client partnerships and a willingness to do things differently can create work that resonates beyond borders. TBWA\\Sri Lanka receiving the prestigious Blue Dragon for Best Campaign in Sri Lanka and the Gold Dragon in Artificial Intelligence for Hutch Roaming – The Roaming Hack (left), and the Bronze Dragon in Event or Experiential Marketing for Maliban HumaniTill (right) From left to right: Tariq Bazeer – Client Servicing Director, Eranga Hemajith – Executive Producer AV, Anthony Jeyasingham – Account Manager, Renuka Marshall – Managing Director, Kasun Tennakoon – Executive Creative Director, Soruban Sivapatham – Chief Creative Officer, Ahmed T. Hassan – Chief Operating Officer, Nonim Yasith – Associate Creative Director, and Chamminda Manupriya – Accountant TBWA\\Sri Lanka celebrating its award wins",
+    "passive_voice_content": "TBWA\\Sri Lanka has earned multiple international accolades at the 2026 Dragons of Asia Awards in Kuala Lumpur, Malaysia, demonstrating how disruptive thinking can translate into work that earns recognition beyond its home market. The agency secured the prestigious Blue Dragon for Best Campaign in Sri Lanka and a Gold Dragon in Artificial Intelligence for Hutch Roaming – The Roaming Hack while Maliban HumaniTill won a Bronze Dragon in Event or Experiential Marketing. Adding to the achievement, TBWA\\Sri Lanka was ranked among Asia’s Top 10 agencies in The Dragon Elite: Asia. The Blue Dragon recognises the impact of Hutch Roaming – The Roaming Hack in Sri Lanka, while the Gold Dragon acknowledges its innovative application of artificial intelligence. The campaign was also shortlisted for Best Campaign in Asia, placing it among the contenders for regional recognition. The wins reflect the agency’s philosophy of Disruption® in Action: questioning the obvious, challenging the expected and turning real consumer problems into ideas that create value for brands and the audiences. “Disruption® in Action is more than a philosophy; it is how the agency approach the work. It means challenging the expected and finding different ways to solve real problems. To see our work recognised at the Dragons of Asia and to have TBWA\\Sri Lanka ranked among Asia’s Top 10 agencies, is a powerful affirmation of what we stand for,” said Renuka Marshall, Managing Director, TBWA\\Sri Lanka. Maliban HumaniTill, created for Maliban Biscuit Manufactories, earned a Bronze Dragon in Event or Experiential Marketing, recognising the campaign’s creative execution and its ability to bring the brand closer to its audience through an engaging experience-led approach. This recognition adds to the campaign’s growing list of accolades and reflects another expression of TBWA\\Sri Lanka’s commitment to finding unconventional ways for brands to connect with people. Nathasoruban Sivapatham, Chief Creative Officer, TBWA\\Sri Lanka, said “Creativity is at its most powerful when it changes how people think. Our role is to look beyond the obvious and find ideas that have a reason to exist in their lives. That means being curious, questioning our first answers and pushing ourselves to create work that is both distinctive and relevant.” The agency’s international success follows a strong performance at the 2026 Dragons of Sri Lanka, where TBWA\\Sri Lanka was named No. 1 Industry Leader, winning seven awards across four campaigns. “Disruptive work takes more than bold thinking. It takes clients who are willing to challenge convention, trust new ideas and back a different path. These recognitions celebrate that shared courage, collaboration and the work they make possible,” said Ahmed T. Hassan, Chief Operating Officer, TBWA\\Sri Lanka. From applying artificial intelligence in unexpected ways to creating engaging brand experiences, TBWA\\Sri Lanka continues to challenge conventional approaches to communications. Its latest wins at the Dragons of Asia demonstrate how bold thinking, strong client partnerships and a willingness to do things differently can create work that resonates beyond borders. TBWA\\Sri Lanka receiving the prestigious Blue Dragon for Best Campaign in Sri Lanka and the Gold Dragon in Artificial Intelligence for Hutch Roaming – The Roaming Hack (left), and the Bronze Dragon in Event or Experiential Marketing for Maliban HumaniTill (right) From left to right: Tariq Bazeer – Client Servicing Director, Eranga Hemajith – Executive Producer AV, Anthony Jeyasingham – Account Manager, Renuka Marshall – Managing Director, Kasun Tennakoon – Executive Creative Director, Soruban Sivapatham – Chief Creative Officer, Ahmed T. Hassan – Chief Operating Officer, Nonim Yasith – Associate Creative Director, and Chamminda Manupriya – Accountant TBWA\\Sri Lanka celebrating its award wins",
+    "key_takeaways": [
+      "Extracted directly from Daily FT feed.",
+      "Categorized under Business & Governance.",
+      "Prepared for Executive Briefing."
+    ],
+    "category": "business-news",
+    "tags": [
+      "Daily FT",
+      "Sri Lanka",
+      "Business"
+    ],
+    "workflow_status": "scraped",
+    "rewrite_status": "needs_review",
+    "status": "published",
+    "topRank": 8,
+    "editorial_approved": true
+  },
+  {
     "id": "4a26ae2f4fbaabe71d15",
     "url": "https://www.dailymirror.lk/breaking-news/UNP-calls-for-immediate-presidential-pardon-for-Gnanasara-Thera/108-353439",
     "image": "assets/news_images/9f72db7eae9b4db0b4598db1.jpg",
@@ -25,7 +265,7 @@
       "Sri Lanka politics"
     ],
     "status": "published",
-    "topRank": 1,
+    "topRank": 9,
     "editorial_approved": true
   },
   {
@@ -55,7 +295,7 @@
     "workflow_status": "scraped",
     "rewrite_status": "needs_review",
     "status": "published",
-    "topRank": 2,
+    "topRank": 10,
     "editorial_approved": true
   },
   {
@@ -85,7 +325,7 @@
     "workflow_status": "scraped",
     "rewrite_status": "needs_review",
     "status": "published",
-    "topRank": 3,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -115,7 +355,7 @@
     "workflow_status": "scraped",
     "rewrite_status": "needs_review",
     "status": "published",
-    "topRank": 4,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -145,7 +385,7 @@
     "workflow_status": "scraped",
     "rewrite_status": "needs_review",
     "status": "published",
-    "topRank": 5,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -175,7 +415,7 @@
     "workflow_status": "scraped",
     "rewrite_status": "needs_review",
     "status": "published",
-    "topRank": 6,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -205,7 +445,7 @@
     "workflow_status": "scraped",
     "rewrite_status": "needs_review",
     "status": "published",
-    "topRank": 7,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -235,7 +475,7 @@
     "workflow_status": "scraped",
     "rewrite_status": "needs_review",
     "status": "published",
-    "topRank": 8,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -264,7 +504,7 @@
       "Hiru News"
     ],
     "status": "published",
-    "topRank": 9,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -294,7 +534,7 @@
     "workflow_status": "scraped",
     "rewrite_status": "needs_review",
     "status": "published",
-    "topRank": 10,
+    "topRank": null,
     "editorial_approved": true
   },
   {
@@ -1235,238 +1475,6 @@
       "School Closure",
       "Adverse Weather",
       "O/L Examination"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "2412aa884688270c9cd8",
-    "url": "https://hirunews.lk/en/496399/landslide-warnings-at-level-3-for-ratnapura-ayagama-pelmadulla-kuruwita-elapatha-and-opanayake-areas-and-level-2-for-kalutara-kandy-kegalle-kurunegala-and-nuwara-eliya-districts",
-    "image": "assets/news_images/104bc688523762e5125c9167.jpg",
-    "source": "Hiru News (hirunews.lk)",
-    "published_at": "2026-10-26T11:16:11.944543Z",
-    "scraped_at": "2026-10-26T11:16:11.944543Z",
-    "headline_en": "Landslide Alerts Issued for Ratnapura and Five Other Districts",
-    "headline_si": "රත්නපුර සහ තවත් දිස්ත්‍රික්ක පහකට නායයෑම් අනතුරු ඇඟවීම් නිකුත් කෙරේ",
-    "summary_en": "Landslide alerts were issued for Ratnapura and five other districts. The information was carried by Hiru News, a Sri Lankan news website operated by Rayynor Silva Holdings.",
-    "summary_si": "රත්නපුර සහ තවත් දිස්ත්‍රික්ක පහක් සඳහා නායයෑම් අනතුරු ඇඟවීම් නිකුත් කර ඇත. මෙම තොරතුරු Rayynor Silva Holdings සමාගමට අයත් ශ්‍රී ලාංකික පුවත් වෙබ් අඩවියක් වන Hiru News විසින් වාර්තා කර ඇත.",
-    "content": "Landslide alerts were issued for Ratnapura and five other districts. The information was published by Hiru News, which was described as the most visited website in Sri Lanka and the No. 1 online news site for Sri Lankans. Sri Lankan news updates and discussions are provided by the website, which is operated by Rayynor Silva Holdings.",
-    "passive_voice_content": "Landslide alerts were issued for Ratnapura and five other districts. The information was published by Hiru News, which was described as the most visited website in Sri Lanka and the No. 1 online news site for Sri Lankans. Sri Lankan news updates and discussions are provided by the website, which is operated by Rayynor Silva Holdings.",
-    "key_takeaways": [
-      "Landslide alerts were issued across six districts.",
-      "Ratnapura was specifically included in the alert.",
-      "Heightened attention to public safety and local governance is required."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "Landslide Alerts",
-      "Ratnapura",
-      "Disaster Management",
-      "Public Safety"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "67463d5c9401ffe350e4",
-    "url": "https://hirunews.lk/en/496394/cyclone-ornab-may-have-indirect-effects-no-need-to-create-unnecessary-fear-deputy-minister-aruna-jayasekara",
-    "image": "assets/news_images/dc25c51c7abd6d80640f49fb.jpg",
-    "source": "Hiru News (hirunews.lk)",
-    "published_at": "2026-10-26T11:16:11.944543Z",
-    "scraped_at": "2026-10-26T11:16:11.944543Z",
-    "headline_en": "Deputy Minister Jayasekara Urges Calm Over Cyclone Arnab",
-    "headline_si": "ආර්නබ් සුළි කුණාටුව සම්බන්ධයෙන් අනවශ්‍ය බියක් අවශ්‍ය නැතැයි නියෝජ්‍ය අමාත්‍ය අරුණ ජයසේකර පවසයි",
-    "summary_en": "Unnecessary fear over Cyclone Arnab was said to be unwarranted by Deputy Minister Aruna Jayasekara. The message was carried in content attributed to Hiru News.",
-    "summary_si": "ආර්නබ් සුළි කුණාටුව සම්බන්ධයෙන් අනවශ්‍ය බියක් ඇති කරගැනීම අවශ්‍ය නොවන බව නියෝජ්‍ය අමාත්‍ය අරුණ ජයසේකර විසින් ප්‍රකාශ කර ඇත. එම පණිවිඩය හිරු නිවුස් වෙත ආරෝපිත අන්තර්ගතයක පළ කර තිබේ.",
-    "content": "Unnecessary fear over Cyclone Arnab was said to be unwarranted by Deputy Minister Aruna Jayasekara. The message was carried in content attributed to Hiru News. In the accompanying promotional text, Hiru News was described as the most visited website in Sri Lanka and the No. 1 online news site for Sri Lankans, through which the latest Sri Lankan news updates and discussions are provided. Hiru News was also identified as a Rayynor Silva Holdings Company.",
-    "passive_voice_content": "Unnecessary fear over Cyclone Arnab was said to be unwarranted by Deputy Minister Aruna Jayasekara. The message was carried in content attributed to Hiru News. In the accompanying promotional text, Hiru News was described as the most visited website in Sri Lanka and the No. 1 online news site for Sri Lankans, through which the latest Sri Lankan news updates and discussions are provided. Hiru News was also identified as a Rayynor Silva Holdings Company.",
-    "key_takeaways": [
-      "Public calm over Cyclone Arnab was encouraged.",
-      "The reassurance was issued by Deputy Minister Aruna Jayasekara.",
-      "No specific policy measures or operational details were provided."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "Cyclone Arnab",
-      "Aruna Jayasekara",
-      "Disaster Communication",
-      "Governance"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "3b6007d887abca1adf41",
-    "url": "https://hirunews.lk/en/496393/further-evidence-hearing-in-the-bribery-case-against-s-m-chandrasena-on-december-9th",
-    "image": "assets/news_images/bebf2715e7b25cc1f789d694.jpg",
-    "source": "Hiru News (hirunews.lk)",
-    "published_at": "2026-10-26T11:16:11.944543Z",
-    "scraped_at": "2026-10-26T11:16:11.944543Z",
-    "headline_en": "Further Evidence Hearing in S. M. Chandrasena Bribery Case Set for 9 December",
-    "headline_si": "එස්. එම්. චන්ද්‍රසේනට එරෙහි අල්ලස් නඩුවේ වැඩිදුර සාක්ෂි විභාගය දෙසැම්බර් 9ට",
-    "summary_en": "Further examination of evidence in the bribery case against S. M. Chandrasena has been scheduled for 9 December.",
-    "summary_si": "එස්. එම්. චන්ද්‍රසේනට එරෙහි අල්ලස් නඩුවේ වැඩිදුර සාක්ෂි විභාගය දෙසැම්බර් 9 දිනට නියම කර ඇත.",
-    "content": "Further examination of evidence in the bribery case against S. M. Chandrasena has been scheduled for 9 December. In the scraped material, Hiru News was described as the “Most visited website in Sri Lanka” and the “No1 online news Site for Sri Lankans,” through which Sri Lankan news updates and discussions are provided. Readers were welcomed to the site, which was identified as a Rayynor Silva Holdings Company.",
-    "passive_voice_content": "Further examination of evidence in the bribery case against S. M. Chandrasena has been scheduled for 9 December. In the scraped material, Hiru News was described as the “Most visited website in Sri Lanka” and the “No1 online news Site for Sri Lankans,” through which Sri Lankan news updates and discussions are provided. Readers were welcomed to the site, which was identified as a Rayynor Silva Holdings Company.",
-    "key_takeaways": [
-      "Further evidence examination has been fixed for 9 December.",
-      "The proceedings concern a bribery case against S. M. Chandrasena.",
-      "Continued judicial scrutiny underscores public-sector accountability."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "S. M. Chandrasena",
-      "Bribery",
-      "Judiciary",
-      "Governance"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "b02df18bd2714aa0b677",
-    "url": "https://hirunews.lk/en/496390/heavy-rains-cause-garandiella-to-overflow-disrupting-traffic-on-the-nuwara-eliya-gampola-road",
-    "image": "assets/news_images/9c115c5415ccc58ec61f1f1f.jpg",
-    "source": "Hiru News (hirunews.lk)",
-    "published_at": "2026-10-26T11:16:11.944543Z",
-    "scraped_at": "2026-10-26T11:16:11.944543Z",
-    "headline_en": "Gerandi Ella Overflow Blocks Nuwara Eliya–Gampola Road",
-    "headline_si": "අධික වර්ෂාවෙන් ගැරඬි ඇල්ල පිටාර ගලා නුවරඑළිය–ගම්පොළ මාර්ගය අවහිර වෙයි",
-    "summary_en": "An overflow of Gerandi Ella was caused by heavy rainfall, resulting in the Nuwara Eliya–Gampola road being blocked. Road access and transport connectivity in the affected area were disrupted.",
-    "summary_si": "අධික වර්ෂාව හේතුවෙන් ගැරඬි ඇල්ල පිටාර ගැලීමෙන් නුවරඑළිය–ගම්පොළ මාර්ගය අවහිර වී ඇත. එම ප්‍රදේශයේ මාර්ග ප්‍රවේශයට සහ ප්‍රවාහන සම්බන්ධතාවට බාධා එල්ල වී තිබේ.",
-    "content": "The Nuwara Eliya–Gampola road was blocked after an overflow of Gerandi Ella was caused by heavy rainfall. The report was carried by Hiru News, which describes itself as the most visited website in Sri Lanka and the country’s No. 1 online news site, providing the latest Sri Lankan news updates and discussions. Hiru News is operated as a Rayynor Silva Holdings company.",
-    "passive_voice_content": "The Nuwara Eliya–Gampola road was blocked after an overflow of Gerandi Ella was caused by heavy rainfall. The report was carried by Hiru News, which describes itself as the most visited website in Sri Lanka and the country’s No. 1 online news site, providing the latest Sri Lankan news updates and discussions. Hiru News is operated as a Rayynor Silva Holdings company.",
-    "key_takeaways": [
-      "Transport connectivity on the Nuwara Eliya–Gampola route was disrupted.",
-      "Weather-related risks to critical road infrastructure were highlighted.",
-      "Travel and commercial movement through the affected area may face delays."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "Heavy Rain",
-      "Road Closure",
-      "Nuwara Eliya",
-      "Transport Infrastructure"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "ea4ced47bcbcf73b518e",
-    "url": "https://hirunews.lk/en/496405/all-schools-to-close-tomorrow-due-to-bad-weather",
-    "image": "assets/news_images/b395cfd2d238c908bb1e1192.jpg",
-    "source": "Hiru News (hirunews.lk)",
-    "published_at": "2026-10-26T11:16:11.944543Z",
-    "scraped_at": "2026-10-26T11:16:11.944543Z",
-    "headline_en": "Islandwide Schools Closed Tomorrow Amid Adverse Weather",
-    "headline_si": "අයහපත් කාලගුණය හේතුවෙන් හෙට දිවයින පුරා පාසල් වසා දැමේ",
-    "summary_en": "All schools across the island will be closed tomorrow (27) as a safety measure due to the prevailing adverse weather conditions, the Ministry of Education announced. However, the practical examinations for aesthetic subjects under the G.C.E. Ordinary Level Examination will be conducted as scheduled.",
-    "summary_si": "පවතින අයහපත් කාලගුණ තත්ත්වය හේතුවෙන් ආරක්ෂිත පියවරක් ලෙස හෙට (27) දිවයින පුරා සියලු පාසල් වසා තැබෙන බව අධ්‍යාපන අමාත්‍යාංශය නිවේදනය කළේය. කෙසේ වෙතත්, අ.පො.ස. සාමාන්‍ය පෙළ විභාගයේ සෞන්දර්ය විෂයන්ට අදාළ ප්‍රායෝගික පරීක්ෂණ නියමිත පරිදි පැවැත්වේ.",
-    "content": "The closure of all schools across the island tomorrow (27) has been announced by the Ministry of Education as a safety measure due to the prevailing adverse weather conditions.\n\nHowever, it was stated by the Ministry that the practical examinations for aesthetic subjects under the G.C.E. Ordinary Level (O/L) Examination will be held as scheduled.",
-    "passive_voice_content": "The closure of all schools across the island tomorrow (27) has been announced by the Ministry of Education as a safety measure due to the prevailing adverse weather conditions.\n\nHowever, it was stated by the Ministry that the practical examinations for aesthetic subjects under the G.C.E. Ordinary Level (O/L) Examination will be held as scheduled.",
-    "key_takeaways": [
-      "Islandwide school closures were ordered as a weather-related safety measure.",
-      "Education activities will be disrupted tomorrow (27).",
-      "O/L aesthetic subject practical examinations will proceed as scheduled."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "Ministry of Education",
-      "School Closures",
-      "Adverse Weather",
-      "G.C.E. O/L Examination"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "b9fec2293316400fe875",
-    "url": "https://hirunews.lk/en/496399/landslide-alerts-issued-for-ratnapura-and-five-other-districts",
-    "image": "assets/news_images/104bc688523762e5125c9167.jpg",
-    "source": "Hiru News (hirunews.lk)",
-    "published_at": "2026-10-26T11:16:11.944543Z",
-    "scraped_at": "2026-10-26T11:16:11.944543Z",
-    "headline_en": "Landslide Alerts Issued for Ratnapura and Five Other Districts",
-    "headline_si": "රත්නපුර ඇතුළු දිස්ත්‍රික්ක හයකට නායයෑම් අනතුරු ඇඟවීම් නිකුත් කෙරේ",
-    "summary_en": "Landslide alerts have been issued for Ratnapura and five other districts. No further details regarding the affected areas or duration of the alerts were provided in the source content.",
-    "summary_si": "රත්නපුර සහ තවත් දිස්ත්‍රික්ක පහක් සඳහා නායයෑම් අනතුරු ඇඟවීම් නිකුත් කර ඇත. බලපෑමට ලක්වන ප්‍රදේශ හෝ අනතුරු ඇඟවීම් බලපැවැත්වෙන කාලසීමාව පිළිබඳ වැඩිදුර තොරතුරු මූලාශ්‍ර අන්තර්ගතයේ සපයා නොමැත.",
-    "content": "Landslide alerts have been issued for Ratnapura and five other districts. No additional information on the specific locations, alert levels, applicable dates, or issuing authority was provided in the source content.",
-    "passive_voice_content": "Landslide alerts have been issued for Ratnapura and five other districts. No additional information on the specific locations, alert levels, applicable dates, or issuing authority was provided in the source content.",
-    "key_takeaways": [
-      "Landslide alerts cover six districts, including Ratnapura.",
-      "Heightened disaster preparedness may be required in affected areas.",
-      "Operational and transport disruptions should be monitored."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "Landslides",
-      "Ratnapura",
-      "Disaster Management",
-      "Public Safety"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "3a60359944be78d67bf5",
-    "url": "https://hirunews.lk/en/496388/the-case-regarding-the-sentencing-of-shashi-weerawansa-has-been-postponed-until-the-11th",
-    "image": "assets/news_images/cb815373a2dc07f07673ac78.jpg",
-    "source": "Hiru News (hirunews.lk)",
-    "published_at": "2026-10-26T10:12:39.514369Z",
-    "scraped_at": "2026-10-26T10:12:39.514369Z",
-    "headline_en": "Shashi Weerawansa Sentencing Case Deferred to 11th",
-    "headline_si": "ශෂී වීරවංශගේ දඬුවම් නියම කිරීමේ නඩුව 11 වැනිදා දක්වා කල් තැබේ",
-    "summary_en": "The sentencing case concerning Shashi Weerawansa was postponed to the 11th. No publication date or further case details were provided in the scraped report.",
-    "summary_si": "ශෂී වීරවංශ සම්බන්ධ දඬුවම් නියම කිරීමේ නඩුව 11 වැනිදා දක්වා කල් දමා ඇත. ලබා දී ඇති වාර්තාවේ ප්‍රකාශන දිනයක් හෝ නඩුව පිළිබඳ වැඩිදුර තොරතුරු සඳහන් කර නොමැත.",
-    "content": "The sentencing case concerning Shashi Weerawansa was postponed to the 11th. The item was attributed to Hiru News, which was described in the scraped content as Sri Lanka’s most visited website and as a provider of the latest Sri Lankan news updates and discussions. Visitors were welcomed to what was described as the No. 1 online news site for Sri Lankans, while the outlet was identified as a Rayynor Silva Holdings company.",
-    "passive_voice_content": "The sentencing case concerning Shashi Weerawansa was postponed to the 11th. The item was attributed to Hiru News, which was described in the scraped content as Sri Lanka’s most visited website and as a provider of the latest Sri Lankan news updates and discussions. Visitors were welcomed to what was described as the No. 1 online news site for Sri Lankans, while the outlet was identified as a Rayynor Silva Holdings company.",
-    "key_takeaways": [
-      "Sentencing proceedings were deferred to the 11th.",
-      "The judicial process remains pending.",
-      "No publication date or further case details were provided."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "Shashi Weerawansa",
-      "Judiciary",
-      "Court Proceedings",
-      "Governance"
-    ],
-    "status": "published",
-    "topRank": null,
-    "editorial_approved": true
-  },
-  {
-    "id": "ee3502f3e9771a91cb36",
-    "url": "https://hirunews.lk/en/496386/wanathawilluwa-explosives-depot-two-including-naufer-moulavi-sentenced-to-12-years-of-rigorous-imprisonment",
-    "image": "assets/news_images/68246e6c2e2c2424e3ff1846.jpg",
-    "source": "Hiru News (hirunews.lk)",
-    "published_at": "2026-10-26T10:12:39.514369Z",
-    "scraped_at": "2026-10-26T10:12:39.514369Z",
-    "headline_en": "Naufar Maulvi, Another Sentenced to 12 Years in Wanathawilluwa Explosives Case",
-    "headline_si": "වනාතවිල්ලුව පුපුරණ ද්‍රව්‍ය නඩුවෙන් නවුෆර් මවුලවි ඇතුළු දෙදෙනෙකුට වසර 12ක සිර දඬුවම්",
-    "summary_en": "Twelve-year prison terms were imposed on two individuals, including Naufar Maulvi, in the Wanathawilluwa explosives case. No further case details or publication date were provided in the scraped material.",
-    "summary_si": "වනාතවිල්ලුව පුපුරණ ද්‍රව්‍ය නඩුව සම්බන්ධයෙන් නවුෆර් මවුලවි ඇතුළු පුද්ගලයන් දෙදෙනෙකුට වසර 12ක සිර දඬුවම් නියම කර ඇත. නඩුව පිළිබඳ වැඩිදුර තොරතුරු හෝ ප්‍රකාශන දිනයක් ලබා දී නොතිබුණි.",
-    "content": "In the Wanathawilluwa explosives case, 12-year prison terms were imposed on two individuals, including Naufar Maulvi. The descriptions “Most visited website in Sri Lanka,” “Sri Lanka Latest news updates from Sri Lanka,” “Sri Lanka News updates and discussions,” and “Welcome to the No1 online news Site for Sri Lankans” were included in the scraped material branded as Hiru News. Hiru News was also identified as “A Rayynor Silva Holdings Company.”",
-    "passive_voice_content": "In the Wanathawilluwa explosives case, 12-year prison terms were imposed on two individuals, including Naufar Maulvi. The descriptions “Most visited website in Sri Lanka,” “Sri Lanka Latest news updates from Sri Lanka,” “Sri Lanka News updates and discussions,” and “Welcome to the No1 online news Site for Sri Lankans” were included in the scraped material branded as Hiru News. Hiru News was also identified as “A Rayynor Silva Holdings Company.”",
-    "key_takeaways": [
-      "Two individuals were handed 12-year prison terms.",
-      "Naufar Maulvi was named among those sentenced.",
-      "Judicial enforcement was demonstrated in the explosives case."
-    ],
-    "category": "Governance & Policy",
-    "tags": [
-      "Wanathawilluwa",
-      "Naufar Maulvi",
-      "Judiciary",
-      "National Security"
     ],
     "status": "published",
     "topRank": null,
