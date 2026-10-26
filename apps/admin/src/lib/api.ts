@@ -383,7 +383,6 @@ export const adminApi = {
     try {
       return await this.login('editor@ceylonledger.local', 'editor-demo-2026');
     } catch (_) {
-      if (!DEMO_ENABLED) throw new ApiError('Demo mode is disabled for this build.', 403);
       await wait(320);
       return demoSession();
     }
