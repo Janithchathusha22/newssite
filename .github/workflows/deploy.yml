@@ -175,6 +175,7 @@ jobs:
             # Build and deploy Docker containers
             echo "[*] Building and restarting Docker Compose containers..."
             docker compose down --remove-orphans 2>/dev/null || true
+            docker rm -f ceylon_ledger_backend ceylon_ledger_web 2>/dev/null || true
             docker compose up -d --build
 
             echo "[*] Verifying running containers..."
