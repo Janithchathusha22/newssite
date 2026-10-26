@@ -1,6 +1,7 @@
 'use strict';
 
 const crypto = require('crypto');
+const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
 const { EditorialStore, CATEGORIES, publicArticle } = require('./store');
@@ -176,6 +177,64 @@ function createEditorialRouter({ express, projectDir, runNewsPipeline, publicSyn
     return res.json({ articles, total: articles.length });
   }));
 
+  router.post('/admin/upload-image', requireAdmin, asyncRoute(async (req, res) => {
+    const { imageBase64, filename } = req.body || {};
+    if (!imageBase64 || typeof imageBase64 !== 'string') {
+      return res.status(400).json({ error: 'Image data (base64 string) is required' });
+    }
+    const matches = imageBase64.match(/^data:([A-Za-z-+/]+);base64,(.+)$/);
+    const dataPart = matches ? matches[2] : imageBase64;
+    const extensionMatch = (matches && matches[1]) ? matches[1].split('/')[1] : 'jpg';
+    const ext = ['jpeg', 'jpg', 'png', 'webp', 'avif', 'gif'].includes(extensionMatch.toLowerCase())
+      ? (extensionMatch.toLowerCase() === 'jpeg' ? 'jpg' : extensionMatch.toLowerCase())
+      : 'jpg';
+
+    const cleanName = String(filename || 'image')
+      .replace(/[^a-zA-Z0-9_-]/g, '_')
+      .slice(0, 30);
+    const fileName = `upload_${Date.now()}_${cleanName}.${ext}`;
+    const uploadDir = path.join(projectDir, 'downloaded_images');
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+    const filePath = path.join(uploadDir, fileName);
+    const buffer = Buffer.from(dataPart, 'base64');
+    fs.writeFileSync(filePath, buffer);
+
+    const relativeUrl = `/downloaded_images/${fileName}`;
+    return res.json({ success: true, url: relativeUrl, filename: fileName });
+  }));
+
+  router.post('/admin/articles', requireAdmin, asyncRoute(async (req, res) => {
+    const store = await resolveStore();
+    if (typeof store.createArticle !== 'function') {
+      return res.status(501).json({ error: 'Manual article creation is not supported by the active store' });
+    }
+    const article = await store.createArticle(req.body || {}, req.admin);
+    return res.status(201).json({ article });
+  }));
+
+  router.delete('/admin/articles/:id', requireAdmin, asyncRoute(async (req, res) => {
+    const store = await resolveStore();
+    if (typeof store.deleteArticle !== 'function') {
+      return res.status(501).json({ error: 'Article deletion is not supported by the active store' });
+    }
+    const deleted = await store.deleteArticle(req.params.id, req.admin);
+    return deleted
+      ? res.json({ success: true, id: req.params.id })
+      : articleMissing(res, req.params.id);
+  }));
+
+  router.post('/admin/prune-old', requireAdmin, asyncRoute(async (req, res) => {
+    const store = await resolveStore();
+    const days = Number.parseInt(req.body?.days || req.query.days, 10) || 7;
+    let pruned = 0;
+    if (typeof store.pruneOldArticles === 'function') {
+      pruned = await store.pruneOldArticles(days);
+    }
+    return res.json({ success: true, pruned, days });
+  }));
+
   router.get('/admin/articles/:id', requireAdmin, asyncRoute(async (req, res) => {
     const store = await resolveStore();
     const article = await store.getArticle(req.params.id);
@@ -206,7 +265,8 @@ function createEditorialRouter({ express, projectDir, runNewsPipeline, publicSyn
         error: `Only pending-review or changes-requested articles can be approved; this article is ${existing.status}.`
       });
     }
-    if (!existing.sourceUrl || existing.validation.some(item => item.severity === 'error')) {
+    const isManual = existing.sourceId === 'newsroom-manual' || String(existing.id).startsWith('manual-');
+    if ((!isManual && !existing.sourceUrl) || existing.validation.some(item => item.severity === 'error')) {
       return res.status(422).json({
         error: 'Resolve factual/source validation errors before approval',
         validation: existing.validation
@@ -214,7 +274,32 @@ function createEditorialRouter({ express, projectDir, runNewsPipeline, publicSyn
     }
     const approved = await store.transition(existing.id, 'approved', req.admin);
     if (!approved) return articleMissing(res, req.params.id);
-    return res.json({ article: await store.transition(approved.id, 'published', req.admin) });
+    const published = await store.transition(approved.id, 'published', req.admin);
+
+    if (req.body?.postToLinkedIn) {
+      try {
+        const pythonCommand = process.env.PYTHON_EXECUTABLE || (process.platform === 'win32' ? 'python' : 'python3');
+        const scriptPath = path.join(projectDir, 'linkedin_bot.py');
+        const payload = JSON.stringify({
+          id: published.id,
+          headline: published.draft?.headline || published.original?.headline || '',
+          summary: published.draft?.summary || published.original?.summary || '',
+          sourceUrl: published.sourceUrl || '',
+          tags: published.tags || []
+        });
+        const child = spawn(pythonCommand, [scriptPath, '--post'], {
+          cwd: projectDir,
+          env: { ...process.env, PYTHONUNBUFFERED: '1', PYTHONIOENCODING: 'utf-8', PYTHONUTF8: '1' },
+          shell: false,
+          stdio: ['pipe', 'ignore', 'ignore']
+        });
+        child.stdin.end(payload);
+      } catch (err) {
+        console.error('[editorial] Error initiating auto LinkedIn post:', err);
+      }
+    }
+
+    return res.json({ article: published });
   }));
 
   router.post('/admin/articles/:id/publish', requireAdmin, asyncRoute(async (req, res) => {
@@ -237,6 +322,21 @@ function createEditorialRouter({ express, projectDir, runNewsPipeline, publicSyn
     return res.json({
       article: await store.transition(existing.id, 'rejected', req.admin, req.body?.reason)
     });
+  }));
+
+  router.post('/admin/articles/:id/unpublish', requireAdmin, asyncRoute(async (req, res) => {
+    const store = await resolveStore();
+    const existing = await store.getArticle(req.params.id);
+    if (!existing) return articleMissing(res, req.params.id);
+    if (existing.status !== 'published') {
+      return res.status(409).json({ error: `Article ${existing.id} is not currently published.` });
+    }
+    const reason = req.body?.reason || 'Unpublished from public website by editor';
+    const updated = await store.transition(existing.id, 'changes_requested', req.admin, reason);
+    if (updated) {
+      await store.updateArticle(existing.id, { topRank: null }, req.admin);
+    }
+    return res.json({ article: updated });
   }));
 
   router.post('/admin/articles/:id/preview-token', requireAdmin, asyncRoute(async (req, res) => {
@@ -267,7 +367,7 @@ function createEditorialRouter({ express, projectDir, runNewsPipeline, publicSyn
     const scriptPath = path.join(__dirname, 'rewrite_article_cli.py');
     const child = spawn(pythonCommand, [scriptPath], {
       cwd: projectDir,
-      env: { ...process.env, PYTHONUNBUFFERED: '1' },
+      env: { ...process.env, PYTHONUNBUFFERED: '1', PYTHONIOENCODING: 'utf-8', PYTHONUTF8: '1' },
       shell: false,
       windowsHide: true,
       stdio: ['pipe', 'pipe', 'pipe']
@@ -352,6 +452,183 @@ function createEditorialRouter({ express, projectDir, runNewsPipeline, publicSyn
     return res.status(started ? 202 : 409).json({ started, state: publicSyncState() });
   }));
   router.get('/admin/scraper/status', requireAdmin, (_req, res) => res.json(publicSyncState()));
+
+  function getLinkedInConfig() {
+    const configPath = path.join(projectDir, 'linkedin_config.json');
+    let fileConfig = {};
+    if (fs.existsSync(configPath)) {
+      try {
+        fileConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+      } catch (_) {}
+    }
+    return {
+      clientId: fileConfig.clientId || process.env.LINKEDIN_CLIENT_ID || '',
+      clientSecret: fileConfig.clientSecret || process.env.LINKEDIN_CLIENT_SECRET || '',
+      accessToken: fileConfig.accessToken || process.env.LINKEDIN_ACCESS_TOKEN || '',
+      organizationId: fileConfig.organizationId || process.env.LINKEDIN_ORGANIZATION_ID || '',
+      autoPublishTopNews: fileConfig.autoPublishTopNews ?? true,
+      enginePreference: fileConfig.enginePreference || 'auto'
+    };
+  }
+
+  router.get('/admin/linkedin/status', requireAdmin, asyncRoute(async (_req, res) => {
+    const sessionPath = path.join(projectDir, 'linkedin_session.json');
+    const hasSession = fs.existsSync(sessionPath);
+    const email = process.env.LINKEDIN_EMAIL || 'altrixx99@gmail.com';
+    const config = getLinkedInConfig();
+    const hasApiKeys = Boolean(config.clientId && config.clientSecret && config.accessToken);
+    return res.json({
+      connected: hasSession || hasApiKeys,
+      authMode: hasApiKeys ? 'official_api' : (hasSession ? 'playwright_bot' : 'none'),
+      email,
+      sessionPath: hasSession ? 'linkedin_session.json' : null,
+      hasApiKeys,
+      hasAccessToken: Boolean(config.accessToken),
+      maskedClientId: config.clientId ? `${config.clientId.slice(0, 4)}••••••${config.clientId.slice(-2)}` : '',
+      organizationId: config.organizationId,
+      autoPublishTopNews: config.autoPublishTopNews,
+      enginePreference: config.enginePreference
+    });
+  }));
+
+  router.post('/admin/linkedin/config', requireAdmin, asyncRoute(async (req, res) => {
+    const configPath = path.join(projectDir, 'linkedin_config.json');
+    const current = getLinkedInConfig();
+    const updated = {
+      clientId: req.body?.clientId !== undefined ? String(req.body.clientId).trim() : current.clientId,
+      clientSecret: req.body?.clientSecret !== undefined ? String(req.body.clientSecret).trim() : current.clientSecret,
+      accessToken: req.body?.accessToken !== undefined ? String(req.body.accessToken).trim() : current.accessToken,
+      organizationId: req.body?.organizationId !== undefined ? String(req.body.organizationId).trim() : current.organizationId,
+      autoPublishTopNews: req.body?.autoPublishTopNews !== undefined ? Boolean(req.body.autoPublishTopNews) : current.autoPublishTopNews,
+      enginePreference: req.body?.enginePreference || current.enginePreference || 'auto'
+    };
+    fs.writeFileSync(configPath, JSON.stringify(updated, null, 2), 'utf8');
+
+    // Sync to active environment variables
+    if (updated.clientId) process.env.LINKEDIN_CLIENT_ID = updated.clientId;
+    if (updated.clientSecret) process.env.LINKEDIN_CLIENT_SECRET = updated.clientSecret;
+    if (updated.accessToken) process.env.LINKEDIN_ACCESS_TOKEN = updated.accessToken;
+    if (updated.organizationId) process.env.LINKEDIN_ORGANIZATION_ID = updated.organizationId;
+
+    return res.json({
+      success: true,
+      message: 'LinkedIn settings saved successfully.',
+      status: {
+        hasApiKeys: Boolean(updated.clientId && updated.clientSecret && updated.accessToken),
+        hasAccessToken: Boolean(updated.accessToken),
+        maskedClientId: updated.clientId ? `${updated.clientId.slice(0, 4)}••••••${updated.clientId.slice(-2)}` : '',
+        organizationId: updated.organizationId,
+        autoPublishTopNews: updated.autoPublishTopNews
+      }
+    });
+  }));
+
+  router.post('/admin/linkedin/login', requireAdmin, asyncRoute(async (req, res) => {
+    const pythonCommand = process.env.PYTHON_EXECUTABLE || (process.platform === 'win32' ? 'python' : 'python3');
+    const scriptPath = path.join(projectDir, 'linkedin_bot.py');
+    const email = req.body?.email || process.env.LINKEDIN_EMAIL || 'altrixx99@gmail.com';
+
+    const child = spawn(pythonCommand, [scriptPath, '--login', '--email', email], {
+      cwd: projectDir,
+      env: { ...process.env, PYTHONUNBUFFERED: '1', PYTHONIOENCODING: 'utf-8', PYTHONUTF8: '1' },
+      detached: true,
+      stdio: 'ignore'
+    });
+    child.unref();
+
+    return res.json({
+      success: true,
+      message: `LinkedIn browser launched for ${email}. Please enter your password in the browser window to connect.`
+    });
+  }));
+
+  router.post('/admin/linkedin/test-post', requireAdmin, asyncRoute(async (req, res) => {
+    const pythonCommand = process.env.PYTHON_EXECUTABLE || (process.platform === 'win32' ? 'python' : 'python3');
+    const scriptPath = path.join(projectDir, 'linkedin_bot.py');
+
+    const payload = JSON.stringify({
+      headline: req.body?.headline || 'Business Leaders Sri Lanka - Automated Dispatch Test',
+      summary: req.body?.summary || 'Testing the automated editorial pipeline and multi-channel publication workflow for Ceylon Ledger & Business Leaders.',
+      sourceUrl: req.body?.sourceUrl || 'https://businessleaders.lk',
+      tags: ['SriLanka', 'BusinessLeaders', 'EditorialDesk', 'Automation']
+    });
+
+    const child = spawn(pythonCommand, [scriptPath, '--post'], {
+      cwd: projectDir,
+      env: { ...process.env, PYTHONUNBUFFERED: '1', PYTHONIOENCODING: 'utf-8', PYTHONUTF8: '1' },
+      shell: false,
+      stdio: ['pipe', 'pipe', 'pipe']
+    });
+
+    let stdout = '';
+    let stderr = '';
+    child.stdout.on('data', chunk => { stdout += chunk; });
+    child.stderr.on('data', chunk => { stderr += chunk; });
+    child.on('error', error => res.status(502).json({ error: `Could not start LinkedIn bot: ${error.message}` }));
+    child.on('close', async code => {
+      try {
+        const result = JSON.parse(stdout.trim() || '{}');
+        if (result.success) {
+          return res.json({ success: true, message: result.message || 'Test post dispatched to LinkedIn successfully!', timestamp: result.timestamp || new Date().toISOString() });
+        } else {
+          return res.status(400).json({ error: result.error || 'LinkedIn test post failed', detail: stderr });
+        }
+      } catch (e) {
+        return res.status(500).json({ error: 'Failed to parse LinkedIn bot response', detail: stdout || stderr });
+      }
+    });
+
+    child.stdin.end(payload);
+  }));
+
+  router.post('/admin/articles/:id/linkedin-post', requireAdmin, asyncRoute(async (req, res) => {
+    const store = await resolveStore();
+    const article = await store.getArticle(req.params.id);
+    if (!article) return articleMissing(res, req.params.id);
+
+    const pythonCommand = process.env.PYTHON_EXECUTABLE || (process.platform === 'win32' ? 'python' : 'python3');
+    const scriptPath = path.join(projectDir, 'linkedin_bot.py');
+
+    const payload = JSON.stringify({
+      id: article.id,
+      headline: req.body?.headline || article.draft?.headline || article.original?.headline || '',
+      summary: req.body?.summary || article.draft?.summary || article.original?.summary || '',
+      sourceUrl: article.sourceUrl || '',
+      tags: article.tags || []
+    });
+
+    const child = spawn(pythonCommand, [scriptPath, '--post'], {
+      cwd: projectDir,
+      env: { ...process.env, PYTHONUNBUFFERED: '1', PYTHONIOENCODING: 'utf-8', PYTHONUTF8: '1' },
+      shell: false,
+      stdio: ['pipe', 'pipe', 'pipe']
+    });
+
+    let stdout = '';
+    let stderr = '';
+    child.stdout.on('data', chunk => { stdout += chunk; });
+    child.stderr.on('data', chunk => { stderr += chunk; });
+    child.on('error', error => res.status(502).json({ error: `Could not start LinkedIn bot: ${error.message}` }));
+    child.on('close', async code => {
+      try {
+        const result = JSON.parse(stdout.trim() || '{}');
+        if (result.success) {
+          const timestamp = result.timestamp || new Date().toISOString();
+          const updatedNote = (article.editorNote ? `${article.editorNote} | ` : '') + `Shared to LinkedIn on ${timestamp}`;
+          await store.updateArticle(article.id, {
+            editorNote: updatedNote
+          }, req.admin);
+          return res.json({ success: true, message: result.message, timestamp });
+        } else {
+          return res.status(400).json({ error: result.error || 'LinkedIn post failed', detail: stderr });
+        }
+      } catch (e) {
+        return res.status(500).json({ error: 'Failed to parse LinkedIn bot response', detail: stdout || stderr });
+      }
+    });
+
+    child.stdin.end(payload);
+  }));
 
   // Publication changes should be visible on the next public refresh without
   // a browser or intermediary reusing a stale API response.

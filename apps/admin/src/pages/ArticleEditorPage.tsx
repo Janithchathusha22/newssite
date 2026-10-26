@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArticlePreview } from '../components/ArticlePreview';
 import { ArticleImage } from '../components/ArticleImage';
@@ -34,7 +34,7 @@ const formatDateTime = (date: string) => new Intl.DateTimeFormat('en-GB', { day:
 export function ArticleEditorPage({ forcePreview = false }: { forcePreview?: boolean }) {
   const { articleId } = useParams();
   const navigate = useNavigate();
-  const { articles, loading, saveArticle, runArticleAction, createPreview } = useNewsroom();
+  const { articles, loading, saveArticle, runArticleAction, createPreview, deleteArticle, uploadImage, postToLinkedIn, getLinkedInStatus, connectLinkedIn } = useNewsroom();
   const { notify } = useToast();
   const article = articles.find((item) => item.id === articleId);
   const [draft, setDraft] = useState<LocalDraft | null>(article ? toLocalDraft(article) : null);
@@ -43,9 +43,21 @@ export function ArticleEditorPage({ forcePreview = false }: { forcePreview?: boo
   const [previewOpen, setPreviewOpen] = useState(forcePreview);
   const [rejectOpen, setRejectOpen] = useState(false);
   const [rejectReason, setRejectReason] = useState('');
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [tab, setTab] = useState<'copy' | 'metadata' | 'history'>('copy');
   const [sourceMode, setSourceMode] = useState<'split' | 'draft'>('split');
   const [shareUrl, setShareUrl] = useState('');
+  const [autoShareLinkedIn, setAutoShareLinkedIn] = useState(true);
+  const [linkedinPosting, setLinkedinPosting] = useState(false);
+  const [linkedinStatus, setLinkedinStatus] = useState<{ connected: boolean; email: string } | null>(null);
+  const [linkedinModalOpen, setLinkedinModalOpen] = useState(false);
+
+  useEffect(() => {
+    getLinkedInStatus().then(setLinkedinStatus).catch(() => {});
+  }, [getLinkedInStatus]);
 
   useEffect(() => {
     if (article) setDraft(toLocalDraft(article));
@@ -93,17 +105,56 @@ export function ArticleEditorPage({ forcePreview = false }: { forcePreview?: boo
     }
   };
 
-  const act = async (action: 'approve' | 'publish' | 'rewrite') => {
+  const act = async (action: 'approve' | 'publish' | 'rewrite' | 'unpublish') => {
     setActionBusy(action);
     try {
       if (changed && !(await save(true))) return;
       await runArticleAction(article.id, action);
-      notify(action === 'approve' ? 'Article approved and published to the public website.' : action === 'publish' ? 'Article published to the public website.' : 'A fresh AI rewrite is ready for review.');
+      if (action === 'approve' && autoShareLinkedIn) {
+        postToLinkedIn(article.id, {
+          headline: draft.headline,
+          summary: draft.summary,
+        }).then(() => {
+          notify('Article approved & auto-posted to LinkedIn personal profile! 🚀');
+        }).catch((err) => {
+          notify(`LinkedIn auto-post note: ${err instanceof Error ? err.message : 'check connection'}`, 'danger');
+        });
+      }
+      notify(
+        action === 'approve'
+          ? 'Article approved and published to the public website.'
+          : action === 'publish'
+            ? 'Article published to the public website.'
+            : action === 'unpublish'
+              ? 'Article removed from public website and returned to review queue.'
+              : 'A fresh AI rewrite is ready for review.'
+      );
       if (action === 'approve' || action === 'publish') navigate('/articles/published');
+      if (action === 'unpublish') navigate('/articles/pending');
     } catch (error) {
       notify(error instanceof Error ? error.message : 'The action could not be completed.', 'danger');
     } finally {
       setActionBusy(null);
+    }
+  };
+
+  const handleShareToLinkedIn = async () => {
+    if (changed && !(await save(true))) return;
+    if (!linkedinStatus?.connected) {
+      setLinkedinModalOpen(true);
+      return;
+    }
+    setLinkedinPosting(true);
+    try {
+      const res = await postToLinkedIn(article.id, {
+        headline: draft.headline,
+        summary: draft.summary,
+      });
+      notify(res.message || 'Successfully published to LinkedIn Personal Profile! 🎉');
+    } catch (err) {
+      notify(err instanceof Error ? err.message : 'LinkedIn posting failed.', 'danger');
+    } finally {
+      setLinkedinPosting(false);
     }
   };
 
@@ -140,11 +191,55 @@ export function ArticleEditorPage({ forcePreview = false }: { forcePreview?: boo
   return (
     <div className="editor-page">
       <div className="editor-toolbar panel">
-        <div className="editor-breadcrumb"><Link to="/articles/pending"><Icon name="arrow-left" size={17} />Review queue</Link><i /><StatusPill status={article.status} />{changed && <span className="unsaved-dot"><i />Unsaved changes</span>}</div>
+        <div className="editor-breadcrumb">
+          <Link to="/articles/pending"><Icon name="arrow-left" size={17} />Review queue</Link>
+          <i />
+          <StatusPill status={article.status} />
+          {article.editorNote?.includes('Shared to LinkedIn') && (
+            <span className="status-pill status-pill-healthy" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', marginLeft: '6px' }}>
+              <Icon name="linkedin" size={12} /> Posted
+            </span>
+          )}
+          {changed && <span className="unsaved-dot"><i />Unsaved changes</span>}
+        </div>
         <div className="editor-actions">
           <button className="button button-secondary" type="button" onClick={() => setPreviewOpen(true)}><Icon name="eye" size={17} />Preview</button>
           <button className="button button-secondary" type="button" disabled={saving || !changed} onClick={() => void save()}>{saving ? <span className="button-spinner dark" /> : <Icon name="save" size={17} />}Save draft</button>
+          <button
+            className="button button-secondary"
+            type="button"
+            title={linkedinStatus?.connected ? 'Post directly to personal LinkedIn (altrixx99@gmail.com)' : 'Connect LinkedIn session'}
+            disabled={linkedinPosting}
+            onClick={handleShareToLinkedIn}
+          >
+            {linkedinPosting ? <span className="button-spinner dark" /> : <Icon name="linkedin" size={17} />}
+            Post to LinkedIn
+          </button>
           <button className="button button-danger-text" type="button" onClick={() => setRejectOpen(true)}><Icon name="reject" size={17} />Reject</button>
+          <button className="button button-danger-text" type="button" onClick={() => setDeleteOpen(true)}><Icon name="trash" size={17} />Delete</button>
+          {canApprove && (
+            <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px', cursor: 'pointer', margin: '0 4px', userSelect: 'none' }}>
+              <input
+                type="checkbox"
+                checked={autoShareLinkedIn}
+                onChange={(e) => setAutoShareLinkedIn(e.target.checked)}
+              />
+              <span title="Automatically publish to LinkedIn profile when approved">Auto LinkedIn</span>
+            </label>
+          )}
+          {article.status === 'published' && (
+            <button
+              className="button button-secondary"
+              type="button"
+              style={{ borderColor: 'var(--amber, #f59e0b)', color: 'var(--amber, #f59e0b)' }}
+              disabled={Boolean(actionBusy)}
+              onClick={() => void act('unpublish')}
+              title="Remove article from public website and return to review queue"
+            >
+              {actionBusy === 'unpublish' ? <span className="button-spinner dark" /> : <Icon name="archive" size={17} />}
+              Unpublish from Public
+            </button>
+          )}
           {article.status === 'approved'
             ? <button className="button button-primary" type="button" disabled={Boolean(actionBusy)} onClick={() => void act('publish')}>{actionBusy === 'publish' ? <span className="button-spinner" /> : <Icon name="published" size={17} />}Publish now</button>
             : canApprove
@@ -184,7 +279,41 @@ export function ArticleEditorPage({ forcePreview = false }: { forcePreview?: boo
               <label><span>Editorial desk</span><select value={draft.category} onChange={(event) => setDraft({ ...draft, category: event.target.value as CategorySlug })}>{Object.entries(CATEGORY_LABELS).map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select></label>
               <label><span>Tags <small>comma separated</small></span><input value={draft.tags} onChange={(event) => setDraft({ ...draft, tags: event.target.value })} /></label>
             </div>
-            <label><span>Image URL</span><input value={draft.imageUrl} onChange={(event) => setDraft({ ...draft, imageUrl: event.target.value })} /></label>
+            <label>
+              <span>Image URL</span>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <input value={draft.imageUrl} onChange={(event) => setDraft({ ...draft, imageUrl: event.target.value })} style={{ flex: 1 }} />
+                <button
+                  type="button"
+                  className="button button-secondary"
+                  disabled={uploadingImage}
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  {uploadingImage ? <span className="button-spinner dark" /> : <Icon name="edit" size={15} />}
+                  Upload image
+                </button>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  style={{ display: 'none' }}
+                  accept="image/jpeg,image/png,image/webp,image/avif"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    setUploadingImage(true);
+                    try {
+                      const res = await uploadImage(file);
+                      setDraft({ ...draft, imageUrl: res.url });
+                      notify('Image uploaded and applied to draft.');
+                    } catch (err) {
+                      notify(err instanceof Error ? err.message : 'Image upload failed', 'danger');
+                    } finally {
+                      setUploadingImage(false);
+                    }
+                  }}
+                />
+              </div>
+            </label>
             <label><span>Image credit</span><input value={draft.imageCredit} onChange={(event) => setDraft({ ...draft, imageCredit: event.target.value })} /></label>
             <div className="image-preview-card"><ArticleImage imageUrl={draft.imageUrl} sourceUrl={article.sourceUrl} alt="Article preview" /><div><strong>Featured image preview</strong><span>{draft.imageCredit || 'No image credit supplied'}</span></div></div>
             <label><span>Private editor note</span><textarea rows={5} placeholder="Record context for another editor…" value={draft.editorNote} onChange={(event) => setDraft({ ...draft, editorNote: event.target.value })} /></label>
@@ -219,6 +348,73 @@ export function ArticleEditorPage({ forcePreview = false }: { forcePreview?: boo
       <Modal open={previewOpen} onClose={() => { setPreviewOpen(false); if (forcePreview) navigate(`/articles/${article.id}/edit`); }} title="Website preview" eyebrow="Unpublished · Admin only" size="preview"><ArticlePreview article={previewArticle} /></Modal>
       <Modal open={rejectOpen} onClose={() => setRejectOpen(false)} title="Reject this article" eyebrow="Editorial decision">
         <div className="reject-dialog"><div className="reject-warning"><Icon name="warning" /><div><strong>This removes the story from the review queue.</strong><p>The source and draft remain in the archive for a full audit trail.</p></div></div><label><span>Reason for rejection</span><textarea rows={5} autoFocus value={rejectReason} onChange={(event) => setRejectReason(event.target.value)} placeholder="Explain the factual, editorial or licensing issue…" /></label><div className="modal-actions"><button className="button button-secondary" type="button" onClick={() => setRejectOpen(false)}>Cancel</button><button className="button button-danger" type="button" disabled={actionBusy === 'reject'} onClick={() => void reject()}>{actionBusy === 'reject' ? <span className="button-spinner" /> : <Icon name="reject" size={17} />}Reject article</button></div></div>
+      </Modal>
+
+      <Modal open={deleteOpen} onClose={() => setDeleteOpen(false)} title="Delete this article" eyebrow="Permanent action">
+        <div style={{ padding: '10px 4px 18px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <p>Are you sure you want to permanently delete: <br /><strong>"{article.draft.headline || article.original.headline}"</strong>?</p>
+          <p style={{ color: 'var(--red)', fontSize: '13px' }}>This will remove the article from the newsroom library and the public website.</p>
+          <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '10px' }}>
+            <button type="button" className="button button-secondary" onClick={() => setDeleteOpen(false)} disabled={deleting}>Cancel</button>
+            <button
+              type="button"
+              className="button button-danger"
+              disabled={deleting}
+              onClick={async () => {
+                setDeleting(true);
+                try {
+                  await deleteArticle(article.id);
+                  notify('Article deleted.');
+                  navigate('/articles');
+                } catch (err) {
+                  notify(err instanceof Error ? err.message : 'Failed to delete article', 'danger');
+                  setDeleting(false);
+                }
+              }}
+            >
+              {deleting ? <span className="button-spinner" /> : <Icon name="trash" size={17} />}
+              Delete Permanently
+            </button>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal open={linkedinModalOpen} onClose={() => setLinkedinModalOpen(false)} title="Connect LinkedIn Personal Profile" eyebrow="1-Time Setup">
+        <div style={{ padding: '10px 4px 18px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <p>
+            To post news to your personal profile (<strong>altrixx99@gmail.com</strong>), complete a quick one-time sign-in.
+          </p>
+          <div style={{ background: 'var(--panel-alt)', padding: '12px', borderRadius: '8px', fontSize: '13px' }}>
+            <strong>How it works:</strong>
+            <ul style={{ paddingLeft: '18px', marginTop: '6px', lineHeight: '1.6' }}>
+              <li>Clicking below launches an automated Chrome browser window.</li>
+              <li>Enter your password and sign in once.</li>
+              <li>Your session cookie is securely saved locally.</li>
+              <li>From then on, clicking <em>"Post to LinkedIn"</em> posts 100% automatically in the background!</li>
+            </ul>
+          </div>
+          <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '10px' }}>
+            <button type="button" className="button button-secondary" onClick={() => setLinkedinModalOpen(false)}>Cancel</button>
+            <button
+              type="button"
+              className="button button-primary"
+              onClick={async () => {
+                try {
+                  await connectLinkedIn('altrixx99@gmail.com');
+                  notify('LinkedIn browser launched. Complete sign-in in the opened window.');
+                  setLinkedinModalOpen(false);
+                  setTimeout(() => {
+                    getLinkedInStatus().then(setLinkedinStatus).catch(() => {});
+                  }, 5000);
+                } catch (e) {
+                  notify(e instanceof Error ? e.message : 'Could not launch browser', 'danger');
+                }
+              }}
+            >
+              <Icon name="linkedin" size={16} /> Launch Sign-in Browser
+            </button>
+          </div>
+        </div>
       </Modal>
     </div>
   );

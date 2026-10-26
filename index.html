@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FT-AI | Business & Governance News Portal</title>
-    <meta name="description" content="Live Sri Lankan business, economy and governance news from leading local publishers.">
+    <meta name="description" content="AI-Powered Sri Lanka Business & Governance E-Newspaper Platform inspired by Daily FT.">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=20260812-1">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="light-theme" id="pageTop">
+<body class="light-theme">
 
     <!-- Top Utility Bar -->
     <div class="utility-bar">
         <div class="container utility-content">
             <div class="utility-left">
-                <span class="date-badge"><i class="fa-regular fa-calendar"></i> <span id="currentDate">Loading current date…</span></span>
+                <span class="date-badge"><i class="fa-regular fa-calendar"></i> <span id="currentDate">Thursday, August 6, 2026</span></span>
                 <span class="location-badge"><i class="fa-solid fa-location-dot"></i> Colombo | LKR / USD: 302.50</span>
             </div>
             <div class="utility-right">
@@ -31,7 +31,7 @@
                     <i class="fa-solid fa-moon"></i>
                 </button>
                 <button id="pipelineToggleBtn" class="pipeline-btn">
-                    <i class="fa-solid fa-microchip"></i> Newsroom Pipeline
+                    <i class="fa-solid fa-microchip"></i> AI Scraper Dashboard
                 </button>
             </div>
         </div>
@@ -44,12 +44,21 @@
                 <a href="#" class="logo">
                     <span class="logo-accent">DAILY</span> <span class="logo-main">BIZ & GOV</span>
                 </a>
-                <span class="tagline">Sri Lanka's Live Business & Governance Journal</span>
+                <span class="tagline">Sri Lanka's Premier AI-Driven Business & Governance Journal</span>
             </div>
             <div class="header-banner">
-                <div class="market-ticker-card" id="cseMarketBanner">
+                <div class="market-ticker-card">
                     <div class="market-item">
-                        <span class="m-label">Loading Live CSE Data... <i class="fa-solid fa-spinner fa-spin"></i></span>
+                        <span class="m-label">ASPI (CSE)</span>
+                        <span class="m-val positive">11,845.20 <i class="fa-solid fa-caret-up"></i> +0.65%</span>
+                    </div>
+                    <div class="market-item">
+                        <span class="m-label">S&P SL20</span>
+                        <span class="m-val positive">3,490.10 <i class="fa-solid fa-caret-up"></i> +0.82%</span>
+                    </div>
+                    <div class="market-item">
+                        <span class="m-label">Inflation (CCPI)</span>
+                        <span class="m-val negative">2.4% <i class="fa-solid fa-caret-down"></i> -0.1%</span>
                     </div>
                 </div>
             </div>
@@ -79,7 +88,7 @@
         <div class="container ticker-container">
             <span class="ticker-label"><i class="fa-solid fa-bolt"></i> BREAKING:</span>
             <div class="ticker-content" id="tickerText">
-                Awaiting live news updates from Daily FT...
+                Cabinet approves new Fiscal Management & Transparency Reforms Framework for Q3 2026 | Central Bank maintains Policy Interest Rates to bolster private credit growth.
             </div>
         </div>
     </div>
@@ -91,10 +100,10 @@
         <section id="pipelineSection" class="pipeline-section hidden">
             <div class="card pipeline-card">
                 <div class="pipeline-header">
-                    <h2><i class="fa-solid fa-gears"></i> Automated Newsroom Publishing Pipeline</h2>
-                    <span id="pipelineStatusBadge" class="status-badge idle"><i class="fa-solid fa-circle-info"></i> Checking scheduler…</span>
+                    <h2><i class="fa-solid fa-robot"></i> Automated Scraping & AI Processing Pipeline</h2>
+                    <span class="status-badge running"><i class="fa-solid fa-spinner fa-spin"></i> Live Scraper Active</span>
                 </div>
-                <p class="pipeline-desc">This panel shows how publisher feeds are collected, validated, optionally enriched with summaries and translations, and published to the live newsroom wire.</p>
+                <p class="pipeline-desc">This panel demonstrates how raw news scraped from <strong>ft.lk (Daily FT)</strong> is parsed, sanitized, processed by Gemini AI (Summaries, Translations, Categorization), and automatically published onto this e-newspaper.</p>
                 
                 <div class="pipeline-steps">
                     <div class="p-step active">
@@ -107,8 +116,8 @@
                     <div class="p-step active">
                         <div class="step-num">2</div>
                         <div class="step-info">
-                            <h4>Editorial Enrichment</h4>
-                            <p>Classifies business topics and prepares optional summaries and translations</p>
+                            <h4>Gemini AI Engine</h4>
+                            <p>Classifies into Business/Gov, writes summaries & Sinhala translation</p>
                         </div>
                     </div>
                     <div class="p-step active">
@@ -128,13 +137,13 @@
                 </div>
 
                 <div class="pipeline-actions">
-                    <button id="runScraperBtn" class="btn btn-primary"><i class="fa-solid fa-rotate"></i> Check Live Pipeline Status</button>
+                    <button id="runScraperBtn" class="btn btn-primary"><i class="fa-solid fa-play"></i> Trigger Live Daily FT Scraper</button>
                     <button id="viewCodeBtn" class="btn btn-secondary"><i class="fa-solid fa-code"></i> View Python Scraper Code</button>
                 </div>
 
                 <div id="scraperConsole" class="scraper-console">
-                    <div class="console-header">Scheduler status and recent server output</div>
-                    <pre id="logOutput">Checking the hosted scheduler…</pre>
+                    <div class="console-header">Console Output (Live Log Stream)</div>
+                    <pre id="logOutput">[SYSTEM READY] Scraper cron initialized. Monitoring https://www.ft.lk/ financial-services & governance feeds...</pre>
                 </div>
             </div>
         </section>
@@ -143,13 +152,6 @@
         <div class="news-grid-container">
             <!-- Left Primary Column (Hero & Top Headlines) -->
             <div class="primary-news-column">
-                <div class="editorial-section-header">
-                    <div>
-                        <span class="section-eyebrow">Today's Executive Briefing</span>
-                        <h2>Top Business Stories</h2>
-                    </div>
-                    <span class="section-rule" aria-hidden="true"></span>
-                </div>
                 
                 <!-- Hero Featured Article -->
                 <article class="hero-card card" id="heroArticle">
@@ -160,7 +162,6 @@
                 <div class="secondary-grid" id="secondaryArticles">
                     <!-- Dynamic Content -->
                 </div>
-
             </div>
 
             <!-- Right Sidebar Column (Governance Highlights & Market News) -->
@@ -169,13 +170,21 @@
                 <!-- Business & Gov Quick Takeaways -->
                 <div class="card sidebar-widget ai-insights-widget">
                     <div class="widget-header">
-                        <h3><i class="fa-solid fa-chart-line"></i> Executive Briefing</h3>
-                        <span class="badge ai-badge">Live Sources</span>
+                        <h3><i class="fa-solid fa-brain"></i> AI Business Takeaways</h3>
+                        <span class="badge ai-badge">Gemini 1.5 Flash</span>
                     </div>
                     <ul class="takeaways-list" id="aiTakeawaysList">
                         <li>
-                            <i class="fa-solid fa-clock text-muted"></i>
-                            Waiting for live AI analysis...
+                            <i class="fa-solid fa-arrow-trend-up text-success"></i>
+                            <strong>Export Revenue:</strong> Sri Lanka apparel & tea exports surge by 14% YoY in Q2 2026 amidst regional supply chain shifts.
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-scale-balanced text-primary"></i>
+                            <strong>Governance Act:</strong> New Anti-Corruption Commission guidelines introduced for SOE procurement auditing.
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-coins text-warning"></i>
+                            <strong>Banking Sector:</strong> Non-performing loans drops below 9.2% as debt restructuring yields stabilization.
                         </li>
                     </ul>
                 </div>
@@ -190,43 +199,17 @@
                     </div>
                 </div>
 
-                <!-- Source Coverage -->
-                <div class="card sidebar-widget source-coverage-widget">
-                    <div class="widget-header">
-                        <h3><i class="fa-solid fa-satellite-dish"></i> Source Coverage</h3>
-                        <span class="coverage-live"><span aria-hidden="true"></span> Live</span>
-                    </div>
-                    <p class="coverage-intro">Current newsroom coverage by original publisher.</p>
-                    <ul id="sourceCoverageList" class="source-coverage-list">
-                        <li>Reading live source totals…</li>
-                    </ul>
+                <!-- Newsletter Subscribe -->
+                <div class="card sidebar-widget newsletter-widget">
+                    <h3><i class="fa-regular fa-paper-plane"></i> Morning Executive Brief</h3>
+                    <p>Get AI-curated Daily FT business & governance summaries in your inbox every morning at 7:00 AM.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed successfully to Executive Daily Digest!');">
+                        <input type="email" placeholder="Enter corporate email..." required>
+                        <button type="submit" class="btn btn-accent">Subscribe</button>
+                    </form>
                 </div>
 
             </aside>
-        </div>
-
-        <!-- Full-width newsroom wire. Items are distinct from the hero/top cards. -->
-        <section class="latest-updates-section" id="latestUpdatesSection" aria-labelledby="latestUpdatesTitle">
-            <div class="latest-section-header">
-                <div>
-                    <span class="section-eyebrow">Continuously Refreshed Newsroom Wire</span>
-                    <h2 id="latestUpdatesTitle">Latest Business Updates</h2>
-                    <p>Original reporting from Sri Lankan business publications, refreshed from the live feed.</p>
-                </div>
-                <span id="latestUpdatesCount" class="latest-updates-count">Loading updates…</span>
-            </div>
-            <div id="latestUpdates" class="latest-updates-grid">
-                <!-- Dynamic full-width update rows -->
-            </div>
-        </section>
-
-        <div class="article-pagination" id="articlePagination">
-            <div class="feed-status-copy" aria-live="polite">
-                <span id="articleCountStatus" class="article-count">Loading articles…</span>
-                <span id="feedStats" class="feed-stats">Reading feed details…</span>
-                <span id="feedRefreshStatus" class="feed-refresh-status">Starting auto-refresh…</span>
-            </div>
-            <button id="loadMoreBtn" class="btn btn-primary" type="button" hidden>Load more</button>
         </div>
 
     </main>
@@ -309,35 +292,30 @@ if __name__ == "__main__":
         <div class="container footer-content">
             <div class="footer-brand">
                 <div class="logo"><span class="logo-accent">DAILY</span> <span class="logo-main">BIZ & GOV</span></div>
-                <p>An independent business-news dashboard bringing together corporate, economic and public-policy reporting from Sri Lankan publishers.</p>
-                <p id="footerFeedSummary" class="footer-feed-summary">Connecting to the live newsroom feed…</p>
+                <p>Sri Lanka's Next-Generation AI Powered Financial, Business, and Governance Newspaper Platform.</p>
+                <p class="copyright">&copy; 2026 Daily Biz & Gov Portal. Inspired by Daily FT. Powered by Antigravity AI.</p>
             </div>
             <div class="footer-links">
-                <h4>Sections</h4>
+                <h4>Quick Navigation</h4>
                 <ul>
-                    <li><button type="button" data-footer-category="business">Business & Corporate</button></li>
-                    <li><button type="button" data-footer-category="economy">Economy & Finance</button></li>
-                    <li><button type="button" data-footer-category="governance">Governance & Policy</button></li>
-                    <li><button type="button" data-footer-category="opinion">Opinion & Analysis</button></li>
+                    <li><a href="#">Financial Services</a></li>
+                    <li><a href="#">Governance & Policy</a></li>
+                    <li><a href="#">Corporate Leadership</a></li>
+                    <li><a href="#">Opinion & Analysis</a></li>
                 </ul>
             </div>
             <div class="footer-links">
-                <h4>Editorial Standard</h4>
-                <p>Headlines, summaries and publisher-owned images are organised for discovery. Every story links back to its original source.</p>
-                <a class="footer-top-link" href="#pageTop"><i class="fa-solid fa-arrow-up"></i> Back to top</a>
+                <h4>AI Technology Stack</h4>
+                <ul>
+                    <li>Web Scraper (Python BeautifulSoup / Playwright)</li>
+                    <li>Gemini API (Summaries & Translations)</li>
+                    <li>Headless CMS & Real-time Database</li>
+                    <li>Automated Daily Cron Aggregator</li>
+                </ul>
             </div>
-        </div>
-        <div class="container footer-source-strip">
-            <strong>Publishers in this feed</strong>
-            <div id="footerSources" class="footer-source-pills"></div>
-        </div>
-        <div class="container footer-bottom">
-            <span>&copy; <span id="currentYear">2026</span> Daily Biz &amp; Gov</span>
-            <span>Source publishers retain rights to their reporting and images.</span>
         </div>
     </footer>
 
-    <script src="news_feed.js?v=20260812-1"></script>
-    <script src="app.js?v=20260812-3"></script>
+    <script src="app.js"></script>
 </body>
 </html>

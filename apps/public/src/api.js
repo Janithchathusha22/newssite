@@ -28,11 +28,12 @@ export function resolveAssetUrl(value, sourceUrl = '') {
   const clean = cleanImageCandidate(value);
   if (!clean) return '';
   if (/^https?:\/\//i.test(clean)) {
-    if (API_BASE && /^https?:\/\//i.test(sourceUrl)) {
-      const params = new URLSearchParams({ url: clean, source: sourceUrl });
-      return `${API_BASE}/api/image-proxy?${params.toString()}`;
-    }
-    return clean;
+    const publisherSource = (sourceUrl && /^https?:\/\//i.test(sourceUrl))
+      ? sourceUrl
+      : (clean.includes('dailymirror') ? 'https://www.dailymirror.lk/' : 'https://www.ft.lk/');
+    const params = new URLSearchParams({ url: clean, source: publisherSource });
+    const base = API_BASE || '';
+    return `${base}/api/image-proxy?${params.toString()}`;
   }
   return `${API_BASE}${clean}`;
 }
@@ -115,7 +116,7 @@ export function normalizeArticle(article, index = 0) {
       body = body.filter(Boolean);
     }
   }
-  const sourceUrl = '#';
+  const sourceUrl = article.sourceUrl || article.source_url || (article.source?.includes('Mirror') ? 'https://www.dailymirror.lk/' : 'https://www.ft.lk/');
   const image = [
     article.local_image_path,
     article.image_local,
@@ -218,11 +219,12 @@ export async function getHome() {
     }
     const combined = articles.length ? articles : suppliedTop;
     const demo = Boolean(payload?.demo);
-    const displayArticles = demo
-      ? [...combined, ...demoArticles].filter((article, index, all) => (
-          all.findIndex((candidate) => candidate.id === article.id || candidate.slug === article.slug) === index
-        ))
-      : combined;
+    const unsorted = combined.length ? combined : (demo ? demoArticles : []);
+    const displayArticles = [...unsorted].sort((a, b) => {
+      const timeA = Date.parse(a.publishedAt) || 0;
+      const timeB = Date.parse(b.publishedAt) || 0;
+      return timeB - timeA;
+    });
     return { articles: displayArticles, topNews: ensureTenTopStories(suppliedTop, displayArticles), demo, error: '' };
   } catch {
     homeRequestFailed = true;

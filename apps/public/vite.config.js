@@ -12,6 +12,6 @@ export default defineConfig({
       '/news_images',
       '/images',
       '/downloaded_images'
-    ].map(route => [route, 'http://localhost:5000']))
+    ].map(route => [route, { target: 'http://127.0.0.1:5000', changeOrigin: true }]))
   }
 });

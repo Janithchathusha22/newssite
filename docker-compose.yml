@@ -1,0 +1,40 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: ceylon_ledger_backend
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - PORT=5000
+      - NODE_ENV=production
+      - PYTHONUNBUFFERED=1
+      - AUTO_SYNC_ENABLED=true
+      - AUTO_SYNC_RUN_ON_START=true
+      - AUTO_SYNC_INTERVAL_MINUTES=480
+    volumes:
+      - ./news.db:/app/news.db
+      - ./daily_news_export.xlsx:/app/daily_news_export.xlsx
+      - ./news_feed.csv:/app/news_feed.csv
+      - ./news_feed.json:/app/news_feed.json
+      - ./editorial:/app/editorial
+      - ./downloaded_images:/app/downloaded_images
+      - ./ft_images:/app/ft_images
+      - ./news_images:/app/news_images
+      - ./images:/app/images
+    ports:
+      - "5000:5000"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ceylon_ledger_web
+    restart: unless-stopped
+    ports:
+      - "80:80"       # Public Website -> http://localhost
+      - "8080:8080"   # Admin Dashboard -> http://localhost:8080
+    depends_on:
+      - backend

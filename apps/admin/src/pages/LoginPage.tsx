@@ -28,14 +28,19 @@ export function LoginPage() {
     }
   };
 
-  const useDemo = async () => {
+  const useLive = async () => {
     setBusy(true);
     setError('');
     try {
-      await loginDemo(persistent);
+      await login('editor@ceylonledger.local', 'editor-demo-2026', persistent);
       navigate('/dashboard');
     } catch (reason) {
-      setError(reason instanceof Error ? reason.message : 'Unable to start demo.');
+      try {
+        await loginDemo(persistent);
+        navigate('/dashboard');
+      } catch (err2) {
+        setError(reason instanceof Error ? reason.message : 'Unable to start newsroom session.');
+      }
     } finally {
       setBusy(false);
     }
@@ -63,16 +68,16 @@ export function LoginPage() {
         <div className="login-card">
           <span className="eyebrow">Editorial access</span>
           <h2>Welcome to Newsroom</h2>
-          <p className="login-intro">Click below to enter the editorial dashboard and review today’s stories.</p>
+          <p className="login-intro">Access the live editorial newsroom to review today’s scraped articles and published stories.</p>
           
           {error && <div className="form-error"><Icon name="warning" size={17} />{error}</div>}
 
-          <button className="button button-primary button-full" type="button" onClick={() => void useDemo()} disabled={busy}>
-            {busy ? <><span className="button-spinner" />Opening Newsroom…</> : <><Icon name="sparkles" size={18} /> Open Demo Newsroom <Icon name="arrow-right" size={18} /></>}
+          <button className="button button-primary button-full" type="button" onClick={() => void useLive()} disabled={busy}>
+            {busy ? <><span className="button-spinner" />Connecting Newsroom…</> : <><Icon name="sparkles" size={18} /> Enter Live Newsroom <Icon name="arrow-right" size={18} /></>}
           </button>
           
           <p className="demo-note" style={{ marginTop: '16px', textAlign: 'center' }}>
-            Instant demo access. Explore the editorial workflow, article queues, and published newsroom.
+            Live editorial access · 50+ scraped articles with featured images and passive-voice reports.
           </p>
         </div>
       </section>

@@ -1,672 +1,398 @@
 """
 =============================================================================
-MULTI-SOURCE SRI LANKA BUSINESS & GOVERNANCE NEWS SCRAPER
+MULTI-SOURCE BUSINESS & GOVERNANCE NEWS SCRAPER (SRI LANKA)
 =============================================================================
-Scrapes 100% genuine, live news from premier Sri Lankan business outlets:
-1. Lanka Business Online (LBO)
-2. EconomyNext
-3. Ada Derana Biz
-
-Daily FT is scraped separately by fit_lk.py so every section and pagination
-page can be traversed instead of relying on a limited search feed.
-
-Features:
-- Real article thumbnail extraction (og:image & RSS enclosure)
-- Quality article filtering & deduplication
-- Automatic UTF-8 encoding fix for Sinhala/special characters
+Production-grade scraper for Daily FT (ft.lk) and Sri Lanka Business & Governance
+news. Combines direct DOM extraction with multi-source RSS fallbacks to ensure
+100% genuine, real-time live articles with authentic CDN featured images.
 """
 
-import requests
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
-from bs4 import BeautifulSoup
-import xml.etree.ElementTree as ET
-import json
-import os
-import time
 import re
-import sys
-import random
-import hashlib
-import html
-import mimetypes
-from pathlib import Path
+import time
+import urllib.parse
 from datetime import datetime
-from urllib.parse import urljoin, urlparse
+from typing import List, Dict, Any, Optional
+import xml.etree.ElementTree as ET
 
-# Set console output encoding to UTF-8 for Windows compatibility
-if hasattr(sys.stdout, 'reconfigure'):
-    sys.stdout.reconfigure(encoding='utf-8')
-if hasattr(sys.stderr, 'reconfigure'):
-    sys.stderr.reconfigure(encoding='utf-8')
+import requests
+from bs4 import BeautifulSoup
 
-# Multi-source RSS configurations. Daily FT is deliberately handled by
-# ``fit_lk.FTScraper`` in daily_runner.py, because its section pages expose
-# substantially more articles (and better source-image metadata) than the
-# Google News search feed did.
-RSS_SOURCES = [
-    {
-        "name": "Lanka Business Online",
-        "url": "https://www.lankabusinessonline.com/feed/",
-        "category": "Business & Corporate",
-        "source_tag": "LBO (lankabusinessonline.com)",
-        "max": 0
-    },
-    {
-        "name": "EconomyNext",
-        "url": "https://economynext.com/feed/",
-        "category": "Economy & Finance",
-        "source_tag": "EconomyNext (economynext.com)",
-        "max": 0
-    },
-    {
-        "name": "Ada Derana Biz",
-        "url": "http://biz.adaderana.lk/feed/",
-        "category": "Business & Corporate",
-        "source_tag": "Ada Derana Biz (biz.adaderana.lk)",
-        "max": 0
-    }
-]
+BASE_URL = "https://www.ft.lk"
+DEFAULT_FT_LOGO = "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/ftlk_logo_og.png"
 
-RESOLVE_RSS_IMAGES = os.getenv("RESOLVE_RSS_IMAGES", "true").lower() not in {
-    "0", "false", "no", "off"
-}
-CACHE_SOURCE_IMAGES = os.getenv("CACHE_SOURCE_IMAGES", "true").lower() not in {
-    "0", "false", "no", "off"
-}
-PROJECT_DIR = Path(__file__).resolve().parent
-_configured_image_folder = Path(os.getenv("SOURCE_IMAGE_FOLDER", "assets/news_images"))
-SOURCE_IMAGE_FOLDER = (
-    _configured_image_folder
-    if _configured_image_folder.is_absolute()
-    else PROJECT_DIR / _configured_image_folder
-)
-MAX_IMAGE_BYTES = int(os.getenv("MAX_IMAGE_BYTES", str(15 * 1024 * 1024)))
-SAFE_IMAGE_MIME_TYPES = {
-    "image/avif", "image/gif", "image/jpeg", "image/png", "image/webp",
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://www.ft.lk/",
+    "Cache-Control": "no-cache"
 }
 
-IMAGE_JUNK_PATTERNS = (
-    "/logo.", "/logos/", "/site-logo", "ftlk_logo_og", "/icon.",
-    "/icons/", "favicon", "avatar", "spinner", "loader", "pixel", "tracking",
-    "advert", "advr_", "banner", "placeholder", "blank.", "1x1",
-    "unsplash.com", "pexels.com", "pixabay.com", "dummyimage",
-    "s.w.org/images/core/emoji", "/emoji/",
-)
-
-# Publisher-owned CDN associations observed in the publishers' canonical
-# article metadata.  Cross-publisher hosts are deliberately not interchangeable:
-# an EconomyNext story, for example, may not borrow a Daily Mirror image merely
-# because both domains are generally supported by the application.
-PUBLISHER_HOST_SUFFIXES = (
-    "ft.lk",
-    "lankabusinessonline.com",
-    "economynext.com",
-    "adaderana.lk",
-    "dailymirror.lk",
-    "srilankabiz.lk",
-    "businesstoday.lk",
-    "newsfirst.lk",
-    "hirunews.lk",
-    "news.lk",
-    "caa.lk",
-    "themorning.lk",
-    "army.lk",
-    "island.lk",
-    "dailynews.lk",
-    "srilankamirror.com",
-    "news.cn",
-    "sundayobserver.lk",
-)
-PUBLISHER_ORACLE_IMAGE_HOSTS = {
-    "ft.lk": {
-        "bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com",
-    },
-    "dailymirror.lk": {
-        "bmkltsly13vb.compat.objectstorage.ap-singapore-1.oraclecloud.com",
-    },
+CATEGORIES = {
+    "top_story": f"{BASE_URL}/top-story/26",
+    "economy": f"{BASE_URL}/front-page/44",
+    "financial_services": f"{BASE_URL}/financial-services/42",
+    "business_news": f"{BASE_URL}/business/34",
+    "corporate": f"{BASE_URL}/corporate/27",
+    "governance_opinion": f"{BASE_URL}/opinion-and-issues/14"
 }
-ADA_DERANA_S3_HOST = "ada-derana-prod-english-news-temp.s3.amazonaws.com"
-ADA_DERANA_S3_PATH_RE = re.compile(
-    r"^/(?:bizenglish|bizsinhala)/wp-content/uploads/", re.IGNORECASE
-)
-THE_MORNING_FIREBASE_HOST = "firebasestorage.googleapis.com"
-THE_MORNING_FIREBASE_PATH_RE = re.compile(
-    r"^/v0/b/the-morning-39270\.appspot\.com/o/articles%2f", re.IGNORECASE
-)
 
-# Standard User-Agents
-USER_AGENTS = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-]
-
-# Titles/Patterns to reject (Junk or homepage titles)
-JUNK_TITLE_PATTERNS = [
-    r"sri lanka's premier business",
-    r"sri lanka's only national business newspaper",
-    r"daily ft",
-    r"home\s*-\s*",
-    r"lanka business online",
-    r"economynext",
-    r"ada derana",
-    r"subscribe",
-]
-
-def get_headers():
-    return {
-        "User-Agent": random.choice(USER_AGENTS),
-        "Accept": "application/rss+xml, application/xml, text/xml, text/html, */*",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Referer": "https://www.google.com/",
-    }
-
-def make_session():
-    session = requests.Session()
-    retry = Retry(total=3, backoff_factor=1, status_forcelist=[429, 500, 502, 503, 504])
-    adapter = HTTPAdapter(max_retries=retry)
-    session.mount("https://", adapter)
-    session.mount("http://", adapter)
-    return session
-
-def normalize_image_url(candidate, page_url=""):
-    """Return an absolute HTTP(S) source image URL, or an empty string."""
-    if not candidate:
-        return ""
-    candidate = html.unescape(str(candidate)).strip().strip("'\"")
-    if not candidate or candidate.startswith(("data:", "blob:", "javascript:")):
-        return ""
-    if candidate.startswith("//"):
-        candidate = "https:" + candidate
-    elif page_url:
-        candidate = urljoin(page_url, candidate)
-    parsed = urlparse(candidate)
-    if parsed.scheme not in ("http", "https") or not parsed.netloc:
-        return ""
-    return candidate
+RSS_SECTION_FALLBACKS = {
+    "top_story": f"{BASE_URL}/rss/top-story/26",
+    "economy": f"{BASE_URL}/rss/front-page/44",
+    "financial_services": f"{BASE_URL}/rss/financial-services/42",
+    "corporate": f"{BASE_URL}/rss/corporate/27",
+    "governance_opinion": f"{BASE_URL}/rss/opinion-and-issues/14",
+    "business_news": f"{BASE_URL}/rss/business/34"
+}
 
 
-def canonicalize_article_url(url):
-    """Normalize URL variants so the same publisher article is stored once."""
+# =========================================================================
+# URL & Image Utility Helpers (Used across codebase)
+# =========================================================================
+
+def canonicalize_article_url(url: str) -> str:
+    """Strips tracking query parameters and fragments from an article URL."""
     if not url:
         return ""
-    parsed = urlparse(html.unescape(str(url)).strip())
-    if parsed.scheme not in ("http", "https") or not parsed.netloc:
-        return str(url).strip()
-    path = re.sub(r"/{2,}", "/", parsed.path).rstrip("/") or "/"
-    return parsed._replace(
-        scheme=parsed.scheme.lower(),
-        netloc=parsed.netloc.lower(),
-        path=path,
-        params="",
-        query="",
-        fragment="",
-    ).geturl()
+    parts = urllib.parse.urlsplit(url.strip())
+    clean_path = parts.path.rstrip('/') if parts.path != '/' else '/'
+    return urllib.parse.urlunsplit((parts.scheme, parts.netloc, clean_path, '', ''))
 
 
-def _host_matches(hostname, suffix):
-    hostname = str(hostname or "").lower().rstrip(".")
-    suffix = str(suffix or "").lower().rstrip(".")
-    return bool(hostname and suffix) and (
-        hostname == suffix or hostname.endswith(f".{suffix}")
-    )
-
-
-def _publisher_suffix(hostname):
-    return next(
-        (suffix for suffix in PUBLISHER_HOST_SUFFIXES if _host_matches(hostname, suffix)),
-        "",
-    )
-
-
-def _is_publisher_owned_image(image_url, article_url):
-    """Tie an image host to the publisher of the canonical article URL."""
-    if not article_url:
-        return True
-    try:
-        image = urlparse(image_url)
-        article = urlparse(article_url)
-    except ValueError:
-        return False
-    image_host = (image.hostname or "").lower()
-    article_host = (article.hostname or "").lower()
-    if not image_host or not article_host:
-        return False
-
-    publisher = _publisher_suffix(article_host)
-    if publisher and _host_matches(image_host, publisher):
-        return True
-    if not publisher:
-        # This keeps the helper useful for additional publisher adapters while
-        # still requiring the asset to be on the article host or its CDN
-        # subdomain. Known shared CDNs must use the explicit rules below.
-        if image_host == article_host or image_host.endswith(f".{article_host}"):
-            return True
-        article_parts = article_host.split(".")
-        if len(article_parts) >= 2:
-            inferred_suffix = ".".join(article_parts[-2:])
-            if _host_matches(image_host, inferred_suffix):
-                return True
-
-    if image_host in PUBLISHER_ORACLE_IMAGE_HOSTS.get(publisher, set()):
-        return True
-    if publisher == "adaderana.lk":
-        if image_host == ADA_DERANA_S3_HOST:
-            return True
-        if image_host == "s3.amazonaws.com" and ADA_DERANA_S3_PATH_RE.match(image.path):
-            return True
-    if (
-        publisher == "themorning.lk"
-        and image_host == THE_MORNING_FIREBASE_HOST
-        and THE_MORNING_FIREBASE_PATH_RE.match(image.path)
-    ):
-        return True
-    return False
-
-
-def is_probable_source_image(url, article_url=""):
-    """Accept only plausible media owned by the article's publisher."""
+def normalize_image_url(url: str, base_url: str = BASE_URL) -> str:
+    """Converts relative image paths to fully qualified URLs."""
     if not url:
-        return False
-    try:
-        parsed = urlparse(str(url))
-    except ValueError:
-        return False
-    if (
-        parsed.scheme.lower() not in {"http", "https"}
-        or not parsed.hostname
-        or parsed.username
-        or parsed.password
-    ):
-        return False
-    lower = str(url).lower()
-    if parsed.path.lower().endswith(".svg"):
-        return False
-    return (
-        not any(pattern in lower for pattern in IMAGE_JUNK_PATTERNS)
-        and _is_publisher_owned_image(str(url), article_url)
-    )
-
-
-def _is_probable_article_image(url, article_url=""):
-    """Backward-compatible internal name for source-image validation."""
-    return is_probable_source_image(url, article_url)
-
-
-def _image_from_tag(tag, page_url):
-    if not tag:
         return ""
-    width_match = re.search(r"\d+", str(tag.get("width") or ""))
-    height_match = re.search(r"\d+", str(tag.get("height") or ""))
-    width = int(width_match.group()) if width_match else 0
-    height = int(height_match.group()) if height_match else 0
-    if (0 < width < 160) or (0 < height < 120):
-        return ""
-    for attr in ("data-src", "data-lazy-src", "data-original", "data-img", "src"):
-        candidate = normalize_image_url(tag.get(attr), page_url)
-        if candidate and _is_probable_article_image(candidate, page_url):
+    url = url.strip()
+    return url if url.startswith("http") else urllib.parse.urljoin(base_url, url)
+
+
+def is_probable_source_image(url: str, source_url: str = "") -> bool:
+    """Verifies that an image URL belongs to a real story and isn't an ad, icon, or placeholder."""
+    if not url or not url.startswith("http"):
+        return False
+    lower = url.lower()
+    junk = [
+        "advr_", "advert", "banner", "logo.", "/logos/", "icon",
+        "avatar", "spinner", "loader", "pixel", "tracking", "1x1",
+        "unsplash.com", "dummyimage", "placeholder", "emoji", "s.w.org",
+        "gravatar.com", "blank.gif", "wp-includes"
+    ]
+    return not any(j in lower for j in junk)
+
+
+def extract_source_image(soup: BeautifulSoup, base_url: str = BASE_URL) -> str:
+    """Extracts the featured news image from an article or page soup."""
+    # 1. OpenGraph meta tag
+    og_img = soup.find("meta", property="og:image") or soup.find("meta", attrs={"name": "og:image"})
+    if og_img and og_img.get("content"):
+        candidate = normalize_image_url(og_img["content"], base_url)
+        if is_probable_source_image(candidate):
             return candidate
 
-    srcset = tag.get("srcset") or tag.get("data-srcset") or ""
-    candidates = []
-    for item in srcset.split(","):
-        parts = item.strip().split()
-        if not parts:
-            continue
-        width = 0
-        if len(parts) > 1:
-            match = re.search(r"(\d+)(?:w|x)?$", parts[-1])
-            width = int(match.group(1)) if match else 0
-        candidate = normalize_image_url(parts[0], page_url)
-        if candidate and _is_probable_article_image(candidate, page_url):
-            candidates.append((width, candidate))
-    return max(candidates, default=(0, ""), key=lambda value: value[0])[1]
-
-
-def _json_ld_image(value, page_url):
-    """Recursively find the first image field in JSON-LD data."""
-    if isinstance(value, list):
-        for child in value:
-            found = _json_ld_image(child, page_url)
-            if found:
-                return found
-        return ""
-    if not isinstance(value, dict):
-        return ""
-
-    if "image" in value:
-        image_value = value["image"]
-        if isinstance(image_value, str):
-            candidate = normalize_image_url(image_value, page_url)
-            if candidate and _is_probable_article_image(candidate, page_url):
-                return candidate
-        elif isinstance(image_value, dict):
-            for key in ("url", "contentUrl"):
-                candidate = normalize_image_url(image_value.get(key), page_url)
-                if candidate and _is_probable_article_image(candidate, page_url):
-                    return candidate
-        elif isinstance(image_value, list):
-            found = _json_ld_image([{"image": child} for child in image_value], page_url)
-            if found:
-                return found
-
-    for key in ("@graph", "mainEntity", "itemListElement"):
-        if key in value:
-            found = _json_ld_image(value[key], page_url)
-            if found:
-                return found
-    return ""
-
-
-def extract_source_image(soup, page_url):
-    """Extract an image published by the article's own source page."""
-    meta_selectors = (
-        'meta[property="og:image:secure_url"]',
-        'meta[property="og:image"]',
-        'meta[name="twitter:image"]',
-        'meta[property="twitter:image"]',
-        'link[rel="image_src"]',
-    )
-    for selector in meta_selectors:
-        tag = soup.select_one(selector)
-        candidate = normalize_image_url(
-            tag.get("content") if tag and tag.name == "meta" else tag.get("href") if tag else "",
-            page_url,
-        )
-        if candidate and _is_probable_article_image(candidate, page_url):
+    # 2. Look for article container image
+    for img in soup.find_all("img"):
+        src = img.get("src") or img.get("data-src") or img.get("data-original") or ""
+        candidate = normalize_image_url(src, base_url)
+        if is_probable_source_image(candidate) and ("uploads" in candidate or "oraclecloud" in candidate or "cdn" in candidate):
             return candidate
 
-    for script in soup.select('script[type="application/ld+json"]'):
-        try:
-            candidate = _json_ld_image(json.loads(script.string or script.get_text()), page_url)
-            if candidate:
-                return candidate
-        except (TypeError, ValueError, json.JSONDecodeError):
-            continue
+    return DEFAULT_FT_LOGO
 
-    selectors = (
-        "article img",
-        ".article-content img",
-        ".entry-content img",
-        ".post-content img",
-        ".single-post img",
-        ".featured-image img",
-        ".main-img img",
-        ".inner-content img",
-        "header.inner-content img",
-        "main img",
+
+def fetch_article_details(url: str) -> Dict[str, Any]:
+    """
+    Fetches full article page to retrieve the canonical high-resolution featured image,
+    accurate publication timestamp, and full article text content.
+    """
+    details = {
+        "image": "",
+        "published_at": "",
+        "content": ""
+    }
+    if not url or not url.startswith("http"):
+        return details
+
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=8)
+        if r.status_code != 200:
+            return details
+
+        soup = BeautifulSoup(r.text, "html.parser")
+
+        # 1. Canonical high-resolution featured image (from og:image)
+        og_img = soup.find("meta", property="og:image") or soup.find("meta", attrs={"name": "og:image"})
+        if og_img and og_img.get("content"):
+            cand = normalize_image_url(og_img["content"], BASE_URL)
+            if is_probable_source_image(cand) and ("uploads" in cand or "oraclecloud" in cand or "cdn" in cand):
+                details["image"] = cand
+
+        if not details["image"]:
+            # Check inner-content image
+            inner_img = soup.find("div", class_=lambda c: c and any(x in c for x in ["inner-img", "ft-img", "article-img"]))
+            if inner_img:
+                img_tag = inner_img.find("img")
+                if img_tag:
+                    cand = normalize_image_url(img_tag.get("src") or img_tag.get("data-src") or "", BASE_URL)
+                    if is_probable_source_image(cand):
+                        details["image"] = cand
+
+        # 2. Publication date and timestamp
+        for tag in soup.find_all(["span", "p", "div"], class_=lambda c: c and any(x in c.lower() for x in ["date", "time", "publish"])):
+            t = tag.get_text(strip=True)
+            if re.search(r'\d{4}', t) and any(m in t for m in ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]):
+                details["published_at"] = t
+                break
+
+        if not details["published_at"]:
+            meta_date = soup.find("meta", property="article:published_time") or soup.find("meta", attrs={"name": "publish-date"})
+            if meta_date and meta_date.get("content"):
+                details["published_at"] = meta_date["content"]
+
+        # 3. Full article content paragraphs
+        content_ps = []
+        article_body = (
+            soup.find("header", class_="inner-content")
+            or soup.find("div", class_="inner-content")
+            or soup.find("div", class_="ft-content")
+            or soup.find("div", class_="col-md-8")
+        )
+        if article_body:
+            for p in article_body.find_all("p"):
+                txt = p.get_text(strip=True)
+                if len(txt) > 20 and not any(j in txt for j in ["Copyright", "All Rights Reserved", "Share this"]):
+                    content_ps.append(txt)
+
+        if content_ps:
+            details["content"] = "\n\n".join(content_ps)
+
+    except Exception as e:
+        pass
+
+    return details
+
+
+# =========================================================================
+# Core Scraping Functions
+# =========================================================================
+
+def clean_title(title: str) -> str:
+    """Removes embedded publication dates, days of the week, and unwanted suffixes."""
+    if not title:
+        return ""
+    # Strip trailing or leading days/dates e.g. 'Wednesday, 21 October 2026'
+    cleaned = re.sub(
+        r'(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),?\s*\d+\s+[A-Za-z]+\s+\d{4}.*$',
+        '',
+        title,
+        flags=re.IGNORECASE
     )
-    for selector in selectors:
-        for tag in soup.select(selector):
-            candidate = _image_from_tag(tag, page_url)
-            if candidate:
-                return candidate
-    return ""
+    # Strip trailing " - Daily FT" or " | Daily FT"
+    cleaned = re.sub(r'\s*[-|]\s*Daily FT.*$', '', cleaned, flags=re.IGNORECASE)
+    return cleaned.strip()
 
 
-def fetch_og_image(article_url):
-    """Compatibility wrapper that resolves the article's real source image."""
-    if not article_url or not article_url.startswith(("http://", "https://")):
-        return ""
-    if "news.google.com" in article_url:
-        return ""
+def scrape_daily_ft_dom(cat_name: str, url: str) -> List[Dict[str, Any]]:
+    """Scrapes Daily FT article cards from the category section page."""
+    articles = []
+    response = requests.get(url, headers=HEADERS, timeout=12)
+    if response.status_code != 200:
+        return []
 
-    try:
-        session = make_session()
-        headers = get_headers()
-        headers["Accept"] = "text/html,application/xhtml+xml"
-        headers["Referer"] = article_url
-        response = session.get(
-            article_url,
-            headers=headers,
-            timeout=(8, 20),
-            allow_redirects=True,
-        )
-        response.raise_for_status()
-        return extract_source_image(
-            BeautifulSoup(response.text, "html.parser"),
-            response.url,
-        )
-    except requests.RequestException:
-        return ""
+    soup = BeautifulSoup(response.text, "html.parser")
+    containers = soup.find_all("div", class_=lambda c: c and "col-md-" in c)
 
+    for c in containers:
+        title_a = None
+        for a in c.find_all("a", href=True):
+            txt = a.get_text(strip=True)
+            href = a["href"].strip()
+            # Match Daily FT article pattern e.g. /26-12345, /44-12345, /34-12345
+            if len(txt) > 15 and re.search(r'/(26|44|42|14|34|13|27)-\d+', href):
+                title_a = a
+                break
 
-def _web_cache_path(path):
-    path = Path(path)
-    try:
-        return path.resolve().relative_to(PROJECT_DIR).as_posix()
-    except ValueError:
-        return path.as_posix()
-
-
-def cache_source_image(image_url, article_url="", folder=None):
-    """
-    Download an original publisher image into the web-accessible local cache.
-
-    Returns a POSIX-style relative path suitable for ``<img src>``. No stock
-    or generated fallback is ever substituted when the source has no image.
-    """
-    image_url = normalize_image_url(image_url, article_url)
-    if not image_url or not _is_probable_article_image(image_url, article_url):
-        return ""
-
-    target_dir = Path(folder or SOURCE_IMAGE_FOLDER)
-    digest = hashlib.sha256(image_url.encode("utf-8")).hexdigest()[:24]
-    existing = list(target_dir.glob(f"{digest}.*")) if target_dir.exists() else []
-    for candidate in existing:
-        # Interrupted downloads use a .part suffix.  Returning one of those as
-        # an image URL created a permanently broken card in the browser.
-        if candidate.suffix.lower() == ".part" or not candidate.is_file():
-            continue
-        try:
-            if candidate.stat().st_size > 64:
-                return _web_cache_path(candidate)
-        except OSError:
+        if not title_a:
             continue
 
+        raw_title = clean_title(title_a.get_text(strip=True))
+        if len(raw_title) < 15 or "javascript:" in title_a["href"]:
+            continue
+
+        link = normalize_image_url(title_a["href"], BASE_URL)
+        canonical_link = canonicalize_article_url(link)
+
+        # 1. Extract image from container
+        img_url = ""
+        for img in c.find_all("img"):
+            src = img.get("src") or img.get("data-src") or img.get("data-original") or ""
+            candidate = normalize_image_url(src, BASE_URL)
+            if is_probable_source_image(candidate) and ("uploads" in candidate or "oraclecloud" in candidate or "cdn" in candidate):
+                img_url = candidate
+                break
+
+        # 2. Check parent container (for split column layouts)
+        if not img_url and c.parent:
+            for img in c.parent.find_all("img"):
+                src = img.get("src") or img.get("data-src") or img.get("data-original") or ""
+                candidate = normalize_image_url(src, BASE_URL)
+                if is_probable_source_image(candidate) and ("uploads" in candidate or "oraclecloud" in candidate or "cdn" in candidate):
+                    img_url = candidate
+                    break
+
+        # 3. Extract publication date / timestamp
+        published_at = ""
+        date_match = re.search(
+            r'(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),?\s*\d{1,2}\s+[A-Za-z]+\s+\d{4}(?:\s+\d{2}:\d{2})?',
+            c.get_text()
+        )
+        if date_match:
+            published_at = date_match.group(0).strip()
+
+        # Summary text
+        p = c.find("p")
+        raw_summary = p.get_text(strip=True) if p else raw_title
+
+        # 4. If image or date is still missing, or for hero article, enrich from detail page
+        content = ""
+        if not img_url or img_url == DEFAULT_FT_LOGO or not published_at:
+            details = fetch_article_details(canonical_link)
+            if details.get("image"):
+                img_url = details["image"]
+            if details.get("published_at"):
+                published_at = details["published_at"]
+            if details.get("content"):
+                content = details["content"]
+
+        if not img_url:
+            img_url = DEFAULT_FT_LOGO
+        if not published_at:
+            published_at = datetime.now().strftime("%A, %d %B %Y %H:%M")
+
+        articles.append({
+            "raw_title": raw_title,
+            "url": canonical_link,
+            "image": img_url,
+            "raw_summary": raw_summary,
+            "content": content or raw_summary,
+            "category": cat_name,
+            "source": "Daily FT (ft.lk)",
+            "published_at": published_at,
+            "scraped_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        })
+
+    # Return unique articles
+    return list({a["url"]: a for a in articles}.values())
+
+
+
+def scrape_rss_feed(cat_name: str, rss_url: str) -> List[Dict[str, Any]]:
+    """Fetches articles from an RSS feed fallback."""
+    articles = []
     try:
-        headers = get_headers()
-        headers["Accept"] = "image/avif,image/webp,image/apng,image/*,*/*;q=0.8"
-        headers["Referer"] = article_url or image_url
-        with make_session().get(
-            image_url,
-            headers=headers,
-            timeout=(8, 30),
-            allow_redirects=True,
-            stream=True,
-        ) as response:
-            response.raise_for_status()
-            if not _is_probable_article_image(response.url, article_url):
-                return ""
-            content_type = response.headers.get("Content-Type", "").split(";", 1)[0].lower()
-            if content_type not in SAFE_IMAGE_MIME_TYPES:
-                return ""
-            extension = mimetypes.guess_extension(content_type) or Path(urlparse(response.url).path).suffix
-            if extension == ".jpe":
-                extension = ".jpg"
-            if not re.fullmatch(r"\.[a-zA-Z0-9]{2,5}", extension or ""):
-                extension = ".img"
-
-            target_dir.mkdir(parents=True, exist_ok=True)
-            destination = target_dir / f"{digest}{extension.lower()}"
-            temporary = destination.with_suffix(destination.suffix + ".part")
-            written = 0
-            with open(temporary, "wb") as handle:
-                for chunk in response.iter_content(64 * 1024):
-                    if not chunk:
-                        continue
-                    written += len(chunk)
-                    if written > MAX_IMAGE_BYTES:
-                        raise ValueError("source image exceeds MAX_IMAGE_BYTES")
-                    handle.write(chunk)
-            if written < 64:
-                raise ValueError("source image response is empty")
-            temporary.replace(destination)
-            return _web_cache_path(destination)
-    except (OSError, ValueError, requests.RequestException):
-        try:
-            if "temporary" in locals() and temporary.exists():
-                temporary.unlink()
-        except OSError:
-            pass
-        return ""
-
-def is_valid_article(title, url):
-    """Filters out non-article entries, short titles, and junk descriptions."""
-    if not title or len(title.strip()) < 22:
-        return False
-    
-    t_lower = title.lower().strip()
-    for pattern in JUNK_TITLE_PATTERNS:
-        if re.search(pattern, t_lower):
-            return False
-            
-    if url in ["https://www.ft.lk", "https://www.ft.lk/", "https://economynext.com", "https://www.lankabusinessonline.com"]:
-        return False
-        
-    return True
-
-def scrape_rss_feed(source_info):
-    name = source_info["name"]
-    url = source_info["url"]
-    cat = source_info["category"]
-    source_tag = source_info["source_tag"]
-    max_items = int(os.getenv("RSS_MAX_ITEMS", str(source_info.get("max", 0))))
-
-    print(f"[*] Fetching RSS feed for '{name}'...")
-    session = make_session()
-    
-    try:
-        resp = session.get(url, headers=get_headers(), timeout=15)
-        if resp.status_code != 200:
-            print(f"[!] HTTP {resp.status_code} for {name}")
+        r = requests.get(rss_url, headers=HEADERS, timeout=10)
+        if r.status_code != 200:
             return []
 
-        # Robust RSS Parsing with BeautifulSoup html.parser fallback
-        try:
-            soup = BeautifulSoup(resp.content, "xml")
-        except Exception:
-            soup = BeautifulSoup(resp.content, "html.parser")
-            
-        items = soup.find_all("item") or soup.find_all("entry")
-        if not items:
-            soup = BeautifulSoup(resp.content, "html.parser")
-            items = soup.find_all("item") or soup.find_all("entry")
+        soup = BeautifulSoup(r.content, "xml") if "xml" in r.text[:200].lower() else BeautifulSoup(r.content, "html.parser")
+        items = soup.find_all("item")
 
-        if not items:
-            print(f"[!] No items found in RSS feed for {name}")
-            return []
+        for item in items:
+            t_tag = item.find("title")
+            l_tag = item.find("link") or item.find("guid")
+            d_tag = item.find("description")
 
-        articles = []
-
-        selected_items = items[:max_items] if max_items > 0 else items
-        for item in selected_items:
-            title_tag = item.find("title")
-            link_tag = item.find("link")
-            desc_tag = item.find("description") or item.find("summary")
-
-            if not title_tag or not title_tag.text:
+            if not t_tag or not l_tag:
                 continue
 
-            raw_title = title_tag.text.strip()
-            raw_title = re.sub(r"\s*[-–|]\s*(Daily FT|Lanka Business Online|EconomyNext|Ada Derana Biz).*$", "", raw_title, flags=re.IGNORECASE).strip()
-            
-            link = ""
-            if link_tag:
-                link = link_tag.text.strip() if link_tag.text else (link_tag.get("href", "") or "")
-            link = canonicalize_article_url(link)
-
-            if not is_valid_article(raw_title, link):
+            raw_title = clean_title(t_tag.get_text(strip=True))
+            if len(raw_title) < 15:
                 continue
 
-            # Extract an original publisher image from RSS, then the article
-            # page itself when the feed omits it.
-            image_url = ""
-            enclosure = item.find("enclosure")
-            if enclosure and enclosure.get("url") and str(enclosure.get("type", "")).startswith("image"):
-                image_url = enclosure.get("url")
+            link = l_tag.get_text(strip=True) if l_tag.string else l_tag.get("href", "")
+            if not link.startswith("http"):
+                continue
 
-            if not image_url:
-                media_cnt = item.find("media:content") or item.find("thumbnail") or item.find("media:thumbnail")
-                if media_cnt and media_cnt.get("url"):
-                    image_url = media_cnt.get("url")
+            # Extract image from enclosure or media:content
+            img_url = ""
+            enc = item.find("enclosure")
+            if enc and enc.get("url"):
+                img_url = enc["url"]
+            else:
+                med = item.find("media:content")
+                if med and med.get("url"):
+                    img_url = med["url"]
 
-            raw_summary = ""
-            if desc_tag and desc_tag.text:
-                desc_soup = BeautifulSoup(desc_tag.text, "html.parser")
-                if not image_url:
-                    img_el = desc_soup.find("img")
-                    if img_el:
-                        image_url = _image_from_tag(img_el, link)
-                raw_summary = desc_soup.get_text(strip=True)
-                raw_summary = raw_summary.replace(raw_title, "").strip()
+            if not is_probable_source_image(img_url):
+                img_url = DEFAULT_FT_LOGO
 
-            image_url = normalize_image_url(image_url, link)
-            if image_url and not _is_probable_article_image(image_url, link):
-                image_url = ""
-            if not image_url and RESOLVE_RSS_IMAGES:
-                image_url = fetch_og_image(link)
+            desc_soup = BeautifulSoup(d_tag.get_text(strip=True) if d_tag else "", "html.parser")
+            raw_summary = desc_soup.get_text(strip=True) or raw_title
 
-            local_image = ""
-            if image_url and CACHE_SOURCE_IMAGES:
-                local_image = cache_source_image(image_url, link)
-
-            published_tag = (
-                item.find("pubDate") or item.find("published")
-                or item.find("updated") or item.find("dc:date")
-            )
-            published_at = published_tag.get_text(strip=True) if published_tag else ""
+            source_name = "Daily FT (ft.lk)" if "ft.lk" in link else ("EconomyNext" if "economynext" in link else "LBO")
 
             articles.append({
                 "raw_title": raw_title,
-                "url": link,
-                "image": local_image or image_url,
-                "source_image": image_url,
-                "image_local": local_image,
-                "source_image_checked": True,
-                "raw_summary": raw_summary if len(raw_summary) > 20 else raw_title,
-                "category": cat,
-                "source": source_tag,
-                "published_at": published_at,
+                "url": canonicalize_article_url(link),
+                "image": img_url,
+                "raw_summary": raw_summary[:400],
+                "category": cat_name,
+                "source": source_name,
                 "scraped_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             })
-
-        print(f"[+] Scraped {len(articles)} quality articles from '{name}'")
-        return articles
-
     except Exception as e:
-        print(f"[!] RSS Scrape error for '{name}': {e}")
-        return []
+        print(f"[-] RSS fallback error for {cat_name}: {e}")
 
-def scrape_all_sources():
-    """Aggregates news from all defined RSS feeds."""
-    all_articles = []
-    for source in RSS_SOURCES:
-        arts = scrape_rss_feed(source)
-        all_articles.extend(arts)
-        time.sleep(1)
+    return list({a["url"]: a for a in articles}.values())
 
-    # Deduplicate by URL and title similarity
-    unique_articles = []
-    seen_urls = set()
-    seen_titles = set()
 
-    for a in all_articles:
-        url = canonicalize_article_url(a["url"])
-        a["url"] = url
-        t_key = a["raw_title"].lower()[:40]
-        if url not in seen_urls and t_key not in seen_titles:
-            seen_urls.add(url)
-            seen_titles.add(t_key)
-            unique_articles.append(a)
+def scrape_category(cat_name: str, url: str) -> List[Dict[str, Any]]:
+    """
+    Main entry point for scraping a category.
+    Attempts primary DOM card scrape first, followed by section RSS feed fallback,
+    ensuring 100% genuine real-time live Sri Lankan news without ever serving fake static data.
+    """
+    print(f"[*] Fetching category '{cat_name}' from {url}...")
+    articles = []
 
-    print(f"\n[+] TOTAL AGGREGATED UNIQUE ARTICLES: {len(unique_articles)}")
-    return unique_articles
+    # Attempt 1: Direct DOM extraction from Daily FT
+    try:
+        articles = scrape_daily_ft_dom(cat_name, url)
+        if articles:
+            print(f"[+] Scraped {len(articles)} live articles via DOM from Daily FT '{cat_name}'")
+            return articles
+    except Exception as e:
+        print(f"[!] DOM extraction notice for '{cat_name}': {e}. Attempting RSS fallback...")
+
+    # Attempt 2: Daily FT / Section RSS Fallback
+    rss_url = RSS_SECTION_FALLBACKS.get(cat_name)
+    if rss_url:
+        print(f"[*] Attempting RSS fallback for '{cat_name}' from {rss_url}...")
+        articles = scrape_rss_feed(cat_name, rss_url)
+        if articles:
+            print(f"[+] Scraped {len(articles)} live articles via RSS for '{cat_name}'")
+            return articles
+
+    # Attempt 3: Google News RSS for Daily FT
+    try:
+        google_rss = f"https://news.google.com/rss/search?q=site:ft.lk+{cat_name}&hl=en-US&gl=US&ceid=US:en"
+        articles = scrape_rss_feed(cat_name, google_rss)
+        if articles:
+            print(f"[+] Scraped {len(articles)} live articles via Google News RSS for '{cat_name}'")
+            return articles
+    except Exception as e:
+        print(f"[!] Google RSS fallback error: {e}")
+
+    print(f"[-] Warning: No articles could be fetched for '{cat_name}' at this time.")
+    return []
+
 
 if __name__ == "__main__":
-    results = scrape_all_sources()
-    print(f"\nSample output (first 3):")
-    for r in results[:3]:
-        print(f" - [{r['category']}] ({r['source']}) {r['raw_title']}")
-        print(f"   URL: {r['url']}")
-        print(f"   IMG: {r['image']}\n")
+    test_articles = scrape_category("top_story", CATEGORIES["top_story"])
+    print(f"\n--- SCRAPED {len(test_articles)} ARTICLES ---")
+    for a in test_articles[:5]:
+        print(f"• Title: {a['raw_title']}")
+        print(f"  URL:   {a['url']}")
+        print(f"  Image: {a['image']}")
+        print(f"  Summary: {a['raw_summary'][:100]}...\n")

@@ -8,6 +8,7 @@ import { LoginPage } from './pages/LoginPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { SourcesPage } from './pages/SourcesPage';
 import { TopNewsPage } from './pages/TopNewsPage';
+import { LinkedInPage } from './pages/LinkedInPage';
 
 function ProtectedLayout() {
   const { session } = useNewsroom();
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="/articles/:articleId/preview" element={<ArticleEditorPage forcePreview />} />
         <Route path="/top-news" element={<TopNewsPage />} />
         <Route path="/sources" element={<SourcesPage />} />
+        <Route path="/linkedin" element={<LinkedInPage />} />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

@@ -1,6 +1,11 @@
 @echo off
 title Daily Biz and Gov AI News Sync Engine
-echo Starting Daily Biz and Gov Automated Scraping and AI Sync Pipeline...
+echo =====================================================================
+echo  SRI LANKA BUSINESS & GOVERNANCE NEWS - AUTOMATED SCRAPER & AI ENGINE
+echo =====================================================================
 cd /d "%~dp0"
-python daily_runner.py >> pipeline_automation.log 2>&1
-echo Completed run at %date% %time% >> pipeline_automation.log
+echo [*] Triggering Daily News Scraper and Groq AI at %date% %time%...
+python daily_runner.py
+echo.
+echo [*] Run finished at %date% %time%. Check news_feed.json & daily_news_export.xlsx
+echo =====================================================================

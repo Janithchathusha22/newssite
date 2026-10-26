@@ -309,8 +309,12 @@ function normalizeCuratedArticle(article, index) {
 
 function createInitialState() {
   const feed = readJson(FEED_PATH, []);
+  const newsData = readJson(path.join(PROJECT_DIR, 'news_data.json'), []);
+  const combinedFeed = Array.isArray(feed) && feed.length >= 15
+    ? feed
+    : [...(Array.isArray(feed) ? feed : []), ...(Array.isArray(newsData) ? newsData : [])];
   const curated = readJson(CURATED_PATH, []);
-  const feedArticles = (Array.isArray(feed) ? feed : [])
+  const feedArticles = combinedFeed
     .slice(0, 180)
     .map(normalizeFeedArticle);
   const curatedArticles = (Array.isArray(curated) ? curated : [])
@@ -412,7 +416,152 @@ class EditorialStore {
   constructor(options = {}) {
     this.statePath = options.statePath || STATE_PATH;
     this.persist = options.persist !== false;
+    this.lastFeedMtime = 0;
     this.state = this._load();
+    this.syncFromFeed();
+  }
+
+  syncFromFeed(force = false) {
+    try {
+      if (!fs.existsSync(FEED_PATH)) return;
+      const stats = fs.statSync(FEED_PATH);
+      if (!force && stats.mtimeMs <= this.lastFeedMtime) return;
+      this.lastFeedMtime = stats.mtimeMs;
+
+      const feed = readJson(FEED_PATH, []);
+      if (!Array.isArray(feed) || !feed.length) return;
+
+      const existingByUrl = new Map();
+      const existingById = new Map();
+      this.state.articles.forEach(art => {
+        if (art.sourceUrl) existingByUrl.set(art.sourceUrl, art);
+        if (art.id) existingById.set(art.id, art);
+      });
+
+      let addedCount = 0;
+      let updatedCount = 0;
+      const now = new Date().toISOString();
+
+      feed.forEach((item, index) => {
+        const url = cleanText(item.url || item.link || item.source_url);
+        const headline = cleanText(item.raw_title || item.title || item.headline_en) || 'Untitled news report';
+        const expectedId = stableId(url || `${item.source || 'source'}:${headline}`);
+
+        let existing = (url && existingByUrl.get(url)) || existingById.get(expectedId);
+        const newImg = imageFor(item);
+
+        if (existing) {
+          if (newImg && (!existing.imageUrl || existing.imageUrl !== newImg)) {
+            existing.imageUrl = newImg;
+            updatedCount++;
+          }
+          if (item.published_at && (!existing.sourcePublishedAt || existing.sourcePublishedAt.includes('2026-08'))) {
+            existing.sourcePublishedAt = validDate(item.published_at) || existing.sourcePublishedAt;
+            existing.updatedAt = now;
+            updatedCount++;
+          }
+          if ((index < 10 || item.status === 'published') && existing.status !== 'changes_requested' && existing.status !== 'rejected') {
+            existing.status = 'published';
+            existing.topRank = index < 10 ? (index + 1) : null;
+            existing.publishedAt = existing.publishedAt || now;
+            updatedCount++;
+          }
+        } else {
+          const normalized = normalizeFeedArticle(item, index);
+          if (newImg) normalized.imageUrl = newImg;
+          // Auto-publish all fresh stories to public page
+          if (index < 10 || item.status === 'published') {
+            normalized.status = 'published';
+            normalized.topRank = index < 10 ? (index + 1) : (item.topRank || null);
+            normalized.publishedAt = normalized.sourcePublishedAt || now;
+          } else {
+            normalized.status = 'pending_review';
+          }
+          this.state.articles.unshift(normalized);
+          if (url) existingByUrl.set(url, normalized);
+          existingById.set(normalized.id, normalized);
+          addedCount++;
+        }
+      });
+
+      // Update source statistics from articles
+      if (Array.isArray(this.state.sources)) {
+        this.state.sources.forEach(source => {
+          const domain = source.domain;
+          const matching = this.state.articles.filter(a => (
+            a.sourceDomain === domain || (a.sourceUrl && a.sourceUrl.includes(domain))
+          ));
+          source.articleCount = matching.length;
+          source.articlesToday = matching.length;
+          source.status = 'healthy';
+          if (matching.length > 0) {
+            const sortedByDate = [...matching].sort((a, b) => (
+              Date.parse(b.scrapedAt || b.sourcePublishedAt || b.updatedAt) - Date.parse(a.scrapedAt || a.sourcePublishedAt || a.updatedAt)
+            ));
+            source.lastRunAt = sortedByDate[0].scrapedAt || sortedByDate[0].sourcePublishedAt || now;
+            source.nextRunAt = new Date(Date.now() + 30 * 60 * 1000).toISOString();
+          }
+        });
+      }
+
+      // Ensure topRank 1..10 is dynamically assigned to the 10 newest published stories
+      const publishedStories = this.state.articles
+        .filter(a => a.status === 'published')
+        .sort((a, b) => (
+          Date.parse(b.publishedAt || b.sourcePublishedAt || b.scrapedAt || b.updatedAt) -
+          Date.parse(a.publishedAt || a.sourcePublishedAt || a.scrapedAt || a.updatedAt)
+        ));
+
+      this.state.articles.forEach(a => { a.topRank = null; });
+      publishedStories.slice(0, 10).forEach((art, idx) => {
+        art.topRank = idx + 1;
+      });
+
+      // Prune articles older than 7 days while preserving at least 10 stories for active display
+      this.pruneOldArticles(7, 10);
+
+      if (addedCount > 0 || updatedCount > 0 || publishedStories.length > 0) {
+        this._commit();
+        console.log(`[editorial] Synced news feed: ${addedCount} new articles added, ${updatedCount} updated, top 10 refreshed.`);
+      }
+    } catch (err) {
+      console.error('[editorial] syncFromFeed error:', err.message);
+    }
+  }
+
+  pruneOldArticles(retentionDays = 7, minKeep = 10) {
+    if (!Array.isArray(this.state?.articles)) return 0;
+    const cutoffTime = Date.now() - retentionDays * 24 * 60 * 60 * 1000;
+    const articles = [...this.state.articles];
+    const keep = [];
+    const removed = [];
+
+    let publishedKept = 0;
+    for (const art of articles) {
+      const artTime = Date.parse(art.publishedAt || art.sourcePublishedAt || art.scrapedAt || art.updatedAt || '');
+      const isPublished = art.status === 'published';
+      const isTooOld = Number.isFinite(artTime) && artTime < cutoffTime;
+
+      if (isTooOld) {
+        if (isPublished && publishedKept < minKeep) {
+          keep.push(art);
+          publishedKept++;
+        } else {
+          removed.push(art);
+        }
+      } else {
+        keep.push(art);
+        if (isPublished) publishedKept++;
+      }
+    }
+
+    if (removed.length > 0) {
+      this.state.articles = keep;
+      this._commit();
+      console.log(`[editorial] Auto-pruned ${removed.length} articles older than ${retentionDays} days (retained ${keep.length}).`);
+      return removed.length;
+    }
+    return 0;
   }
 
   _load() {
@@ -443,6 +592,7 @@ class EditorialStore {
   }
 
   listArticles(filters = {}) {
+    this.syncFromFeed();
     const status = cleanText(filters.status);
     const category = cleanText(filters.category);
     const search = cleanText(filters.search).toLowerCase();
@@ -546,6 +696,77 @@ class EditorialStore {
     return article;
   }
 
+  createArticle(data, actor = 'editor') {
+    const now = new Date().toISOString();
+    const id = `manual-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`;
+    const headline = cleanText(data.headline || data.draft?.headline || 'Untitled News');
+    const summary = cleanText(data.summary || data.draft?.summary || '');
+    const body = cleanBody(data.body || data.content || data.draft?.body || summary);
+    const category = CATEGORY_SET.has(data.category) ? data.category : 'business-news';
+    const slug = `${slugify(headline)}-${id.slice(-6)}`;
+    const rawImage = cleanText(data.imageUrl || data.image || '');
+    const imageUrl = normalizeArticleImageUrl(rawImage, '') || rawImage;
+    const publishImmediately = Boolean(data.publishImmediately || data.status === 'published');
+    const status = publishImmediately ? 'published' : 'pending_review';
+
+    const newArticle = {
+      id,
+      slug,
+      category,
+      status,
+      topRank: null,
+      imageUrl,
+      imageCredit: cleanText(data.imageCredit) || 'Editorial Desk',
+      sourceId: 'newsroom-manual',
+      sourceName: cleanText(data.sourceName) || 'Business Leaders',
+      sourceDomain: 'ceylonledger.local',
+      sourceUrl: cleanText(data.sourceUrl) || `https://ceylonledger.local/editorial/${slug}`,
+      sourcePublishedAt: now,
+      publishedAt: publishImmediately ? now : null,
+      updatedAt: now,
+      scrapedAt: now,
+      editorNote: cleanBody(data.editorNote || ''),
+      rejectionReason: '',
+      aiStatus: 'not_started',
+      original: {
+        headline,
+        summary,
+        body
+      },
+      draft: {
+        headline,
+        summary,
+        body
+      },
+      tags: normalizedTags(data.tags || [], category),
+      validation: [],
+      audit: [
+        { action: 'created', at: now, by: actorLabel(actor) },
+        ...(publishImmediately ? [{ action: 'published', at: now, by: actorLabel(actor) }] : [])
+      ]
+    };
+
+    this.state.articles.unshift(newArticle);
+    this._commit();
+    return newArticle;
+  }
+
+  deleteArticle(id, actor = 'editor') {
+    const index = this.state.articles.findIndex(a => a.id === id || a.slug === id);
+    if (index === -1) return false;
+    const removed = this.state.articles.splice(index, 1)[0];
+    if (removed.topRank) {
+      const remainingPublished = this.state.articles
+        .filter(a => a.status === 'published')
+        .sort((a, b) => (a.topRank || 99) - (b.topRank || 99));
+      remainingPublished.slice(0, 10).forEach((art, idx) => {
+        art.topRank = idx + 1;
+      });
+    }
+    this._commit();
+    return true;
+  }
+
   transition(id, nextStatus, actor = 'editor', note = '') {
     const article = this.getArticle(id);
     if (!article || !VALID_STATUSES.has(nextStatus)) return null;
@@ -620,6 +841,7 @@ class EditorialStore {
   }
 
   getTopNews() {
+    this.syncFromFeed();
     return this.state.articles
       .filter(article => article.status === 'published' && Number.isInteger(article.topRank))
       .sort((left, right) => left.topRank - right.topRank)
@@ -645,6 +867,7 @@ class EditorialStore {
   }
 
   listSources() {
+    this.syncFromFeed();
     return [...this.state.sources].sort((left, right) => left.name.localeCompare(right.name));
   }
 

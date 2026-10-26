@@ -30,10 +30,14 @@ export type IconName =
   | 'sources'
   | 'sparkles'
   | 'top-news'
+  | 'trash'
+  | 'linkedin'
+  | 'plus'
   | 'warning'
   | 'x';
 
 const paths: Record<IconName, React.ReactNode> = {
+  linkedin: <><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></>,
   archive: <><rect x="3" y="4" width="18" height="5" rx="1" /><path d="M5 9v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9M10 13h4" /></>,
   'arrow-left': <><path d="m15 18-6-6 6-6" /><path d="M9 12h10" /></>,
   'arrow-right': <><path d="m9 18 6-6-6-6" /><path d="M5 12h10" /></>,
@@ -65,6 +69,8 @@ const paths: Record<IconName, React.ReactNode> = {
   'top-news': <path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" />,
   warning: <><path d="M10.3 3.6 2.5 18a2 2 0 0 0 1.8 3h15.4a2 2 0 0 0 1.8-3L13.7 3.6a2 2 0 0 0-3.4 0Z" /><path d="M12 9v4M12 17h.01" /></>,
   x: <path d="M18 6 6 18M6 6l12 12" />,
+  plus: <path d="M12 5v14M5 12h14" />,
+  trash: <><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6" /></>,
 };
 
 type IconProps = SVGProps<SVGSVGElement> & {

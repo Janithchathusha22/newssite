@@ -43,7 +43,17 @@ app.use(cors({
   },
   credentials: true
 }));
-app.use(express.json({ limit: '2mb' }));
+app.use(express.json({ limit: '25mb' }));
+app.use(express.urlencoded({ extended: true, limit: '25mb' }));
+
+// Serve static image directories directly
+['downloaded_images', 'news_images', 'ft_images', 'images', 'assets/news_images'].forEach(dir => {
+  const dirPath = path.join(__dirname, dir);
+  try {
+    if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
+  } catch (_) {}
+  app.use(`/${dir}`, express.static(dirPath));
+});
 
 function envBoolean(name, fallback) {
   const value = process.env[name];
@@ -198,17 +208,20 @@ async function requestNewsPipeline(trigger = 'scheduled') {
   if (editorialReadinessProbe) {
     try {
       await editorialReadinessProbe();
-    } catch (_) {
-      const finishedAt = new Date().toISOString();
-      autoSyncState.lastTrigger = trigger;
-      autoSyncState.lastFinishedAt = finishedAt;
-      autoSyncState.lastExitCode = -1;
-      autoSyncState.lastError = 'The Supabase editorial workflow is not ready; collection was not started.';
-      autoSyncState.consecutiveFailures += 1;
-      persistSyncState();
-      scheduleNextSync(syncConfig.retryMinutes);
-      console.error(`[sync] ${autoSyncState.lastError}`);
-      return false;
+    } catch (err) {
+      if (process.env.EDITORIAL_BACKEND === 'supabase') {
+        const finishedAt = new Date().toISOString();
+        autoSyncState.lastTrigger = trigger;
+        autoSyncState.lastFinishedAt = finishedAt;
+        autoSyncState.lastExitCode = -1;
+        autoSyncState.lastError = 'The Supabase editorial workflow is not ready; collection was not started.';
+        autoSyncState.consecutiveFailures += 1;
+        persistSyncState();
+        scheduleNextSync(syncConfig.retryMinutes);
+        console.error(`[sync] ${autoSyncState.lastError}`);
+        return false;
+      }
+      console.warn('[sync] Supabase workflow not ready, running scraper in local JSON/Excel mode.');
     }
   }
   return runNewsPipeline(trigger);
@@ -722,6 +735,104 @@ const editorial = createEditorialRouter({
 });
 editorialReadinessProbe = editorial.resolveStore;
 app.use('/api', editorial.router);
+
+// =========================================================================
+// Automated Scraper Webhook & Monitoring Endpoints (For n8n and Cron)
+// =========================================================================
+
+app.post('/api/scraper/trigger', (req, res) => {
+  const apiKey = req.headers['x-api-key'] || req.query.apiKey;
+  const configuredKey = process.env.SCRAPER_API_KEY;
+  if (configuredKey && apiKey !== configuredKey) {
+    return res.status(401).json({ error: 'Unauthorized: Invalid API Key' });
+  }
+
+  if (autoSyncState.running) {
+    return res.status(409).json({
+      success: false,
+      message: 'Scraper pipeline is already running',
+      state: publicSyncState()
+    });
+  }
+
+  const triggerName = req.query.source || 'n8n-webhook';
+  const started = runNewsPipeline(triggerName);
+  return res.json({
+    success: started,
+    message: started ? `News scraper pipeline triggered via ${triggerName}` : 'Failed to start pipeline',
+    state: publicSyncState()
+  });
+});
+
+app.get('/api/scraper/status', (req, res) => {
+  return res.json(publicSyncState());
+});
+
+app.get('/api/news-feed', (req, res) => {
+  const feedPath = path.join(__dirname, 'news_feed.json');
+  try {
+    if (fs.existsSync(feedPath)) {
+      const data = JSON.parse(fs.readFileSync(feedPath, 'utf8'));
+      return res.json({ success: true, count: data.length, articles: data });
+    }
+    return res.json({ success: true, count: 0, articles: [] });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/database/stats', (req, res) => {
+  const pythonCmd = process.platform === 'win32' ? 'python' : 'python3';
+  const child = spawn(pythonCmd, ['-c', 'import database, json; print(json.dumps(database.get_db_stats()))'], {
+    cwd: __dirname,
+    windowsHide: true
+  });
+  let stdout = '';
+  child.stdout.on('data', d => { stdout += d; });
+  child.on('close', code => {
+    if (code === 0) {
+      try {
+        return res.json({ success: true, stats: JSON.parse(stdout.trim()) });
+      } catch (_) {}
+    }
+    return res.json({
+      success: true,
+      stats: {
+        total_articles: fs.existsSync(path.join(__dirname, 'news_feed.json')) ? JSON.parse(fs.readFileSync(path.join(__dirname, 'news_feed.json'), 'utf8')).length : 0,
+        database_path: path.join(__dirname, 'news.db')
+      }
+    });
+  });
+});
+
+app.get('/api/database/articles', (req, res) => {
+  const limit = parseInt(req.query.limit, 10) || 50;
+  const category = req.query.category || '';
+  const pythonCmd = process.platform === 'win32' ? 'python' : 'python3';
+  const pyCode = `import database, json; print(json.dumps(database.get_articles_from_db(limit=${limit}, category=${JSON.stringify(category)}), ensure_ascii=False))`;
+  const child = spawn(pythonCmd, ['-c', pyCode], {
+    cwd: __dirname,
+    env: { ...process.env, PYTHONIOENCODING: 'utf-8', PYTHONUTF8: '1' },
+    windowsHide: true
+  });
+  let stdout = '';
+  child.stdout.on('data', d => { stdout += d; });
+  child.on('close', code => {
+    if (code === 0) {
+      try {
+        const articles = JSON.parse(stdout.trim());
+        return res.json({ success: true, count: articles.length, articles });
+      } catch (_) {}
+    }
+    // Fallback to news_feed.json
+    try {
+      const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'news_feed.json'), 'utf8'));
+      return res.json({ success: true, count: data.length, articles: data });
+    } catch (err) {
+      return res.status(500).json({ error: err.message });
+    }
+  });
+});
 
 const PUBLIC_FILES = new Set([
   'index.html',

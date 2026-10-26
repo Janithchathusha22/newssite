@@ -20,6 +20,7 @@ const PAGE_COPY: Record<string, { eyebrow: string; title: string; subtitle: stri
   '/articles/rejected': { eyebrow: 'Editorial archive', title: 'Rejected articles', subtitle: 'Track rejected drafts and their editorial reasons.' },
   '/top-news': { eyebrow: 'Homepage curation', title: 'Top News', subtitle: 'Choose and order the ten stories featured on the homepage.' },
   '/sources': { eyebrow: 'Ingestion health', title: 'News sources', subtitle: 'Monitor publisher feeds and control automated collection.' },
+  '/linkedin': { eyebrow: 'Social media automation', title: 'LinkedIn Hub', subtitle: 'Manage dual-engine posting, official API credentials and auto-pilot distribution.' },
 };
 
 function pageCopy(pathname: string) {
@@ -85,6 +86,7 @@ export function AppShell() {
           <nav className="side-nav">
             <NavLink to="/top-news" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}><Icon name="top-news" size={19} /><span>Top News</span></NavLink>
             <NavLink to="/sources" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}><Icon name="sources" size={19} /><span>Sources</span></NavLink>
+            <NavLink to="/linkedin" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}><Icon name="linkedin" size={19} /><span>LinkedIn</span></NavLink>
           </nav>
           <div className="sidebar-workflow">
             <span className="workflow-kicker"><i /> Workflow active</span>

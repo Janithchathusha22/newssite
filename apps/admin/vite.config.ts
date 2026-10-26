@@ -7,12 +7,12 @@ export default defineConfig({
     port: 5174,
     strictPort: true,
     proxy: {
-      '/api': { target: 'http://localhost:5000', changeOrigin: true },
-      '/assets': { target: 'http://localhost:5000', changeOrigin: true },
-      '/ft_images': { target: 'http://localhost:5000', changeOrigin: true },
-      '/news_images': { target: 'http://localhost:5000', changeOrigin: true },
-      '/images': { target: 'http://localhost:5000', changeOrigin: true },
-      '/downloaded_images': { target: 'http://localhost:5000', changeOrigin: true },
+      '/api': { target: 'http://127.0.0.1:5000', changeOrigin: true },
+      '/assets': { target: 'http://127.0.0.1:5000', changeOrigin: true },
+      '/ft_images': { target: 'http://127.0.0.1:5000', changeOrigin: true },
+      '/news_images': { target: 'http://127.0.0.1:5000', changeOrigin: true },
+      '/images': { target: 'http://127.0.0.1:5000', changeOrigin: true },
+      '/downloaded_images': { target: 'http://127.0.0.1:5000', changeOrigin: true },
     },
   },
   preview: {

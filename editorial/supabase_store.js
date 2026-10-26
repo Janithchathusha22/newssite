@@ -1235,6 +1235,34 @@ class SupabaseEditorialStore {
   async listEvents(limit = 30) {
     return this._mappedEvents(await this._actions(limit));
   }
+
+  async deleteArticle(id) {
+    const client = await this._client();
+    const { error } = await client
+      .from('editorial_articles')
+      .delete()
+      .eq('id', id);
+    if (error) {
+      console.error('[supabase] deleteArticle error:', error.message);
+      return false;
+    }
+    return true;
+  }
+
+  async pruneOldArticles(retentionDays = 7) {
+    const client = await this._client();
+    const cutoffDate = new Date(Date.now() - retentionDays * 24 * 60 * 60 * 1000).toISOString();
+    const { data, error } = await client
+      .from('editorial_articles')
+      .delete()
+      .lt('published_at', cutoffDate)
+      .select('id');
+    if (error) {
+      console.error('[supabase] pruneOldArticles error:', error.message);
+      return 0;
+    }
+    return Array.isArray(data) ? data.length : 0;
+  }
 }
 
 module.exports = {

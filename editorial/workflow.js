@@ -26,8 +26,8 @@ const LEGAL_TRANSITIONS = Object.freeze({
   changes_requested: new Set(['ai_processing', 'pending_review', 'approved', 'rejected', 'failed']),
   approved: new Set(['changes_requested', 'scheduled', 'published', 'rejected']),
   scheduled: new Set(['approved', 'changes_requested', 'published', 'rejected', 'failed']),
-  published: new Set(),
-  rejected: new Set(),
+  published: new Set(['changes_requested']),
+  rejected: new Set(['changes_requested', 'pending_review']),
   failed: new Set(['ai_processing', 'pending_review', 'rejected'])
 });
 

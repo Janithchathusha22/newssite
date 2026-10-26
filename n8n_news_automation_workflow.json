@@ -1,0 +1,157 @@
+{
+  "name": "Automated News Scraper & AI Localization Pipeline",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "778fa3e5-0371-46f9-8131-01f22d512a38",
+      "name": "Schedule Trigger (Every 1 Hour)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:5000/api/scraper/trigger?source=n8n_schedule",
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "id": "2bca5741-2c83-4a1b-bd2a-7140e698ef65",
+      "name": "Trigger News Scraper Pipeline",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 45,
+        "unit": "seconds"
+      },
+      "id": "81f185f4-3485-48b4-93e1-27bc89d26815",
+      "name": "Wait for AI Ingestion",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        700,
+        300
+      ],
+      "webhookId": "9b1df1e1-e63c-444a-9ef8-e1fa759d99c4"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "http://localhost:5000/api/scraper/status",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "71b046a3-2bf2-4217-bf47-e6f1a8c50eb2",
+      "name": "Check Scraper Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        940,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "http://localhost:5000/api/news-feed",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "4ac8696b-ce33-4f16-8fe4-9ee02f92f768",
+      "name": "Fetch Latest News Feed",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1180,
+        300
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger (Every 1 Hour)": {
+      "main": [
+        [
+          {
+            "node": "Trigger News Scraper Pipeline",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger News Scraper Pipeline": {
+      "main": [
+        [
+          {
+            "node": "Wait for AI Ingestion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait for AI Ingestion": {
+      "main": [
+        [
+          {
+            "node": "Check Scraper Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Scraper Status": {
+      "main": [
+        [
+          {
+            "node": "Fetch Latest News Feed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f78d5e89-b883-42e1-88fc-8418ab7d9834",
+  "id": "automated-news-pipeline",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": [
+    {
+      "name": "News Scraper",
+      "id": "news-scraper"
+    },
+    {
+      "name": "Groq AI",
+      "id": "groq-ai"
+    }
+  ]
+}

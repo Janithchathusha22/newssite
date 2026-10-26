@@ -32,8 +32,35 @@ type NewsroomContextValue = {
   logout: () => void;
   refresh: () => Promise<void>;
   saveArticle: (id: string, patch: ArticlePatch) => Promise<Article>;
-  runArticleAction: (id: string, action: 'approve' | 'publish' | 'reject' | 'rewrite', reason?: string) => Promise<Article>;
+  createArticle: (data: { headline: string; summary?: string; body?: string; category: string; imageUrl?: string; imageCredit?: string; tags?: string[]; publishImmediately?: boolean }) => Promise<Article>;
+  deleteArticle: (id: string) => Promise<void>;
+  pruneOldArticles: (days?: number) => Promise<number>;
+  uploadImage: (file: File) => Promise<{ url: string; filename: string }>;
+  runArticleAction: (id: string, action: 'approve' | 'publish' | 'reject' | 'rewrite' | 'unpublish', reason?: string) => Promise<Article>;
+  unpublishArticle: (id: string, reason?: string) => Promise<Article>;
   createPreview: (id: string) => Promise<{ token: string; url: string; expiresAt: string }>;
+  postToLinkedIn: (id: string, customText?: { headline?: string; summary?: string }) => Promise<{ success: boolean; message: string; timestamp?: string }>;
+  getLinkedInStatus: () => Promise<{
+    connected: boolean;
+    authMode?: 'playwright_bot' | 'official_api' | 'none';
+    email: string;
+    hasApiKeys?: boolean;
+    hasAccessToken?: boolean;
+    maskedClientId?: string;
+    organizationId?: string;
+    autoPublishTopNews?: boolean;
+    enginePreference?: 'auto' | 'api' | 'bot';
+  }>;
+  saveLinkedInConfig: (config: {
+    clientId?: string;
+    clientSecret?: string;
+    accessToken?: string;
+    organizationId?: string;
+    autoPublishTopNews?: boolean;
+    enginePreference?: 'auto' | 'api' | 'bot';
+  }) => Promise<{ success: boolean; message: string; status?: Record<string, unknown> }>;
+  testLinkedInPost: (payload: { headline?: string; summary?: string; sourceUrl?: string }) => Promise<{ success: boolean; message: string; timestamp?: string }>;
+  connectLinkedIn: (email?: string) => Promise<{ success: boolean; message: string }>;
   saveTopNews: (articleIds: string[]) => Promise<void>;
   toggleSource: (id: string, enabled: boolean) => Promise<void>;
   refreshCollectionStatus: () => Promise<CollectionState>;
@@ -121,9 +148,34 @@ export function NewsroomProvider({ children }: { children: ReactNode }) {
     return article;
   }, [session]);
 
+  const uploadImage = useCallback(async (file: File) => {
+    if (!session) throw new Error('Your session has expired.');
+    return adminApi.uploadImage(file, session.token);
+  }, [session]);
+
+  const createArticle = useCallback(async (data: { headline: string; summary?: string; body?: string; category: string; imageUrl?: string; imageCredit?: string; tags?: string[]; publishImmediately?: boolean }) => {
+    if (!session) throw new Error('Your session has expired.');
+    const article = await adminApi.createArticle(data, session.token);
+    setArticles((current) => [article, ...current]);
+    return article;
+  }, [session]);
+
+  const deleteArticle = useCallback(async (id: string) => {
+    if (!session) throw new Error('Your session has expired.');
+    await adminApi.deleteArticle(id, session.token);
+    setArticles((current) => current.filter((item) => item.id !== id));
+  }, [session]);
+
+  const pruneOldArticles = useCallback(async (days = 7) => {
+    if (!session) throw new Error('Your session has expired.');
+    const count = await adminApi.pruneOldArticles(days, session.token);
+    await refresh();
+    return count;
+  }, [session, refresh]);
+
   const runArticleAction = useCallback(async (
     id: string,
-    action: 'approve' | 'publish' | 'reject' | 'rewrite',
+    action: 'approve' | 'publish' | 'reject' | 'rewrite' | 'unpublish',
     reason?: string,
   ) => {
     if (!session) throw new Error('Your session has expired.');
@@ -132,9 +184,50 @@ export function NewsroomProvider({ children }: { children: ReactNode }) {
     return article;
   }, [session]);
 
+  const unpublishArticle = useCallback(async (id: string, reason?: string) => {
+    if (!session) throw new Error('Your session has expired.');
+    const article = await adminApi.runAction(id, 'unpublish', session.token, reason);
+    setArticles((current) => current.map((item) => (item.id === id ? article : item)));
+    return article;
+  }, [session]);
+
   const createPreview = useCallback(async (id: string) => {
     if (!session) throw new Error('Your session has expired.');
     return adminApi.createPreviewToken(id, session.token);
+  }, [session]);
+
+  const postToLinkedIn = useCallback(async (id: string, customText?: { headline?: string; summary?: string }) => {
+    if (!session) throw new Error('Your session has expired.');
+    const result = await adminApi.postToLinkedIn(id, session.token, customText);
+    await refresh();
+    return result;
+  }, [session, refresh]);
+
+  const getLinkedInStatus = useCallback(async () => {
+    if (!session) throw new Error('Your session has expired.');
+    return adminApi.getLinkedInStatus(session.token);
+  }, [session]);
+
+  const saveLinkedInConfig = useCallback(async (config: {
+    clientId?: string;
+    clientSecret?: string;
+    accessToken?: string;
+    organizationId?: string;
+    autoPublishTopNews?: boolean;
+    enginePreference?: 'auto' | 'api' | 'bot';
+  }) => {
+    if (!session) throw new Error('Your session has expired.');
+    return adminApi.saveLinkedInConfig(config, session.token);
+  }, [session]);
+
+  const testLinkedInPost = useCallback(async (payload: { headline?: string; summary?: string; sourceUrl?: string }) => {
+    if (!session) throw new Error('Your session has expired.');
+    return adminApi.testLinkedInPost(payload, session.token);
+  }, [session]);
+
+  const connectLinkedIn = useCallback(async (email = 'altrixx99@gmail.com') => {
+    if (!session) throw new Error('Your session has expired.');
+    return adminApi.connectLinkedIn(session.token, email);
   }, [session]);
 
   const saveTopNews = useCallback(async (articleIds: string[]) => {
@@ -186,14 +279,24 @@ export function NewsroomProvider({ children }: { children: ReactNode }) {
     logout,
     refresh,
     saveArticle,
+    createArticle,
+    deleteArticle,
+    pruneOldArticles,
+    uploadImage,
     runArticleAction,
+    unpublishArticle,
     createPreview,
     saveTopNews,
     toggleSource,
     refreshCollectionStatus,
     runCollection,
     resetDemo,
-  }), [session, articles, sources, events, collectionState, loading, error, login, loginDemo, logout, refresh, saveArticle, runArticleAction, createPreview, saveTopNews, toggleSource, refreshCollectionStatus, runCollection, resetDemo]);
+    postToLinkedIn,
+    getLinkedInStatus,
+    saveLinkedInConfig,
+    testLinkedInPost,
+    connectLinkedIn,
+  }), [session, articles, sources, events, collectionState, loading, error, login, loginDemo, logout, refresh, saveArticle, createArticle, deleteArticle, pruneOldArticles, uploadImage, runArticleAction, unpublishArticle, createPreview, saveTopNews, toggleSource, refreshCollectionStatus, runCollection, resetDemo, postToLinkedIn, getLinkedInStatus, saveLinkedInConfig, testLinkedInPost, connectLinkedIn]);
 
   return <NewsroomContext.Provider value={value}>{children}</NewsroomContext.Provider>;
 }

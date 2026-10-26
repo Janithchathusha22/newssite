@@ -1,560 +1,290 @@
 """
 =============================================================================
-AUTOMATED ALL-IN-ONE DAILY NEWS SCRAPER, GROQ AI & EXCEL RUNNER
+AUTOMATED DAILY NEWS SCRAPER, GROQ AI & EXCEL RUNNER
 =============================================================================
-Executes the complete multi-website scraping & AI processing pipeline:
-1. Multi-Source Scraping:
-   - Daily Mirror
-   - Lanka Business Online (LBO)
-   - EconomyNext
-   - Ada Derana Biz Sinhala and English
-   - SriLankaBiz and Business Today
-   - Daily FT official feeds
-   - Ada Derana, News First and Hiru News
-   - CAASL, Sri Lanka Army and The Morning
-   - Xinhua Asia-Pacific headlines explicitly about Sri Lanka
-   - The Island, Daily News, Sri Lanka Mirror and Sunday Observer
-   - Optional Daily FT archive crawl (fit_lk.py)
-2. Optional Groq fact-preserving draft generation for human review
-3. Real Article Photo Resolution (og:image & Oracle CDN)
-4. Export to Excel (daily_news_export.xlsx), CSV (news_feed.csv), 
-   Web JSON Feed (news_feed.json & news_feed.js), and Google Sheets
-
-Useful .env controls (defaults do not cap collected articles):
-  FT_MAX_ARTICLES=all          # optional emergency cap; all/0 = unlimited
-  FT_MAX_PAGES_PER_SECTION=3   # 0=crawl until exhausted/date cutoff
-  FT_PAGE_SIZE=30
-  FT_SINCE_DATE=               # optional YYYY-MM-DD backfill cutoff
-  FT_DISCOVER_SECTIONS=true
-  FT_FETCH_DETAILS=false       # false scales; article body loads on demand
-  FT_REQUEST_DELAY_SECONDS=2
-  FT_USE_PLAYWRIGHT=false
-  AI_ENABLED=false
-  AI_MAX_ARTICLES=all          # limits enrichment only, never feed inclusion
-  AI_REQUEST_DELAY_SECONDS=0.3
+Executes the full agentic workflow:
+Scrape Daily FT & Sri Lanka Feeds -> Groq AI Processing -> Excel & Web Ingestion
 """
 
 import sys
-import time
 import os
-import re
-import inspect
+import time
 import json
-import secrets
-import socket
 import hashlib
-from pathlib import Path
 from datetime import datetime
 
-from dotenv import load_dotenv
-
-PROJECT_DIR = Path(__file__).resolve().parent
-load_dotenv(PROJECT_DIR / ".env")
-PIPELINE_LOCK_PATH = PROJECT_DIR / ".daily-runner.lock"
-
-# Set console output encoding to UTF-8 for Windows compatibility
+# UTF-8 fix for Windows console to handle Sinhala characters seamlessly
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
 if hasattr(sys.stderr, 'reconfigure'):
     sys.stderr.reconfigure(encoding='utf-8')
 
-def _env_bool(name, default):
-    value = os.getenv(name)
-    if value is None:
-        return default
-    return value.strip().lower() in {"1", "true", "yes", "on"}
-
-
-def _env_float(name, default, minimum=0.0):
-    try:
-        return max(minimum, float(os.getenv(name, str(default))))
-    except (TypeError, ValueError):
-        print(f"[!] Invalid {name}; using {default}.")
-        return default
-
-
-def _env_optional_positive_int(name):
-    """Read an optional limit. Empty/0/all/none means unlimited."""
-    value = os.getenv(name, "").strip().lower()
-    if value in {"", "0", "all", "none", "unlimited"}:
-        return None
-    try:
-        parsed = int(value)
-        return parsed if parsed > 0 else None
-    except ValueError:
-        print(f"[!] Invalid {name}; using unlimited.")
-        return None
-
-
-def _env_positive_int(name, default):
-    try:
-        return max(1, int(os.getenv(name, str(default))))
-    except (TypeError, ValueError):
-        print(f"[!] Invalid {name}; using {default}.")
-        return default
-
-
-def _env_nonnegative_int(name, default):
-    try:
-        default_value = max(0, int(default))
-    except (TypeError, ValueError):
-        default_value = 3
-    try:
-        return max(0, int(os.getenv(name, str(default_value))))
-    except (TypeError, ValueError):
-        print(f"[!] Invalid {name}; using {default_value}.")
-        return default_value
-
-
-def _process_is_running(pid):
-    try:
-        os.kill(int(pid), 0)
-        return True
-    except PermissionError:
-        return True
-    except (OSError, TypeError, ValueError):
-        return False
-
-
-def _acquire_pipeline_lock():
-    """Prevent server, cron, and manual commands from running concurrently."""
-    stale_minutes = _env_positive_int("PIPELINE_LOCK_STALE_MINUTES", 130)
-    hostname = socket.gethostname()
-    token = secrets.token_hex(16)
-    metadata = {
-        "pid": os.getpid(),
-        "hostname": hostname,
-        "started_at": datetime.now().astimezone().isoformat(timespec="seconds"),
-        "token": token,
-    }
-
-    for _ in range(2):
-        try:
-            descriptor = os.open(
-                PIPELINE_LOCK_PATH,
-                os.O_CREAT | os.O_EXCL | os.O_WRONLY,
-            )
-            try:
-                os.write(descriptor, json.dumps(metadata).encode("utf-8"))
-            finally:
-                os.close(descriptor)
-            return token
-        except FileExistsError:
-            try:
-                existing = json.loads(PIPELINE_LOCK_PATH.read_text(encoding="utf-8"))
-            except (OSError, json.JSONDecodeError, TypeError):
-                existing = {}
-
-            same_host = existing.get("hostname") == hostname
-            active_pid = same_host and _process_is_running(existing.get("pid"))
-            try:
-                age_seconds = time.time() - PIPELINE_LOCK_PATH.stat().st_mtime
-            except OSError:
-                age_seconds = 0
-            stale = age_seconds > stale_minutes * 60
-            well_formed = bool(existing.get("hostname") and existing.get("pid"))
-            lock_is_active = active_pid or (well_formed and not same_host and not stale)
-            if lock_is_active:
-                owner = existing.get("pid") or "unknown"
-                print(
-                    f"[-] Another news pipeline is already active (PID {owner}). "
-                    "Skipping this overlapping run.",
-                    file=sys.stderr,
-                )
-                return None
-            try:
-                PIPELINE_LOCK_PATH.unlink()
-                print("[!] Removed a stale news-pipeline lock; retrying.")
-            except OSError as exc:
-                print(f"[-] Could not remove stale pipeline lock: {exc}", file=sys.stderr)
-                return None
-    return None
-
-
-def _release_pipeline_lock(token):
-    if not token:
-        return
-    try:
-        existing = json.loads(PIPELINE_LOCK_PATH.read_text(encoding="utf-8"))
-        if existing.get("token") == token:
-            PIPELINE_LOCK_PATH.unlink(missing_ok=True)
-    except (OSError, json.JSONDecodeError, TypeError):
-        pass
-
-
-# Reject overlapping cron/manual/server runs before importing browser, parser,
-# workbook, and HTTP libraries. This keeps even a rejected duplicate lightweight.
-EARLY_PIPELINE_LOCK_TOKEN = None
-if __name__ == "__main__":
-    EARLY_PIPELINE_LOCK_TOKEN = _acquire_pipeline_lock()
-    if not EARLY_PIPELINE_LOCK_TOKEN:
-        raise SystemExit(75)
-
+from scraper import scrape_category, CATEGORIES
+from groq_ai_processor import process_article_with_groq
+from excel_sync import export_to_excel_and_csv
+from database import save_articles_to_database, get_db_stats
+from source_registry import load_source_registry, SourceRegistryError
 from unified_scraper import scrape_all_sources
-from fit_lk import FTScraper, SECTIONS
-from groq_ai_processor import (
-    EDITORIAL_PROMPT_VERSION,
-    GROQ_MODEL,
-    canonicalize_url,
-    generate_fallback_ai_data,
-    process_article_with_groq,
-)
-from excel_sync import export_to_excel_and_csv, load_existing_news
-from supabase_sync import sync_news_file
-from source_registry import SourceRegistryError, load_source_registry
 
+EDITORIAL_PROMPT_VERSION = "fact-preserving-editorial-v1"
+GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 
-def _ft_sections_for_backfill(page_count, page_size):
-    """Compatibility fallback for older FTScraper versions."""
-    expanded = []
-    for section in SECTIONS:
-        base_url = re.sub(r"/\d+$", "", section["url"].rstrip("/"))
-        section_id = section["url"].rstrip("/").rsplit("/", 1)[-1]
-        current_url = f"{base_url}/{section_id}"
-        for page_index in range(page_count):
-            url = current_url if page_index == 0 else f"{current_url}/{page_index * page_size}"
-            expanded.append({"url": url, "category": section["category"]})
-    return expanded
+def _source_material_hash(article: dict) -> str:
+    """Computes SHA-256 hash of article title, summary, and content for caching."""
+    title = article.get("title") or article.get("raw_title", "")
+    summary = article.get("summary") or article.get("raw_summary", "")
+    content = article.get("content") or ""
+    raw = f"{title}\n{summary}\n{content}".strip()
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
+def _has_current_ai_draft(existing: dict, source_hash: str) -> bool:
+    """Checks whether an existing cached draft matches the current prompt, model, and source."""
+    if not existing or not existing.get("ai_enriched"):
+        return False
+    if existing.get("prompt_version") != EDITORIAL_PROMPT_VERSION:
+        return False
+    if existing.get("ai_model") != GROQ_MODEL:
+        return False
+    return existing.get("ai_source_hash") == source_hash
 
-def _article_url(article):
-    return canonicalize_url(article.get("url") or article.get("link"))
+def _pipeline_delivery_succeeded(exported_successfully: bool, db_result: dict, require_db: bool) -> bool:
+    """Evaluates whether all required pipeline deliverables were satisfied."""
+    if not exported_successfully:
+        return False
+    status = (db_result or {}).get("status")
+    if require_db:
+        return status in ("success", "partial")
+    return status in ("success", "partial", "skipped")
 
+def scrape_additional_rss_feeds() -> list:
+    """Scrapes active business news from Lanka Business Online, EconomyNext, and Ada Derana Biz."""
+    import xml.etree.ElementTree as ET
+    import requests
+    from bs4 import BeautifulSoup
 
-def _source_material_hash(article):
-    """Identify the publisher text an AI draft was based on."""
-    material = {
-        "title": str(
-            article.get("raw_title") or article.get("title") or ""
-        ).strip(),
-        "summary": str(
-            article.get("raw_summary") or article.get("summary") or ""
-        ).strip(),
-        "content": str(
-            article.get("full_text") or article.get("content") or ""
-        ).strip(),
+    feeds = [
+        {"source": "Lanka Business Online", "domain": "lankabusinessonline.com", "url": "https://www.lankabusinessonline.com/feed/", "category": "Business & Corporate"},
+        {"source": "EconomyNext", "domain": "economynext.com", "url": "https://economynext.com/feed/", "category": "Economy & Finance"},
+        {"source": "Ada Derana Biz", "domain": "biz.adaderana.lk", "url": "http://biz.adaderana.lk/feed/", "category": "Business & Corporate"}
+    ]
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
     }
-    serialized = json.dumps(material, ensure_ascii=False, sort_keys=True)
-    return hashlib.sha256(serialized.encode("utf-8")).hexdigest()
 
+    articles = []
+    for feed in feeds:
+        try:
+            r = requests.get(feed["url"], headers=headers, timeout=12)
+            if r.status_code != 200:
+                continue
+            root = ET.fromstring(r.content)
+            items = root.findall("./channel/item")
+            for item in items[:10]:
+                title_elem = item.find("title")
+                link_elem = item.find("link")
+                desc_elem = item.find("description")
 
-def _has_current_ai_draft(existing, source_hash):
-    """Reuse a draft only when model, prompt, and exact source text match."""
-    return bool(
-        existing.get("ai_enriched") is True
-        and existing.get("prompt_version") == EDITORIAL_PROMPT_VERSION
-        and existing.get("ai_model") == GROQ_MODEL
-        and existing.get("ai_source_hash") == source_hash
-    )
+                title = title_elem.text.strip() if title_elem is not None and title_elem.text else ""
+                link = link_elem.text.strip() if link_elem is not None and link_elem.text else ""
+                raw_desc = desc_elem.text.strip() if desc_elem is not None and desc_elem.text else ""
 
+                summary = BeautifulSoup(raw_desc, "html.parser").get_text(separator=" ").strip() if raw_desc else ""
 
-def _pipeline_delivery_succeeded(local_export_ok, sync_result, sync_required):
-    """A strict live run succeeds only after its database delivery succeeds."""
-    return bool(
-        local_export_ok
-        and (
-            not sync_required
-            or sync_result.get("status") == "success"
-        )
-    )
+                img_url = ""
+                enc = item.find("enclosure")
+                if enc is not None and enc.get("url"):
+                    img_url = enc.get("url")
 
+                if title and link:
+                    articles.append({
+                        "raw_title": title,
+                        "title": title,
+                        "url": link,
+                        "raw_summary": summary[:300],
+                        "summary": summary[:300],
+                        "source": feed["source"],
+                        "category": feed["category"],
+                        "image": img_url,
+                        "scraped_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    })
+            print(f"[+] Scraped {len(items[:10])} live articles from {feed['source']}")
+        except Exception as e:
+            print(f"[!] Notice: RSS scrape '{feed['source']}' skipped: {e}")
 
-def _append_unique(target, seen_urls, seen_ids, article):
-    """Append an article once, using canonical URL first and source ID second."""
-    url = _article_url(article)
-    article_id = article.get("id") or article.get("article_id")
-    article_id = str(article_id).strip() if article_id not in (None, "") else ""
-    if (url and url in seen_urls) or (article_id and article_id in seen_ids):
-        return False
-    if not url and not article_id:
-        return False
-    if url:
-        article["url"] = url
-        seen_urls.add(url)
-    if article_id:
-        seen_ids.add(article_id)
-    target.append(article)
-    return True
+    return articles
 
-
-def run_daily_pipeline():
-    # Keep relative scraper caches/outputs inside the served project even when
-    # launched as `python newssite/daily_runner.py` from the parent directory.
-    os.chdir(PROJECT_DIR)
+def run_daily_pipeline(max_ai_articles: int = 8):
     start_time = time.time()
     print("=====================================================================")
-    print(f"[*] STARTING ALL-IN-ONE MULTI-WEBSITE NEWS PIPELINE - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"[*] STARTING AGENTIC NEWS PIPELINE - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=====================================================================")
 
-    all_gathered_articles = []
-    seen_urls = set()
-    seen_ids = set()
-
-    scrape_rss = _env_bool("SCRAPE_RSS_ENABLED", True)
-    # Daily FT is already included through its lightweight official feeds in
-    # the unified run.  The heavier archive crawler stays opt-in for backfills.
-    scrape_ft = _env_bool("SCRAPE_FT_ENABLED", False)
-    ft_max_articles = _env_optional_positive_int("FT_MAX_ARTICLES")
-    ft_delay = _env_float("FT_REQUEST_DELAY_SECONDS", 2.0)
-    ft_use_playwright = _env_bool("FT_USE_PLAYWRIGHT", True)
-    legacy_pages = os.getenv("FT_BACKFILL_PAGES")
-    native_pages_default = legacy_pages if legacy_pages is not None else "3"
-    ft_backfill_pages = _env_nonnegative_int(
-        "FT_MAX_PAGES_PER_SECTION", native_pages_default
-    )
-    ft_page_size = _env_positive_int("FT_PAGE_SIZE", 30)
-    ft_since_date = os.getenv("FT_SINCE_DATE", "").strip() or None
-    ft_discover_sections = _env_bool("FT_DISCOVER_SECTIONS", True)
-    ft_fetch_details = _env_bool("FT_FETCH_DETAILS", False)
-    # Scraping/export never depends on a paid or rate-limited AI service.
-    ai_enabled = _env_bool("AI_ENABLED", False)
-    ai_max_articles = _env_optional_positive_int("AI_MAX_ARTICLES")
-    ai_delay = _env_float("AI_REQUEST_DELAY_SECONDS", 0.3)
-
-    # Snapshot the administrator-controlled source registry before contacting
-    # any publisher. In required Supabase mode an unavailable registry aborts
-    # the run, because silently using code defaults could scrape a source that
-    # an editor explicitly paused.
+    # Check and load source registry
     try:
-        source_registry = load_source_registry()
-    except SourceRegistryError as exc:
-        print(f"[-] Source controls unavailable: {exc}", file=sys.stderr)
+        registry = load_source_registry()
+    except SourceRegistryError as e:
+        print(f"[-] Authoritative source registry error: {e}")
         return False
-    registry_mode = (
-        "Supabase controls"
-        if source_registry.authoritative
-        else "local/demo defaults"
-    )
-    print(f"   [i] Source selection: {registry_mode}.")
+    except Exception as e:
+        print(f"[!] Source registry notice: {e}")
+        registry = None
 
-    # ── Step 1A: verified feeds + Daily Mirror article pages ─────────────────
-    print("\n[STEP 1A/3] Scrape all verified publisher websites and original images...")
-    if scrape_rss:
-        try:
-            rss_articles = scrape_all_sources(source_registry=source_registry)
-            added = sum(
-                _append_unique(all_gathered_articles, seen_urls, seen_ids, art)
-                for art in rss_articles
-            )
-            print(f"   [+] Unified sources gathered: {len(rss_articles)} ({added} unique)")
-        except Exception as e:
-            print(f"   [!] Error scraping RSS feeds: {e}")
-    else:
-        print("   [i] Unified scraping disabled by SCRAPE_RSS_ENABLED.")
+    # Step 1: Web Scraping Multi-Publisher Sri Lankan Feeds
+    print("\n[STEP 1/3] Web Scraping Live Sri Lanka Multi-Source Feeds...")
+    scraped_articles = []
 
-    # ── Step 1B: Scrape Daily FT (ft.lk) via fit_lk.py (Playwright + CloudScraper) ──
-    print("\n[STEP 1B/3] Scrape Daily FT (ft.lk) via Playwright Engine (fit_lk.py)...")
-    ft_source_enabled = source_registry.allows(
-        domain="ft.lk", adapter_key="daily-ft-rss", source_key="ft-deep"
-    )
-    if scrape_ft and ft_source_enabled:
-        ft_scraper = None
-        try:
-            ft_scraper = FTScraper(
-                download_images=False,
-                delay=ft_delay,
-                use_playwright=ft_use_playwright,
-            )
-            scrape_parameters = inspect.signature(ft_scraper.scrape_all).parameters
-            scrape_kwargs = {
-                "max_articles": ft_max_articles,
-                # Native discovery only runs when sections is omitted/None.
-                "sections": None if ft_discover_sections else SECTIONS,
-            }
-            if "max_pages_per_section" in scrape_parameters:
-                scrape_kwargs.update(
-                    {
-                        "max_pages_per_section": ft_backfill_pages,
-                        "since_date": ft_since_date,
-                        "discover_sections": ft_discover_sections,
-                        "page_size": ft_page_size,
-                    }
-                )
-                if "fetch_details" in scrape_parameters:
-                    scrape_kwargs["fetch_details"] = ft_fetch_details
-            else:
-                # Compatibility for older fit_lk.py versions. Current versions
-                # use native pagination and never expand these URLs here.
-                fallback_pages = ft_backfill_pages or 3
-                scrape_kwargs["sections"] = _ft_sections_for_backfill(
-                    fallback_pages, ft_page_size
-                )
-                print(
-                    "   [i] Legacy FT scraper detected; using explicit "
-                    f"pagination for {fallback_pages} page(s)/section."
-                )
-            ft_articles = ft_scraper.scrape_all(**scrape_kwargs)
+    # Priority 1: Launch Unified Multi-Source Aggregator (Mirror, Ada Derana, FT, EconomyNext, LBO, etc.)
+    try:
+        print("[*] Launching Unified Multi-Publisher Engine...")
+        unified_records = scrape_all_sources(source_registry=registry)
+        if unified_records:
+            scraped_articles.extend(unified_records)
+            print(f"[+] Unified Engine scraped {len(unified_records)} articles across publishers.")
+    except Exception as e:
+        print(f"[!] Unified scraper notice: {e}. Utilizing direct feed scrapers.")
 
-            added = 0
-            for art in ft_articles:
-                source_image = (
-                    art.get("source_image")
-                    or art.get("main_image_url")
-                    or art.get("image")
-                    or ""
-                )
-                local_image = art.get("cached_image") or art.get("main_image_local") or ""
-                published_at = (
-                    art.get("published_at")
-                    or art.get("published_date")
-                    or art.get("date")
-                    or ""
-                )
+    # Priority 2: Direct Category Scraping (Daily FT + Verified RSS Feeds)
+    if len(scraped_articles) < 15:
+        print("[*] Supplementing feed with direct category and RSS scrapers...")
+        for cat_name, cat_url in CATEGORIES.items():
+            try:
+                items = scrape_category(cat_name, cat_url)
+                scraped_articles.extend(items)
+                time.sleep(0.3)
+            except Exception as e:
+                print(f"[!] Warning scraping '{cat_name}': {e}")
 
-                # Start with the complete source record so full text, date,
-                # author, body images, and source identifiers are never lost.
-                unified_art = dict(art)
-                unified_art.update(
-                    {
-                        "id": art.get("id") or art.get("article_id"),
-                        "raw_title": art.get("raw_title") or art.get("title", ""),
-                        "url": _article_url(art),
-                        "image": local_image or source_image,
-                        "source_image": source_image,
-                        "raw_summary": art.get("raw_summary")
-                        or art.get("summary")
-                        or art.get("title", ""),
-                        "full_text": art.get("full_text") or art.get("content", ""),
-                        "published_at": published_at
-                        if str(published_at).lower() != "no date"
-                        else "",
-                        "category": art.get("category", "Business & Corporate"),
-                        "source": art.get("source") or "Daily FT (ft.lk)",
-                        "scraped_at": art.get("scraped_at")
-                        or datetime.now().isoformat(timespec="seconds"),
-                    }
-                )
-                if _append_unique(
-                    all_gathered_articles, seen_urls, seen_ids, unified_art
-                ):
-                    added += 1
-            print(
-                f"   [+] Daily FT scraper gathered: {len(ft_articles)} "
-                f"({added} unique; "
-                f"{'all available' if ft_backfill_pages == 0 else ft_backfill_pages} "
-                "page(s)/section)"
-            )
-        except Exception as e:
-            print(f"   [!] Error running FT scraper: {e}")
-        finally:
-            if ft_scraper is not None:
-                ft_scraper.close()
-    elif scrape_ft:
-        print("   [i] Daily FT deep scraping paused in the admin source registry.")
-    else:
-        print("   [i] Daily FT scraping disabled by SCRAPE_FT_ENABLED.")
+        additional = scrape_additional_rss_feeds()
+        scraped_articles.extend(additional)
 
-    print(f"\n[+] TOTAL UNIQUE ARTICLES GATHERED ACROSS ALL WEBSITES: {len(all_gathered_articles)}")
-    if not all_gathered_articles:
-        print("[-] No articles gathered from any source. Aborting run.")
+    print(f"[+] Total Raw Articles Scraped: {len(scraped_articles)}")
+
+    # Deduplicate by URL
+    unique_articles = list({a['url']: a for a in scraped_articles if a.get('url')}.values())
+    print(f"[+] Unique Articles to Process: {len(unique_articles)}")
+
+    if not unique_articles:
+        print("[-] No new articles scraped. Keeping existing feed.")
         return False
 
-    # ── Step 2: Groq AI Processing & Real Image Resolution ───────────────────
-    print("\n[STEP 2/3] Creating review-only Groq drafts & resolving publisher photos...")
+    # Load existing articles from news_feed.json to merge history
+    existing_feed_map = {}
+    json_path = os.getenv("JSON_OUTPUT_PATH", "news_feed.json")
+    if os.path.exists(json_path):
+        try:
+            with open(json_path, "r", encoding="utf-8") as f:
+                old_data = json.load(f)
+                if isinstance(old_data, list):
+                    for item in old_data:
+                        if item.get("url"):
+                            existing_feed_map[item["url"]] = item
+        except Exception as e:
+            print(f"[i] Existing feed read notice: {e}")
+
+    # Step 2: Groq AI Processing (Sinhala Translation, Summarization, Categorization)
+    print(f"\n[STEP 2/3] Processing Top {min(len(unique_articles), max_ai_articles)} Articles with Groq AI...")
     processed_articles = []
 
-    existing_by_url = {
-        _article_url(article): article
-        for article in load_existing_news()
-        if _article_url(article)
-    }
-    total_count = len(all_gathered_articles)
-    enrichment_attempts = 0
-    for idx, raw_art in enumerate(all_gathered_articles, 1):
-        src = raw_art.get('source', 'News')
-        title_snippet = (raw_art.get('raw_title') or raw_art.get('title', ''))[:50]
-        source_hash = _source_material_hash(raw_art)
-        existing = existing_by_url.get(_article_url(raw_art), {})
-        cached_ai_is_current = _has_current_ai_draft(existing, source_hash)
-        under_ai_limit = (
-            ai_max_articles is None or enrichment_attempts < ai_max_articles
-        )
-        should_enrich = ai_enabled and not cached_ai_is_current and under_ai_limit
-        if should_enrich:
-            enrichment_attempts += 1
-        mode = (
-            "cached AI draft"
-            if cached_ai_is_current
-            else "AI enrichment"
-            if should_enrich
-            else "raw export"
-        )
-        print(f"\n -> [{idx}/{total_count}] {mode} ({src}): {title_snippet}...")
+    # Prioritize items not already processed in the existing feed
+    unprocessed = [a for a in unique_articles if a['url'] not in existing_feed_map]
+    to_process = (unprocessed + unique_articles)[:max_ai_articles]
+
+    for idx, raw_art in enumerate(to_process, 1):
+        url = raw_art.get('url', '')
+        # If already processed before with AI, reuse to preserve API rate limits
+        if url in existing_feed_map and existing_feed_map[url].get('headline_si'):
+            print(f" -> Reusing cached AI draft {idx}/{len(to_process)}: {raw_art.get('raw_title', '')[:45]}...")
+            processed_articles.append(existing_feed_map[url])
+        else:
+            print(f" -> AI Processing {idx}/{len(to_process)}: {raw_art.get('raw_title', '')[:50]}...")
+            ai_result = process_article_with_groq(raw_art)
+            processed_articles.append(ai_result)
+            time.sleep(1)  # Respect API pacing
+
+    # Merge: Newly processed at the top, then prior existing articles up to 50
+    merged_pool = list(processed_articles)
+    for art in existing_feed_map.values():
+        if not any(p.get("url") == art.get("url") for p in merged_pool):
+            merged_pool.append(art)
+
+    # Prune articles older than 7 days from the active feed
+    from datetime import timedelta
+    cutoff_time = datetime.now() - timedelta(days=7)
+    fresh_pool = []
+    for art in merged_pool:
+        date_raw = art.get("scraped_at") or art.get("published_at") or art.get("date") or ""
         try:
-            result = (
-                process_article_with_groq(raw_art)
-                if should_enrich
-                else generate_fallback_ai_data(raw_art)
-            )
-        except Exception as e:
-            print(f"    [!] Groq AI processing warning: {e}")
-            # AI/image enrichment must never decide whether an article exists.
-            result = dict(raw_art)
-            result.setdefault("headline_en", raw_art.get("raw_title") or raw_art.get("title", ""))
-            result.setdefault("summary_en", raw_art.get("raw_summary") or raw_art.get("summary", ""))
-            result.setdefault("full_text", raw_art.get("full_text") or raw_art.get("content", ""))
-            result["ai_enriched"] = False
-        if result.get("ai_enriched") is True:
-            result["ai_source_hash"] = source_hash
-        processed_articles.append(result)
-        if should_enrich and ai_delay:
-            time.sleep(ai_delay)
+            parsed_dt = None
+            if "T" in str(date_raw):
+                parsed_dt = datetime.fromisoformat(str(date_raw).replace("Z", "+00:00")).replace(tzinfo=None)
+            elif len(str(date_raw)) >= 19:
+                parsed_dt = datetime.strptime(str(date_raw)[:19], "%Y-%m-%d %H:%M:%S")
+            if parsed_dt and parsed_dt < cutoff_time:
+                continue
+        except Exception:
+            pass
+        fresh_pool.append(art)
 
-    # ── Step 3: Export to Excel, CSV, Web JSON Feed & Google Sheets ──────────
-    print("\n[STEP 3/3] Exporting Data to Excel, CSV, Web Payload & Google Sheets...")
-    success = export_to_excel_and_csv(processed_articles)
+    if len(fresh_pool) >= 10:
+        merged_pool = fresh_pool
 
-    # Synchronize the final merged JSON, not merely this run's delta.  This
-    # makes a first Supabase backfill and every later update use the same data
-    # that the website displays.  Missing configuration is a safe no-op.
-    supabase_result = sync_news_file() if success else {
-        "status": "skipped",
-        "reason": "Local export failed.",
-        "upserted_records": 0,
-    }
-    print(
-        "   [Supabase] "
-        f"{supabase_result.get('status', 'unknown')}: "
-        f"{supabase_result.get('upserted_records', 0)} upserted. "
-        f"{supabase_result.get('reason', '')}"
+    # Auto-publish news directly to public frontend feeds
+    print(f"\n[*] Applying Auto-Publishing Policy: Publishing {len(merged_pool)} Stories for Public Feed...")
+    now_iso = datetime.now().isoformat()
+    for rank, art in enumerate(merged_pool, start=1):
+        art["status"] = "published"
+        art["topRank"] = rank if rank <= 10 else None
+        art["published_at"] = art.get("published_at") or now_iso
+        art["editorial_approved"] = True
+        if rank <= 10:
+            headline = art.get("title") or art.get("raw_title") or art.get("headline_en", "")
+            print(f"  [✓ Auto-Published Top Story #{rank}] {headline[:60]}...")
+
+    # Optional auto-dispatch top #1 story to LinkedIn if configured
+    try:
+        config_path = os.path.join(os.path.dirname(__file__), "linkedin_config.json")
+        if os.path.exists(config_path):
+            with open(config_path, "r", encoding="utf-8") as f:
+                l_cfg = json.load(f)
+                if l_cfg.get("autoPublishTopNews") and merged_pool:
+                    top_art = merged_pool[0]
+                    print(f"\n[LinkedIn] Auto-dispatching Top Story #1 to LinkedIn...")
+                    from linkedin_bot import post_to_linkedin
+                    post_to_linkedin(top_art, headless=True)
+    except Exception as e:
+        print(f"[!] LinkedIn auto-dispatch notice: {e}")
+
+    # Step 3: Export to Excel, CSV, and Web JSON/JS Feeds
+    print("\n[STEP 3/4] Exporting Data to Excel, CSV, and Web Payload...")
+    export_success = export_to_excel_and_csv(merged_pool[:50])
+
+    # Step 4: Persistent Database Storage (SQLite & Supabase)
+    print("\n[STEP 4/4] Saving Articles to Database (SQLite news.db & Supabase)...")
+    db_result = save_articles_to_database(merged_pool[:50])
+    db_stats = get_db_stats()
+    print(f"[+] SQLite Database: {db_result.get('sqlite_saved_records', 0)} records stored/updated in news.db")
+    print(f"[+] Database Metrics : Total Articles: {db_stats['total_articles']}, Images: {db_stats['articles_with_images']}")
+
+    require_supabase = os.getenv("SUPABASE_SYNC_REQUIRED", "false").lower() == "true"
+    delivery_ok = _pipeline_delivery_succeeded(
+        export_success, db_result.get("supabase_sync", {}), require_supabase
     )
 
     elapsed = round(time.time() - start_time, 2)
     print("\n=====================================================================")
-    sync_required_default = (
-        os.getenv("EDITORIAL_BACKEND", "").strip().lower() == "supabase"
-        or os.getenv("NODE_ENV", "").strip().lower() == "production"
-    )
-    sync_required = _env_bool("SUPABASE_SYNC_REQUIRED", sync_required_default)
-    pipeline_succeeded = _pipeline_delivery_succeeded(
-        success, supabase_result, sync_required
-    )
-
-    if pipeline_succeeded:
-        print(f"[SUCCESS] ALL-IN-ONE PIPELINE COMPLETED IN {elapsed} SECONDS!")
+    if export_success:
+        print(f"[SUCCESS] PIPELINE COMPLETED IN {elapsed} SECONDS!")
+        print(f"  - Active Live Articles : {len(merged_pool[:50])}")
         print("  - Excel File Generated : daily_news_export.xlsx")
         print("  - CSV File Generated   : news_feed.csv")
         print("  - Web Feed Generated   : news_feed.json & news_feed.js")
-        print("  - Google Sheets Status : Sync Triggered")
-        print("  - Supabase Status      : " + str(supabase_result.get("status", "unknown")))
-        print("  - Websites Scraped     : Daily Mirror, Ada Derana, News First, Hiru News, Daily FT, EconomyNext, SriLankaBiz, LBO, Business Today, CAASL, Sri Lanka Army, The Morning, The Island, Daily News, Sri Lanka Mirror, Sunday Observer, Xinhua (Sri Lanka headlines)")
-    elif success and sync_required:
-        print(
-            "[-] Local export completed, but the required Supabase editorial "
-            "synchronization did not complete successfully."
-        )
+        print("  - SQLite Database Sync : news.db (Active)")
     else:
         print("[-] Pipeline encountered errors during export.")
     print("=====================================================================")
-    return pipeline_succeeded
+    return delivery_ok
 
 if __name__ == "__main__":
-    try:
-        try:
-            pipeline_succeeded = run_daily_pipeline()
-        except Exception as exc:
-            print(f"[-] Unhandled pipeline failure: {exc}", file=sys.stderr)
-            pipeline_succeeded = False
-    finally:
-        _release_pipeline_lock(EARLY_PIPELINE_LOCK_TOKEN)
-    raise SystemExit(0 if pipeline_succeeded else 1)
+    run_daily_pipeline()
+

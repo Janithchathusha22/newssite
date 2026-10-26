@@ -32,10 +32,12 @@ const PUBLISHER_HOST_SUFFIXES = [
 
 const ORACLE_IMAGE_HOSTS = new Map([
   ['ft.lk', new Set([
-    'bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com'
+    'bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com',
+    'bmkltsly13vb.compat.objectstorage.ap-singapore-1.oraclecloud.com'
   ])],
   ['dailymirror.lk', new Set([
-    'bmkltsly13vb.compat.objectstorage.ap-singapore-1.oraclecloud.com'
+    'bmkltsly13vb.compat.objectstorage.ap-singapore-1.oraclecloud.com',
+    'bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com'
   ])]
 ]);
 

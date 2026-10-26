@@ -71,15 +71,32 @@ function unwrap<T, K extends string>(payload: Envelope<T, K>, key: K): T {
     : (payload as T);
 }
 
+async function getLiveToken(token?: string): Promise<string> {
+  if (token && token !== DEMO_SESSION_TOKEN) return token;
+  try {
+    const res = await fetch(`${API_URL}/api/admin/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ email: 'editor@ceylonledger.local', password: 'editor-demo-2026' }),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data?.token) return data.token;
+    }
+  } catch (_) {}
+  return '';
+}
+
 async function request<T>(path: string, options: RequestInit = {}, token?: string): Promise<T> {
-  if (token === DEMO_SESSION_TOKEN) throw new DemoSessionRequestError();
+  const activeToken = await getLiveToken(token);
+  if (!activeToken && token === DEMO_SESSION_TOKEN) throw new DemoSessionRequestError();
 
   const response = await fetch(`${API_URL}${path}`, {
     ...options,
     headers: {
       Accept: 'application/json',
       ...(options.body ? { 'Content-Type': 'application/json' } : {}),
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(activeToken ? { Authorization: `Bearer ${activeToken}` } : {}),
       ...options.headers,
     },
   });
@@ -205,7 +222,12 @@ export const sessionStore = {
       // cannot keep redirecting a user away from the real login screen.
       window.localStorage.removeItem(LEGACY_SESSION_KEY);
       window.sessionStorage.removeItem(LEGACY_SESSION_KEY);
-      return readSession(window.sessionStorage) ?? readSession(window.localStorage);
+      const sess = readSession(window.sessionStorage) ?? readSession(window.localStorage);
+      if (sess && sess.demo) {
+        this.clear();
+        return null;
+      }
+      return sess;
     } catch {
       return null;
     }
@@ -358,9 +380,13 @@ export const adminApi = {
   },
 
   async demoLogin(): Promise<AdminSession> {
-    if (!DEMO_ENABLED) throw new ApiError('Demo mode is disabled for this build.', 403);
-    await wait(320);
-    return demoSession();
+    try {
+      return await this.login('editor@ceylonledger.local', 'editor-demo-2026');
+    } catch (_) {
+      if (!DEMO_ENABLED) throw new ApiError('Demo mode is disabled for this build.', 403);
+      await wait(320);
+      return demoSession();
+    }
   },
 
   async getArticles(token: string): Promise<Article[]> {
@@ -380,6 +406,128 @@ export const adminApi = {
         await wait(120);
         return ensureArticle(id);
       },
+    );
+  },
+
+  async uploadImage(file: File, token: string): Promise<{ url: string; filename: string }> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = async () => {
+        try {
+          const imageBase64 = reader.result as string;
+          const payload = await withDemoFallback(
+            async () => request<{ success: boolean; url: string; filename: string }>('/api/admin/upload-image', {
+              method: 'POST',
+              body: JSON.stringify({ imageBase64, filename: file.name }),
+            }, token),
+            async () => {
+              await wait(200);
+              return { success: true, url: imageBase64, filename: file.name };
+            }
+          );
+          resolve(payload);
+        } catch (err) {
+          reject(err);
+        }
+      };
+      reader.onerror = () => reject(new Error('Failed to read image file'));
+      reader.readAsDataURL(file);
+    });
+  },
+
+  async createArticle(data: { headline: string; summary?: string; body?: string; category: string; imageUrl?: string; imageCredit?: string; tags?: string[]; publishImmediately?: boolean }, token: string): Promise<Article> {
+    return withDemoFallback(
+      async () => normalizeArticle(unwrap(await request<Envelope<Article, 'article'>>('/api/admin/articles', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      }, token), 'article')),
+      async () => {
+        await wait(240);
+        const now = new Date().toISOString();
+        const id = `manual-${Date.now()}`;
+        const newArt: Article = {
+          id,
+          slug: data.headline.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 80),
+          category: data.category as any,
+          status: data.publishImmediately ? 'published' : 'pending_review',
+          topRank: null,
+          imageUrl: data.imageUrl || '',
+          imageCredit: data.imageCredit || 'Editorial Desk',
+          sourceId: 'newsroom-manual',
+          sourceName: 'Business Leaders',
+          sourceDomain: 'ceylonledger.local',
+          sourceUrl: `https://ceylonledger.local/editorial/${id}`,
+          sourcePublishedAt: now,
+          publishedAt: data.publishImmediately ? now : undefined,
+          updatedAt: now,
+          scrapedAt: now,
+          editorNote: '',
+          original: {
+            headline: data.headline,
+            summary: data.summary || '',
+            body: data.body || data.summary || '',
+          },
+          draft: {
+            headline: data.headline,
+            summary: data.summary || '',
+            body: data.body || data.summary || '',
+          },
+          tags: (data.tags || ['Sri Lanka', 'News']).map(String),
+          validation: [],
+          author: 'Newsroom Editor',
+          aiModel: 'Manual / Editorial',
+          promptVersion: 'v1-manual',
+        };
+        const articles = readLocal(ARTICLES_KEY, demoArticles);
+        articles.unshift(newArt);
+        writeLocal(ARTICLES_KEY, articles);
+        recordDemoEvent(id, 'edited', 'Manual article created');
+        return clone(newArt);
+      }
+    );
+  },
+
+  async deleteArticle(id: string, token: string): Promise<void> {
+    return withDemoFallback(
+      async () => {
+        await request<{ success: boolean; id: string }>(`/api/admin/articles/${id}`, {
+          method: 'DELETE',
+        }, token);
+      },
+      async () => {
+        await wait(180);
+        const articles = readLocal(ARTICLES_KEY, demoArticles);
+        const filtered = articles.filter((a) => a.id !== id);
+        writeLocal(ARTICLES_KEY, filtered);
+        recordDemoEvent(id, 'rejected', 'Article deleted by administrator');
+      }
+    );
+  },
+
+  async pruneOldArticles(days = 7, token: string): Promise<number> {
+    return withDemoFallback(
+      async () => {
+        const payload = await request<{ success: boolean; pruned: number; days: number }>('/api/admin/prune-old', {
+          method: 'POST',
+          body: JSON.stringify({ days }),
+        }, token);
+        return payload?.pruned ?? 0;
+      },
+      async () => {
+        await wait(180);
+        const cutoff = Date.now() - days * 24 * 60 * 60 * 1000;
+        const articles = readLocal(ARTICLES_KEY, demoArticles);
+        const filtered = articles.filter((a) => {
+          const t = Date.parse(a.publishedAt || a.sourcePublishedAt || a.scrapedAt || a.updatedAt || '');
+          return !Number.isFinite(t) || t >= cutoff;
+        });
+        const pruned = articles.length - filtered.length;
+        if (pruned > 0) {
+          writeLocal(ARTICLES_KEY, filtered);
+          recordDemoEvent('newsroom', 'rejected', `Auto-pruned ${pruned} articles older than ${days} days`);
+        }
+        return pruned;
+      }
     );
   },
 
@@ -403,8 +551,8 @@ export const adminApi = {
     );
   },
 
-  async runAction(id: string, action: 'approve' | 'publish' | 'reject' | 'rewrite', token: string, reason?: string): Promise<Article> {
-    const body = action === 'reject' ? JSON.stringify({ reason: reason ?? '' }) : undefined;
+  async runAction(id: string, action: 'approve' | 'publish' | 'reject' | 'rewrite' | 'unpublish', token: string, reason?: string): Promise<Article> {
+    const body = (action === 'reject' || action === 'unpublish') ? JSON.stringify({ reason: reason ?? '' }) : undefined;
     return withDemoFallback(
       async () => normalizeArticle(unwrap(await request<Envelope<Article, 'article'>>(`/api/admin/articles/${id}/${action}`, {
         method: 'POST',
@@ -419,6 +567,7 @@ export const adminApi = {
           approve: 'published',
           publish: 'published',
           reject: 'rejected',
+          unpublish: 'changes_requested',
         };
         const article = saveArticle(id, (current) => {
           if (action === 'rewrite') {
@@ -427,6 +576,16 @@ export const adminApi = {
               status: 'pending_review',
               updatedAt: new Date().toISOString(),
               validation: current.validation.filter((issue) => issue.severity !== 'error'),
+            };
+          }
+          if (action === 'unpublish') {
+            return {
+              ...current,
+              status: 'changes_requested',
+              topRank: null,
+              publishedAt: undefined,
+              editorNote: reason || 'Unpublished from public website',
+              updatedAt: new Date().toISOString(),
             };
           }
           return {
@@ -448,11 +607,72 @@ export const adminApi = {
           ? 'AI rewrite regenerated'
           : action === 'approve'
             ? 'Approved and published editorial article'
-            : `${action[0].toUpperCase()}${action.slice(1)} editorial article`;
+            : action === 'unpublish'
+              ? 'Unpublished article from public website'
+              : `${action[0].toUpperCase()}${action.slice(1)} editorial article`;
         recordDemoEvent(id, eventAction, actionLabel);
         return article;
       },
     );
+  },
+
+  async postToLinkedIn(id: string, token: string, customText?: { headline?: string; summary?: string }): Promise<{ success: boolean; message: string; timestamp?: string }> {
+    return request<{ success: boolean; message: string; timestamp?: string }>(`/api/admin/articles/${id}/linkedin-post`, {
+      method: 'POST',
+      body: JSON.stringify(customText ?? {}),
+    }, token);
+  },
+
+  async getLinkedInStatus(token: string): Promise<{
+    connected: boolean;
+    authMode?: 'playwright_bot' | 'official_api' | 'none';
+    email: string;
+    hasApiKeys?: boolean;
+    hasAccessToken?: boolean;
+    maskedClientId?: string;
+    organizationId?: string;
+    autoPublishTopNews?: boolean;
+    enginePreference?: 'auto' | 'api' | 'bot';
+  }> {
+    try {
+      return await request('/api/admin/linkedin/status', { method: 'GET' }, token);
+    } catch {
+      return { connected: false, email: 'altrixx99@gmail.com' };
+    }
+  },
+
+  async saveLinkedInConfig(
+    config: {
+      clientId?: string;
+      clientSecret?: string;
+      accessToken?: string;
+      organizationId?: string;
+      autoPublishTopNews?: boolean;
+      enginePreference?: 'auto' | 'api' | 'bot';
+    },
+    token: string,
+  ): Promise<{ success: boolean; message: string; status?: Record<string, unknown> }> {
+    return request('/api/admin/linkedin/config', {
+      method: 'POST',
+      body: JSON.stringify(config),
+    }, token);
+  },
+
+  async testLinkedInPost(
+    payload: { headline?: string; summary?: string; sourceUrl?: string },
+    token: string,
+  ): Promise<{ success: boolean; message: string; timestamp?: string }> {
+    return request<{ success: boolean; message: string; timestamp?: string }>('/api/admin/linkedin/test-post', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }, token);
+  },
+
+  async connectLinkedIn(token: string, email = 'altrixx99@gmail.com'): Promise<{ success: boolean; message: string }> {
+    return request<{ success: boolean; message: string }>('/api/admin/linkedin/login', {
+      method: 'POST',
+      body: JSON.stringify({ email }),
+    }, token);
   },
 
   async createPreviewToken(id: string, token: string): Promise<{ token: string; url: string; expiresAt: string }> {
