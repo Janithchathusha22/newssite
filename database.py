@@ -11,6 +11,7 @@ import sqlite3
 import json
 import os
 import sys
+import hashlib
 from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Any, Optional
@@ -75,7 +76,7 @@ def save_articles_to_sqlite(articles: List[Dict[str, Any]]) -> int:
             if not url:
                 continue
 
-            art_id = str(art.get("id") or hash(url))
+            art_id = str(art.get("id") or hashlib.sha256(url.encode("utf-8")).hexdigest()[:24])
             headline_en = art.get("headline_en") or art.get("title") or art.get("raw_title", "Untitled")
             headline_si = art.get("headline_si", "")
             summary_en = art.get("summary_en") or art.get("summary") or art.get("raw_summary", "")
