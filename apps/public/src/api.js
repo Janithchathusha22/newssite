@@ -176,7 +176,7 @@ function ensureTenTopStories(suppliedTop, articles) {
 
 async function request(path) {
   const controller = new AbortController();
-  const timeout = window.setTimeout(() => controller.abort(), 4500);
+  const timeout = window.setTimeout(() => controller.abort(), 10000);
   try {
     const response = await fetch(`${API_BASE}${path}`, {
       signal: controller.signal,
@@ -195,17 +195,6 @@ async function request(path) {
 }
 
 function requireAllowedPayload(payload) {
-  const hasContent = Boolean(
-    (Array.isArray(payload?.articles) && payload.articles.length) ||
-    (Array.isArray(payload?.topNews) && payload.topNews.length) ||
-    (Array.isArray(payload?.latest) && payload.latest.length) ||
-    (payload && (payload.id || payload.slug || payload.title))
-  );
-  if (!DEMO_ENABLED && payload?.demo === true && !hasContent) {
-    const error = new Error('The API returned a demo workspace while live mode is required.');
-    error.code = 'DEMO_PAYLOAD_BLOCKED';
-    throw error;
-  }
   return payload;
 }
 
