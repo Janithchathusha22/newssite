@@ -404,7 +404,7 @@ function createInitialState() {
   });
   return {
     version: 7,
-    demo: true,
+    demo: false,
     categories: CATEGORIES,
     articles,
     sources: [...sourceMap.values()],
