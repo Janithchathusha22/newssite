@@ -161,8 +161,9 @@ jobs:
             # Configure UFW firewall if active
             if command -v ufw >/dev/null 2>&1; then
               ufw allow OpenSSH >/dev/null 2>&1 || true
-              ufw allow 80/tcp >/dev/null 2>&1 || true
+              ufw allow 3000/tcp >/dev/null 2>&1 || true
               ufw allow 8080/tcp >/dev/null 2>&1 || true
+              ufw allow 80/tcp >/dev/null 2>&1 || true
               ufw allow 443/tcp >/dev/null 2>&1 || true
             fi
 
@@ -177,7 +178,7 @@ jobs:
             SERVER_IP=$(curl -s -4 ifconfig.me || hostname -I | awk '{print $1}')
             echo "=========================================================="
             echo " [OK] Contabo Server Successfully Updated & Running!"
-            echo "   🌐 Public Website   : http://${SERVER_IP}"
+            echo "   🌐 Public Website   : http://${SERVER_IP}:3000"
             echo "   🔐 Admin Dashboard  : http://${SERVER_IP}:8080"
             echo "   🔄 Auto-Sync Every  : 8 Hours (480 mins)"
             echo "   🗄️ Database Backend : Supabase"

@@ -34,7 +34,7 @@ services:
     container_name: ceylon_ledger_web
     restart: unless-stopped
     ports:
-      - "80:80"       # Public Website -> http://localhost
-      - "8080:8080"   # Admin Dashboard -> http://localhost:8080
+      - "3000:80"     # Public Website -> http://YOUR_SERVER_IP:3000
+      - "8080:8080"   # Admin Dashboard -> http://YOUR_SERVER_IP:8080
     depends_on:
       - backend

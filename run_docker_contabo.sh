@@ -58,11 +58,12 @@ else
 fi
 
 # 3. Configure Firewall (UFW)
-echo -e "${YELLOW}[3/4] Configuring Firewall ports (80, 8080, 443)...${NC}"
+echo -e "${YELLOW}[3/4] Configuring Firewall ports (3000, 8080, 80, 443)...${NC}"
 if command -v ufw >/dev/null 2>&1; then
   ufw allow OpenSSH >/dev/null 2>&1 || true
-  ufw allow 80/tcp >/dev/null 2>&1 || true
+  ufw allow 3000/tcp >/dev/null 2>&1 || true
   ufw allow 8080/tcp >/dev/null 2>&1 || true
+  ufw allow 80/tcp >/dev/null 2>&1 || true
   ufw allow 443/tcp >/dev/null 2>&1 || true
   echo "y" | ufw enable >/dev/null 2>&1 || true
 fi
@@ -78,7 +79,7 @@ echo ""
 echo -e "${BLUE}=====================================================================${NC}"
 echo -e "${GREEN}  ✓ DOCKER COMPOSE DEPLOYMENT ACTIVE ON CONTABO!${NC}"
 echo -e "${BLUE}=====================================================================${NC}"
-echo -e "  🌐 Public News Portal : ${GREEN}http://${SERVER_IP}${NC}"
+echo -e "  🌐 Public News Portal : ${GREEN}http://${SERVER_IP}:3000${NC}"
 echo -e "  🔐 Admin Dashboard    : ${GREEN}http://${SERVER_IP}:8080${NC} (or http://${SERVER_IP}:8080/login)"
 echo -e "  ⏰ Auto Sync Schedule : ${GREEN}Every 8 Hours (480 mins)${NC}"
 echo -e "  📜 Live Logs          : ${YELLOW}docker compose logs -f${NC}"
