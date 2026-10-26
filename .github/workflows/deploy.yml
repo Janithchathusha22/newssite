@@ -63,17 +63,20 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
 
     steps:
-      - name: Verify Contabo Host Secret
+      - name: Check Contabo Secrets
+        id: check_secrets
         env:
           CONTABO_HOST: ${{ secrets.CONTABO_HOST }}
         run: |
-          if [ -z "$CONTABO_HOST" ]; then
+          if [ -n "$CONTABO_HOST" ]; then
+            echo "has_host=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_host=false" >> "$GITHUB_OUTPUT"
             echo "::warning title=Missing Secret::CONTABO_HOST is not configured in GitHub Secrets. Skipping automatic deployment to VPS."
-            exit 0
           fi
 
       - name: Deploy to Contabo VPS via SSH
-        if: ${{ secrets.CONTABO_HOST != '' }}
+        if: steps.check_secrets.outputs.has_host == 'true'
         uses: appleboy/ssh-action@v1.0.3
         env:
           CONTABO_HOST: ${{ secrets.CONTABO_HOST }}
