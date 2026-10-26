@@ -6,7 +6,7 @@ WORKDIR /app/public
 COPY apps/public/package*.json ./
 RUN npm install
 COPY apps/public ./
-ENV VITE_DEMO_MODE=true
+ENV VITE_DEMO_MODE=false
 # Build production bundle with standard base URL
 RUN npm run build
 
@@ -18,6 +18,7 @@ WORKDIR /app/admin
 COPY apps/admin/package*.json ./
 RUN npm install
 COPY apps/admin ./
+ENV VITE_DEMO_MODE=false
 # Build production bundle
 RUN npm run build
 

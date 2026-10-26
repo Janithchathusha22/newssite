@@ -28,9 +28,25 @@ export function resolveAssetUrl(value, sourceUrl = '') {
   const clean = cleanImageCandidate(value);
   if (!clean) return '';
   if (/^https?:\/\//i.test(clean)) {
-    const publisherSource = (sourceUrl && /^https?:\/\//i.test(sourceUrl))
+    let publisherSource = (sourceUrl && /^https?:\/\//i.test(sourceUrl) && !sourceUrl.includes('#'))
       ? sourceUrl
-      : (clean.includes('dailymirror') ? 'https://www.dailymirror.lk/' : 'https://www.ft.lk/');
+      : '';
+    if (!publisherSource) {
+      try {
+        const u = new URL(clean);
+        const host = u.hostname.toLowerCase();
+        if (host.includes('hirunews')) publisherSource = 'https://www.hirunews.lk/';
+        else if (host.includes('dailymirror')) publisherSource = 'https://www.dailymirror.lk/';
+        else if (host.includes('adaderana')) publisherSource = 'https://www.adaderana.lk/';
+        else if (host.includes('island.lk')) publisherSource = 'https://island.lk/';
+        else if (host.includes('themorning')) publisherSource = 'https://www.themorning.lk/';
+        else if (host.includes('economynext')) publisherSource = 'https://economynext.com/';
+        else if (host.includes('srilankabiz')) publisherSource = 'https://srilankabiz.lk/';
+        else publisherSource = 'https://www.ft.lk/';
+      } catch (_) {
+        publisherSource = 'https://www.ft.lk/';
+      }
+    }
     const params = new URLSearchParams({ url: clean, source: publisherSource });
     const base = API_BASE || '';
     return `${base}/api/image-proxy?${params.toString()}`;

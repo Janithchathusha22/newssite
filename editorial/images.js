@@ -162,6 +162,7 @@ function normalizeArticleImageUrl(rawValue, sourceUrl) {
 module.exports = {
   LOCAL_IMAGE_DIRECTORIES,
   PUBLISHER_HOST_SUFFIXES,
+  ORACLE_IMAGE_HOSTS,
   hostMatches,
   normalizeArticleImageUrl,
   normalizeLocalImageUrl,

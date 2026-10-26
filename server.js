@@ -11,7 +11,8 @@ const { createEditorialRouter } = require('./editorial/api');
 const {
   normalizePublisherImageUrl,
   parsePublisherUrl,
-  publisherSuffix
+  publisherSuffix,
+  ORACLE_IMAGE_HOSTS
 } = require('./editorial/images');
 
 const app = express();
@@ -399,7 +400,7 @@ const httpsAgent = new https.Agent({ family: 4 });
 const axiosInstance = axios.create({
   httpAgent,
   httpsAgent,
-  timeout: 15000,
+  timeout: 30000,
   headers: {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
   }
@@ -519,9 +520,29 @@ function extractOriginalArticleImage($, articleUrl) {
 // This endpoint never substitutes a stock/generated image.
 app.get('/api/image-proxy', async (req, res) => {
   try {
-    const articleUrl = parseAllowedPublisherUrl(req.query.source);
+    const rawImageUrl = String(req.query.url || '').trim();
+    if (!rawImageUrl) return res.status(400).json({ error: 'Image URL is required' });
+
+    let articleUrl = parseAllowedPublisherUrl(req.query.source);
+    if (!articleUrl) {
+      try {
+        const parsedImg = new URL(rawImageUrl);
+        const host = parsedImg.hostname.toLowerCase();
+        const suffix = publisherSuffix(host);
+        if (suffix) {
+          articleUrl = new URL(`https://www.${suffix}/`);
+        } else if (ORACLE_IMAGE_HOSTS) {
+          for (const [pub, hosts] of ORACLE_IMAGE_HOSTS.entries()) {
+            if (hosts.has(host)) {
+              articleUrl = new URL(`https://www.${pub}/`);
+              break;
+            }
+          }
+        }
+      } catch (_) {}
+    }
     const normalizedImageUrl = articleUrl
-      ? normalizePublisherImageUrl(String(req.query.url || ''), articleUrl.href)
+      ? normalizePublisherImageUrl(rawImageUrl, articleUrl.href)
       : '';
     if (!articleUrl || !normalizedImageUrl) {
       return res.status(400).json({ error: 'Unsupported image source' });

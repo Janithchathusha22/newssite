@@ -95,7 +95,7 @@ function createEditorialRouter({ express, projectDir, runNewsPipeline, publicSyn
   });
   const supabaseStore = new SupabaseEditorialStore();
   const requestedBackend = String(
-    process.env.EDITORIAL_BACKEND || (process.env.NODE_ENV === 'production' ? 'supabase' : 'auto')
+    process.env.EDITORIAL_BACKEND || 'auto'
   ).trim().toLowerCase();
   if (!['auto', 'local', 'supabase'].includes(requestedBackend)) {
     throw new Error('EDITORIAL_BACKEND must be auto, local, or supabase');
@@ -104,19 +104,29 @@ function createEditorialRouter({ express, projectDir, runNewsPipeline, publicSyn
   async function resolveStore() {
     if (requestedBackend === 'local') return localStore;
     if (!storePromise) {
-      storePromise = supabaseStore.available().then(available => {
+      storePromise = supabaseStore.available().then(async available => {
         if (available) {
-          console.log('[editorial] Using Supabase as the editorial source of truth.');
-          return supabaseStore;
+          try {
+            const count = (await supabaseStore.listArticles({ status: 'published' }).catch(() => [])).length;
+            if (count >= 5 || requestedBackend === 'supabase') {
+              console.log(`[editorial] Using Supabase as the editorial source of truth (${count} published articles).`);
+              return supabaseStore;
+            }
+            console.warn(`[editorial] Supabase has only ${count} published articles; using local store with live scraped news.`);
+            return localStore;
+          } catch (_) {
+            if (requestedBackend === 'supabase') throw _;
+            return localStore;
+          }
         }
-        if (requestedBackend === 'supabase' || process.env.NODE_ENV === 'production') {
+        if (requestedBackend === 'supabase') {
           throw new EditorialRepositoryError(
             'Supabase editorial storage is required but unavailable. Apply the migration and verify the server secret.',
             503,
             'SUPABASE_REQUIRED'
           );
         }
-        console.warn('[editorial] Supabase workflow schema is unavailable; using the labelled local demo store.');
+        console.warn('[editorial] Supabase workflow schema is unavailable; using the local store.');
         return localStore;
       });
     }

@@ -75,13 +75,13 @@ else
   echo "PYTHON_EXECUTABLE=${APP_DIR}/venv/bin/python3" >> .env
 fi
 
-# Ensure apps/public/.env has VITE_DEMO_MODE=true for local backend
+# Ensure apps/public/.env has VITE_DEMO_MODE=false for live news
 if [ -f "apps/public/.env" ]; then
-  sed -i 's/VITE_DEMO_MODE=false/VITE_DEMO_MODE=true/g' apps/public/.env
+  sed -i 's/VITE_DEMO_MODE=true/VITE_DEMO_MODE=false/g' apps/public/.env
 fi
 
 # Create logs directory
-mkdir -p logs downloaded_images news_images ft_images images
+mkdir -p logs downloaded_images news_images ft_images images assets/news_images editorial
 
 # 6. Install NPM dependencies & Build Frontend Apps
 echo -e "${YELLOW}[6/8] Building Frontend Apps (Public + Admin Console)...${NC}"
