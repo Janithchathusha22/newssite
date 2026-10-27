@@ -29,6 +29,16 @@ from unified_scraper import scrape_all_sources
 EDITORIAL_PROMPT_VERSION = "fact-preserving-editorial-v1"
 GROQ_MODEL = os.getenv("GROQ_MODEL", "qwen/qwen3.8-27b")
 
+VALID_CATEGORIES = {
+    "business-news",
+    "interviews-appointments",
+    "money",
+    "technology",
+    "travel-tourism",
+    "luxury-living",
+}
+
+
 def _source_material_hash(article: dict) -> str:
     """Computes SHA-256 hash of article title, summary, and content for caching."""
     title = article.get("title") or article.get("raw_title", "")
@@ -212,16 +222,28 @@ def run_daily_pipeline(max_ai_articles: int = 8):
             continue
 
         # If already processed before with AI, reuse to preserve API rate limits
-        if url in existing_feed_map and existing_feed_map[url].get('headline_si'):
+        cached_art = existing_feed_map.get(url)
+        if (
+            cached_art
+            and cached_art.get('headline_si')
+            and cached_art.get('is_allowed', True) is not False
+            and cached_art.get('category') in VALID_CATEGORIES
+            and not is_political_or_non_business(title, summary)
+        ):
             print(f" -> Reusing cached AI draft {idx}/{len(to_process)}: {title[:45]}...")
-            processed_articles.append(existing_feed_map[url])
+            processed_articles.append(cached_art)
         else:
             print(f" -> AI Processing {idx}/{len(to_process)}: {title[:50]}...")
             ai_result = process_article_with_groq(raw_art)
-            if ai_result and ai_result.get("is_business_news", True):
+            if (
+                ai_result
+                and ai_result.get("is_allowed") is True
+                and ai_result.get("category") in VALID_CATEGORIES
+                and ai_result.get("category") != "rejected"
+            ):
                 processed_articles.append(ai_result)
             else:
-                print(f" -> Dropped non-business result: {title[:45]}...")
+                print(f" -> Dropped non-business/rejected result: {title[:45]}...")
             time.sleep(1)  # Respect API pacing
 
     # Merge: Newly processed at the top, then prior verified business articles
@@ -229,7 +251,14 @@ def run_daily_pipeline(max_ai_articles: int = 8):
     for art in existing_feed_map.values():
         title = art.get("raw_title") or art.get("title") or art.get("headline_en") or ""
         summary = art.get("raw_summary") or art.get("summary") or ""
-        if is_political_or_non_business(title, summary):
+        cat = art.get("category") or ""
+        if (
+            is_political_or_non_business(title, summary)
+            or cat not in VALID_CATEGORIES
+            or cat == "rejected"
+            or art.get("is_allowed") is False
+            or art.get("is_business_news") is False
+        ):
             continue
         if not any(p.get("url") == art.get("url") for p in merged_pool):
             merged_pool.append(art)

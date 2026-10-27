@@ -76,6 +76,104 @@ DAILY_MIRROR_ARTICLE_RE = re.compile(
     re.IGNORECASE,
 )
 
+DISALLOWED_HEADLINE_PATTERNS = [
+    # Crime / Judicial / Court / Police
+    r"\bremand(?:ed|s)?\b",
+    r"\bcustody\b",
+    r"\bbail\b",
+    r"\btrial\s+court\b",
+    r"\bmagistrate\b",
+    r"\bhigh\s+court\b",
+    r"\bsupreme\s+court\s+orders?\b",
+    r"\bcourt\s+appearance\b",
+    r"\battorney\s+general\b",
+    r"\barrest(?:ed|s)?\b",
+    r"\bnabbed\b",
+    r"\bdetained\b",
+    r"\bsuspect(?:s)?\b",
+    r"\bpolice\b",
+    r"\bmurder(?:ed|s)?\b",
+    r"\bhomicide\b",
+    r"\bshoot(?:ing|s)?\b",
+    r"\bshot\s+dead\b",
+    r"\bstolen\b",
+    r"\btheft\b",
+    r"\brobbery\b",
+    r"\bburglar\w*\b",
+    r"\bdrugs?\s+seized\b",
+    r"\bnarcotics\b",
+    r"\bheroin\b",
+    r"\bice\s+drug\b",
+    r"\bcontraband\b",
+    r"\bsmuggling\b",
+    r"\btrafficking\b",
+    r"\bunderworld\b",
+    r"\bganja\b",
+    # Political / Election drama / Pardons / Controversies
+    r"\bpresidential\s+pardon\b",
+    r"\bgnanasara\b",
+    r"\bnamal\s+rajapaksa\b",
+    r"\bmahinda\s+rajapaksa\b",
+    r"\branil\s+wickremesinghe\b",
+    r"\banura\s+kumara\b",
+    r"\bsajith\s+premadasa\b",
+    r"\bparliamentary\s+debate\b",
+    r"\bparliament\s+brawl\b",
+    r"\belection\s+campaign\b",
+    r"\bno-confidence\s+motion\b",
+    r"\bpolitical\s+party\b",
+    r"\bslpp\b",
+    r"\bunp\s+calls\b",
+    r"\bsjb\b",
+    r"\bnpp\b",
+    r"\bslfp\b",
+    r"\bitak\b",
+    r"\bcabinet\s+reshuffle\b",
+    r"\bopposition\s+leader\b",
+    # Accidents / Weather / Disasters / Wildlife / General local
+    r"\bfatal\s+crash\b",
+    r"\bcollision\b",
+    r"\bdrowned\b",
+    r"\bdrowning\b",
+    r"\bkilled\s+in\s+crash\b",
+    r"\bbus\s+crash\b",
+    r"\btrain\s+collision\b",
+    r"\bflood\s+warning\b",
+    r"\blandslide\b",
+    r"\bcyclone\b",
+    r"\bcyclonic\s+storm\b",
+    r"\bweather\s+forecast\b",
+    r"\bshowers\s+expected\b",
+    r"\bmeteorological\b",
+    r"\bwild\s+elephant\b",
+    r"\belephant\s+death\b",
+    r"\belephant\s+killed\b",
+    r"\belephant\s+attack\b",
+    r"\belectric\s+fence\b",
+    r"\ball\s+schools\s+closed\b",
+    r"\bschool\s+holiday\b",
+    r"\bcamera\s+equipment\s+stolen\b",
+    r"\bipl\s+auction\b",
+    r"\bbugs\s+bunny\b",
+    r"\bdictionary\s+word\b",
+    r"\broad\s+extension\b",
+    r"\bexpressway\s+extension\b",
+]
+
+DISALLOWED_HEADLINE_RE = re.compile("|".join(DISALLOWED_HEADLINE_PATTERNS), re.IGNORECASE)
+
+
+def is_disallowed_headline(title: str, url: str = "", summary: str = "") -> bool:
+    """Fast pre-filter to drop obvious non-business, court, political, or crime articles."""
+    text = f"{title} {summary}".lower()
+    url_lower = str(url or "").lower()
+    if DISALLOWED_HEADLINE_RE.search(text):
+        return True
+    if any(k in url_lower for k in ("/crime/", "/court/", "/accidents/", "/sports/", "/general-news/")):
+        return True
+    return False
+
+
 
 @dataclass(frozen=True)
 class FeedSource:
@@ -159,25 +257,25 @@ WP_REST_SOURCES = (
     ),
     WordPressSource(
         "island", "The Island", "The Island (island.lk)",
-        "https://island.lk/", "https://island.lk/feed/", "Governance & Policy",
+        "https://island.lk/", "https://island.lk/category/business/feed/", "Business & Corporate",
         35, 3,
     ),
     WordPressSource(
         "dailynews", "Daily News", "Daily News (dailynews.lk)",
-        "https://dailynews.lk/", "https://dailynews.lk/feed/",
-        "Governance & Policy", 35, 3,
+        "https://dailynews.lk/", "https://dailynews.lk/category/business/feed/",
+        "Business & Corporate", 35, 3,
     ),
     WordPressSource(
         "srilankamirror", "Sri Lanka Mirror",
         "Sri Lanka Mirror (srilankamirror.com)",
-        "https://srilankamirror.com/", "https://srilankamirror.com/feed/",
-        "Governance & Policy", 35, 3,
+        "https://srilankamirror.com/", "https://srilankamirror.com/category/biz/feed/",
+        "Business & Corporate", 35, 3,
     ),
     WordPressSource(
         "sunday-observer", "Sunday Observer",
         "Sunday Observer (sundayobserver.lk)",
-        "https://sundayobserver.lk/", "https://sundayobserver.lk/feed/",
-        "Governance & Policy", 35, 3,
+        "https://sundayobserver.lk/", "https://sundayobserver.lk/category/business/feed/",
+        "Business & Corporate", 35, 3,
     ),
 )
 
@@ -185,13 +283,13 @@ WP_REST_SOURCES = (
 LISTING_SOURCES = (
     ListingSource(
         "newsfirst", "News First", "News First (newsfirst.lk)",
-        "https://english.newsfirst.lk/", "newsfirst.lk",
-        r"/20\d{2}/\d{2}/\d{2}/[^/]+/?$", max_items=45,
+        "https://english.newsfirst.lk/business/", "newsfirst.lk",
+        r"/20\d{2}/\d{2}/\d{2}/[^/]+/?$", category="Business & Corporate", max_items=45,
     ),
     ListingSource(
         "hiru-news", "Hiru News", "Hiru News (hirunews.lk)",
-        "https://www.hirunews.lk/en/", "hirunews.lk",
-        r"/(?:en|english)/\d+/[^/]+/?$", max_items=45,
+        "https://www.hirunews.lk/business/", "hirunews.lk",
+        r"/(?:business|en|english)/\d+/[^/]+/?$", category="Business & Corporate", max_items=45,
     ),
 )
 
@@ -205,7 +303,7 @@ FEED_SOURCES = (
     ),
     FeedSource(
         "ada-derana", "Ada Derana", "Ada Derana (adaderana.lk)",
-        "https://www.adaderana.lk/rss.php", "Governance & Policy", 1, 50,
+        "https://www.adaderana.lk/rss.php", "Business & Corporate", 1, 50,
     ),
     FeedSource(
         "ada-si", "Ada Derana Biz Sinhala", "Ada Derana Biz (biz.adaderana.lk)",
@@ -290,8 +388,11 @@ SOURCE_ADAPTER_KEYS = {
     "ada-en": "ada-derana-rss",
     "island": "island-wp",
     "daily-news": "daily-news-wp",
+    "dailynews": "daily-news-wp",
     "sri-lanka-mirror": "sri-lanka-mirror-wp",
+    "srilankamirror": "sri-lanka-mirror-wp",
     "sunday-observer": "sunday-observer-wp",
+    "sundayobserver": "sunday-observer-wp",
     "caa": "caa-rss",
     "ada-derana": "ada-derana-rss",
     "ada-si": "ada-derana-rss",
@@ -302,13 +403,22 @@ SOURCE_ADAPTER_KEYS = {
     "ft-opinion": "daily-ft-rss",
     "ft-news": "daily-ft-rss",
     "ft-markets": "daily-ft-rss",
+    "ft-hr": "daily-ft-rss",
+    "ft-tech": "daily-ft-rss",
+    "ft-tourism": "daily-ft-rss",
+    "ft-lifestyle": "daily-ft-rss",
+    "lbo-tourism": "lbo-wp",
+    "lbo-tech": "lbo-wp",
+    "pulse-lifestyle": "pulse-lifestyle",
     "newsfirst": "newsfirst-html",
     "hiru-news": "hiru-html",
     "army": "army-html",
     "xinhua-sri-lanka": "xinhua-sri-lanka-html",
     "the-morning": "the-morning-next-data",
+    "themorning": "the-morning-next-data",
     "daily-mirror": "daily-mirror-html",
 }
+
 
 
 def _source_domain(source) -> str:
@@ -500,6 +610,9 @@ def _rss_records(payload: bytes, source: FeedSource, response_url: str) -> list[
         raw_summary = _clean_html_text(description_html, 1200)
         full_text = _clean_html_text(content_html, 20000)
 
+        if is_disallowed_headline(title, link, raw_summary):
+            continue
+
         categories = [
             _clean_text(tag.get_text(" ", strip=True))
             for tag in item.find_all("category")
@@ -646,6 +759,8 @@ def _wp_rest_records(payload, source: WordPressSource) -> list[dict]:
 
         excerpt = _wp_rendered(post, "excerpt", 1200)
         content = _wp_rendered(post, "content", 30000)
+        if is_disallowed_headline(title, link, excerpt):
+            continue
         categories, post_tags = _wp_embedded_terms(post)
         source_category = categories[0] if categories else source.category
         source_image = _wp_featured_image(post, source)
@@ -845,6 +960,8 @@ def _daily_mirror_records(payload: bytes, response_url: str) -> list[dict]:
         score = (1000 if heading_parent else 0) + (300 - abs(len(title) - 75))
         if link in records and title_scores[link] >= score:
             continue
+        if is_disallowed_headline(title, link):
+            continue
 
         path_lower = parts.path.lower()
         source_category = "Business" if "business-news" in path_lower else (
@@ -924,7 +1041,7 @@ def _listing_records(payload: bytes, response_url: str, source: ListingSource) -
         if not article_pattern.search(parts.path):
             continue
         title = _listing_title(anchor)
-        if not title:
+        if not title or is_disallowed_headline(title, link):
             continue
         published_at = ""
         dated_path = re.search(r"/(20\d{2})/(\d{2})/(\d{2})/", parts.path)
@@ -1068,6 +1185,8 @@ def _morning_records(payload) -> list[dict]:
         meta = post.get("meta") if isinstance(post.get("meta"), dict) else {}
         content = _clean_html_text(post.get("content"), 30000)
         summary = _clean_html_text(meta.get("excerpt"), 1200) or content[:1200] or title
+        if is_disallowed_headline(title, link, summary):
+            continue
         source_category = _clean_text(post.get("category"), 160) or "News"
         source_image = normalize_image_url(post.get("media"), link)
         if not _is_source_image(source_image, link):
@@ -1592,13 +1711,17 @@ async def scrape_all_sources_async(
     listing_sources = _enabled_sources(LISTING_SOURCES, source_registry)
     army_enabled = False
     xinhua_enabled = False
-    morning_enabled = False
+    morning_enabled = source_registry.allows(
+        domain="themorning.lk",
+        adapter_key=SOURCE_ADAPTER_KEYS.get("the-morning", ""),
+        source_key="the-morning",
+    )
     mirror_enabled = source_registry.allows(
         domain="dailymirror.lk",
         adapter_key=SOURCE_ADAPTER_KEYS["daily-mirror"],
         source_key="daily-mirror",
     )
-    configured_count = len(wp_sources) + len(feed_sources) + int(mirror_enabled)
+    configured_count = len(wp_sources) + len(feed_sources) + len(listing_sources) + int(mirror_enabled) + int(morning_enabled)
     enabled_count = configured_count
     print(f"   [i] Business News Engine enabled {enabled_count} verified business adapters.")
 
@@ -1625,7 +1748,11 @@ async def scrape_all_sources_async(
         ]
         army_task = asyncio.sleep(0, result=(b"", ARMY_SOURCE.url, {}))
         xinhua_task = asyncio.sleep(0, result=(b"", XINHUA_SRI_LANKA_SOURCE.url, {}))
-        morning_task = asyncio.sleep(0, result=([], "paused"))
+        morning_task = (
+            _fetch_morning_source(session, 30)
+            if morning_enabled
+            else asyncio.sleep(0, result=([], "paused"))
+        )
         mirror_task = (
             _request_bytes(session, "https://www.dailymirror.lk/business-news/186", retries=2)
             if mirror_enabled
@@ -1742,6 +1869,14 @@ async def scrape_all_sources_async(
         if mirror_enabled:
             print(f"   [{'+' if mirror_records else '!'}] Daily Mirror homepage: {len(mirror_records)} items")
 
+        records = [
+            r for r in records
+            if not is_disallowed_headline(
+                r.get("raw_title") or r.get("title", ""),
+                r.get("url", ""),
+                r.get("raw_summary") or r.get("summary", ""),
+            )
+        ]
         records = _dedupe(records)
         records = _balanced_limit(records, maximum, per_source)
         semaphore = asyncio.Semaphore(concurrency)

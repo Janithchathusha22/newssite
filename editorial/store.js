@@ -39,15 +39,15 @@ const REQUIRED_SOURCE_CATALOG = [
   { name: 'Business Today', domain: 'businesstoday.lk', group: 'Business / Finance', adapter: 'business-today-wp', enabled: true },
   { name: 'Ada Derana Biz', domain: 'biz.adaderana.lk', group: 'Business / Finance', adapter: 'ada-derana-biz-rss', enabled: true },
   { name: 'Daily Mirror Business', domain: 'dailymirror.lk', group: 'Business / Finance', adapter: 'daily-mirror-business', enabled: true },
-  { name: 'Daily Mirror', domain: 'dailymirror.lk', group: 'General News', adapter: 'daily-mirror-html', enabled: false },
-  { name: 'Ada Derana', domain: 'adaderana.lk', group: 'General News', adapter: 'ada-derana-rss', enabled: false },
-  { name: 'News First', domain: 'newsfirst.lk', group: 'General News', adapter: 'newsfirst-html', enabled: false },
-  { name: 'Hiru News', domain: 'hirunews.lk', group: 'General News', adapter: 'hiru-html', enabled: false },
-  { name: 'The Island', domain: 'island.lk', group: 'General News', adapter: 'island-wp', enabled: false },
-  { name: 'Daily News', domain: 'dailynews.lk', group: 'General News', adapter: 'daily-news-wp', enabled: false },
-  { name: 'Sri Lanka Mirror', domain: 'srilankamirror.com', group: 'General News', adapter: 'sri-lanka-mirror-wp', enabled: false },
-  { name: 'Sunday Observer', domain: 'sundayobserver.lk', group: 'General News', adapter: 'sunday-observer-wp', enabled: false },
-  { name: 'The Morning', domain: 'themorning.lk', group: 'General News', adapter: 'manual-review', enabled: false },
+  { name: 'Daily Mirror', domain: 'dailymirror.lk', group: 'General News', adapter: 'daily-mirror-html', enabled: true },
+  { name: 'Ada Derana', domain: 'adaderana.lk', group: 'General News', adapter: 'ada-derana-rss', enabled: true },
+  { name: 'News First', domain: 'newsfirst.lk', group: 'General News', adapter: 'newsfirst-html', enabled: true },
+  { name: 'Hiru News', domain: 'hirunews.lk', group: 'General News', adapter: 'hiru-html', enabled: true },
+  { name: 'The Island', domain: 'island.lk', group: 'General News', adapter: 'island-wp', enabled: true },
+  { name: 'Daily News', domain: 'dailynews.lk', group: 'General News', adapter: 'daily-news-wp', enabled: true },
+  { name: 'Sri Lanka Mirror', domain: 'srilankamirror.com', group: 'General News', adapter: 'sri-lanka-mirror-wp', enabled: true },
+  { name: 'Sunday Observer', domain: 'sundayobserver.lk', group: 'General News', adapter: 'sunday-observer-wp', enabled: true },
+  { name: 'The Morning', domain: 'themorning.lk', group: 'General News', adapter: 'manual-review', enabled: true },
   { name: 'news.lk', domain: 'news.lk', group: 'Official / Government', adapter: 'manual-review', enabled: false },
   { name: 'Civil Aviation Authority', domain: 'caa.lk', group: 'Official / Government', adapter: 'manual-review', enabled: false },
   { name: 'Sri Lanka Army', domain: 'army.lk', group: 'Official / Government', adapter: 'manual-review', enabled: false },
@@ -108,6 +108,24 @@ function sourceDomain(rawUrl) {
 }
 
 function categoryFor(article) {
+  const lead = `${article.title || ''} ${article.raw_title || ''} ${article.headline_en || ''} ${article.headline || ''} ${article.summary || ''} ${article.raw_summary || ''}`.toLowerCase();
+  const rejectKeywords = [
+    'remand', 'custody', 'bail hearing', 'bail granted', 'trial court', 'court appearance', 'attorney general',
+    'magistrate', 'presidential pardon', 'gnanasara', 'namal rajapaksa', 'slpp', 'unp calls', 'sjb', 'npp', 'slfp',
+    'parliamentary debate', 'parliament brawl', 'election campaign', 'no-confidence motion', 'arrested by', 'murder',
+    'police arrest', 'shot dead', 'drugs seized', 'heroin', 'ice drug', 'contraband', 'smuggling', 'underworld',
+    'electric fence', 'wild elephant', 'elephant death', 'elephant killed', 'flood warning', 'cyclonic storm',
+    'all schools closed', 'school holiday', 'camera equipment stolen', 'ipl auction', 'bugs bunny', 'stolen',
+    'dictionary word', 'road extension', 'expressway extension'
+  ];
+  if (rejectKeywords.some(keyword => lead.includes(keyword))) {
+    return 'rejected';
+  }
+
+  if (article.is_allowed === false || article.category === 'rejected') {
+    return 'rejected';
+  }
+
   const supplied = cleanText(article.category).toLowerCase().replace(/&/g, 'and');
   const direct = {
     'business-news': 'business-news',
@@ -134,16 +152,14 @@ function categoryFor(article) {
   };
   if (direct[supplied]) return direct[supplied];
 
-  // Classify from the headline/deck, not incidental names deep in the body.
-  // An earnings report that quotes a chairman must remain Money, while a
-  // headline announcing that chairman is correctly an Appointment.
-  const lead = `${article.title || ''} ${article.headline_en || ''} ${article.summary || ''}`.toLowerCase();
-  if (/\b(appoint(?:ed|ment)?|assumes duties|new chairman|new commander|director general|chief executive named|secretary to)\b/.test(lead)) return 'interviews-appointments';
-  if (/\b(touris\w*|travel|hotel|hospitality|airline|destination|visitor arrivals?)\b/.test(lead)) return 'travel-tourism';
-  if (/\b(artificial intelligence|ai|technology|digital transformation|cyber|software|telecom|robot\w*|iot)\b/.test(lead)) return 'technology';
-  if (/\b(luxury|premium vehicle|residences?|waterfront|range rover|fashion|lifestyle)\b/.test(lead)) return 'luxury-living';
-  if (/\b(bank|finance|financial|profit|pbt|loan|interest rate|monetary|insurance|assets?|inflation|revenue|earnings|quarter|treasury|bonds?|stocks?|markets?)\b|\brs\.|\blkr\b|\busd\b/.test(lead)) return 'money';
-  return 'business-news';
+  if (/\b(appoint(?:ed|ment)?|assumes duties|new chairman|new commander|director general|chief executive named|secretary to|resigns|elected president|board member|managing director)\b/.test(lead)) return 'interviews-appointments';
+  if (/\b(touris\w*|travel|hotel|hospitality|airline|aviation|destination|visitor arrivals?)\b/.test(lead)) return 'travel-tourism';
+  if (/\b(artificial intelligence|ai|technology|digital transformation|cyber|software|telecom|robot\w*|iot|fintech|cloud|data center)\b/.test(lead)) return 'technology';
+  if (/\b(luxury|premium vehicle|residences?|waterfront|range rover|fashion|lifestyle|penthouse|villas?|supercar|watches|jewell?ery|gems?)\b/.test(lead)) return 'luxury-living';
+  if (/\b(bank|banking|finance|financial|profit|pbt|pat|loan|loans|interest rate|rates|monetary|insurance|assets?|inflation|revenue|earnings|quarter|treasury|bonds?|stocks?|markets?|cbsl|central bank|cse|aspi|debt|imf)\b|\brs\.|\blkr\b|\busd\b/.test(lead)) return 'money';
+  if (/\b(business|corporate|company|companies|trade|exports?|imports?|commerce|industry|industrial|manufacturing|enterprise|shipping|logistics|retail|customs|colombo port|port modernisation|infrastructure grant)\b/.test(lead)) return 'business-news';
+
+  return 'rejected';
 }
 
 function imageFor(article) {
@@ -212,27 +228,33 @@ function normalizedTags(value, category) {
 }
 
 function isDeskRelevant(article) {
-  const headline = article.original?.headline || article.draft?.headline || article.headline || article.title || '';
-  const summary = article.original?.summary || article.draft?.summary || article.summary || '';
+  if (!article) return false;
+  if (article.is_allowed === false || article.category === 'rejected') return false;
+
+  const headline = article.original?.headline || article.draft?.headline || article.headline || article.title || article.raw_title || '';
+  const summary = article.original?.summary || article.draft?.summary || article.summary || article.raw_summary || '';
   const text = `${headline} ${summary}`.toLowerCase();
 
   // Strict rejection of political drama, courts, police, disasters, wildlife, accidents
   const rejectKeywords = [
-    'remand', 'custody', 'bail hearing', 'trial court', 'court appearance', 'attorney general',
-    'presidential pardon', 'gnanasara', 'namal rajapaksa', 'slpp', 'unp calls', 'sjb', 'npp', 'slfp',
-    'parliamentary debate', 'election campaign', 'arrested by', 'murder', 'police arrest',
-    'electric fence', 'wild elephant', 'flood warning', 'cyclonic storm',
-    'all schools closed', 'camera equipment stolen', 'ipl auction', 'bugs bunny', 'stolen'
+    'remand', 'custody', 'bail hearing', 'bail granted', 'trial court', 'court appearance', 'attorney general',
+    'magistrate', 'presidential pardon', 'gnanasara', 'namal rajapaksa', 'slpp', 'unp calls', 'sjb', 'npp', 'slfp',
+    'parliamentary debate', 'parliament brawl', 'election campaign', 'no-confidence motion', 'arrested by', 'murder',
+    'police arrest', 'shot dead', 'drugs seized', 'heroin', 'ice drug', 'contraband', 'smuggling', 'underworld',
+    'electric fence', 'wild elephant', 'elephant death', 'elephant killed', 'flood warning', 'cyclonic storm',
+    'all schools closed', 'school holiday', 'camera equipment stolen', 'ipl auction', 'bugs bunny', 'stolen',
+    'dictionary word', 'road extension', 'expressway extension'
   ];
   if (rejectKeywords.some(keyword => text.includes(keyword))) {
     return false;
   }
 
-  return /\b(business|corporate|company|enterprise|industry|exports?|trade|investment|investors?|economy|economic|finance|financial|bank|profit|loans?|markets?|stocks?|revenue|treasury|bonds?|tax|customs|retail|manufacturing|earnings|quarter|pbt|colombo port|port modernisation|infrastructure grant)\b/.test(text)
-    || /\b(tourism|tourist|travel|hotel|hospitality|airline|destination|visitors?)\b/.test(text)
-    || /\b(technology|digital|cyber|software|telecom|robot|iot|artificial intelligence|ai)\b/.test(text)
-    || /\b(appointed|appointment|chairman|director general|chief executive|assumes duties)\b/.test(text)
-    || /\b(luxury|premium|residences?|waterfront|range rover|fashion|lifestyle)\b/.test(text);
+  const cat = categoryFor(article);
+  if (cat === 'rejected' || !CATEGORY_SET.has(cat)) {
+    return false;
+  }
+
+  return true;
 }
 
 function normalizeFeedArticle(article, index) {
@@ -267,10 +289,12 @@ function normalizeFeedArticle(article, index) {
   const draftHeadline = cleanText(article.editorial_headline || article.headline_en) || headline;
   const draftSummary = cleanText(article.editorial_summary || article.summary_en) || summary;
   const draftBody = cleanBody(article.editorial_content) || body;
+  const isRejected = category === 'rejected' || article.is_allowed === false || !isDeskRelevant({ ...article, category, headline, summary });
+
   return {
     id,
     slug: `${slugify(draftHeadline)}-${id.slice(0, 7)}`,
-    status: 'pending_review',
+    status: isRejected ? 'rejected' : 'pending_review',
     aiStatus: article.rewrite_status === 'ready_for_review' ? 'ready_for_review' : 'needs_review',
     category,
     sourceId: stableId(article.source || sourceDomain(sourceUrl) || 'unknown-source'),
@@ -292,8 +316,8 @@ function normalizeFeedArticle(article, index) {
     aiModel: cleanText(article.ai_model) || (article.ai_enriched ? 'Groq editorial model' : 'Not processed'),
     promptVersion: cleanText(article.prompt_version) || 'fact-preserving-editorial-v1',
     editorNote: '',
-    rejectionReason: '',
-    audit: [{ action: 'scraped', at: validDate(article.scraped_at) || now, by: 'news-worker' }],
+    rejectionReason: isRejected ? 'Filtered by 3-layer Editorial Gatekeeper' : '',
+    audit: [{ action: isRejected ? 'auto_rejected' : 'scraped', at: validDate(article.scraped_at) || now, by: 'news-worker' }],
     _feedIndex: index
   };
 }
@@ -342,13 +366,13 @@ function createInitialState() {
   const selected = [];
   for (const category of CATEGORIES) {
     const matches = feedArticles
-      .filter(article => article.category === category.slug && article.sourceUrl && isDeskRelevant(article))
+      .filter(article => article.category === category.slug && article.sourceUrl && isDeskRelevant(article) && article.status !== 'rejected')
       .sort((left, right) => Number(Boolean(right.imageUrl)) - Number(Boolean(left.imageUrl)));
     selected.push(...matches.slice(0, 3));
   }
   for (const article of feedArticles) {
     if (selected.length >= 24) break;
-    if (article.sourceUrl && isDeskRelevant(article) && !selected.includes(article)) selected.push(article);
+    if (article.sourceUrl && isDeskRelevant(article) && article.status !== 'rejected' && article.category !== 'rejected' && !selected.includes(article)) selected.push(article);
   }
   const publishedIds = new Set(selected.map(article => article.id));
   const publicationTime = new Date().toISOString();
@@ -361,7 +385,7 @@ function createInitialState() {
   });
 
   const published = feedArticles
-    .filter(article => article.status === 'published')
+    .filter(article => article.status === 'published' && article.category !== 'rejected' && isDeskRelevant(article))
     .sort((left, right) => Date.parse(right.publishedAt) - Date.parse(left.publishedAt));
   published.slice(0, 10).forEach((article, index) => { article.topRank = index + 1; });
 
@@ -470,31 +494,52 @@ class EditorialStore {
         const newImg = imageFor(item);
 
         if (existing) {
-          if (newImg && (!existing.imageUrl || existing.imageUrl !== newImg)) {
-            existing.imageUrl = newImg;
-            updatedCount++;
-          }
-          if (item.published_at && (!existing.sourcePublishedAt || existing.sourcePublishedAt.includes('2026-08'))) {
-            existing.sourcePublishedAt = validDate(item.published_at) || existing.sourcePublishedAt;
-            existing.updatedAt = now;
+          const currentCat = categoryFor(existing);
+          if (currentCat !== existing.category) {
+            existing.category = currentCat;
             updatedCount++;
           }
           const isRelevant = isDeskRelevant(existing);
-          if (isRelevant && (index < 10 || item.status === 'published') && existing.status !== 'changes_requested' && existing.status !== 'rejected') {
-            existing.status = 'published';
-            existing.topRank = index < 10 ? (index + 1) : null;
-            existing.publishedAt = existing.publishedAt || now;
-            updatedCount++;
+
+          if (!isRelevant || currentCat === 'rejected' || item.is_allowed === false || item.category === 'rejected') {
+            if (existing.status === 'published') {
+              existing.status = 'rejected';
+              existing.topRank = null;
+              existing.category = 'rejected';
+              existing.rejectionReason = 'Filtered by 3-layer Editorial Gatekeeper';
+              existing.updatedAt = now;
+              updatedCount++;
+            }
+          } else {
+            if (newImg && (!existing.imageUrl || existing.imageUrl !== newImg)) {
+              existing.imageUrl = newImg;
+              updatedCount++;
+            }
+            if (item.published_at && (!existing.sourcePublishedAt || existing.sourcePublishedAt.includes('2026-08'))) {
+              existing.sourcePublishedAt = validDate(item.published_at) || existing.sourcePublishedAt;
+              existing.updatedAt = now;
+              updatedCount++;
+            }
+            if ((index < 10 || item.status === 'published') && existing.status !== 'changes_requested' && existing.status !== 'rejected') {
+              existing.status = 'published';
+              existing.topRank = index < 10 ? (index + 1) : null;
+              existing.publishedAt = existing.publishedAt || now;
+              updatedCount++;
+            }
           }
         } else {
           const normalized = normalizeFeedArticle(item, index);
           if (newImg) normalized.imageUrl = newImg;
           const isRelevant = isDeskRelevant(normalized);
           // Auto-publish only strictly relevant business stories to public page
-          if (isRelevant && (index < 10 || item.status === 'published')) {
+          if (isRelevant && normalized.category !== 'rejected' && (index < 10 || item.status === 'published')) {
             normalized.status = 'published';
             normalized.topRank = index < 10 ? (index + 1) : (item.topRank || null);
             normalized.publishedAt = normalized.sourcePublishedAt || now;
+          } else if (normalized.category === 'rejected' || !isRelevant) {
+            normalized.status = 'rejected';
+            normalized.topRank = null;
+            normalized.rejectionReason = 'Filtered by 3-layer Editorial Gatekeeper';
           } else {
             normalized.status = 'pending_review';
           }
@@ -527,13 +572,19 @@ class EditorialStore {
 
       // Ensure topRank 1..10 is dynamically assigned to the 10 newest published stories
       const publishedStories = this.state.articles
-        .filter(a => a.status === 'published')
+        .filter(a => a.status === 'published' && a.category !== 'rejected' && isDeskRelevant(a))
         .sort((a, b) => (
           Date.parse(b.publishedAt || b.sourcePublishedAt || b.scrapedAt || b.updatedAt) -
           Date.parse(a.publishedAt || a.sourcePublishedAt || a.scrapedAt || a.updatedAt)
         ));
 
-      this.state.articles.forEach(a => { a.topRank = null; });
+      this.state.articles.forEach(a => {
+        a.topRank = null;
+        if (a.status === 'published' && (!isDeskRelevant(a) || a.category === 'rejected')) {
+          a.status = 'rejected';
+          a.rejectionReason = 'Filtered by 3-layer Editorial Gatekeeper';
+        }
+      });
       publishedStories.slice(0, 10).forEach((art, idx) => {
         art.topRank = idx + 1;
       });
@@ -592,7 +643,36 @@ class EditorialStore {
 
   _load() {
     const stored = readJson(this.statePath, null);
-    if (stored && stored.version === 7 && Array.isArray(stored.articles)) return stored;
+    if (stored && stored.version === 7 && Array.isArray(stored.articles)) {
+      let modified = false;
+      stored.articles.forEach(art => {
+        const cat = categoryFor(art);
+        if (art.category !== cat) {
+          art.category = cat;
+          modified = true;
+        }
+        if (art.status === 'published' && (!isDeskRelevant(art) || cat === 'rejected')) {
+          art.status = 'rejected';
+          art.topRank = null;
+          art.rejectionReason = 'Filtered by 3-layer Editorial Gatekeeper';
+          modified = true;
+        }
+      });
+      const validPublished = stored.articles
+        .filter(a => a.status === 'published' && a.category !== 'rejected' && isDeskRelevant(a))
+        .sort((a, b) => (
+          Date.parse(b.publishedAt || b.sourcePublishedAt || b.scrapedAt || b.updatedAt) -
+          Date.parse(a.publishedAt || a.sourcePublishedAt || a.scrapedAt || a.updatedAt)
+        ));
+      stored.articles.forEach(a => { a.topRank = null; });
+      validPublished.slice(0, 10).forEach((art, idx) => {
+        art.topRank = idx + 1;
+      });
+      if (modified) {
+        this._save(stored);
+      }
+      return stored;
+    }
     const initial = createInitialState();
     this._save(initial);
     return initial;
