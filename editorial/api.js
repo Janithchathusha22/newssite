@@ -137,7 +137,7 @@ function createEditorialRouter({ express, projectDir, runNewsPipeline, publicSyn
   const adminPassword = String(process.env.ADMIN_PASSWORD || 'editor-demo-2026');
   const adminPasswordHash = String(process.env.ADMIN_PASSWORD_HASH || '').trim();
   const developmentLoginEnabled = process.env.NODE_ENV !== 'production'
-    || Boolean(process.env.ADMIN_EMAIL && (process.env.ADMIN_PASSWORD_HASH || process.env.ADMIN_PASSWORD));
+    || Boolean(adminEmail && (adminPasswordHash || adminPassword));
 
   if (!configuredSessionSecret) {
     console.warn('[editorial] ADMIN_SESSION_SECRET is not configured; sessions reset when the server restarts.');

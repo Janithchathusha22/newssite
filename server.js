@@ -22,25 +22,47 @@ const allowedOrigins = String(process.env.ALLOWED_ORIGINS || '')
   .filter(Boolean);
 const developmentOrigins = [
   'http://localhost:3000',
+  'http://localhost:8080',
+  'http://localhost:5000',
   'http://localhost:5173',
   'http://localhost:5174',
+  'http://127.0.0.1:3000',
+  'http://127.0.0.1:8080',
+  'http://127.0.0.1:5000',
   'http://127.0.0.1:5173',
   'http://127.0.0.1:5174'
 ];
 app.disable('x-powered-by');
 app.use(cors({
   origin(origin, callback) {
-    if (!origin || process.env.NODE_ENV !== 'production'
-      || allowedOrigins.includes(origin) || developmentOrigins.includes(origin)) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes('*') || process.env.NODE_ENV !== 'production') {
+      return callback(null, true);
+    }
+    if (allowedOrigins.includes(origin) || developmentOrigins.includes(origin)) {
       return callback(null, true);
     }
     try {
-      const hostname = new URL(origin).hostname;
+      const parsedUrl = new URL(origin);
+      const hostname = parsedUrl.hostname;
       if (hostname.endsWith('.vercel.app') || hostname === 'vercel.app') {
         return callback(null, true);
       }
+      const isIpAddress = /^(?:\d{1,3}\.){3}\d{1,3}$/.test(hostname)
+        || hostname === 'localhost'
+        || hostname === '127.0.0.1'
+        || (hostname.startsWith('[') && hostname.endsWith(']'));
+      if (isIpAddress) {
+        return callback(null, true);
+      }
+      if (process.env.PUBLIC_SITE_URL && hostname === new URL(process.env.PUBLIC_SITE_URL).hostname) {
+        return callback(null, true);
+      }
+      if (process.env.ADMIN_SITE_URL && hostname === new URL(process.env.ADMIN_SITE_URL).hostname) {
+        return callback(null, true);
+      }
     } catch (_) {}
-    return callback(new Error('Origin is not allowed'));
+    return callback(null, true);
   },
   credentials: true
 }));
