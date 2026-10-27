@@ -108,38 +108,76 @@ function sourceDomain(rawUrl) {
 }
 
 function categoryFor(article) {
-  const lead = `${article.title || ''} ${article.raw_title || ''} ${article.headline_en || ''} ${article.headline || ''} ${article.summary || ''} ${article.raw_summary || ''}`.toLowerCase();
+  if (!article) return 'rejected';
+  if (article.is_allowed === false || article.category === 'rejected') {
+    return 'rejected';
+  }
+
+  const headline = cleanText(
+    article.draft?.headline ||
+    article.original?.headline ||
+    article.headline_en ||
+    article.headline ||
+    article.title ||
+    article.raw_title ||
+    ''
+  );
+  const summary = cleanText(
+    article.draft?.summary ||
+    article.original?.summary ||
+    article.summary_en ||
+    article.summary ||
+    article.raw_summary ||
+    ''
+  );
+  const lead = `${headline} ${summary} ${article.sourceUrl || article.url || ''}`.toLowerCase();
+
   const rejectKeywords = [
-    'remand', 'custody', 'bail hearing', 'bail granted', 'trial court', 'court appearance', 'attorney general',
-    'magistrate', 'presidential pardon', 'gnanasara', 'namal rajapaksa', 'slpp', 'unp calls', 'sjb', 'npp', 'slfp',
-    'parliamentary debate', 'parliament brawl', 'election campaign', 'no-confidence motion', 'arrested by', 'murder',
-    'police arrest', 'shot dead', 'drugs seized', 'heroin', 'ice drug', 'contraband', 'smuggling', 'underworld',
-    'electric fence', 'wild elephant', 'elephant death', 'elephant killed', 'flood warning', 'cyclonic storm',
-    'all schools closed', 'school holiday', 'camera equipment stolen', 'ipl auction', 'bugs bunny', 'stolen',
-    'dictionary word', 'road extension', 'expressway extension'
+    'remand', 'custody', 'bail', 'court', 'magistrate', 'judge', 'verdict', 'attorney general',
+    'presidential pardon', 'pardon', 'gnanasara', 'namal rajapaksa', 'mahinda rajapaksa', 'gotabaya',
+    'slpp', 'unp calls', 'sjb', 'npp', 'slfp', 'itak', 'parliamentary debate', 'parliament brawl',
+    'parliament', 'election campaign', 'no-confidence motion', 'arrest', 'murder', 'police',
+    'shot dead', 'shooting', 'stabbed', 'dead body', 'found dead', 'homicide', 'drugs', 'narcotics',
+    'heroin', 'ice drug', 'contraband', 'smuggling', 'underworld', 'gangster', 'cid', 'tid',
+    'detained', 'deportation', 'criminal action', 'collision', 'fatal accident', 'drowned',
+    'train collision', 'bus accident', 'road accident', 'car crash', 'electric fence',
+    'wild elephant', 'elephant death', 'elephant killed', 'wildlife', 'poacher', 'dengue',
+    'flood', 'cyclon', 'landslide', 'weather warning', 'heavy rain', 'rainfall',
+    'all schools closed', 'school holiday', 'exam postponed', 'camera equipment stolen',
+    'ipl auction', 'bugs bunny', 'stolen', 'dictionary word', 'road extension', 'expressway extension',
+    'baseline road', 'ltte'
   ];
   if (rejectKeywords.some(keyword => lead.includes(keyword))) {
     return 'rejected';
   }
 
-  if (article.is_allowed === false || article.category === 'rejected') {
-    return 'rejected';
+  // Exact 6-category detection (English & Sinhala)
+  if (/\b(appoint(?:ed|ment)?|assumes duties|new chairman|new commander|director general|chief executive named|secretary to|resigns|elected president|board member|managing director)\b|පත්\s*කිරීම්|නව\s*සභාපති|අධ්‍යක්ෂ\s*ජනරාල්/i.test(lead)) {
+    return 'interviews-appointments';
+  }
+  if (/\b(touris\w*|travel|hotel|hospitality|airline|aviation|destination|visitor arrivals?)\b|සංචාරක|සංචාරකයින්|හෝටල්|ගුවන්\s*සේවා/i.test(lead)) {
+    return 'travel-tourism';
+  }
+  if (/\b(artificial intelligence|ai|technology|digital transformation|cyber|software|telecom|robot\w*|iot|fintech|cloud|data center)\b|තාක්ෂණ|ඩිජිටල්|මෘදුකාංග/i.test(lead)) {
+    return 'technology';
+  }
+  if (/\b(luxury|premium vehicle|residences?|waterfront|range rover|fashion|lifestyle|penthouse|villas?|supercar|watches|jewell?ery|gems?)\b|සුඛෝපභෝගී|මැණික්/i.test(lead)) {
+    return 'luxury-living';
+  }
+  if (/\b(bank|banking|finance|financial|profit|pbt|pat|loan|loans|interest rate|rates|monetary|insurance|assets?|inflation|revenue|earnings|quarter|treasury|bonds?|stocks?|markets?|cbsl|central bank|cse|aspi|debt|imf)\b|\brs\.|\blkr\b|\busd\b|කොටස්\s*වෙළෙ?ඳපො[ලළ]|බැංකු|මහ\s*බැංකුව|පොලී\s*අනුපාත|ණය|මුදල්|ආර්ථික|ඩොලර්/i.test(lead)) {
+    return 'money';
+  }
+  if (/\b(business|corporate|company|companies|trade|exports?|imports?|commerce|industry|industrial|manufacturing|enterprise|shipping|logistics|retail|customs|colombo port|port modernisation|infrastructure grant)\b|ව්‍යාපාර|සමාගම|සමාගම්|අපනයන|ආනයන|බදු|වෙළෙ?ඳ|වාණිජ|සන්නාම|gsp\+|jaaf/i.test(lead)) {
+    return 'business-news';
   }
 
   const supplied = cleanText(article.category).toLowerCase().replace(/&/g, 'and');
   const direct = {
-    'business-news': 'business-news',
-    'business news': 'business-news',
-    'business and corporate': 'business-news',
-    'corporate': 'business-news',
-    'front page': 'business-news',
-    'top story': 'business-news',
     'interviews-appointments': 'interviews-appointments',
     'interviews and appointments': 'interviews-appointments',
     'appointments': 'interviews-appointments',
     'money': 'money',
     'economy and finance': 'money',
-    'economy': 'money',
     'financial services': 'money',
     'finance': 'money',
     'markets': 'money',
@@ -151,13 +189,6 @@ function categoryFor(article) {
     'luxury living': 'luxury-living'
   };
   if (direct[supplied]) return direct[supplied];
-
-  if (/\b(appoint(?:ed|ment)?|assumes duties|new chairman|new commander|director general|chief executive named|secretary to|resigns|elected president|board member|managing director)\b/.test(lead)) return 'interviews-appointments';
-  if (/\b(touris\w*|travel|hotel|hospitality|airline|aviation|destination|visitor arrivals?)\b/.test(lead)) return 'travel-tourism';
-  if (/\b(artificial intelligence|ai|technology|digital transformation|cyber|software|telecom|robot\w*|iot|fintech|cloud|data center)\b/.test(lead)) return 'technology';
-  if (/\b(luxury|premium vehicle|residences?|waterfront|range rover|fashion|lifestyle|penthouse|villas?|supercar|watches|jewell?ery|gems?)\b/.test(lead)) return 'luxury-living';
-  if (/\b(bank|banking|finance|financial|profit|pbt|pat|loan|loans|interest rate|rates|monetary|insurance|assets?|inflation|revenue|earnings|quarter|treasury|bonds?|stocks?|markets?|cbsl|central bank|cse|aspi|debt|imf)\b|\brs\.|\blkr\b|\busd\b/.test(lead)) return 'money';
-  if (/\b(business|corporate|company|companies|trade|exports?|imports?|commerce|industry|industrial|manufacturing|enterprise|shipping|logistics|retail|customs|colombo port|port modernisation|infrastructure grant)\b/.test(lead)) return 'business-news';
 
   return 'rejected';
 }
