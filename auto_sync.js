@@ -25,7 +25,7 @@ const path = require('path');
 const parser = new Parser({
     timeout: 15000,
     headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        'User-Agent': 'curl/7.88.1'
     }
 });
 
@@ -33,6 +33,19 @@ const parser = new Parser({
 const httpAgent = new http.Agent({ family: 4 });
 const httpsAgent = new https.Agent({ family: 4 });
 const axiosClient = axios.create({ httpAgent, httpsAgent, timeout: 15000 });
+
+const REJECT_KEYWORDS = [
+    'remand', 'custody', 'bail hearing', 'trial court', 'court appearance', 'attorney general',
+    'presidential pardon', 'gnanasara', 'namal rajapaksa', 'slpp', 'unp calls', 'sjb', 'npp', 'slfp',
+    'parliamentary debate', 'election campaign', 'arrested by', 'murder', 'police arrest',
+    'electric fence', 'wild elephant', 'flood warning', 'cyclonic storm',
+    'all schools closed', 'camera equipment stolen', 'ipl auction', 'bugs bunny', 'stolen'
+];
+
+function isNonBusiness(text) {
+    const lower = String(text || '').toLowerCase();
+    return REJECT_KEYWORDS.some(k => lower.includes(k));
+}
 
 // ---- Supabase (Optional) ----
 let supabase = null;
@@ -51,27 +64,32 @@ try {
 }
 
 // =========================================================================
-// 1. RSS FEED SOURCES (NO BLOCKING! 100% SAFE!)
+// 1. RSS FEED SOURCES (100% BUSINESS NEWS ONLY)
 // =========================================================================
 const RSS_FEEDS = [
-    // Daily FT - All Sections
-    { source: 'Daily FT', category: 'Front Page', url: 'https://www.ft.lk/rss/front-page/44' },
-    { source: 'Daily FT', category: 'Top Story', url: 'https://www.ft.lk/rss/top-story/26' },
-    { source: 'Daily FT', category: 'Financial Services', url: 'https://www.ft.lk/rss/financial-services/42' },
-    { source: 'Daily FT', category: 'Corporate', url: 'https://www.ft.lk/rss/corporate/27' },
-    { source: 'Daily FT', category: 'Opinion & Issues', url: 'https://www.ft.lk/rss/opinion-and-issues/14' },
+    // Daily FT - Verified Working Categories
+    { source: 'Daily FT', category: 'business-news', url: 'https://www.ft.lk/rss/front-page/44' },
+    { source: 'Daily FT', category: 'business-news', url: 'https://www.ft.lk/rss/corporate/27' },
+    { source: 'Daily FT', category: 'money', url: 'https://www.ft.lk/rss/financial-services/42' },
+    { source: 'Daily FT', category: 'money', url: 'https://www.ft.lk/rss/markets/43' },
+    { source: 'Daily FT', category: 'interviews-appointments', url: 'https://www.ft.lk/rss/hr/47' },
+    { source: 'Daily FT', category: 'technology', url: 'https://www.ft.lk/rss/technology/49' },
+    { source: 'Daily FT', category: 'travel-tourism', url: 'https://www.ft.lk/rss/hospitality/54' },
+    { source: 'Daily FT', category: 'luxury-living', url: 'https://www.ft.lk/rss/lifestyle/10519' },
 
-    // Other Sri Lankan Business News
-    { source: 'EconomyNext', category: 'Business', url: 'https://economynext.com/feed/' },
-    { source: 'LBO', category: 'Business', url: 'https://www.lankabusinessonline.com/feed/' },
+    // Other Sri Lankan Pure Business Feeds
+    { source: 'LBO', category: 'business-news', url: 'https://www.lankabusinessonline.com/feed/' },
+    { source: 'LBO', category: 'travel-tourism', url: 'https://www.lankabusinessonline.com/category/tourism/feed/' },
+    { source: 'LBO', category: 'technology', url: 'https://www.lankabusinessonline.com/category/ict/feed/' },
+    { source: 'Pulse', category: 'luxury-living', url: 'https://pulse.lk/feed/' },
 ];
 
 // =========================================================================
-// 2. FETCH ALL NEWS FROM RSS (Block-Free!)
+// 2. FETCH ALL NEWS FROM RSS & WP REST APIS
 // =========================================================================
 async function fetchAllRssNews() {
     console.log('\n======================================================================');
-    console.log('[*] RSS NEWS AGGREGATOR - FETCHING ALL SRI LANKA BUSINESS NEWS');
+    console.log('[*] RSS & REST NEWS AGGREGATOR - FETCHING PURE SRI LANKA BUSINESS NEWS');
     console.log('======================================================================');
 
     const allArticles = [];
@@ -86,6 +104,13 @@ async function fetchAllRssNews() {
             for (const item of feed.items) {
                 const link = item.link || item.guid || '';
                 if (!link || seenLinks.has(link)) continue;
+
+                const title = (item.title || '').trim();
+                let summary = item.contentSnippet || item.content || '';
+                if (summary.length > 500) summary = summary.substring(0, 500) + '...';
+                summary = summary.replace(/<[^>]*>/g, '').trim();
+
+                if (isNonBusiness(`${title} ${summary}`)) continue;
                 seenLinks.add(link);
 
                 // Extract image from RSS content
@@ -100,14 +125,8 @@ async function fetchAllRssNews() {
                     if (img.length) imageUrl = img.attr('src') || '';
                 }
 
-                // Clean summary
-                let summary = item.contentSnippet || item.content || '';
-                if (summary.length > 500) summary = summary.substring(0, 500) + '...';
-                // Strip HTML tags
-                summary = summary.replace(/<[^>]*>/g, '').trim();
-
                 const article = {
-                    title: (item.title || '').trim(),
+                    title: title,
                     link: link,
                     image: imageUrl,
                     category: feedConfig.category,
@@ -127,7 +146,148 @@ async function fetchAllRssNews() {
         }
     }
 
-    console.log(`\n[*] Total RSS Articles: ${allArticles.length}`);
+    // Fetch Business Today API (Interviews & Appointments)
+    try {
+        console.log('\n[*] Fetching Business Today WP REST API (Interviews & Leadership)...');
+        const btResp = await axiosClient.get('https://businesstoday.lk/wp-json/wp/v2/posts?per_page=15&_embed', {
+            headers: { 'User-Agent': 'curl/7.88.1' }
+        });
+        if (Array.isArray(btResp.data)) {
+            let btCount = 0;
+            for (const p of btResp.data) {
+                const link = p.link || '';
+                if (!link || seenLinks.has(link)) continue;
+
+                const $ = cheerio.load(p.title?.rendered || '');
+                const title = $.text().trim();
+                const $excerpt = cheerio.load(p.excerpt?.rendered || '');
+                const summary = $excerpt.text().trim();
+
+                if (isNonBusiness(`${title} ${summary}`)) continue;
+                seenLinks.add(link);
+
+                let imageUrl = '';
+                try {
+                    const media = p._embedded?.['wp:featuredmedia'];
+                    if (Array.isArray(media) && media[0]?.source_url) {
+                        imageUrl = media[0].source_url;
+                    }
+                } catch (_) {}
+
+                allArticles.push({
+                    title: title,
+                    link: link,
+                    image: imageUrl,
+                    category: 'interviews-appointments',
+                    source: 'Business Today',
+                    summary: summary,
+                    full_text: summary,
+                    published_at: p.date_gmt ? new Date(p.date_gmt + 'Z').toISOString() : new Date().toISOString(),
+                    tags: ['Interviews & Appointments', 'Business Today', 'Leadership']
+                });
+                btCount++;
+            }
+            console.log(`    -> ${btCount} articles from Business Today`);
+        }
+    } catch (err) {
+        console.log(`    [!] Error fetching Business Today: ${err.message}`);
+    }
+
+    // Fetch EconomyNext WP REST API (Macroeconomics & Money)
+    try {
+        console.log('\n[*] Fetching EconomyNext WP REST API (Money & Economy)...');
+        const enResp = await axiosClient.get('https://economynext.com/wp-json/wp/v2/posts?per_page=15&_embed', {
+            headers: { 'User-Agent': 'curl/7.88.1' }
+        });
+        if (Array.isArray(enResp.data)) {
+            let enCount = 0;
+            for (const p of enResp.data) {
+                const link = p.link || '';
+                if (!link || seenLinks.has(link)) continue;
+
+                const $ = cheerio.load(p.title?.rendered || '');
+                const title = $.text().trim();
+                const $excerpt = cheerio.load(p.excerpt?.rendered || '');
+                const summary = $excerpt.text().trim();
+
+                if (isNonBusiness(`${title} ${summary}`)) continue;
+                seenLinks.add(link);
+
+                let imageUrl = '';
+                try {
+                    const media = p._embedded?.['wp:featuredmedia'];
+                    if (Array.isArray(media) && media[0]?.source_url) {
+                        imageUrl = media[0].source_url;
+                    }
+                } catch (_) {}
+
+                allArticles.push({
+                    title: title,
+                    link: link,
+                    image: imageUrl,
+                    category: 'money',
+                    source: 'EconomyNext',
+                    summary: summary,
+                    full_text: summary,
+                    published_at: p.date_gmt ? new Date(p.date_gmt + 'Z').toISOString() : new Date().toISOString(),
+                    tags: ['Money', 'EconomyNext', 'Markets']
+                });
+                enCount++;
+            }
+            console.log(`    -> ${enCount} articles from EconomyNext`);
+        }
+    } catch (err) {
+        console.log(`    [!] Error fetching EconomyNext: ${err.message}`);
+    }
+
+    // Fetch SriLankaBiz WP REST API (Markets, Bonds & Banking)
+    try {
+        console.log('\n[*] Fetching SriLankaBiz WP REST API (Markets & Banking)...');
+        const slbResp = await axiosClient.get('https://srilankabiz.lk/wp-json/wp/v2/posts?per_page=12&_embed', {
+            headers: { 'User-Agent': 'curl/7.88.1' }
+        });
+        if (Array.isArray(slbResp.data)) {
+            let slbCount = 0;
+            for (const p of slbResp.data) {
+                const link = p.link || '';
+                if (!link || seenLinks.has(link)) continue;
+
+                const $ = cheerio.load(p.title?.rendered || '');
+                const title = $.text().trim();
+                const $excerpt = cheerio.load(p.excerpt?.rendered || '');
+                const summary = $excerpt.text().trim();
+
+                if (isNonBusiness(`${title} ${summary}`)) continue;
+                seenLinks.add(link);
+
+                let imageUrl = '';
+                try {
+                    const media = p._embedded?.['wp:featuredmedia'];
+                    if (Array.isArray(media) && media[0]?.source_url) {
+                        imageUrl = media[0].source_url;
+                    }
+                } catch (_) {}
+
+                allArticles.push({
+                    title: title,
+                    link: link,
+                    image: imageUrl,
+                    category: 'money',
+                    source: 'SriLankaBiz',
+                    summary: summary,
+                    full_text: summary,
+                    published_at: p.date_gmt ? new Date(p.date_gmt + 'Z').toISOString() : new Date().toISOString(),
+                    tags: ['Money', 'SriLankaBiz', 'Bonds']
+                });
+                slbCount++;
+            }
+            console.log(`    -> ${slbCount} articles from SriLankaBiz`);
+        }
+    } catch (err) {
+        console.log(`    [!] Error fetching SriLankaBiz: ${err.message}`);
+    }
+
+    console.log(`\n[*] Total Pure Business Articles: ${allArticles.length}`);
     return allArticles;
 }
 
@@ -186,22 +346,33 @@ async function fetchCseStockData() {
 function saveToLocalJson(articles, cseData) {
     const now = new Date().toISOString();
 
-    // news_feed.json (for frontend app.js)
-    const feedData = articles.map((art, idx) => ({
-        id: String(Math.abs(hashCode(art.link))),
-        url: art.link,
-        image: art.image || '',
-        source: art.source,
-        scraped_at: now,
-        headline_en: art.title,
-        headline_si: art.title,
-        summary_en: art.summary,
-        summary_si: art.summary,
-        full_text: art.full_text,
-        key_takeaways: [art.title],
-        category: art.category,
-        tags: art.tags
-    }));
+    // Balance published articles across categories (6 per category published, rest pending review)
+    const catPublishedCount = {};
+    const feedData = articles.map((art, idx) => {
+        const catSlug = art.category;
+        const currentCount = catPublishedCount[catSlug] || 0;
+        const isPublished = currentCount < 6;
+        if (isPublished) catPublishedCount[catSlug] = currentCount + 1;
+
+        return {
+            id: String(Math.abs(hashCode(art.link))),
+            url: art.link,
+            image: art.image || '',
+            source: art.source,
+            scraped_at: now,
+            published_at: art.published_at || now,
+            headline_en: art.title,
+            headline_si: art.title,
+            summary_en: art.summary,
+            summary_si: art.summary,
+            full_text: art.full_text,
+            key_takeaways: [art.title],
+            category: art.category,
+            category_slug: art.category,
+            tags: art.tags,
+            status: isPublished ? 'published' : 'pending_review'
+        };
+    });
 
     fs.writeFileSync('news_feed.json', JSON.stringify(feedData, null, 2), 'utf-8');
     fs.writeFileSync('news_feed.js',
@@ -215,6 +386,47 @@ function saveToLocalJson(articles, cseData) {
 
     // Full raw data
     fs.writeFileSync('news_data.json', JSON.stringify(articles, null, 2), 'utf-8');
+
+    // Also sync editorial_state.json so editorial desk matches
+    const editorialPath = path.join(__dirname, 'editorial', 'editorial_state.json');
+    if (fs.existsSync(editorialPath)) {
+        try {
+            const state = JSON.parse(fs.readFileSync(editorialPath, 'utf8'));
+            let publishedRank = 0;
+            state.articles = feedData.map((a, idx) => {
+                const isPub = a.status === 'published';
+                let rank = null;
+                if (isPub && publishedRank < 10) {
+                    publishedRank++;
+                    rank = publishedRank;
+                }
+                return {
+                    id: a.id,
+                    slug: `art-${idx}-${String(Math.abs(hashCode(a.headline_en))).slice(0, 6)}`,
+                    status: a.status,
+                    aiStatus: isPub ? 'ready_for_review' : 'not_started',
+                    category: a.category,
+                    sourceName: a.source,
+                    sourceUrl: a.url,
+                    publishedAt: a.published_at,
+                    sourcePublishedAt: a.published_at,
+                    scrapedAt: a.scraped_at,
+                    imageUrl: a.image,
+                    original: { headline: a.headline_en, summary: a.summary_en, body: a.full_text },
+                    draft: { headline: a.headline_en, summary: a.summary_en, body: a.full_text },
+                    tags: a.tags,
+                    validation: [],
+                    topRank: rank,
+                    is_top_news: rank !== null,
+                    audit: []
+                };
+            });
+            fs.writeFileSync(editorialPath, JSON.stringify(state, null, 2), 'utf8');
+            console.log(`[+] Synced ${state.articles.length} verified business articles to editorial_state.json (${publishedRank} in Top News)`);
+        } catch (e) {
+            console.log(`[!] Notice syncing editorial_state.json: ${e.message}`);
+        }
+    }
 
     console.log(`[+] Saved ${feedData.length} articles to news_feed.json, news_feed.js`);
     if (cseData) console.log(`[+] Saved CSE data (${cseData.stocks.length} stocks) to cse_data.json`);

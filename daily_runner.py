@@ -20,14 +20,14 @@ if hasattr(sys.stderr, 'reconfigure'):
     sys.stderr.reconfigure(encoding='utf-8')
 
 from scraper import scrape_category, CATEGORIES
-from groq_ai_processor import process_article_with_groq
+from groq_ai_processor import process_article_with_groq, is_political_or_non_business
 from excel_sync import export_to_excel_and_csv
 from database import save_articles_to_database, get_db_stats
 from source_registry import load_source_registry, SourceRegistryError
 from unified_scraper import scrape_all_sources
 
 EDITORIAL_PROMPT_VERSION = "fact-preserving-editorial-v1"
-GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "qwen/qwen3.8-27b")
 
 def _source_material_hash(article: dict) -> str:
     """Computes SHA-256 hash of article title, summary, and content for caching."""
@@ -57,15 +57,23 @@ def _pipeline_delivery_succeeded(exported_successfully: bool, db_result: dict, r
     return status in ("success", "partial", "skipped")
 
 def scrape_additional_rss_feeds() -> list:
-    """Scrapes active business news from Lanka Business Online, EconomyNext, and Ada Derana Biz."""
+    """Scrapes verified business news feeds for all 6 target categories."""
     import xml.etree.ElementTree as ET
     import requests
     from bs4 import BeautifulSoup
 
     feeds = [
-        {"source": "Lanka Business Online", "domain": "lankabusinessonline.com", "url": "https://www.lankabusinessonline.com/feed/", "category": "Business & Corporate"},
-        {"source": "EconomyNext", "domain": "economynext.com", "url": "https://economynext.com/feed/", "category": "Economy & Finance"},
-        {"source": "Ada Derana Biz", "domain": "biz.adaderana.lk", "url": "http://biz.adaderana.lk/feed/", "category": "Business & Corporate"}
+        {"source": "Daily FT", "domain": "ft.lk", "url": "https://www.ft.lk/rss/it-telecom-technology/57", "category": "technology"},
+        {"source": "Daily FT", "domain": "ft.lk", "url": "https://www.ft.lk/rss/hospitality-tourism/43", "category": "travel-tourism"},
+        {"source": "Daily FT", "domain": "ft.lk", "url": "https://www.ft.lk/rss/lifestyle/10519", "category": "luxury-living"},
+        {"source": "Daily FT", "domain": "ft.lk", "url": "https://www.ft.lk/rss/hr/61", "category": "interviews-appointments"},
+        {"source": "Daily FT", "domain": "ft.lk", "url": "https://www.ft.lk/rss/markets/10518", "category": "money"},
+        {"source": "Lanka Business Online", "domain": "lankabusinessonline.com", "url": "https://www.lankabusinessonline.com/feed/", "category": "business-news"},
+        {"source": "LBO Tourism", "domain": "lankabusinessonline.com", "url": "https://www.lankabusinessonline.com/category/tourism/feed/", "category": "travel-tourism"},
+        {"source": "LBO Tech", "domain": "lankabusinessonline.com", "url": "https://www.lankabusinessonline.com/category/ict/feed/", "category": "technology"},
+        {"source": "EconomyNext", "domain": "economynext.com", "url": "https://economynext.com/feed/", "category": "money"},
+        {"source": "Ada Derana Biz", "domain": "biz.adaderana.lk", "url": "http://biz.adaderana.lk/feed/", "category": "business-news"},
+        {"source": "Pulse", "domain": "pulse.lk", "url": "https://pulse.lk/feed/", "category": "luxury-living"}
     ]
 
     headers = {
@@ -80,6 +88,7 @@ def scrape_additional_rss_feeds() -> list:
                 continue
             root = ET.fromstring(r.content)
             items = root.findall("./channel/item")
+            count = 0
             for item in items[:10]:
                 title_elem = item.find("title")
                 link_elem = item.find("link")
@@ -96,7 +105,8 @@ def scrape_additional_rss_feeds() -> list:
                 if enc is not None and enc.get("url"):
                     img_url = enc.get("url")
 
-                if title and link:
+                # Filter out political / non-business articles
+                if title and link and not is_political_or_non_business(title, summary):
                     articles.append({
                         "raw_title": title,
                         "title": title,
@@ -108,7 +118,8 @@ def scrape_additional_rss_feeds() -> list:
                         "image": img_url,
                         "scraped_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     })
-            print(f"[+] Scraped {len(items[:10])} live articles from {feed['source']}")
+                    count += 1
+            print(f"[+] Scraped {count} verified business articles from {feed['source']}")
         except Exception as e:
             print(f"[!] Notice: RSS scrape '{feed['source']}' skipped: {e}")
 
@@ -192,19 +203,34 @@ def run_daily_pipeline(max_ai_articles: int = 8):
 
     for idx, raw_art in enumerate(to_process, 1):
         url = raw_art.get('url', '')
+        title = raw_art.get('raw_title') or raw_art.get('title') or ''
+        summary = raw_art.get('raw_summary') or raw_art.get('summary') or ''
+
+        # Skip political or non-business items
+        if is_political_or_non_business(title, summary):
+            print(f" -> Skipping non-business item: {title[:45]}...")
+            continue
+
         # If already processed before with AI, reuse to preserve API rate limits
         if url in existing_feed_map and existing_feed_map[url].get('headline_si'):
-            print(f" -> Reusing cached AI draft {idx}/{len(to_process)}: {raw_art.get('raw_title', '')[:45]}...")
+            print(f" -> Reusing cached AI draft {idx}/{len(to_process)}: {title[:45]}...")
             processed_articles.append(existing_feed_map[url])
         else:
-            print(f" -> AI Processing {idx}/{len(to_process)}: {raw_art.get('raw_title', '')[:50]}...")
+            print(f" -> AI Processing {idx}/{len(to_process)}: {title[:50]}...")
             ai_result = process_article_with_groq(raw_art)
-            processed_articles.append(ai_result)
+            if ai_result and ai_result.get("is_business_news", True):
+                processed_articles.append(ai_result)
+            else:
+                print(f" -> Dropped non-business result: {title[:45]}...")
             time.sleep(1)  # Respect API pacing
 
-    # Merge: Newly processed at the top, then prior existing articles up to 50
+    # Merge: Newly processed at the top, then prior verified business articles
     merged_pool = list(processed_articles)
     for art in existing_feed_map.values():
+        title = art.get("raw_title") or art.get("title") or art.get("headline_en") or ""
+        summary = art.get("raw_summary") or art.get("summary") or ""
+        if is_political_or_non_business(title, summary):
+            continue
         if not any(p.get("url") == art.get("url") for p in merged_pool):
             merged_pool.append(art)
 

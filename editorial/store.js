@@ -32,23 +32,25 @@ const CATEGORIES = [
 ];
 
 const REQUIRED_SOURCE_CATALOG = [
-  { name: 'Daily Mirror', domain: 'dailymirror.lk', group: 'General News', adapter: 'daily-mirror-html', enabled: true },
-  { name: 'Ada Derana', domain: 'adaderana.lk', group: 'General News', adapter: 'ada-derana-rss', enabled: true },
-  { name: 'News First', domain: 'newsfirst.lk', group: 'General News', adapter: 'newsfirst-html', enabled: true },
-  { name: 'Hiru News', domain: 'hirunews.lk', group: 'General News', adapter: 'hiru-html', enabled: true },
   { name: 'Daily FT', domain: 'ft.lk', group: 'Business / Finance', adapter: 'daily-ft-rss', enabled: true },
   { name: 'EconomyNext', domain: 'economynext.com', group: 'Business / Finance', adapter: 'economynext-wp', enabled: true },
   { name: 'SriLankaBiz', domain: 'srilankabiz.lk', group: 'Business / Finance', adapter: 'srilankabiz-wp', enabled: true },
   { name: 'Lanka Business Online', domain: 'lankabusinessonline.com', group: 'Business / Finance', adapter: 'lbo-wp', enabled: true },
   { name: 'Business Today', domain: 'businesstoday.lk', group: 'Business / Finance', adapter: 'business-today-wp', enabled: true },
+  { name: 'Ada Derana Biz', domain: 'biz.adaderana.lk', group: 'Business / Finance', adapter: 'ada-derana-biz-rss', enabled: true },
+  { name: 'Daily Mirror Business', domain: 'dailymirror.lk', group: 'Business / Finance', adapter: 'daily-mirror-business', enabled: true },
+  { name: 'Daily Mirror', domain: 'dailymirror.lk', group: 'General News', adapter: 'daily-mirror-html', enabled: false },
+  { name: 'Ada Derana', domain: 'adaderana.lk', group: 'General News', adapter: 'ada-derana-rss', enabled: false },
+  { name: 'News First', domain: 'newsfirst.lk', group: 'General News', adapter: 'newsfirst-html', enabled: false },
+  { name: 'Hiru News', domain: 'hirunews.lk', group: 'General News', adapter: 'hiru-html', enabled: false },
+  { name: 'The Island', domain: 'island.lk', group: 'General News', adapter: 'island-wp', enabled: false },
+  { name: 'Daily News', domain: 'dailynews.lk', group: 'General News', adapter: 'daily-news-wp', enabled: false },
+  { name: 'Sri Lanka Mirror', domain: 'srilankamirror.com', group: 'General News', adapter: 'sri-lanka-mirror-wp', enabled: false },
+  { name: 'Sunday Observer', domain: 'sundayobserver.lk', group: 'General News', adapter: 'sunday-observer-wp', enabled: false },
+  { name: 'The Morning', domain: 'themorning.lk', group: 'General News', adapter: 'manual-review', enabled: false },
   { name: 'news.lk', domain: 'news.lk', group: 'Official / Government', adapter: 'manual-review', enabled: false },
   { name: 'Civil Aviation Authority', domain: 'caa.lk', group: 'Official / Government', adapter: 'manual-review', enabled: false },
   { name: 'Sri Lanka Army', domain: 'army.lk', group: 'Official / Government', adapter: 'manual-review', enabled: false },
-  { name: 'The Morning', domain: 'themorning.lk', group: 'General News', adapter: 'manual-review', enabled: false },
-  { name: 'The Island', domain: 'island.lk', group: 'General News', adapter: 'island-wp', enabled: true },
-  { name: 'Daily News', domain: 'dailynews.lk', group: 'General News', adapter: 'daily-news-wp', enabled: true },
-  { name: 'Sri Lanka Mirror', domain: 'srilankamirror.com', group: 'General News', adapter: 'sri-lanka-mirror-wp', enabled: true },
-  { name: 'Sunday Observer', domain: 'sundayobserver.lk', group: 'General News', adapter: 'sunday-observer-wp', enabled: true },
   { name: 'Xinhua', domain: 'news.cn', group: 'General News', adapter: 'manual-review', enabled: false }
 ];
 
@@ -210,11 +212,26 @@ function normalizedTags(value, category) {
 }
 
 function isDeskRelevant(article) {
-  const text = `${article.original?.headline || ''} ${article.original?.summary || ''}`.toLowerCase();
-  return /\b(business|corporate|company|enterprise|industry|exports?|trade|investment|investors?|economy|economic|finance|financial|bank|profit|loans?|markets?|stocks?|revenue|treasury|bonds?|tax|customs|retail|manufacturing|earnings|quarter|pbt)\b/.test(text)
+  const headline = article.original?.headline || article.draft?.headline || article.headline || article.title || '';
+  const summary = article.original?.summary || article.draft?.summary || article.summary || '';
+  const text = `${headline} ${summary}`.toLowerCase();
+
+  // Strict rejection of political drama, courts, police, disasters, wildlife, accidents
+  const rejectKeywords = [
+    'remand', 'custody', 'bail hearing', 'trial court', 'court appearance', 'attorney general',
+    'presidential pardon', 'gnanasara', 'namal rajapaksa', 'slpp', 'unp calls', 'sjb', 'npp', 'slfp',
+    'parliamentary debate', 'election campaign', 'arrested by', 'murder', 'police arrest',
+    'electric fence', 'wild elephant', 'flood warning', 'cyclonic storm',
+    'all schools closed', 'camera equipment stolen', 'ipl auction', 'bugs bunny', 'stolen'
+  ];
+  if (rejectKeywords.some(keyword => text.includes(keyword))) {
+    return false;
+  }
+
+  return /\b(business|corporate|company|enterprise|industry|exports?|trade|investment|investors?|economy|economic|finance|financial|bank|profit|loans?|markets?|stocks?|revenue|treasury|bonds?|tax|customs|retail|manufacturing|earnings|quarter|pbt|colombo port|port modernisation|infrastructure grant)\b/.test(text)
     || /\b(tourism|tourist|travel|hotel|hospitality|airline|destination|visitors?)\b/.test(text)
     || /\b(technology|digital|cyber|software|telecom|robot|iot|artificial intelligence|ai)\b/.test(text)
-    || /\b(appointed|appointment|chairman|commander|director general|chief executive|assumes duties)\b/.test(text)
+    || /\b(appointed|appointment|chairman|director general|chief executive|assumes duties)\b/.test(text)
     || /\b(luxury|premium|residences?|waterfront|range rover|fashion|lifestyle)\b/.test(text);
 }
 
@@ -348,7 +365,9 @@ function createInitialState() {
     .sort((left, right) => Date.parse(right.publishedAt) - Date.parse(left.publishedAt));
   published.slice(0, 10).forEach((article, index) => { article.topRank = index + 1; });
 
-  const articles = [...curatedArticles, ...feedArticles.slice(0, 90)];
+  const topRankedArticles = feedArticles.filter(article => Number.isInteger(article.topRank));
+  const otherArticles = feedArticles.filter(article => !Number.isInteger(article.topRank));
+  const articles = [...curatedArticles, ...topRankedArticles, ...otherArticles.slice(0, 90)];
   const sourceMap = new Map(REQUIRED_SOURCE_CATALOG.map(source => [source.domain, {
     id: stableId(source.domain),
     name: source.name,
@@ -460,7 +479,8 @@ class EditorialStore {
             existing.updatedAt = now;
             updatedCount++;
           }
-          if ((index < 10 || item.status === 'published') && existing.status !== 'changes_requested' && existing.status !== 'rejected') {
+          const isRelevant = isDeskRelevant(existing);
+          if (isRelevant && (index < 10 || item.status === 'published') && existing.status !== 'changes_requested' && existing.status !== 'rejected') {
             existing.status = 'published';
             existing.topRank = index < 10 ? (index + 1) : null;
             existing.publishedAt = existing.publishedAt || now;
@@ -469,8 +489,9 @@ class EditorialStore {
         } else {
           const normalized = normalizeFeedArticle(item, index);
           if (newImg) normalized.imageUrl = newImg;
-          // Auto-publish all fresh stories to public page
-          if (index < 10 || item.status === 'published') {
+          const isRelevant = isDeskRelevant(normalized);
+          // Auto-publish only strictly relevant business stories to public page
+          if (isRelevant && (index < 10 || item.status === 'published')) {
             normalized.status = 'published';
             normalized.topRank = index < 10 ? (index + 1) : (item.topRank || null);
             normalized.publishedAt = normalized.sourcePublishedAt || now;
@@ -538,6 +559,11 @@ class EditorialStore {
 
     let publishedKept = 0;
     for (const art of articles) {
+      if (Number.isInteger(art.topRank)) {
+        keep.push(art);
+        if (art.status === 'published') publishedKept++;
+        continue;
+      }
       const artTime = Date.parse(art.publishedAt || art.sourcePublishedAt || art.scrapedAt || art.updatedAt || '');
       const isPublished = art.status === 'published';
       const isTooOld = Number.isFinite(artTime) && artTime < cutoffTime;

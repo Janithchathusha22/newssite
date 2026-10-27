@@ -34,7 +34,12 @@ CATEGORIES = {
     "financial_services": f"{BASE_URL}/financial-services/42",
     "business_news": f"{BASE_URL}/business/34",
     "corporate": f"{BASE_URL}/corporate/27",
-    "governance_opinion": f"{BASE_URL}/opinion-and-issues/14"
+    "governance_opinion": f"{BASE_URL}/opinion-and-issues/14",
+    "technology": f"{BASE_URL}/it-telecom-technology/57",
+    "travel_tourism": f"{BASE_URL}/hospitality-tourism/43",
+    "appointments": f"{BASE_URL}/hr/61",
+    "luxury_living": f"{BASE_URL}/lifestyle/10519",
+    "markets": f"{BASE_URL}/markets/10518"
 }
 
 RSS_SECTION_FALLBACKS = {
@@ -43,7 +48,12 @@ RSS_SECTION_FALLBACKS = {
     "financial_services": f"{BASE_URL}/rss/financial-services/42",
     "corporate": f"{BASE_URL}/rss/corporate/27",
     "governance_opinion": f"{BASE_URL}/rss/opinion-and-issues/14",
-    "business_news": f"{BASE_URL}/rss/business/34"
+    "business_news": f"{BASE_URL}/rss/business/34",
+    "technology": f"{BASE_URL}/rss/it-telecom-technology/57",
+    "travel_tourism": f"{BASE_URL}/rss/hospitality-tourism/43",
+    "appointments": f"{BASE_URL}/rss/hr/61",
+    "luxury_living": f"{BASE_URL}/rss/lifestyle/10519",
+    "markets": f"{BASE_URL}/rss/markets/10518"
 }
 
 

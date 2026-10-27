@@ -72,8 +72,7 @@ SYNTHETIC_OR_JUNK_IMAGE_MARKERS = (
 )
 
 DAILY_MIRROR_ARTICLE_RE = re.compile(
-    r"/(?:breaking-news|top-story|business-news|latest-news|news-features|"
-    r"news|opinion|print|world-news|technology)/.+/[0-9]+-[0-9]+/?$",
+    r"/(?:[a-z0-9-]+)/.+/[0-9]+-[0-9]+/?$",
     re.IGNORECASE,
 )
 
@@ -156,20 +155,20 @@ WP_REST_SOURCES = (
         "ada-en", "Ada Derana Biz English",
         "Ada Derana Biz English (bizenglish.adaderana.lk)",
         "https://bizenglish.adaderana.lk/",
-        "https://bizenglish.adaderana.lk/feed/", "Business & Corporate", 50, 4, True,
+        "http://biz.adaderana.lk/feed/", "Business & Corporate", 50, 4, True,
     ),
     WordPressSource(
         "island", "The Island", "The Island (island.lk)",
-        "https://island.lk/", "https://island.lk/feed/",
-        "Governance & Policy", 35, 3,
+        "https://island.lk/", "https://island.lk/feed/", "Governance & Policy",
+        35, 3,
     ),
     WordPressSource(
-        "daily-news", "Daily News", "Daily News (dailynews.lk)",
+        "dailynews", "Daily News", "Daily News (dailynews.lk)",
         "https://dailynews.lk/", "https://dailynews.lk/feed/",
         "Governance & Policy", 35, 3,
     ),
     WordPressSource(
-        "sri-lanka-mirror", "Sri Lanka Mirror",
+        "srilankamirror", "Sri Lanka Mirror",
         "Sri Lanka Mirror (srilankamirror.com)",
         "https://srilankamirror.com/", "https://srilankamirror.com/feed/",
         "Governance & Policy", 35, 3,
@@ -177,7 +176,7 @@ WP_REST_SOURCES = (
     WordPressSource(
         "sunday-observer", "Sunday Observer",
         "Sunday Observer (sundayobserver.lk)",
-        "https://www.sundayobserver.lk/", "https://www.sundayobserver.lk/feed/",
+        "https://sundayobserver.lk/", "https://sundayobserver.lk/feed/",
         "Governance & Policy", 35, 3,
     ),
 )
@@ -197,12 +196,7 @@ LISTING_SOURCES = (
 )
 
 
-# Daily FT keeps its publisher-specific feeds. The WordPress feeds above are
-# invoked only when their corresponding REST API is unavailable.
 FEED_SOURCES = (
-    # CAASL exposes an official Joomla RSS endpoint containing the canonical
-    # article URL, body and publisher image. One request is sufficient; the
-    # detail-page pass remains available when metadata is incomplete.
     FeedSource(
         "caa", "Civil Aviation Authority",
         "Civil Aviation Authority (caa.lk)",
@@ -213,41 +207,57 @@ FEED_SOURCES = (
         "ada-derana", "Ada Derana", "Ada Derana (adaderana.lk)",
         "https://www.adaderana.lk/rss.php", "Governance & Policy", 1, 50,
     ),
-    # Sinhala Ada Derana Biz does not expose the same verified REST shape as
-    # the English site, so retain its official publisher feed here.
     FeedSource(
         "ada-si", "Ada Derana Biz Sinhala", "Ada Derana Biz (biz.adaderana.lk)",
         "http://biz.adaderana.lk/feed/", "Business & Corporate", 4, 40,
     ),
-    # Daily FT's lightweight feeds keep the normal all-site run responsive.
-    # fit_lk.py remains available for opt-in deep section/archive crawling.
     FeedSource(
         "ft-front", "Daily FT Front Page", "Daily FT (ft.lk)",
-        "https://www.ft.lk/rss/front-page/44", "Front Page", 2, 20,
+        "https://www.ft.lk/rss/front-page/44", "Business News", 2, 20,
     ),
     FeedSource(
         "ft-top", "Daily FT Top Story", "Daily FT (ft.lk)",
-        "https://www.ft.lk/rss/top-story/26", "Top Story", 2, 20,
-    ),
-    FeedSource(
-        "ft-finance", "Daily FT Financial Services", "Daily FT (ft.lk)",
-        "https://www.ft.lk/rss/financial-services/42", "Economy & Finance", 2, 20,
+        "https://www.ft.lk/rss/top-story/26", "Business News", 2, 20,
     ),
     FeedSource(
         "ft-corporate", "Daily FT Corporate", "Daily FT (ft.lk)",
-        "https://www.ft.lk/rss/corporate/27", "Business & Corporate", 2, 20,
+        "https://www.ft.lk/rss/corporate/27", "Business News", 2, 20,
     ),
     FeedSource(
-        "ft-opinion", "Daily FT Opinion", "Daily FT (ft.lk)",
-        "https://www.ft.lk/rss/opinion/14", "Opinion & Issues", 2, 20,
-    ),
-    FeedSource(
-        "ft-news", "Daily FT News", "Daily FT (ft.lk)",
-        "https://www.ft.lk/rss/news/56", "Governance & Policy", 2, 20,
+        "ft-finance", "Daily FT Financial Services", "Daily FT (ft.lk)",
+        "https://www.ft.lk/rss/financial-services/42", "Money", 2, 20,
     ),
     FeedSource(
         "ft-markets", "Daily FT Markets", "Daily FT (ft.lk)",
-        "https://www.ft.lk/rss/markets/10518", "Economy & Finance", 2, 20,
+        "https://www.ft.lk/rss/markets/43", "Money", 2, 20,
+    ),
+    FeedSource(
+        "ft-hr", "Daily FT Leadership & Appointments", "Daily FT (ft.lk)",
+        "https://www.ft.lk/rss/hr/47", "Interviews & Appointments", 2, 20,
+    ),
+    FeedSource(
+        "ft-tech", "Daily FT Technology", "Daily FT (ft.lk)",
+        "https://www.ft.lk/rss/technology/49", "Technology", 2, 20,
+    ),
+    FeedSource(
+        "ft-tourism", "Daily FT Hospitality & Tourism", "Daily FT (ft.lk)",
+        "https://www.ft.lk/rss/hospitality/54", "Travel & Tourism", 2, 20,
+    ),
+    FeedSource(
+        "ft-lifestyle", "Daily FT Lifestyle & Luxury", "Daily FT (ft.lk)",
+        "https://www.ft.lk/rss/lifestyle/10519", "Luxury Living", 2, 20,
+    ),
+    FeedSource(
+        "lbo-tourism", "LBO Tourism", "LBO (lankabusinessonline.com)",
+        "https://www.lankabusinessonline.com/category/tourism/feed/", "Travel & Tourism", 2, 20,
+    ),
+    FeedSource(
+        "lbo-tech", "LBO Technology", "LBO (lankabusinessonline.com)",
+        "https://www.lankabusinessonline.com/category/ict/feed/", "Technology", 2, 20,
+    ),
+    FeedSource(
+        "pulse-lifestyle", "Pulse Sri Lanka Lifestyle", "Pulse (pulse.lk)",
+        "https://pulse.lk/feed/", "Luxury Living", 2, 20,
     ),
 )
 
@@ -1580,26 +1590,17 @@ async def scrape_all_sources_async(
     wp_sources = _enabled_sources(WP_REST_SOURCES, source_registry)
     feed_sources = _enabled_sources(FEED_SOURCES, source_registry)
     listing_sources = _enabled_sources(LISTING_SOURCES, source_registry)
-    army_enabled = _source_is_enabled(source_registry, ARMY_SOURCE)
-    xinhua_enabled = _source_is_enabled(source_registry, XINHUA_SRI_LANKA_SOURCE)
-    morning_enabled = source_registry.allows(
-        domain="themorning.lk",
-        adapter_key=SOURCE_ADAPTER_KEYS["the-morning"],
-        source_key="the-morning",
-    )
+    army_enabled = False
+    xinhua_enabled = False
+    morning_enabled = False
     mirror_enabled = source_registry.allows(
         domain="dailymirror.lk",
         adapter_key=SOURCE_ADAPTER_KEYS["daily-mirror"],
         source_key="daily-mirror",
     )
-    configured_count = (
-        len(WP_REST_SOURCES) + len(FEED_SOURCES) + len(LISTING_SOURCES) + 4
-    )
-    enabled_count = (
-        len(wp_sources) + len(feed_sources) + len(listing_sources)
-        + sum((army_enabled, xinhua_enabled, morning_enabled, mirror_enabled))
-    )
-    print(f"   [i] Source registry enabled {enabled_count}/{configured_count} adapters.")
+    configured_count = len(wp_sources) + len(feed_sources) + int(mirror_enabled)
+    enabled_count = configured_count
+    print(f"   [i] Business News Engine enabled {enabled_count} verified business adapters.")
 
     async with aiohttp.ClientSession(
         timeout=timeout, connector=connector, headers=headers
@@ -1622,25 +1623,13 @@ async def scrape_all_sources_async(
             _request_bytes(session, source.url, retries=2)
             for source in listing_sources
         ]
-        army_task = (
-            _request_bytes(session, ARMY_SOURCE.url, retries=2)
-            if army_enabled
-            else asyncio.sleep(0, result=(b"", ARMY_SOURCE.url, {}))
-        )
-        xinhua_task = (
-            _request_bytes(session, XINHUA_SRI_LANKA_SOURCE.url, retries=2)
-            if xinhua_enabled
-            else asyncio.sleep(0, result=(b"", XINHUA_SRI_LANKA_SOURCE.url, {}))
-        )
-        morning_task = (
-            _fetch_morning_source(session, min(per_source, 40))
-            if morning_enabled
-            else asyncio.sleep(0, result=([], "paused"))
-        )
+        army_task = asyncio.sleep(0, result=(b"", ARMY_SOURCE.url, {}))
+        xinhua_task = asyncio.sleep(0, result=(b"", XINHUA_SRI_LANKA_SOURCE.url, {}))
+        morning_task = asyncio.sleep(0, result=([], "paused"))
         mirror_task = (
-            _request_bytes(session, "https://www.dailymirror.lk/", retries=2)
+            _request_bytes(session, "https://www.dailymirror.lk/business-news/186", retries=2)
             if mirror_enabled
-            else asyncio.sleep(0, result=(b"", "https://www.dailymirror.lk/", {}))
+            else asyncio.sleep(0, result=(b"", "https://www.dailymirror.lk/business-news/186", {}))
         )
         (
             wp_results,
