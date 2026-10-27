@@ -253,7 +253,7 @@ WP_REST_SOURCES = (
         "ada-en", "Ada Derana Biz English",
         "Ada Derana Biz English (bizenglish.adaderana.lk)",
         "https://bizenglish.adaderana.lk/",
-        "http://biz.adaderana.lk/feed/", "Business & Corporate", 50, 4, True,
+        "https://bizenglish.adaderana.lk/feed/", "Business & Corporate", 50, 4, True,
     ),
     WordPressSource(
         "island", "The Island", "The Island (island.lk)",
@@ -288,8 +288,8 @@ LISTING_SOURCES = (
     ),
     ListingSource(
         "hiru-news", "Hiru News", "Hiru News (hirunews.lk)",
-        "https://www.hirunews.lk/business/", "hirunews.lk",
-        r"/(?:business|en|english)/\d+/[^/]+/?$", category="Business & Corporate", max_items=45,
+        "https://www.hirunews.lk/english/business/", "hirunews.lk",
+        r"/(?:english|en)/business/\d+/[^/]+/?$", category="Business & Corporate", max_items=45,
     ),
 )
 

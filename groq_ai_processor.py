@@ -237,7 +237,8 @@ Output format MUST be valid raw JSON only. Do NOT include markdown wrappers like
         is_allowed = False
 
     raw_ai_cat = str(parsed_ai.get("category", "")).lower().strip()
-    if not is_allowed or raw_ai_cat == "rejected":
+    ai_headline_en = str(parsed_ai.get("headline_en", "")).strip()
+    if not is_allowed or raw_ai_cat == "rejected" or re.search(r'[\u0D80-\u0DFF]', ai_headline_en) or not ai_headline_en:
         canonical_cat = "rejected"
         is_allowed = False
     else:
@@ -277,10 +278,15 @@ def generate_fallback_ai_data(article):
     raw_summary = article.get("summary") or article.get("raw_summary", "")
     raw_content = article.get("content") or raw_summary
     raw_cat = article.get("category", "")
-    cat = _editorial_category(raw_title, raw_cat, raw_summary)
-    is_biz = cat != "rejected" and not is_political_or_non_business(raw_title, raw_summary, raw_content)
-    if not is_biz:
+    has_sinhala = bool(re.search(r'[\u0D80-\u0DFF]', raw_title))
+    if has_sinhala:
+        is_biz = False
         cat = "rejected"
+    else:
+        cat = _editorial_category(raw_title, raw_cat, raw_summary)
+        is_biz = cat != "rejected" and not is_political_or_non_business(raw_title, raw_summary, raw_content)
+        if not is_biz:
+            cat = "rejected"
     published_at = article.get("published_at") or article.get("scraped_at", "")
     passive_content = format_passive_voice_article(raw_title, raw_summary, raw_content)
 

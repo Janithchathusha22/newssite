@@ -652,14 +652,14 @@ function createEditorialRouter({ express, projectDir, runNewsPipeline, publicSyn
     ]);
     const topIds = new Set(topNews.map(article => article.id));
     const fallbackTop = published.filter(article => !topIds.has(article.id));
-    const finalTop = [...topNews, ...fallbackTop].slice(0, 10).map(publicArticle);
+    const finalTop = [...topNews, ...fallbackTop].map(publicArticle).filter(Boolean).slice(0, 10);
     const sections = Object.fromEntries(CATEGORIES.map(category => [
       category.slug,
-      published.filter(article => article.category === category.slug).slice(0, 6).map(publicArticle)
+      published.filter(article => article.category === category.slug).map(publicArticle).filter(Boolean).slice(0, 6)
     ]));
     return res.json({
       topNews: finalTop,
-      latest: published.slice(0, 18).map(publicArticle),
+      latest: published.map(publicArticle).filter(Boolean).slice(0, 18),
       sections,
       categories: CATEGORIES,
       demo: Boolean(store.state?.demo || store.isDemo)
@@ -676,8 +676,9 @@ function createEditorialRouter({ express, projectDir, runNewsPipeline, publicSyn
     ]);
     const rankedIds = new Set(topNews.map(article => article.id));
     const articles = [...topNews, ...published.filter(article => !rankedIds.has(article.id))]
-      .slice(0, limit)
-      .map(publicArticle);
+      .map(publicArticle)
+      .filter(Boolean)
+      .slice(0, limit);
     return res.json({ articles, demo: Boolean(store.state?.demo || store.isDemo) });
   }));
 
@@ -686,7 +687,9 @@ function createEditorialRouter({ express, projectDir, runNewsPipeline, publicSyn
       return res.status(404).json({ error: 'Category was not found' });
     }
     const store = await resolveStore();
-    const articles = (await store.listArticles({ status: 'published', category: req.params.slug })).map(publicArticle);
+    const articles = (await store.listArticles({ status: 'published', category: req.params.slug }))
+      .map(publicArticle)
+      .filter(Boolean);
     return res.json({
       category: CATEGORIES.find(item => item.slug === req.params.slug),
       articles,

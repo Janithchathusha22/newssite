@@ -82,7 +82,6 @@ def scrape_additional_rss_feeds() -> list:
         {"source": "LBO Tourism", "domain": "lankabusinessonline.com", "url": "https://www.lankabusinessonline.com/category/tourism/feed/", "category": "travel-tourism"},
         {"source": "LBO Tech", "domain": "lankabusinessonline.com", "url": "https://www.lankabusinessonline.com/category/ict/feed/", "category": "technology"},
         {"source": "EconomyNext", "domain": "economynext.com", "url": "https://economynext.com/feed/", "category": "money"},
-        {"source": "Ada Derana Biz", "domain": "biz.adaderana.lk", "url": "http://biz.adaderana.lk/feed/", "category": "business-news"},
         {"source": "Pulse", "domain": "pulse.lk", "url": "https://pulse.lk/feed/", "category": "luxury-living"}
     ]
 
@@ -284,17 +283,30 @@ def run_daily_pipeline(max_ai_articles: int = 8):
     if len(fresh_pool) >= 10:
         merged_pool = fresh_pool
 
-    # Auto-publish news directly to public frontend feeds
-    print(f"\n[*] Applying Auto-Publishing Policy: Publishing {len(merged_pool)} Stories for Public Feed...")
+    # Auto-publish news directly to public frontend feeds (English business articles only)
+    print(f"\n[*] Applying Auto-Publishing Policy: Publishing verified English Stories for Public Feed...")
     now_iso = datetime.now().isoformat()
-    for rank, art in enumerate(merged_pool, start=1):
+    published_rank = 1
+    for art in merged_pool:
+        raw_head = art.get("headline_en") or art.get("title") or art.get("raw_title") or ""
+        raw_summ = art.get("summary_en") or art.get("summary") or art.get("raw_summary") or ""
+        # Strictly forbid Sinhala characters from entering public feed
+        if re.search(r'[\u0D80-\u0DFF]', raw_head) or re.search(r'[\u0D80-\u0DFF]', raw_summ):
+            art["status"] = "pending_review"
+            art["topRank"] = None
+            art["is_allowed"] = False
+            continue
+
+        art["title"] = raw_head
+        art["headline"] = raw_head
+        art["summary"] = raw_summ
         art["status"] = "published"
-        art["topRank"] = rank if rank <= 10 else None
+        art["topRank"] = published_rank if published_rank <= 10 else None
         art["published_at"] = art.get("published_at") or now_iso
         art["editorial_approved"] = True
-        if rank <= 10:
-            headline = art.get("title") or art.get("raw_title") or art.get("headline_en", "")
-            print(f"  [✓ Auto-Published Top Story #{rank}] {headline[:60]}...")
+        if published_rank <= 10:
+            print(f"  [✓ Auto-Published Top Story #{published_rank}] {raw_head[:60]}...")
+            published_rank += 1
 
     # Optional auto-dispatch top #1 story to LinkedIn if configured
     try:

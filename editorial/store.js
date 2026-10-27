@@ -73,6 +73,19 @@ function cleanBody(value) {
     : '';
 }
 
+function stripBoilerplate(text) {
+  if (typeof text !== 'string') return '';
+  return text
+    .replace(/Hiru\s+News\s+Most\s+visited\s+website\s+in\s+Sri\s+Lanka[\s\S]*?(?:Company|Holdings|Site\s+for\s+Sri\s+Lankans\.?)/gi, '')
+    .replace(/Welcome\s+to\s+the\s+No1\s+online\s+news\s+Site\s+for\s+Sri\s+Lankans[\s\S]*?(?:Company|Holdings|Sri\s+Lanka\.?)/gi, '')
+    .replace(/Ada\s+Derana\s*[-–]?\s*Sri\s+Lanka'?s\s+Number\s+One\s+News\s+Portal.*?(\.|\n|$)/gi, '')
+    .replace(/A\s+Rayynor\s+Silva\s+Holdings\s+Company.*?(\.|\n|$)/gi, '')
+    .replace(/Most\s+visited\s+website\s+in\s+Sri\s+Lanka.*?(\.|\n|$)/gi, '')
+    .replace(/Sri\s+Lanka\s+News\s+updates\s+and\s+discussions\..*?(\.|\n|$)/gi, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function actorLabel(actor) {
   if (actor && typeof actor === 'object') {
     return cleanText(actor.name || actor.email || actor.label || actor.id) || 'Newsroom';
@@ -268,6 +281,12 @@ function isDeskRelevant(article) {
 
   const headline = article.original?.headline || article.draft?.headline || article.headline || article.title || article.raw_title || '';
   const summary = article.original?.summary || article.draft?.summary || article.summary || article.raw_summary || '';
+
+  // Strict: Sinhala unicode range [\u0D80-\u0DFF] is forbidden on the public English newspaper
+  if (/[\u0D80-\u0DFF]/.test(headline) || /[\u0D80-\u0DFF]/.test(summary)) {
+    return false;
+  }
+
   const text = `${headline} ${summary}`.toLowerCase();
 
   // Strict rejection of political drama, courts, police, disasters, wildlife, accidents
@@ -294,9 +313,20 @@ function isDeskRelevant(article) {
 
 function normalizeFeedArticle(article, index) {
   const sourceUrl = cleanText(article.url || article.link || article.source_url);
-  const headline = cleanText(article.raw_title || article.title || article.headline_en) || 'Untitled news report';
-  const summary = cleanText(article.raw_summary || article.summary || article.summary_en);
-  const body = cleanBody(article.full_text || article.content || summary);
+  const englishHeadline = cleanText(article.editorial_headline || article.headline_en);
+  const rawHeadline = cleanText(article.title || article.raw_title);
+  const headline = (englishHeadline && !/[\u0D80-\u0DFF]/.test(englishHeadline))
+    ? englishHeadline
+    : (rawHeadline || 'Untitled news report');
+
+  const englishSummary = cleanText(article.editorial_summary || article.summary_en);
+  const rawSummary = cleanText(article.summary || article.raw_summary);
+  const summary = (englishSummary && !/[\u0D80-\u0DFF]/.test(englishSummary))
+    ? englishSummary
+    : rawSummary;
+
+  const rawBody = cleanBody(article.editorial_content || article.content_passive || article.full_text || article.content || summary);
+  const body = stripBoilerplate(rawBody);
   const category = categoryFor({ ...article, title: headline });
   const id = stableId(sourceUrl || `${article.source || 'source'}:${headline}`);
   const now = new Date().toISOString();
@@ -321,16 +351,18 @@ function normalizeFeedArticle(article, index) {
     }));
   }
 
-  const draftHeadline = cleanText(article.editorial_headline || article.headline_en) || headline;
-  const draftSummary = cleanText(article.editorial_summary || article.summary_en) || summary;
+  const draftHeadline = (englishHeadline && !/[\u0D80-\u0DFF]/.test(englishHeadline)) ? englishHeadline : headline;
+  const draftSummary = (englishSummary && !/[\u0D80-\u0DFF]/.test(englishSummary)) ? englishSummary : summary;
   const draftBody = cleanBody(article.editorial_content) || body;
-  const isRejected = category === 'rejected' || article.is_allowed === false || !isDeskRelevant({ ...article, category, headline, summary });
+  const hasSinhala = /[\u0D80-\u0DFF]/.test(draftHeadline) || /[\u0D80-\u0DFF]/.test(draftSummary);
+  const isRelevant = isDeskRelevant({ ...article, category, headline: draftHeadline, summary: draftSummary });
+  const isRejected = category === 'rejected' || article.is_allowed === false || !isRelevant || hasSinhala;
 
   return {
     id,
     slug: `${slugify(draftHeadline)}-${id.slice(0, 7)}`,
     status: isRejected ? 'rejected' : 'pending_review',
-    aiStatus: article.rewrite_status === 'ready_for_review' ? 'ready_for_review' : 'needs_review',
+    aiStatus: hasSinhala ? 'needs_review' : (article.rewrite_status === 'ready_for_review' ? 'ready_for_review' : 'needs_review'),
     category,
     sourceId: stableId(article.source || sourceDomain(sourceUrl) || 'unknown-source'),
     sourceName: cleanText(article.source_name || article.source) || sourceDomain(sourceUrl) || 'Unknown publisher',
@@ -351,7 +383,7 @@ function normalizeFeedArticle(article, index) {
     aiModel: cleanText(article.ai_model) || (article.ai_enriched ? 'Groq editorial model' : 'Not processed'),
     promptVersion: cleanText(article.prompt_version) || 'fact-preserving-editorial-v1',
     editorNote: '',
-    rejectionReason: isRejected ? 'Filtered by 3-layer Editorial Gatekeeper' : '',
+    rejectionReason: isRejected ? (hasSinhala ? 'Sinhala content cannot be published on English portal' : 'Filtered by 3-layer Editorial Gatekeeper') : '',
     audit: [{ action: isRejected ? 'auto_rejected' : 'scraped', at: validDate(article.scraped_at) || now, by: 'news-worker' }],
     _feedIndex: index
   };
@@ -555,9 +587,9 @@ class EditorialStore {
               existing.updatedAt = now;
               updatedCount++;
             }
-            if ((index < 10 || item.status === 'published') && existing.status !== 'changes_requested' && existing.status !== 'rejected') {
+            if (item.status === 'published' && isRelevant && existing.status !== 'changes_requested' && existing.status !== 'rejected') {
               existing.status = 'published';
-              existing.topRank = index < 10 ? (index + 1) : null;
+              existing.topRank = item.topRank || null;
               existing.publishedAt = existing.publishedAt || now;
               updatedCount++;
             }
@@ -566,10 +598,10 @@ class EditorialStore {
           const normalized = normalizeFeedArticle(item, index);
           if (newImg) normalized.imageUrl = newImg;
           const isRelevant = isDeskRelevant(normalized);
-          // Auto-publish only strictly relevant business stories to public page
-          if (isRelevant && normalized.category !== 'rejected' && (index < 10 || item.status === 'published')) {
+          // Only publish if explicitly marked published, relevant, and not rejected
+          if (item.status === 'published' && isRelevant && normalized.category !== 'rejected') {
             normalized.status = 'published';
-            normalized.topRank = index < 10 ? (index + 1) : (item.topRank || null);
+            normalized.topRank = item.topRank || null;
             normalized.publishedAt = normalized.sourcePublishedAt || now;
           } else if (normalized.category === 'rejected' || !isRelevant) {
             normalized.status = 'rejected';
@@ -681,8 +713,11 @@ class EditorialStore {
     if (stored && stored.version === 7 && Array.isArray(stored.articles)) {
       let modified = false;
       stored.articles.forEach(art => {
+        const headline = art.draft?.headline || art.headline || '';
+        const summary = art.draft?.summary || art.summary || '';
+        const hasSinhala = /[\u0D80-\u0DFF]/.test(headline) || /[\u0D80-\u0DFF]/.test(summary);
         const cat = categoryFor(art);
-        if (cat === 'rejected' || !isDeskRelevant(art)) {
+        if (hasSinhala || cat === 'rejected' || !isDeskRelevant(art)) {
           if (art.category !== 'rejected') {
             art.category = 'rejected';
             modified = true;
@@ -690,7 +725,9 @@ class EditorialStore {
           if (art.status !== 'rejected') {
             art.status = 'rejected';
             art.topRank = null;
-            art.rejectionReason = 'Filtered by 3-layer Editorial Gatekeeper';
+            art.rejectionReason = hasSinhala
+              ? 'Sinhala content cannot be published on English portal'
+              : 'Filtered by 3-layer Editorial Gatekeeper';
             modified = true;
           }
         } else if (art.category !== cat) {
@@ -699,7 +736,7 @@ class EditorialStore {
         }
       });
       const validPublished = stored.articles
-        .filter(a => a.status === 'published' && a.category !== 'rejected' && isDeskRelevant(a))
+        .filter(a => a.status === 'published' && a.category !== 'rejected' && isDeskRelevant(a) && !/[\u0D80-\u0DFF]/.test(a.draft?.headline || a.headline || ''))
         .sort((a, b) => (
           Date.parse(b.publishedAt || b.sourcePublishedAt || b.scrapedAt || b.updatedAt) -
           Date.parse(a.publishedAt || a.sourcePublishedAt || a.scrapedAt || a.updatedAt)
@@ -1045,14 +1082,19 @@ class EditorialStore {
 
 function publicArticle(article, options = {}) {
   if (!article) return null;
+  const headline = cleanText(article.draft?.headline || article.headline || article.title);
+  const summary = cleanText(article.draft?.summary || article.summary);
+  if (/[\u0D80-\u0DFF]/.test(headline) || /[\u0D80-\u0DFF]/.test(summary)) {
+    return null;
+  }
   const imageUrl = normalizeArticleImageUrl(article.imageUrl, article.sourceUrl);
   return {
     id: article.id,
     slug: article.slug,
-    headline: article.draft.headline,
-    title: article.draft.headline,
-    summary: article.draft.summary,
-    content: article.draft.body,
+    headline,
+    title: headline,
+    summary,
+    content: cleanText(article.draft?.body || article.content || summary),
     category: article.category,
     tags: article.tags,
     imageUrl,
