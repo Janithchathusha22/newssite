@@ -173,6 +173,10 @@ function categoryFor(article) {
 
   const supplied = cleanText(article.category).toLowerCase().replace(/&/g, 'and');
   const direct = {
+    'business-news': 'business-news',
+    'business news': 'business-news',
+    'business and corporate': 'business-news',
+    'corporate': 'business-news',
     'interviews-appointments': 'interviews-appointments',
     'interviews and appointments': 'interviews-appointments',
     'appointments': 'interviews-appointments',
@@ -678,14 +682,19 @@ class EditorialStore {
       let modified = false;
       stored.articles.forEach(art => {
         const cat = categoryFor(art);
-        if (art.category !== cat) {
+        if (cat === 'rejected' || !isDeskRelevant(art)) {
+          if (art.category !== 'rejected') {
+            art.category = 'rejected';
+            modified = true;
+          }
+          if (art.status !== 'rejected') {
+            art.status = 'rejected';
+            art.topRank = null;
+            art.rejectionReason = 'Filtered by 3-layer Editorial Gatekeeper';
+            modified = true;
+          }
+        } else if (art.category !== cat) {
           art.category = cat;
-          modified = true;
-        }
-        if (art.status === 'published' && (!isDeskRelevant(art) || cat === 'rejected')) {
-          art.status = 'rejected';
-          art.topRank = null;
-          art.rejectionReason = 'Filtered by 3-layer Editorial Gatekeeper';
           modified = true;
         }
       });
