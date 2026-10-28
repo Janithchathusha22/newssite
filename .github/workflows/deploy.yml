@@ -88,13 +88,14 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         with:
           host: ${{ secrets.CONTABO_HOST }}
           username: ${{ secrets.CONTABO_USERNAME || 'root' }}
           password: ${{ secrets.CONTABO_PASSWORD }}
           key: ${{ secrets.CONTABO_SSH_KEY }}
           port: ${{ secrets.CONTABO_PORT || 22 }}
-          envs: SUPABASE_URL,SUPABASE_SECRET_KEY,GROQ_API_KEY
+          envs: SUPABASE_URL,SUPABASE_SECRET_KEY,GROQ_API_KEY,OPENAI_API_KEY
           script: |
             set -e
             echo "=========================================================="
@@ -152,11 +153,14 @@ jobs:
             grep -q "^SUPABASE_SYNC_ENABLED=" .env && sed -i "s|^SUPABASE_SYNC_ENABLED=.*|SUPABASE_SYNC_ENABLED=true|g" .env || echo "SUPABASE_SYNC_ENABLED=true" >> .env
             grep -q "^EDITORIAL_BACKEND=" .env && sed -i "s|^EDITORIAL_BACKEND=.*|EDITORIAL_BACKEND=local|g" .env || echo "EDITORIAL_BACKEND=local" >> .env
 
-            # Configure AI & Auto-sync interval (8 hours = 480 minutes)
+            # Configure AI & Auto-sync interval (1 hour = 60 minutes)
             if [ -n "$GROQ_API_KEY" ]; then
               grep -q "^GROQ_API_KEY=" .env && sed -i "s|^GROQ_API_KEY=.*|GROQ_API_KEY=$GROQ_API_KEY|g" .env || echo "GROQ_API_KEY=$GROQ_API_KEY" >> .env
             fi
-            grep -q "^AUTO_SYNC_INTERVAL_MINUTES=" .env && sed -i "s|^AUTO_SYNC_INTERVAL_MINUTES=.*|AUTO_SYNC_INTERVAL_MINUTES=480|g" .env || echo "AUTO_SYNC_INTERVAL_MINUTES=480" >> .env
+            if [ -n "$OPENAI_API_KEY" ]; then
+              grep -q "^OPENAI_API_KEY=" .env && sed -i "s|^OPENAI_API_KEY=.*|OPENAI_API_KEY=$OPENAI_API_KEY|g" .env || echo "OPENAI_API_KEY=$OPENAI_API_KEY" >> .env
+            fi
+            grep -q "^AUTO_SYNC_INTERVAL_MINUTES=" .env && sed -i "s|^AUTO_SYNC_INTERVAL_MINUTES=.*|AUTO_SYNC_INTERVAL_MINUTES=60|g" .env || echo "AUTO_SYNC_INTERVAL_MINUTES=60" >> .env
             grep -q "^AUTO_SYNC_ENABLED=" .env && sed -i "s|^AUTO_SYNC_ENABLED=.*|AUTO_SYNC_ENABLED=true|g" .env || echo "AUTO_SYNC_ENABLED=true" >> .env
 
             # Create persistent volume directories and files

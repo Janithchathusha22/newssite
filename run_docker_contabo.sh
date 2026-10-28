@@ -52,9 +52,9 @@ fi
 
 # Ensure 8-hour sync in .env
 if grep -q "AUTO_SYNC_INTERVAL_MINUTES=" .env; then
-  sed -i 's/AUTO_SYNC_INTERVAL_MINUTES=.*/AUTO_SYNC_INTERVAL_MINUTES=480/g' .env
+  sed -i 's/AUTO_SYNC_INTERVAL_MINUTES=.*/AUTO_SYNC_INTERVAL_MINUTES=60/g' .env
 else
-  echo "AUTO_SYNC_INTERVAL_MINUTES=480" >> .env
+  echo "AUTO_SYNC_INTERVAL_MINUTES=60" >> .env
 fi
 
 # 3. Configure Firewall (UFW)

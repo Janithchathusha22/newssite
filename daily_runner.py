@@ -11,6 +11,7 @@ import os
 import time
 import json
 import hashlib
+import re
 from datetime import datetime
 
 # UTF-8 fix for Windows console to handle Sinhala characters seamlessly
@@ -56,6 +57,57 @@ def _has_current_ai_draft(existing: dict, source_hash: str) -> bool:
     if existing.get("ai_model") != GROQ_MODEL:
         return False
     return existing.get("ai_source_hash") == source_hash
+
+def sync_editorial_state(articles: list):
+    """Synchronizes verified business articles to editorial_state.json so the Admin Desk and Public portal match."""
+    editorial_path = os.path.join(os.path.dirname(__file__), "editorial", "editorial_state.json")
+    if not os.path.exists(editorial_path):
+        return
+    try:
+        with open(editorial_path, "r", encoding="utf-8") as f:
+            state = json.load(f)
+
+        published_rank = 0
+        state_articles = []
+        for idx, a in enumerate(articles):
+            is_pub = a.get("status") == "published"
+            rank = None
+            if is_pub and published_rank < 10:
+                published_rank += 1
+                rank = published_rank
+
+            raw_head = a.get("headline_en") or a.get("title") or a.get("raw_title") or ""
+            raw_summ = a.get("summary_en") or a.get("summary") or a.get("raw_summary") or ""
+            raw_body = a.get("content") or a.get("full_text") or raw_summ
+            art_id = str(a.get("id") or abs(hash(a.get("url", ""))))
+            h_code = hashlib.sha256(raw_head.encode("utf-8")).hexdigest()[:6]
+
+            state_articles.append({
+                "id": art_id,
+                "slug": f"art-{idx}-{h_code}",
+                "status": a.get("status", "published"),
+                "aiStatus": "ready_for_review" if is_pub else "not_started",
+                "category": a.get("category", "business-news"),
+                "sourceName": a.get("source", "Daily FT"),
+                "sourceUrl": a.get("url", ""),
+                "publishedAt": a.get("published_at"),
+                "sourcePublishedAt": a.get("published_at"),
+                "scrapedAt": a.get("scraped_at"),
+                "imageUrl": a.get("image", ""),
+                "original": {"headline": raw_head, "summary": raw_summ, "body": raw_body},
+                "draft": {"headline": raw_head, "summary": raw_summ, "body": raw_body},
+                "tags": a.get("tags", []),
+                "validation": [],
+                "topRank": rank,
+                "is_top_news": rank is not None,
+                "audit": []
+            })
+        state["articles"] = state_articles
+        with open(editorial_path, "w", encoding="utf-8") as f:
+            json.dump(state, f, indent=2, ensure_ascii=False)
+        print(f"[+] Synced {len(state_articles)} verified articles to editorial_state.json ({published_rank} in Top News)")
+    except Exception as e:
+        print(f"[!] Notice syncing editorial_state.json: {e}")
 
 def _pipeline_delivery_succeeded(exported_successfully: bool, db_result: dict, require_db: bool) -> bool:
     """Evaluates whether all required pipeline deliverables were satisfied."""
@@ -325,6 +377,7 @@ def run_daily_pipeline(max_ai_articles: int = 8):
     # Step 3: Export to Excel, CSV, and Web JSON/JS Feeds
     print("\n[STEP 3/4] Exporting Data to Excel, CSV, and Web Payload...")
     export_success = export_to_excel_and_csv(merged_pool[:50])
+    sync_editorial_state(merged_pool[:50])
 
     # Step 4: Persistent Database Storage (SQLite & Supabase)
     print("\n[STEP 4/4] Saving Articles to Database (SQLite news.db & Supabase)...")
